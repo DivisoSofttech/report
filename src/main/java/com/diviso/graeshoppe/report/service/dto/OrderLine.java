@@ -22,18 +22,20 @@ package com.diviso.graeshoppe.report.service.dto;
  */
 public class OrderLine {
 
-	private Integer qauntity;
+	private Integer quantity;
 	
 	private String item ;
 	
 	private Double total;
 
-	public Integer getQauntity() {
-		return qauntity;
+	
+
+	public Integer getQuantity() {
+		return quantity;
 	}
 
-	public void setQauntity(Integer qauntity) {
-		this.qauntity = qauntity;
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 
 	public String getItem() {
@@ -54,7 +56,7 @@ public class OrderLine {
 
 	@Override
 	public String toString() {
-		return "OrderLine [qauntity=" + qauntity + ", item=" + item + ", total=" + total + "]";
+		return "OrderLine [qauntity=" + quantity + ", item=" + item + ", total=" + total + "]";
 	}
 	
 }

@@ -24,11 +24,15 @@ import java.util.List;
  */
 public class OrderMaster {
 
+	private String storeName;
+	
+	private Long storePhone;
+	
 	private String methodOfOrder;
 	
-	private String date;
+	private String dueDate;
 	
-	private String time;
+	private String dueTime;
 	
 	private String orderNumber;
 	
@@ -76,6 +80,22 @@ public class OrderMaster {
 	
 	private String orderAcceptedAt;
 
+	public String getStoreName() {
+		return storeName;
+	}
+
+	public void setStoreName(String storeName) {
+		this.storeName = storeName;
+	}
+
+	public Long getStorePhone() {
+		return storePhone;
+	}
+
+	public void setStorePhone(Long storePhone) {
+		this.storePhone = storePhone;
+	}
+
 	public String getMethodOfOrder() {
 		return methodOfOrder;
 	}
@@ -84,20 +104,20 @@ public class OrderMaster {
 		this.methodOfOrder = methodOfOrder;
 	}
 
-	public String getDate() {
-		return date;
+	public String getDueDate() {
+		return dueDate;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setDueDate(String dueDate) {
+		this.dueDate = dueDate;
 	}
 
-	public String getTime() {
-		return time;
+	public String getDueTime() {
+		return dueTime;
 	}
 
-	public void setTime(String time) {
-		this.time = time;
+	public void setDueTime(String dueTime) {
+		this.dueTime = dueTime;
 	}
 
 	public String getOrderNumber() {
@@ -244,8 +264,6 @@ public class OrderMaster {
 		this.addressType = addressType;
 	}
 
-	
-
 	public Integer getOrderFromCustomer() {
 		return orderFromCustomer;
 	}
@@ -280,16 +298,18 @@ public class OrderMaster {
 
 	@Override
 	public String toString() {
-		return "OrderMaster [methodOfOrder=" + methodOfOrder + ", date=" + date + ", time=" + time + ", orderNumber="
-				+ orderNumber + ", notes=" + notes + ", orderLine=" + orderLine + ", deliveryCharge=" + deliveryCharge
-				+ ", ServiceCharge=" + ServiceCharge + ", totalDue=" + totalDue + ", orderStatus=" + orderStatus
-				+ ", customerId=" + customerId + ", pincode=" + pincode + ", houseNoOrBuildingName="
-				+ houseNoOrBuildingName + ", roadNameAreaOrStreet=" + roadNameAreaOrStreet + ", city=" + city
-				+ ", state=" + state + ", landmark=" + landmark + ", name=" + name + ", phone=" + phone
-				+ ", alternatePhone=" + alternatePhone + ", addressType=" + addressType + ", customerContactNumber="
-				 + ", orderFromCustomer=" + orderFromCustomer + ", customersOrder="
-				+ customersOrder + ", orderPlaceAt=" + orderPlaceAt + ", orderAcceptedAt=" + orderAcceptedAt + "]";
+		return "OrderMaster [storeName=" + storeName + ", storePhone=" + storePhone + ", methodOfOrder=" + methodOfOrder
+				+ ", dueDate=" + dueDate + ", dueTime=" + dueTime + ", orderNumber=" + orderNumber + ", notes=" + notes
+				+ ", orderLine=" + orderLine + ", deliveryCharge=" + deliveryCharge + ", ServiceCharge=" + ServiceCharge
+				+ ", totalDue=" + totalDue + ", orderStatus=" + orderStatus + ", customerId=" + customerId
+				+ ", pincode=" + pincode + ", houseNoOrBuildingName=" + houseNoOrBuildingName
+				+ ", roadNameAreaOrStreet=" + roadNameAreaOrStreet + ", city=" + city + ", state=" + state
+				+ ", landmark=" + landmark + ", name=" + name + ", phone=" + phone + ", alternatePhone="
+				+ alternatePhone + ", addressType=" + addressType + ", orderFromCustomer=" + orderFromCustomer
+				+ ", customersOrder=" + customersOrder + ", orderPlaceAt=" + orderPlaceAt + ", orderAcceptedAt="
+				+ orderAcceptedAt + "]";
 	}
+
 	
 	
 	
