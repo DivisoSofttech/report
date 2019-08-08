@@ -1,0 +1,127 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="reportApp.reportOrderMaster.home.title">Order Masters</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-order-master" [routerLink]="['/order-master/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="reportApp.reportOrderMaster.home.createLabel">
+            Create new Order Master
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'reportApp.reportOrderMaster.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="orderMasters">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="storeName"><span jhiTranslate="reportApp.reportOrderMaster.storeName">Store Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="storePhone"><span jhiTranslate="reportApp.reportOrderMaster.storePhone">Store Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="methodOfOrder"><span jhiTranslate="reportApp.reportOrderMaster.methodOfOrder">Method Of Order</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dueDate"><span jhiTranslate="reportApp.reportOrderMaster.dueDate">Due Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dueTime"><span jhiTranslate="reportApp.reportOrderMaster.dueTime">Due Time</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="orderNumber"><span jhiTranslate="reportApp.reportOrderMaster.orderNumber">Order Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="notes"><span jhiTranslate="reportApp.reportOrderMaster.notes">Notes</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="deliveryCharge"><span jhiTranslate="reportApp.reportOrderMaster.deliveryCharge">Delivery Charge</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="serviceCharge"><span jhiTranslate="reportApp.reportOrderMaster.serviceCharge">Service Charge</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="totalDue"><span jhiTranslate="reportApp.reportOrderMaster.totalDue">Total Due</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="orderStatus"><span jhiTranslate="reportApp.reportOrderMaster.orderStatus">Order Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="customerId"><span jhiTranslate="reportApp.reportOrderMaster.customerId">Customer Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="pincode"><span jhiTranslate="reportApp.reportOrderMaster.pincode">Pincode</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="houseNoOrBuildingName"><span jhiTranslate="reportApp.reportOrderMaster.houseNoOrBuildingName">House No Or Building Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="roadNameAreaOrStreet"><span jhiTranslate="reportApp.reportOrderMaster.roadNameAreaOrStreet">Road Name Area Or Street</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="city"><span jhiTranslate="reportApp.reportOrderMaster.city">City</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="state"><span jhiTranslate="reportApp.reportOrderMaster.state">State</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="landmark"><span jhiTranslate="reportApp.reportOrderMaster.landmark">Landmark</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="name"><span jhiTranslate="reportApp.reportOrderMaster.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="phone"><span jhiTranslate="reportApp.reportOrderMaster.phone">Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="alternatePhone"><span jhiTranslate="reportApp.reportOrderMaster.alternatePhone">Alternate Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="addressType"><span jhiTranslate="reportApp.reportOrderMaster.addressType">Address Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="orderFromCustomer"><span jhiTranslate="reportApp.reportOrderMaster.orderFromCustomer">Order From Customer</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="customerOrder"><span jhiTranslate="reportApp.reportOrderMaster.customerOrder">Customer Order</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="orderPlaceAt"><span jhiTranslate="reportApp.reportOrderMaster.orderPlaceAt">Order Place At</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="orderAcceptedAt"><span jhiTranslate="reportApp.reportOrderMaster.orderAcceptedAt">Order Accepted At</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let orderMaster of orderMasters ;trackBy: trackId">
+                <td><a [routerLink]="['/order-master', orderMaster.id, 'view' ]">{{orderMaster.id}}</a></td>
+                <td>{{orderMaster.storeName}}</td>
+                <td>{{orderMaster.storePhone}}</td>
+                <td>{{orderMaster.methodOfOrder}}</td>
+                <td>{{orderMaster.dueDate}}</td>
+                <td>{{orderMaster.dueTime}}</td>
+                <td>{{orderMaster.orderNumber}}</td>
+                <td>{{orderMaster.notes}}</td>
+                <td>{{orderMaster.deliveryCharge}}</td>
+                <td>{{orderMaster.serviceCharge}}</td>
+                <td>{{orderMaster.totalDue}}</td>
+                <td>{{orderMaster.orderStatus}}</td>
+                <td>{{orderMaster.customerId}}</td>
+                <td>{{orderMaster.pincode}}</td>
+                <td>{{orderMaster.houseNoOrBuildingName}}</td>
+                <td>{{orderMaster.roadNameAreaOrStreet}}</td>
+                <td>{{orderMaster.city}}</td>
+                <td>{{orderMaster.state}}</td>
+                <td>{{orderMaster.landmark}}</td>
+                <td>{{orderMaster.name}}</td>
+                <td>{{orderMaster.phone}}</td>
+                <td>{{orderMaster.alternatePhone}}</td>
+                <td>{{orderMaster.addressType}}</td>
+                <td>{{orderMaster.orderFromCustomer}}</td>
+                <td>{{orderMaster.customerOrder}}</td>
+                <td>{{orderMaster.orderPlaceAt}}</td>
+                <td>{{orderMaster.orderAcceptedAt}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/order-master', orderMaster.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/order-master', orderMaster.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'order-master/'+ orderMaster.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="orderMasters && orderMasters.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

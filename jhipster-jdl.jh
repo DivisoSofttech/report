@@ -1,0 +1,56 @@
+
+/*OrderMaster entity
+*@Author Neeraja
+*/
+
+entity OrderMaster{
+storeName String,
+storePhone Long,
+methodOfOrder String,
+dueDate String,
+dueTime String,
+orderNumber String,
+notes String,
+deliveryCharge Double,
+serviceCharge Double,
+totalDue Double,
+orderStatus String,
+customerId String,
+pincode Long,
+houseNoOrBuildingName String,
+roadNameAreaOrStreet String,
+city String,
+state String,
+landmark String,
+name String,
+phone Long,
+alternatePhone Long,
+addressType String,
+orderFromCustomer Integer,
+customerOrder Integer,
+orderPlaceAt String,
+orderAcceptedAt String,
+
+}
+
+/*OrderLine entity
+*Author Neeraja
+*/
+
+entity OrderLine{
+item String,
+quantity Integer,
+total Double,
+}
+
+
+relationship OneToMany{
+OrderMaster{OrderLine} to OrderLine
+}
+
+
+service * with serviceImpl
+dto * with mapstruct
+paginate * with pagination
+
+

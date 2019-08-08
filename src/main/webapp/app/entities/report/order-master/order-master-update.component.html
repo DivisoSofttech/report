@@ -1,0 +1,154 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-order-master-heading" jhiTranslate="reportApp.reportOrderMaster.home.createOrEditLabel">Create or edit a Order Master</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!orderMaster.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="orderMaster.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.storeName" for="field_storeName">Store Name</label>
+                    <input type="text" class="form-control" name="storeName" id="field_storeName"
+                        [(ngModel)]="orderMaster.storeName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.storePhone" for="field_storePhone">Store Phone</label>
+                    <input type="number" class="form-control" name="storePhone" id="field_storePhone"
+                        [(ngModel)]="orderMaster.storePhone" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.methodOfOrder" for="field_methodOfOrder">Method Of Order</label>
+                    <input type="text" class="form-control" name="methodOfOrder" id="field_methodOfOrder"
+                        [(ngModel)]="orderMaster.methodOfOrder" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.dueDate" for="field_dueDate">Due Date</label>
+                    <input type="text" class="form-control" name="dueDate" id="field_dueDate"
+                        [(ngModel)]="orderMaster.dueDate" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.dueTime" for="field_dueTime">Due Time</label>
+                    <input type="text" class="form-control" name="dueTime" id="field_dueTime"
+                        [(ngModel)]="orderMaster.dueTime" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.orderNumber" for="field_orderNumber">Order Number</label>
+                    <input type="text" class="form-control" name="orderNumber" id="field_orderNumber"
+                        [(ngModel)]="orderMaster.orderNumber" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.notes" for="field_notes">Notes</label>
+                    <input type="text" class="form-control" name="notes" id="field_notes"
+                        [(ngModel)]="orderMaster.notes" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.deliveryCharge" for="field_deliveryCharge">Delivery Charge</label>
+                    <input type="number" class="form-control" name="deliveryCharge" id="field_deliveryCharge"
+                        [(ngModel)]="orderMaster.deliveryCharge" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.serviceCharge" for="field_serviceCharge">Service Charge</label>
+                    <input type="number" class="form-control" name="serviceCharge" id="field_serviceCharge"
+                        [(ngModel)]="orderMaster.serviceCharge" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.totalDue" for="field_totalDue">Total Due</label>
+                    <input type="number" class="form-control" name="totalDue" id="field_totalDue"
+                        [(ngModel)]="orderMaster.totalDue" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.orderStatus" for="field_orderStatus">Order Status</label>
+                    <input type="text" class="form-control" name="orderStatus" id="field_orderStatus"
+                        [(ngModel)]="orderMaster.orderStatus" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.customerId" for="field_customerId">Customer Id</label>
+                    <input type="text" class="form-control" name="customerId" id="field_customerId"
+                        [(ngModel)]="orderMaster.customerId" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.pincode" for="field_pincode">Pincode</label>
+                    <input type="number" class="form-control" name="pincode" id="field_pincode"
+                        [(ngModel)]="orderMaster.pincode" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.houseNoOrBuildingName" for="field_houseNoOrBuildingName">House No Or Building Name</label>
+                    <input type="text" class="form-control" name="houseNoOrBuildingName" id="field_houseNoOrBuildingName"
+                        [(ngModel)]="orderMaster.houseNoOrBuildingName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.roadNameAreaOrStreet" for="field_roadNameAreaOrStreet">Road Name Area Or Street</label>
+                    <input type="text" class="form-control" name="roadNameAreaOrStreet" id="field_roadNameAreaOrStreet"
+                        [(ngModel)]="orderMaster.roadNameAreaOrStreet" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.city" for="field_city">City</label>
+                    <input type="text" class="form-control" name="city" id="field_city"
+                        [(ngModel)]="orderMaster.city" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.state" for="field_state">State</label>
+                    <input type="text" class="form-control" name="state" id="field_state"
+                        [(ngModel)]="orderMaster.state" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.landmark" for="field_landmark">Landmark</label>
+                    <input type="text" class="form-control" name="landmark" id="field_landmark"
+                        [(ngModel)]="orderMaster.landmark" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="orderMaster.name" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.phone" for="field_phone">Phone</label>
+                    <input type="number" class="form-control" name="phone" id="field_phone"
+                        [(ngModel)]="orderMaster.phone" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.alternatePhone" for="field_alternatePhone">Alternate Phone</label>
+                    <input type="number" class="form-control" name="alternatePhone" id="field_alternatePhone"
+                        [(ngModel)]="orderMaster.alternatePhone" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.addressType" for="field_addressType">Address Type</label>
+                    <input type="text" class="form-control" name="addressType" id="field_addressType"
+                        [(ngModel)]="orderMaster.addressType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.orderFromCustomer" for="field_orderFromCustomer">Order From Customer</label>
+                    <input type="number" class="form-control" name="orderFromCustomer" id="field_orderFromCustomer"
+                        [(ngModel)]="orderMaster.orderFromCustomer" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.customerOrder" for="field_customerOrder">Customer Order</label>
+                    <input type="number" class="form-control" name="customerOrder" id="field_customerOrder"
+                        [(ngModel)]="orderMaster.customerOrder" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.orderPlaceAt" for="field_orderPlaceAt">Order Place At</label>
+                    <input type="text" class="form-control" name="orderPlaceAt" id="field_orderPlaceAt"
+                        [(ngModel)]="orderMaster.orderPlaceAt" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="reportApp.reportOrderMaster.orderAcceptedAt" for="field_orderAcceptedAt">Order Accepted At</label>
+                    <input type="text" class="form-control" name="orderAcceptedAt" id="field_orderAcceptedAt"
+                        [(ngModel)]="orderMaster.orderAcceptedAt" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+{
+    "name": "OrderLine",
+    "fields": [
+        {
+            "fieldName": "item",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "quantity",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "total",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "orderMaster",
+            "otherEntityName": "orderMaster",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190808044728",
+    "javadoc": "OrderLine entity\nAuthor Neeraja",
+    "entityTableName": "order_line",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "report",
+    "applications": "*",
+    "microserviceName": "report"
+}

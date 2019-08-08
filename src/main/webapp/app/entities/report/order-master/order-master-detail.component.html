@@ -1,0 +1,127 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="orderMaster">
+            <h2><span jhiTranslate="reportApp.reportOrderMaster.detail.title">Order Master</span> {{orderMaster.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.storeName">Store Name</span></dt>
+                <dd>
+                    <span>{{orderMaster.storeName}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.storePhone">Store Phone</span></dt>
+                <dd>
+                    <span>{{orderMaster.storePhone}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.methodOfOrder">Method Of Order</span></dt>
+                <dd>
+                    <span>{{orderMaster.methodOfOrder}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.dueDate">Due Date</span></dt>
+                <dd>
+                    <span>{{orderMaster.dueDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.dueTime">Due Time</span></dt>
+                <dd>
+                    <span>{{orderMaster.dueTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.orderNumber">Order Number</span></dt>
+                <dd>
+                    <span>{{orderMaster.orderNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.notes">Notes</span></dt>
+                <dd>
+                    <span>{{orderMaster.notes}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.deliveryCharge">Delivery Charge</span></dt>
+                <dd>
+                    <span>{{orderMaster.deliveryCharge}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.serviceCharge">Service Charge</span></dt>
+                <dd>
+                    <span>{{orderMaster.serviceCharge}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.totalDue">Total Due</span></dt>
+                <dd>
+                    <span>{{orderMaster.totalDue}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.orderStatus">Order Status</span></dt>
+                <dd>
+                    <span>{{orderMaster.orderStatus}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.customerId">Customer Id</span></dt>
+                <dd>
+                    <span>{{orderMaster.customerId}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.pincode">Pincode</span></dt>
+                <dd>
+                    <span>{{orderMaster.pincode}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.houseNoOrBuildingName">House No Or Building Name</span></dt>
+                <dd>
+                    <span>{{orderMaster.houseNoOrBuildingName}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.roadNameAreaOrStreet">Road Name Area Or Street</span></dt>
+                <dd>
+                    <span>{{orderMaster.roadNameAreaOrStreet}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.city">City</span></dt>
+                <dd>
+                    <span>{{orderMaster.city}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.state">State</span></dt>
+                <dd>
+                    <span>{{orderMaster.state}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.landmark">Landmark</span></dt>
+                <dd>
+                    <span>{{orderMaster.landmark}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.name">Name</span></dt>
+                <dd>
+                    <span>{{orderMaster.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.phone">Phone</span></dt>
+                <dd>
+                    <span>{{orderMaster.phone}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.alternatePhone">Alternate Phone</span></dt>
+                <dd>
+                    <span>{{orderMaster.alternatePhone}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.addressType">Address Type</span></dt>
+                <dd>
+                    <span>{{orderMaster.addressType}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.orderFromCustomer">Order From Customer</span></dt>
+                <dd>
+                    <span>{{orderMaster.orderFromCustomer}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.customerOrder">Customer Order</span></dt>
+                <dd>
+                    <span>{{orderMaster.customerOrder}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.orderPlaceAt">Order Place At</span></dt>
+                <dd>
+                    <span>{{orderMaster.orderPlaceAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="reportApp.reportOrderMaster.orderAcceptedAt">Order Accepted At</span></dt>
+                <dd>
+                    <span>{{orderMaster.orderAcceptedAt}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/order-master', orderMaster.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

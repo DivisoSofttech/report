@@ -1,0 +1,128 @@
+{
+    "name": "OrderMaster",
+    "fields": [
+        {
+            "fieldName": "storeName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "storePhone",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "methodOfOrder",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dueDate",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dueTime",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "orderNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "notes",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "deliveryCharge",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "serviceCharge",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "totalDue",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "orderStatus",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "customerId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pincode",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "houseNoOrBuildingName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "roadNameAreaOrStreet",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "city",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "state",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "landmark",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "alternatePhone",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "addressType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "orderFromCustomer",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "customerOrder",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "orderPlaceAt",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "orderAcceptedAt",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "orderLine",
+            "otherEntityName": "orderLine",
+            "otherEntityRelationshipName": "orderMaster"
+        }
+    ],
+    "changelogDate": "20190808044727",
+    "javadoc": "OrderMaster entity\n@Author Neeraja",
+    "entityTableName": "order_master",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "report",
+    "applications": "*",
+    "microserviceName": "report"
+}
