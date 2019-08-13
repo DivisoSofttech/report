@@ -72,9 +72,9 @@ public class OrderMaster {
 	    private String addressType;
 
 	
-	private Integer orderFromCustomer;
+	private Long orderFromCustomer;
 	
-	private Integer customersOrder;
+	private Long customersOrder;
 	
 	private String orderPlaceAt;
 	
@@ -264,19 +264,19 @@ public class OrderMaster {
 		this.addressType = addressType;
 	}
 
-	public Integer getOrderFromCustomer() {
+	public Long getOrderFromCustomer() {
 		return orderFromCustomer;
 	}
 
-	public void setOrderFromCustomer(Integer orderFromCustomer) {
+	public void setOrderFromCustomer(Long orderFromCustomer) {
 		this.orderFromCustomer = orderFromCustomer;
 	}
 
-	public Integer getCustomersOrder() {
+	public Long getCustomersOrder() {
 		return customersOrder;
 	}
 
-	public void setCustomersOrder(Integer customersOrder) {
+	public void setCustomersOrder(Long customersOrder) {
 		this.customersOrder = customersOrder;
 	}
 

@@ -54,9 +54,9 @@ public class OrderMasterDTO implements Serializable {
 
     private String addressType;
 
-    private Integer orderFromCustomer;
+    private Long orderFromCustomer;
 
-    private Integer customerOrder;
+    private Long customerOrder;
 
     private String orderPlaceAt;
 
@@ -246,19 +246,19 @@ public class OrderMasterDTO implements Serializable {
         this.addressType = addressType;
     }
 
-    public Integer getOrderFromCustomer() {
+    public Long getOrderFromCustomer() {
         return orderFromCustomer;
     }
 
-    public void setOrderFromCustomer(Integer orderFromCustomer) {
+    public void setOrderFromCustomer(Long orderFromCustomer) {
         this.orderFromCustomer = orderFromCustomer;
     }
 
-    public Integer getCustomerOrder() {
+    public Long getCustomerOrder() {
         return customerOrder;
     }
 
-    public void setCustomerOrder(Integer customerOrder) {
+    public void setCustomerOrder(Long customerOrder) {
         this.customerOrder = customerOrder;
     }
 

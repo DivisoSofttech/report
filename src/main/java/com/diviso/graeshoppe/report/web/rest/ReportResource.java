@@ -63,8 +63,8 @@ public class ReportResource {
 		orderMaster.setPincode(4558885L);
 		
 		
-		orderMaster.setOrderFromCustomer(14);
-		orderMaster.setCustomersOrder(83);
+		orderMaster.setOrderFromCustomer(14L);
+		orderMaster.setCustomersOrder(83L);
 		orderMaster.setOrderPlaceAt("03-Feb 14:55");
 		orderMaster.setOrderAcceptedAt("03-Feb 15:05");
 		
