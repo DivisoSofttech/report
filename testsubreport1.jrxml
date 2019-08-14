@@ -14,7 +14,7 @@
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="mm"/>
 	<parameter name="order_master_id" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select * from  report.order_line where  report.order_line.order_master_id   =  $P{order_master_id} ]]>
+		<![CDATA[select * from  report.order_line where  report.order_line.order_master_id   =  $P{order_master_id}]]>
 	</queryString>
 	<field name="id" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
@@ -40,17 +40,17 @@
 		<band splitType="Stretch"/>
 	</background>
 	<detail>
-		<band height="83" splitType="Stretch">
-			<textField>
-				<reportElement x="-20" y="0" width="50" height="70" uuid="8354b345-f0e1-4a26-9c40-99d2af05cffe"/>
+		<band height="70" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="-20" y="0" width="50" height="70" uuid="8354b345-f0e1-4a26-9c40-99d2af05cffe"/>
 				<textFieldExpression><![CDATA[$F{item}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="40" y="0" width="40" height="30" uuid="c3bd3cb2-260b-43de-a18b-c700d6afac34"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="40" y="0" width="40" height="30" uuid="c3bd3cb2-260b-43de-a18b-c700d6afac34"/>
 				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="100" y="0" width="23" height="30" uuid="2781c701-da17-44bd-8c26-1b087890a21c"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="100" y="0" width="23" height="30" uuid="2781c701-da17-44bd-8c26-1b087890a21c"/>
 				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
 		</band>

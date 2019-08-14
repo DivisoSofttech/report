@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="testreport1" pageWidth="164" pageHeight="2568" columnWidth="124" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d4ceedc-464a-46be-a3ad-9269727cd709">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="testreport1" pageWidth="164" pageHeight="4790" columnWidth="124" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d4ceedc-464a-46be-a3ad-9269727cd709">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (33)"/>
+	<property name="com.jaspersoft.studio.unit." value="mm"/>
 	<parameter name="order_master_id" class="java.lang.Long"/>
 	<queryString language="SQL">
 		<![CDATA[select * from  report.order_master where  report.order_master.id =  $P{order_master_id}]]>
@@ -199,7 +200,7 @@
 				<textFieldExpression><![CDATA["Total"]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="-13" y="170" width="147" height="127" uuid="04d9ce73-8960-43d0-a920-4002d1f71a23"/>
+				<reportElement x="-16" y="180" width="147" height="127" uuid="04d9ce73-8960-43d0-a920-4002d1f71a23"/>
 				<subreportParameter name="order_master_id">
 					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -207,14 +208,14 @@
 				<subreportExpression><![CDATA["testsubreport1.jasper"]]></subreportExpression>
 			</subreport>
 			<staticText>
-				<reportElement x="-15" y="500" width="80" height="30" uuid="e8dc38f1-f53a-46d0-b02e-9e6164f18a13"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="-15" y="499" width="80" height="30" uuid="e8dc38f1-f53a-46d0-b02e-9e6164f18a13"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
 				<text><![CDATA[delivery_charge]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="80" y="500" width="54" height="30" uuid="3f2afa85-e2fb-406b-98a8-84206b182a5d"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="80" y="500" width="54" height="30" uuid="3f2afa85-e2fb-406b-98a8-84206b182a5d"/>
 				<textFieldExpression><![CDATA[$F{delivery_charge}]]></textFieldExpression>
 			</textField>
 			<staticText>
