@@ -29,12 +29,12 @@ public class ReportServiceImpl implements ReportService{
 
 
 	@Override
-	public byte[] getReportAsPdf() throws JRException {
+	public byte[] getReportAsPdf(Long orderMasterId) throws JRException {
 		JasperReport jr = JasperCompileManager.compileReport("testreport1.jrxml");
         
 	      //Preparing parameters
           Map<String, Object> parameters = new HashMap<String, Object>();
-          
+          parameters.put("order_master_id", orderMasterId);
           Connection conn = null;
           try {
               conn = dataSource.getConnection();

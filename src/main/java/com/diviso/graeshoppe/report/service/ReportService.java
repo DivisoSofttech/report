@@ -4,6 +4,6 @@ import net.sf.jasperreports.engine.JRException;
 
 public interface ReportService {
 
-	byte[] getReportAsPdf() throws JRException;
+	byte[] getReportAsPdf(Long orderMasterId) throws JRException;
 
 }

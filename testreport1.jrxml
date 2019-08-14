@@ -3,9 +3,9 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="testreport1" pageWidth="164" pageHeight="2568" columnWidth="124" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d4ceedc-464a-46be-a3ad-9269727cd709">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (33)"/>
-	<parameter name="order_master_id" class="java.lang.Integer"/>
+	<parameter name="order_master_id" class="java.lang.Long"/>
 	<queryString language="SQL">
-		<![CDATA[select * from  report.order_master where  report.order_master.id =  $P{order_master_id} ]]>
+		<![CDATA[select * from  report.order_master where  report.order_master.id =  $P{order_master_id}]]>
 	</queryString>
 	<field name="id" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
@@ -199,7 +199,7 @@
 				<textFieldExpression><![CDATA["Total"]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="-7" y="180" width="147" height="127" uuid="04d9ce73-8960-43d0-a920-4002d1f71a23"/>
+				<reportElement x="-13" y="170" width="147" height="127" uuid="04d9ce73-8960-43d0-a920-4002d1f71a23"/>
 				<subreportParameter name="order_master_id">
 					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
 				</subreportParameter>
