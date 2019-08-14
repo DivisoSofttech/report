@@ -18,13 +18,21 @@ package com.diviso.graeshoppe.report.web.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.diviso.graeshoppe.report.service.ReportService;
 import com.diviso.graeshoppe.report.service.dto.OrderLine;
 import com.diviso.graeshoppe.report.service.dto.OrderMaster;
+
+import net.sf.jasperreports.engine.JRException;
 
 /**
  * TODO Provide a detailed description here 
@@ -35,6 +43,11 @@ import com.diviso.graeshoppe.report.service.dto.OrderMaster;
 @RestController
 @RequestMapping("/api/report")
 public class ReportResource {
+	
+	@Autowired
+	ReportService reportService;
+	
+	
 
 	@GetMapping("/order-report/{orderNumber}")
 	public OrderMaster getReportByOrderNumber(@PathVariable String orderNumber){
@@ -88,4 +101,33 @@ public class ReportResource {
 		
 		return orderMaster;
 	}
+	
+	@GetMapping("/pdf")
+	public ResponseEntity<byte[]> getReportAsPdf() {
+	       
+	       //log.debug("REST request to get a pdf");
+	     
+	       byte[] pdfContents = null;
+	    
+	      try
+	      {
+	        pdfContents=reportService.getReportAsPdf();
+	      }
+	      catch (JRException e) {
+	           e.printStackTrace();
+	      }
+	     
+	        HttpHeaders headers = new HttpHeaders();
+	        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+	       String fileName ="books.pdf";
+	        headers.add("content-disposition", "attachment; filename=" + fileName);
+	        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(
+	     	           pdfContents, headers, HttpStatus.OK);	      
+	       return response;
+	   }
+
+	
+	
+	
+	
 }

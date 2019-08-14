@@ -187,7 +187,7 @@
 				<textFieldExpression><![CDATA[$F{order_number}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="-20" y="120" width="40" height="30" uuid="296eb94d-5fbf-4468-a2d4-9668b18dc715"/>
+				<reportElement x="-10" y="120" width="40" height="30" uuid="296eb94d-5fbf-4468-a2d4-9668b18dc715"/>
 				<textFieldExpression><![CDATA["Item"]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -199,7 +199,7 @@
 				<textFieldExpression><![CDATA["Total"]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="-19" y="183" width="147" height="127" uuid="04d9ce73-8960-43d0-a920-4002d1f71a23"/>
+				<reportElement x="-7" y="180" width="147" height="127" uuid="04d9ce73-8960-43d0-a920-4002d1f71a23"/>
 				<subreportParameter name="order_master_id">
 					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
 				</subreportParameter>
