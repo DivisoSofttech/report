@@ -24,6 +24,7 @@ import java.util.List;
  */
 public class OrderMaster {
 
+
 	private String storeName;
 	
 	private Long storePhone;
@@ -298,17 +299,19 @@ public class OrderMaster {
 
 	@Override
 	public String toString() {
-		return "OrderMaster [storeName=" + storeName + ", storePhone=" + storePhone + ", methodOfOrder=" + methodOfOrder
-				+ ", dueDate=" + dueDate + ", dueTime=" + dueTime + ", orderNumber=" + orderNumber + ", notes=" + notes
-				+ ", orderLine=" + orderLine + ", deliveryCharge=" + deliveryCharge + ", ServiceCharge=" + ServiceCharge
-				+ ", totalDue=" + totalDue + ", orderStatus=" + orderStatus + ", customerId=" + customerId
-				+ ", pincode=" + pincode + ", houseNoOrBuildingName=" + houseNoOrBuildingName
-				+ ", roadNameAreaOrStreet=" + roadNameAreaOrStreet + ", city=" + city + ", state=" + state
-				+ ", landmark=" + landmark + ", name=" + name + ", phone=" + phone + ", alternatePhone="
-				+ alternatePhone + ", addressType=" + addressType + ", orderFromCustomer=" + orderFromCustomer
-				+ ", customersOrder=" + customersOrder + ", orderPlaceAt=" + orderPlaceAt + ", orderAcceptedAt="
-				+ orderAcceptedAt + "]";
+		return "OrderMaster [  storeName=" + storeName + ", storePhone=" + storePhone + ", methodOfOrder="
+				+ methodOfOrder + ", dueDate=" + dueDate + ", dueTime=" + dueTime + ", orderNumber=" + orderNumber
+				+ ", notes=" + notes + ", orderLine=" + orderLine + ", deliveryCharge=" + deliveryCharge
+				+ ", ServiceCharge=" + ServiceCharge + ", totalDue=" + totalDue + ", orderStatus=" + orderStatus
+				+ ", customerId=" + customerId + ", pincode=" + pincode + ", houseNoOrBuildingName="
+				+ houseNoOrBuildingName + ", roadNameAreaOrStreet=" + roadNameAreaOrStreet + ", city=" + city
+				+ ", state=" + state + ", landmark=" + landmark + ", name=" + name + ", phone=" + phone
+				+ ", alternatePhone=" + alternatePhone + ", addressType=" + addressType + ", orderFromCustomer="
+				+ orderFromCustomer + ", customersOrder=" + customersOrder + ", orderPlaceAt=" + orderPlaceAt
+				+ ", orderAcceptedAt=" + orderAcceptedAt + "]";
 	}
+
+	
 
 	
 	

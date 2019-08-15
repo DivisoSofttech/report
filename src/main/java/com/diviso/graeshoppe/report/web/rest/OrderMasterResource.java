@@ -1,5 +1,6 @@
 package com.diviso.graeshoppe.report.web.rest;
 
+import com.diviso.graeshoppe.report.service.OrderLineService;
 //import com.codahale.metrics.annotation.Timed;
 import com.diviso.graeshoppe.report.service.OrderMasterService;
 import com.diviso.graeshoppe.report.web.rest.errors.BadRequestAlertException;
@@ -9,6 +10,7 @@ import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -38,6 +40,9 @@ public class OrderMasterResource {
 
     private final OrderMasterService orderMasterService;
 
+
+  
+
     public OrderMasterResource(OrderMasterService orderMasterService) {
         this.orderMasterService = orderMasterService;
     }
@@ -56,6 +61,8 @@ public class OrderMasterResource {
         if (orderMasterDTO.getId() != null) {
             throw new BadRequestAlertException("A new orderMaster cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        
+        
         OrderMasterDTO result = orderMasterService.save(orderMasterDTO);
         return ResponseEntity.created(new URI("/api/order-masters/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
