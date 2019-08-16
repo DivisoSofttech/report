@@ -63,5 +63,5 @@ public interface OrderMasterService {
      * 
      * @return the entity
      */
-	OrderMasterDTO findOrderMasterByOrderId(Long id);
+	OrderMasterDTO findOrderMasterByOrderNumber(String orderNumber);
 }

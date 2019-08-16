@@ -158,10 +158,10 @@ public class OrderMasterResource {
      * @param id the id of the order
      * @return the ResponseEntity with status 200 (OK)
      */
-    @GetMapping("/ordermasterbyorder/{id}")
-    public ResponseEntity<OrderMasterDTO> findOrderMasterByOrderId(@PathVariable Long id) {
-        log.debug("REST request to delete OrderMaster : {}", id);
-        OrderMasterDTO orderMasterDTO= orderMasterService.findOrderMasterByOrderId(id);
+    @GetMapping("/ordermasterbyorder/{orderNumber}")
+    public ResponseEntity<OrderMasterDTO> findOrderMasterByOrderId(@PathVariable String orderNumber) {
+        log.debug("REST request to delete OrderMaster : {}", orderNumber);
+        OrderMasterDTO orderMasterDTO= orderMasterService.findOrderMasterByOrderNumber(orderNumber);
         return ResponseEntity.ok().body((orderMasterDTO));
     }
 

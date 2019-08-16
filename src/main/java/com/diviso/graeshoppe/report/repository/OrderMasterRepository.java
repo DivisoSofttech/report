@@ -18,5 +18,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrderMasterRepository extends JpaRepository<OrderMaster, Long> {
 
-	OrderMaster findOrderMasterByOrderId(@Param("id")Long id);
+	OrderMaster findOrderMasterByOrderNumber(@Param("orderNumber")String orderNumber);
 }

@@ -113,9 +113,9 @@ public class OrderMasterServiceImpl implements OrderMasterService {
     }
 
 	@Override
-	public OrderMasterDTO findOrderMasterByOrderId(Long id) {
-		 log.debug("Request to get OrderMaster by order id : {}", id);
-	        return orderMasterMapper.toDto(orderMasterRepository.findOrderMasterByOrderId(id));
+	public OrderMasterDTO findOrderMasterByOrderNumber(String orderNumber) {
+		 log.debug("Request to get OrderMaster by order id : {}", orderNumber);
+	        return orderMasterMapper.toDto(orderMasterRepository.findOrderMasterByOrderNumber(orderNumber));
 	          
 	}
 }
