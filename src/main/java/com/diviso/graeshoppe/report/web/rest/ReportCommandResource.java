@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -117,12 +118,12 @@ public class ReportCommandResource {
 		return ResponseEntity.ok().body(result);
 	}
 
-	@PutMapping("/ordermasters")
-	public ResponseEntity<OrderMasterDTO> updateOrderMaster(@RequestBody OrderMaster orderMaster)
+	@PutMapping("/ordermasters/{id}")
+	public ResponseEntity<OrderMasterDTO> updateOrderMaster(@RequestBody OrderMaster orderMaster,@PathVariable Long id)
 			throws URISyntaxException {
 
 		OrderMasterDTO master = new OrderMasterDTO();
-
+        master.setId(id);
 		master.setAddressType(orderMaster.getAddressType());
 		master.setAlternatePhone(orderMaster.getAlternatePhone());
 		master.setPhone(orderMaster.getPhone());
@@ -162,7 +163,7 @@ public class ReportCommandResource {
 		orderLines.forEach(orderLine -> {
 
 			OrderLineDTO orderDTO = new OrderLineDTO();
-
+			orderDTO.setId(id);
 			orderDTO.setItem(orderLine.getItem());
 			
 			orderDTO.setQuantity(orderLine.getQuantity());
