@@ -113,9 +113,9 @@ public class OrderMasterServiceImpl implements OrderMasterService {
     }
 
 	@Override
-	public Optional<OrderMasterDTO> findOrderMasterByOrderId(Long id) {
+	public OrderMasterDTO findOrderMasterByOrderId(Long id) {
 		 log.debug("Request to get OrderMaster by order id : {}", id);
-	        return orderMasterRepository.findOrderMasterByOrderId(id)
-	            .map(orderMasterMapper::toDto);
+	        return orderMasterMapper.toDto(orderMasterRepository.findOrderMasterByOrderId(id));
+	          
 	}
 }
