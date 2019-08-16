@@ -53,4 +53,15 @@ public interface OrderMasterService {
      * @return the list of entities
      */
     Page<OrderMasterDTO> search(String query, Pageable pageable);
+
+    
+    /**
+     * Search for the orderMaster corresponding to the order id.
+     *
+     * @param order id
+     * 
+     * 
+     * @return the entity
+     */
+	Optional<OrderMasterDTO> findOrderMasterByOrderId(Long id);
 }

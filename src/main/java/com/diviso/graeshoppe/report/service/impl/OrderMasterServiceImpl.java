@@ -111,4 +111,11 @@ public class OrderMasterServiceImpl implements OrderMasterService {
         return orderMasterSearchRepository.search(queryStringQuery(query), pageable)
             .map(orderMasterMapper::toDto);
     }
+
+	@Override
+	public Optional<OrderMasterDTO> findOrderMasterByOrderId(Long id) {
+		 log.debug("Request to get OrderMaster by order id : {}", id);
+	        return orderMasterRepository.findOrderMasterByOrderId(id)
+	            .map(orderMasterMapper::toDto);
+	}
 }

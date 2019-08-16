@@ -40,17 +40,20 @@
 		<band splitType="Stretch"/>
 	</background>
 	<detail>
-		<band height="29" splitType="Stretch">
+		<band height="27" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="-20" y="0" width="50" height="20" uuid="8354b345-f0e1-4a26-9c40-99d2af05cffe"/>
+				<reportElement positionType="Float" stretchType="ElementGroupHeight" x="-10" y="3" width="60" height="20" uuid="8354b345-f0e1-4a26-9c40-99d2af05cffe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{item}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="40" y="0" width="40" height="20" uuid="c3bd3cb2-260b-43de-a18b-c700d6afac34"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="70" y="3" width="40" height="20" uuid="c3bd3cb2-260b-43de-a18b-c700d6afac34"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="100" y="0" width="23" height="20" uuid="2781c701-da17-44bd-8c26-1b087890a21c"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="110" y="0" width="23" height="20" uuid="2781c701-da17-44bd-8c26-1b087890a21c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
 		</band>

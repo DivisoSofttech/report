@@ -151,4 +151,21 @@ public class OrderMasterResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    
+    /**
+     * Get  /order-masters by order id/:id : delete the "id" orderMaster.
+     *
+     * @param id the id of the order
+     * @return the ResponseEntity with status 200 (OK)
+     */
+    @GetMapping("/ordermasterbyorder/{id}")
+    //@Timed
+    public ResponseEntity<OrderMasterDTO> findOrderMasterByOrderId(@PathVariable Long id) {
+        log.debug("REST request to delete OrderMaster : {}", id);
+        Optional<OrderMasterDTO> orderMasterDTO= orderMasterService.findOrderMasterByOrderId(id);
+        return ResponseUtil.wrapOrNotFound(orderMasterDTO);
+    }
+
+    
+    
 }
