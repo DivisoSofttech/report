@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="testreport1" pageWidth="164" pageHeight="2284" columnWidth="124" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d4ceedc-464a-46be-a3ad-9269727cd709">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="testreport1" pageWidth="164" pageHeight="2284" columnWidth="124" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="1d4ceedc-464a-46be-a3ad-9269727cd709">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (33)"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="mm"/>
@@ -158,7 +158,7 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="762" splitType="Stretch">
+		<band height="740" splitType="Stretch">
 			<staticText>
 				<reportElement x="-3" y="0" width="115" height="30" uuid="6d370f43-56e5-41c9-86fc-5cce0b2013db"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -332,7 +332,7 @@
 			</textField>
 			<staticText>
 				<reportElement positionType="Float" x="-18" y="720" width="86" height="20" uuid="19d049b3-45f3-4288-80c8-cab9ca1c0333"/>
-				<text><![CDATA[order_accepted_at]]></text>
+				<text><![CDATA[Order Accepted at]]></text>
 			</staticText>
 			<textField>
 				<reportElement positionType="Float" x="77" y="720" width="61" height="20" uuid="75e656e5-a831-4b33-8b2f-eb6afe432dd7"/>
@@ -343,7 +343,7 @@
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField pattern="HH:mm">
-				<reportElement x="70" y="40" width="68" height="20" uuid="596dea09-c2f3-436e-9d8c-3b3053946a0a"/>
+				<reportElement x="70" y="40" width="100" height="20" uuid="596dea09-c2f3-436e-9d8c-3b3053946a0a"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
