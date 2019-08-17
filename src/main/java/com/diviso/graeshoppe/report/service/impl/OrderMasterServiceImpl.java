@@ -121,10 +121,11 @@ public class OrderMasterServiceImpl implements OrderMasterService {
      */
     
 	@Override
-	@Transactional(readOnly = true)
-	public Optional<OrderMasterDTO> findOrderMasterByOrderId(Long id) {
-		 log.debug("Request to get OrderMaster by order id : {}", id);
-	        return orderMasterRepository.findByOrderId(id)
-	            .map(orderMasterMapper::toDto);
+
+	public OrderMasterDTO findOrderMasterByOrderNumber(String orderNumber) {
+		 log.debug("Request to get OrderMaster by order id : {}", orderNumber);
+	        return orderMasterMapper.toDto(orderMasterRepository.findOrderMasterByOrderNumber(orderNumber));
+	          
+
 	}
 }

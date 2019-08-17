@@ -21,7 +21,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -116,4 +118,70 @@ public class ReportCommandResource {
 		return ResponseEntity.ok().body(result);
 	}
 
+	@PutMapping("/ordermasters/{id}")
+	public ResponseEntity<OrderMasterDTO> updateOrderMaster(@RequestBody OrderMaster orderMaster,@PathVariable Long id)
+			throws URISyntaxException {
+
+		OrderMasterDTO master = new OrderMasterDTO();
+        master.setId(id);
+		master.setAddressType(orderMaster.getAddressType());
+		master.setAlternatePhone(orderMaster.getAlternatePhone());
+		master.setPhone(orderMaster.getPhone());
+		master.setCity(orderMaster.getCity());
+		master.setHouseNoOrBuildingName(orderMaster.getHouseNoOrBuildingName());
+		master.setLandmark(orderMaster.getLandmark());
+		master.setName(orderMaster.getName());
+		master.setPincode(orderMaster.getPincode());
+		master.setRoadNameAreaOrStreet(orderMaster.getRoadNameAreaOrStreet());
+		master.setState(orderMaster.getState());
+		master.setCustomerId(orderMaster.getCustomerId());
+		master.setDeliveryCharge(orderMaster.getDeliveryCharge());
+		master.setCustomerOrder(orderMaster.getCustomersOrder());
+		master.setDueDate(orderMaster.getDueDate());
+		master.setDueTime(orderMaster.getDueTime());
+		master.setMethodOfOrder(orderMaster.getMethodOfOrder());
+		master.setNotes(orderMaster.getNotes());
+		master.setTotalDue(orderMaster.getTotalDue());
+		master.setOrderAcceptedAt(orderMaster.getOrderAcceptedAt());
+		master.setServiceCharge(orderMaster.getServiceCharge());
+		master.setStorePhone(orderMaster.getPhone());
+		master.setOrderStatus(orderMaster.getOrderStatus());
+		master.setOrderNumber(orderMaster.getOrderNumber());
+		master.setOrderFromCustomer(orderMaster.getOrderFromCustomer());
+		master.setStoreName(orderMaster.getStoreName());
+		master.setOrderPlaceAt(orderMaster.getOrderPlaceAt());
+
+		if (master.getId() == null) {
+			throw new BadRequestAlertException("A order is new so no id", "orderMaster",
+					"id not exists");
+		}
+
+		OrderMasterDTO result = orderMasterService.save(master);
+
+		List<OrderLine> orderLines = orderMaster.getOrderLine();
+
+		orderLines.forEach(orderLine -> {
+
+			OrderLineDTO orderDTO = new OrderLineDTO();
+			orderDTO.setId(id);
+			orderDTO.setItem(orderLine.getItem());
+			
+			orderDTO.setQuantity(orderLine.getQuantity());
+			
+			orderDTO.setTotal(orderLine.getTotal());
+			
+			orderDTO.setOrderMasterId(result.getId());
+
+			if (orderDTO.getId() == null) {
+				throw new BadRequestAlertException("A orderLine is new so no id", "orderline",
+						"id not exists");
+			}
+			OrderLineDTO result1 = orderLineService.save(orderDTO);
+
+		});
+
+		return ResponseEntity.ok().body(result);
+	}
+
+	
 }
