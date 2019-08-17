@@ -112,10 +112,19 @@ public class OrderMasterServiceImpl implements OrderMasterService {
             .map(orderMasterMapper::toDto);
     }
 
+    /**
+     * Search for the orderMaster corresponding to the order id.
+     *
+     *
+     * @param order id
+     * @return the list of entities
+     */
+    
 	@Override
+	@Transactional(readOnly = true)
 	public Optional<OrderMasterDTO> findOrderMasterByOrderId(Long id) {
 		 log.debug("Request to get OrderMaster by order id : {}", id);
-	        return orderMasterRepository.findOrderMasterByOrderId(id)
+	        return orderMasterRepository.findByOrderId(id)
 	            .map(orderMasterMapper::toDto);
 	}
 }
