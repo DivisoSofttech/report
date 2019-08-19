@@ -112,10 +112,20 @@ public class OrderMasterServiceImpl implements OrderMasterService {
             .map(orderMasterMapper::toDto);
     }
 
+    /**
+     * Search for the orderMaster corresponding to the order id.
+     *
+     *
+     * @param order id
+     * @return the list of entities
+     */
+    
 	@Override
+
 	public OrderMasterDTO findOrderMasterByOrderNumber(String orderNumber) {
 		 log.debug("Request to get OrderMaster by order id : {}", orderNumber);
 	        return orderMasterMapper.toDto(orderMasterRepository.findOrderMasterByOrderNumber(orderNumber));
 	          
+
 	}
 }
