@@ -15,48 +15,85 @@
  */
 package com.diviso.graeshoppe.report.service.dto;
 
+import java.util.List;
+
 /**
  * TODO Provide a detailed description here 
  * @author MayaSanjeev
  * mayabytatech, maya.k.k@lxisoft.com
  */
 public class OrderLine {
-
-	private Integer quantity;
 	
-	private String item ;
-	
-	private Double total;
+	  private List<AuxItem> auxItems ;
 
 	
+	  private List<ComboItem> combos ;
 
-	public Integer getQuantity() {
-		return quantity;
+	  private String item ;
+
+	 
+	  private Integer quantity ;
+
+
+	  private Double total;
+
+
+	public List<AuxItem> getAuxItems() {
+		return auxItems;
 	}
 
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
+
+	public void setAuxItems(List<AuxItem> auxItems) {
+		this.auxItems = auxItems;
 	}
+
+
+	public List<ComboItem> getCombos() {
+		return combos;
+	}
+
+
+	public void setCombos(List<ComboItem> combos) {
+		this.combos = combos;
+	}
+
 
 	public String getItem() {
 		return item;
 	}
 
+
 	public void setItem(String item) {
 		this.item = item;
 	}
+
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
 
 	public Double getTotal() {
 		return total;
 	}
 
+
+	@Override
+	public String toString() {
+		return "OrderLine [auxItems=" + auxItems + ", combos=" + combos + ", item=" + item + ", quantity=" + quantity
+				+ ", total=" + total + "]";
+	}
+
+
 	public void setTotal(Double total) {
 		this.total = total;
 	}
 
-	@Override
-	public String toString() {
-		return "OrderLine [qauntity=" + quantity + ", item=" + item + ", total=" + total + "]";
-	}
-	
+	  
+	  
 }

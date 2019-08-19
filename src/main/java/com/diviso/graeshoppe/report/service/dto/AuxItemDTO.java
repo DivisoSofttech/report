@@ -3,20 +3,20 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A DTO for the OrderLine entity.
+ * A DTO for the AuxItem entity.
  */
-public class OrderLineDTO implements Serializable {
+public class AuxItemDTO implements Serializable {
 
     private Long id;
 
-    private String item;
+    private String auxItem;
 
     private Integer quantity;
 
     private Double total;
 
 
-    private Long orderMasterId;
+    private Long orderLineId;
 
     public Long getId() {
         return id;
@@ -26,12 +26,12 @@ public class OrderLineDTO implements Serializable {
         this.id = id;
     }
 
-    public String getItem() {
-        return item;
+    public String getAuxItem() {
+        return auxItem;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void setAuxItem(String auxItem) {
+        this.auxItem = auxItem;
     }
 
     public Integer getQuantity() {
@@ -50,12 +50,12 @@ public class OrderLineDTO implements Serializable {
         this.total = total;
     }
 
-    public Long getOrderMasterId() {
-        return orderMasterId;
+    public Long getOrderLineId() {
+        return orderLineId;
     }
 
-    public void setOrderMasterId(Long orderMasterId) {
-        this.orderMasterId = orderMasterId;
+    public void setOrderLineId(Long orderLineId) {
+        this.orderLineId = orderLineId;
     }
 
     @Override
@@ -67,11 +67,11 @@ public class OrderLineDTO implements Serializable {
             return false;
         }
 
-        OrderLineDTO orderLineDTO = (OrderLineDTO) o;
-        if (orderLineDTO.getId() == null || getId() == null) {
+        AuxItemDTO auxItemDTO = (AuxItemDTO) o;
+        if (auxItemDTO.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), orderLineDTO.getId());
+        return Objects.equals(getId(), auxItemDTO.getId());
     }
 
     @Override
@@ -81,12 +81,12 @@ public class OrderLineDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "OrderLineDTO{" +
+        return "AuxItemDTO{" +
             "id=" + getId() +
-            ", item='" + getItem() + "'" +
+            ", auxItem='" + getAuxItem() + "'" +
             ", quantity=" + getQuantity() +
             ", total=" + getTotal() +
-            ", orderMaster=" + getOrderMasterId() +
+            ", orderLine=" + getOrderLineId() +
             "}";
     }
 }

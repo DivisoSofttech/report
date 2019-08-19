@@ -20,10 +20,21 @@
             "otherEntityName": "orderMaster",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "auxItem",
+            "otherEntityName": "auxItem",
+            "otherEntityRelationshipName": "orderLine"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "comboItem",
+            "otherEntityName": "comboItem",
+            "otherEntityRelationshipName": "orderLine"
         }
     ],
     "changelogDate": "20190808044728",
-    "javadoc": "OrderLine entity\nAuthor Neeraja",
     "entityTableName": "order_line",
     "dto": "mapstruct",
     "pagination": "pagination",

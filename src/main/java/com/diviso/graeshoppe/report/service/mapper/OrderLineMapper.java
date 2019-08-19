@@ -15,6 +15,8 @@ public interface OrderLineMapper extends EntityMapper<OrderLineDTO, OrderLine> {
     OrderLineDTO toDto(OrderLine orderLine);
 
     @Mapping(source = "orderMasterId", target = "orderMaster")
+    @Mapping(target = "auxItems", ignore = true)
+    @Mapping(target = "comboItems", ignore = true)
     OrderLine toEntity(OrderLineDTO orderLineDTO);
 
     default OrderLine fromId(Long id) {
