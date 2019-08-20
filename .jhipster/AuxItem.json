@@ -1,0 +1,35 @@
+{
+    "name": "AuxItem",
+    "fields": [
+        {
+            "fieldName": "auxItem",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "quantity",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "total",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "orderLine",
+            "otherEntityName": "orderLine",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190819104623",
+    "entityTableName": "aux_item",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "report",
+    "applications": "*",
+    "microserviceName": "report"
+}

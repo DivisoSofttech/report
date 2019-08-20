@@ -17,6 +17,7 @@ package com.diviso.graeshoppe.report.web.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.diviso.graeshoppe.report.service.AuxItemService;
+import com.diviso.graeshoppe.report.service.ComboItemService;
 import com.diviso.graeshoppe.report.service.OrderLineService;
 import com.diviso.graeshoppe.report.service.OrderMasterService;
+import com.diviso.graeshoppe.report.service.dto.AuxItem;
+import com.diviso.graeshoppe.report.service.dto.AuxItemDTO;
+import com.diviso.graeshoppe.report.service.dto.ComboItem;
+import com.diviso.graeshoppe.report.service.dto.ComboItemDTO;
 import com.diviso.graeshoppe.report.service.dto.OrderLine;
 import com.diviso.graeshoppe.report.service.dto.OrderLineDTO;
 import com.diviso.graeshoppe.report.service.dto.OrderMaster;
@@ -52,6 +59,13 @@ public class ReportCommandResource {
 
 	@Autowired
 	private OrderMasterService orderMasterService;
+	
+	@Autowired
+	private ComboItemService comboItemService;
+	
+	@Autowired
+	private AuxItemService auxItemService;
+	
 
 	@PostMapping("/ordermasters")
 	public ResponseEntity<OrderMasterDTO> createOrderMaster(@RequestBody OrderMaster orderMaster)
@@ -100,11 +114,11 @@ public class ReportCommandResource {
 			OrderLineDTO orderDTO = new OrderLineDTO();
 
 			orderDTO.setItem(orderLine.getItem());
-			
+
 			orderDTO.setQuantity(orderLine.getQuantity());
-			
+
 			orderDTO.setTotal(orderLine.getTotal());
-			
+
 			orderDTO.setOrderMasterId(result.getId());
 
 			if (orderDTO.getId() != null) {
@@ -113,17 +127,41 @@ public class ReportCommandResource {
 			}
 			OrderLineDTO result1 = orderLineService.save(orderDTO);
 
+			List<AuxItem> auxList = orderLine.getAuxItems();
+		
+			auxList.forEach(a->{
+				AuxItemDTO auxDto= new AuxItemDTO();
+				auxDto.setAuxItem(a.getAuxItem());
+				auxDto.setQuantity(a.getQuantity());
+				auxDto.setTotal(a.getTotal());
+				auxDto.setOrderLineId(result1.getId());
+				auxItemService.save(auxDto);
+		
+				
+			});
+			
+			List<ComboItem> combo = orderLine.getCombos();
+		
+			combo.forEach(c->{
+				ComboItemDTO comboDto =new ComboItemDTO();
+				comboDto.setComboItem(c.getComboItem());
+				comboDto.setQuantity(c.getQuantity());
+				comboDto.setOrderLineId(result1.getId());
+				comboItemService.save(comboDto);
+				
+				
+			});
 		});
 
 		return ResponseEntity.ok().body(result);
 	}
 
 	@PutMapping("/ordermasters/{id}")
-	public ResponseEntity<OrderMasterDTO> updateOrderMaster(@RequestBody OrderMaster orderMaster,@PathVariable Long id)
+	public ResponseEntity<OrderMasterDTO> updateOrderMaster(@RequestBody OrderMaster orderMaster, @PathVariable Long id)
 			throws URISyntaxException {
 
 		OrderMasterDTO master = new OrderMasterDTO();
-        master.setId(id);
+		master.setId(id);
 		master.setAddressType(orderMaster.getAddressType());
 		master.setAlternatePhone(orderMaster.getAlternatePhone());
 		master.setPhone(orderMaster.getPhone());
@@ -152,8 +190,7 @@ public class ReportCommandResource {
 		master.setOrderPlaceAt(orderMaster.getOrderPlaceAt());
 
 		if (master.getId() == null) {
-			throw new BadRequestAlertException("A order is new so no id", "orderMaster",
-					"id not exists");
+			throw new BadRequestAlertException("A order is new so no id", "orderMaster", "id not exists");
 		}
 
 		OrderMasterDTO result = orderMasterService.save(master);
@@ -165,23 +202,50 @@ public class ReportCommandResource {
 			OrderLineDTO orderDTO = new OrderLineDTO();
 			orderDTO.setId(id);
 			orderDTO.setItem(orderLine.getItem());
-			
+
 			orderDTO.setQuantity(orderLine.getQuantity());
-			
+
 			orderDTO.setTotal(orderLine.getTotal());
-			
+
 			orderDTO.setOrderMasterId(result.getId());
 
-			if (orderDTO.getId() == null) {
-				throw new BadRequestAlertException("A orderLine is new so no id", "orderline",
-						"id not exists");
-			}
 			OrderLineDTO result1 = orderLineService.save(orderDTO);
+
+			List<AuxItem> auxList = orderLine.getAuxItems();
+		
+			auxList.forEach(a->{
+				AuxItemDTO auxDto= new AuxItemDTO();
+				auxDto.setId(id);
+				auxDto.setAuxItem(a.getAuxItem());
+				auxDto.setQuantity(a.getQuantity());
+				auxDto.setTotal(a.getTotal());
+				auxDto.setOrderLineId(result1.getId());
+				auxItemService.save(auxDto);
+		
+				
+			});
+			
+			List<ComboItem> combo = orderLine.getCombos();
+		
+			combo.forEach(c->{
+				ComboItemDTO comboDto =new ComboItemDTO();
+				comboDto.setId(id);
+				comboDto.setComboItem(c.getComboItem());
+				comboDto.setQuantity(c.getQuantity());
+				comboDto.setOrderLineId(result1.getId());
+				comboItemService.save(comboDto);
+				
+				
+			});
+			
+			if (orderDTO.getId() == null) {
+				throw new BadRequestAlertException("A orderLine is new so no id", "orderline", "id not exists");
+			}
+			OrderLineDTO orderDto = orderLineService.save(orderDTO);
 
 		});
 
 		return ResponseEntity.ok().body(result);
 	}
 
-	
 }

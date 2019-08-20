@@ -1,7 +1,7 @@
 package com.diviso.graeshoppe.report.domain;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 
@@ -12,17 +12,15 @@ import java.util.Set;
 import java.util.Objects;
 
 /**
- * OrderMaster entity
- * @Author Neeraja
+ * A OrderMaster.
  */
-@ApiModel(description = "OrderMaster entity @Author Neeraja")
 @Entity
 @Table(name = "order_master")
 @Document(indexName = "ordermaster")
 public class OrderMaster implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -94,10 +92,10 @@ public class OrderMaster implements Serializable {
     private String addressType;
 
     @Column(name = "order_from_customer")
-    private Integer orderFromCustomer;
+    private Long orderFromCustomer;
 
     @Column(name = "customer_order")
-    private Integer customerOrder;
+    private Long customerOrder;
 
     @Column(name = "order_place_at")
     private String orderPlaceAt;
@@ -402,29 +400,29 @@ public class OrderMaster implements Serializable {
         this.addressType = addressType;
     }
 
-    public Integer getOrderFromCustomer() {
+    public Long getOrderFromCustomer() {
         return orderFromCustomer;
     }
 
-    public OrderMaster orderFromCustomer(Integer orderFromCustomer) {
+    public OrderMaster orderFromCustomer(Long orderFromCustomer) {
         this.orderFromCustomer = orderFromCustomer;
         return this;
     }
 
-    public void setOrderFromCustomer(Integer orderFromCustomer) {
+    public void setOrderFromCustomer(Long orderFromCustomer) {
         this.orderFromCustomer = orderFromCustomer;
     }
 
-    public Integer getCustomerOrder() {
+    public Long getCustomerOrder() {
         return customerOrder;
     }
 
-    public OrderMaster customerOrder(Integer customerOrder) {
+    public OrderMaster customerOrder(Long customerOrder) {
         this.customerOrder = customerOrder;
         return this;
     }
 
-    public void setCustomerOrder(Integer customerOrder) {
+    public void setCustomerOrder(Long customerOrder) {
         this.customerOrder = customerOrder;
     }
 

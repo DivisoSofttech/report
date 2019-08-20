@@ -25,6 +25,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.util.Collections;
@@ -114,11 +115,11 @@ public class OrderMasterResourceIntTest {
     private static final String DEFAULT_ADDRESS_TYPE = "AAAAAAAAAA";
     private static final String UPDATED_ADDRESS_TYPE = "BBBBBBBBBB";
 
-    private static final Integer DEFAULT_ORDER_FROM_CUSTOMER = 1;
-    private static final Integer UPDATED_ORDER_FROM_CUSTOMER = 2;
+    private static final Long DEFAULT_ORDER_FROM_CUSTOMER = 1L;
+    private static final Long UPDATED_ORDER_FROM_CUSTOMER = 2L;
 
-    private static final Integer DEFAULT_CUSTOMER_ORDER = 1;
-    private static final Integer UPDATED_CUSTOMER_ORDER = 2;
+    private static final Long DEFAULT_CUSTOMER_ORDER = 1L;
+    private static final Long UPDATED_CUSTOMER_ORDER = 2L;
 
     private static final String DEFAULT_ORDER_PLACE_AT = "AAAAAAAAAA";
     private static final String UPDATED_ORDER_PLACE_AT = "BBBBBBBBBB";
@@ -155,6 +156,9 @@ public class OrderMasterResourceIntTest {
     @Autowired
     private EntityManager em;
 
+    @Autowired
+    private Validator validator;
+
     private MockMvc restOrderMasterMockMvc;
 
     private OrderMaster orderMaster;
@@ -167,7 +171,8 @@ public class OrderMasterResourceIntTest {
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
             .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     /**
@@ -315,8 +320,8 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.intValue())))
             .andExpect(jsonPath("$.[*].alternatePhone").value(hasItem(DEFAULT_ALTERNATE_PHONE.intValue())))
             .andExpect(jsonPath("$.[*].addressType").value(hasItem(DEFAULT_ADDRESS_TYPE.toString())))
-            .andExpect(jsonPath("$.[*].orderFromCustomer").value(hasItem(DEFAULT_ORDER_FROM_CUSTOMER)))
-            .andExpect(jsonPath("$.[*].customerOrder").value(hasItem(DEFAULT_CUSTOMER_ORDER)))
+            .andExpect(jsonPath("$.[*].orderFromCustomer").value(hasItem(DEFAULT_ORDER_FROM_CUSTOMER.intValue())))
+            .andExpect(jsonPath("$.[*].customerOrder").value(hasItem(DEFAULT_CUSTOMER_ORDER.intValue())))
             .andExpect(jsonPath("$.[*].orderPlaceAt").value(hasItem(DEFAULT_ORDER_PLACE_AT.toString())))
             .andExpect(jsonPath("$.[*].orderAcceptedAt").value(hasItem(DEFAULT_ORDER_ACCEPTED_AT.toString())));
     }
@@ -354,8 +359,8 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.intValue()))
             .andExpect(jsonPath("$.alternatePhone").value(DEFAULT_ALTERNATE_PHONE.intValue()))
             .andExpect(jsonPath("$.addressType").value(DEFAULT_ADDRESS_TYPE.toString()))
-            .andExpect(jsonPath("$.orderFromCustomer").value(DEFAULT_ORDER_FROM_CUSTOMER))
-            .andExpect(jsonPath("$.customerOrder").value(DEFAULT_CUSTOMER_ORDER))
+            .andExpect(jsonPath("$.orderFromCustomer").value(DEFAULT_ORDER_FROM_CUSTOMER.intValue()))
+            .andExpect(jsonPath("$.customerOrder").value(DEFAULT_CUSTOMER_ORDER.intValue()))
             .andExpect(jsonPath("$.orderPlaceAt").value(DEFAULT_ORDER_PLACE_AT.toString()))
             .andExpect(jsonPath("$.orderAcceptedAt").value(DEFAULT_ORDER_ACCEPTED_AT.toString()));
     }
@@ -479,7 +484,7 @@ public class OrderMasterResourceIntTest {
 
         int databaseSizeBeforeDelete = orderMasterRepository.findAll().size();
 
-        // Get the orderMaster
+        // Delete the orderMaster
         restOrderMasterMockMvc.perform(delete("/api/order-masters/{id}", orderMaster.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
@@ -526,8 +531,8 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.intValue())))
             .andExpect(jsonPath("$.[*].alternatePhone").value(hasItem(DEFAULT_ALTERNATE_PHONE.intValue())))
             .andExpect(jsonPath("$.[*].addressType").value(hasItem(DEFAULT_ADDRESS_TYPE)))
-            .andExpect(jsonPath("$.[*].orderFromCustomer").value(hasItem(DEFAULT_ORDER_FROM_CUSTOMER)))
-            .andExpect(jsonPath("$.[*].customerOrder").value(hasItem(DEFAULT_CUSTOMER_ORDER)))
+            .andExpect(jsonPath("$.[*].orderFromCustomer").value(hasItem(DEFAULT_ORDER_FROM_CUSTOMER.intValue())))
+            .andExpect(jsonPath("$.[*].customerOrder").value(hasItem(DEFAULT_CUSTOMER_ORDER.intValue())))
             .andExpect(jsonPath("$.[*].orderPlaceAt").value(hasItem(DEFAULT_ORDER_PLACE_AT)))
             .andExpect(jsonPath("$.[*].orderAcceptedAt").value(hasItem(DEFAULT_ORDER_ACCEPTED_AT)));
     }

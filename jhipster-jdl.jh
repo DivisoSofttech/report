@@ -26,10 +26,10 @@ name String,
 phone Long,
 alternatePhone Long,
 addressType String,
-orderFromCustomer Integer,
-customerOrder Integer,
+orderFromCustomer Long,
+customerOrder Long,
 orderPlaceAt String,
-orderAcceptedAt String,
+orderAcceptedAt String
 
 }
 
@@ -37,15 +37,27 @@ orderAcceptedAt String,
 *Author Neeraja
 */
 
+entity AuxItem{
+	auxItem String,
+	quantity Integer,
+	total Double
+}
+
+entity ComboItem{
+	comboItem String,
+	quantity Double
+}
 entity OrderLine{
 item String,
 quantity Integer,
-total Double,
+total Double
 }
 
 
 relationship OneToMany{
-OrderMaster{OrderLine} to OrderLine
+OrderMaster{OrderLine} to OrderLine,
+OrderLine{auxItem} to AuxItem,
+OrderLine{comboItem} to ComboItem
 }
 
 

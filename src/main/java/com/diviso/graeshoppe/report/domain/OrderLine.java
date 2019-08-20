@@ -1,26 +1,27 @@
 package com.diviso.graeshoppe.report.domain;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
- * OrderLine entity
- * Author Neeraja
+ * A OrderLine.
  */
-@ApiModel(description = "OrderLine entity Author Neeraja")
 @Entity
 @Table(name = "order_line")
 @Document(indexName = "orderline")
 public class OrderLine implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,6 +39,10 @@ public class OrderLine implements Serializable {
     @JsonIgnoreProperties("orderLines")
     private OrderMaster orderMaster;
 
+    @OneToMany(mappedBy = "orderLine")
+    private Set<AuxItem> auxItems = new HashSet<>();
+    @OneToMany(mappedBy = "orderLine")
+    private Set<ComboItem> comboItems = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -97,6 +102,56 @@ public class OrderLine implements Serializable {
 
     public void setOrderMaster(OrderMaster orderMaster) {
         this.orderMaster = orderMaster;
+    }
+
+    public Set<AuxItem> getAuxItems() {
+        return auxItems;
+    }
+
+    public OrderLine auxItems(Set<AuxItem> auxItems) {
+        this.auxItems = auxItems;
+        return this;
+    }
+
+    public OrderLine addAuxItem(AuxItem auxItem) {
+        this.auxItems.add(auxItem);
+        auxItem.setOrderLine(this);
+        return this;
+    }
+
+    public OrderLine removeAuxItem(AuxItem auxItem) {
+        this.auxItems.remove(auxItem);
+        auxItem.setOrderLine(null);
+        return this;
+    }
+
+    public void setAuxItems(Set<AuxItem> auxItems) {
+        this.auxItems = auxItems;
+    }
+
+    public Set<ComboItem> getComboItems() {
+        return comboItems;
+    }
+
+    public OrderLine comboItems(Set<ComboItem> comboItems) {
+        this.comboItems = comboItems;
+        return this;
+    }
+
+    public OrderLine addComboItem(ComboItem comboItem) {
+        this.comboItems.add(comboItem);
+        comboItem.setOrderLine(this);
+        return this;
+    }
+
+    public OrderLine removeComboItem(ComboItem comboItem) {
+        this.comboItems.remove(comboItem);
+        comboItem.setOrderLine(null);
+        return this;
+    }
+
+    public void setComboItems(Set<ComboItem> comboItems) {
+        this.comboItems = comboItems;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

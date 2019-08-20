@@ -1,5 +1,4 @@
 package com.diviso.graeshoppe.report.service.dto;
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -61,6 +60,7 @@ public class OrderMasterDTO implements Serializable {
     private String orderPlaceAt;
 
     private String orderAcceptedAt;
+
 
     public Long getId() {
         return id;

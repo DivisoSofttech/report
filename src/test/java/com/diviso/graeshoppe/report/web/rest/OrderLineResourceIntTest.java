@@ -25,6 +25,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.util.Collections;
@@ -86,6 +87,9 @@ public class OrderLineResourceIntTest {
     @Autowired
     private EntityManager em;
 
+    @Autowired
+    private Validator validator;
+
     private MockMvc restOrderLineMockMvc;
 
     private OrderLine orderLine;
@@ -98,7 +102,8 @@ public class OrderLineResourceIntTest {
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
             .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     /**
@@ -272,7 +277,7 @@ public class OrderLineResourceIntTest {
 
         int databaseSizeBeforeDelete = orderLineRepository.findAll().size();
 
-        // Get the orderLine
+        // Delete the orderLine
         restOrderLineMockMvc.perform(delete("/api/order-lines/{id}", orderLine.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());

@@ -91,11 +91,11 @@
         },
         {
             "fieldName": "orderFromCustomer",
-            "fieldType": "Integer"
+            "fieldType": "Long"
         },
         {
             "fieldName": "customerOrder",
-            "fieldType": "Integer"
+            "fieldType": "Long"
         },
         {
             "fieldName": "orderPlaceAt",
@@ -115,7 +115,6 @@
         }
     ],
     "changelogDate": "20190808044727",
-    "javadoc": "OrderMaster entity\n@Author Neeraja",
     "entityTableName": "order_master",
     "dto": "mapstruct",
     "pagination": "pagination",
