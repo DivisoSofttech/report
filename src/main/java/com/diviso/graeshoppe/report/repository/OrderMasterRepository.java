@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrderMasterRepository extends JpaRepository<OrderMaster, Long> {
 
-<<<<<<< HEAD
 	/**
 	 * @param orderNumber
 	 * @return
@@ -21,9 +20,4 @@ public interface OrderMasterRepository extends JpaRepository<OrderMaster, Long> 
 	OrderMaster findOrderMasterByOrderNumber(@Param("orderNumber")String orderNumber);
 
 }
-=======
 
-	OrderMaster findOrderMasterByOrderNumber(@Param("orderNumber")String orderNumber);
-
-}
->>>>>>> 265c600a1e3a29e48d03b5f4ffe7226926c8512e
