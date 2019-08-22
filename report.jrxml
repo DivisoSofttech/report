@@ -296,7 +296,7 @@
 			<textField>
 				<reportElement positionType="Float" x="-10" y="399" width="146" height="16" uuid="5200e2c4-1e56-47e9-95c9-b0ebd32806e4"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Copperplate Gothic Bold" size="14" isBold="true" isItalic="true"/>
+					<font fontName="SansSerif" size="14" isBold="true" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{road_name_area_or_street}]]></textFieldExpression>
 			</textField>
