@@ -324,14 +324,14 @@
 			<textField>
 				<reportElement positionType="Float" x="-10" y="522" width="131" height="20" uuid="031a8504-342d-4521-a4ce-7c6191d923d6"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Arial Black" size="14" isBold="false" isItalic="true"/>
+					<font fontName="SansSerif" size="14" isBold="false" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="-11" y="539" width="132" height="20" uuid="3459373e-35c1-40cd-ae0b-6b878aeb65bc"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Arial Black" size="14" isBold="false" isItalic="true"/>
+					<font fontName="SansSerif" size="14" isBold="false" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{alternate_phone}]]></textFieldExpression>
 			</textField>
