@@ -12,7 +12,7 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="mm"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="mm"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="mm"/>
-	<parameter name="order_master_id" class="java.lang.Integer"/>
+	<parameter name="order_master_id" class="java.lang.Long"/>
 	<queryString language="SQL">
 		<![CDATA[select * from  report.order_master where  report.order_master.id =  $P{order_master_id}]]>
 	</queryString>
