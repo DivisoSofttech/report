@@ -30,7 +30,7 @@ public class ReportServiceImpl implements ReportService{
 
 	@Override
 	public byte[] getReportAsPdf(Long orderMasterId) throws JRException {
-		JasperReport jr = JasperCompileManager.compileReport("testreport1.jrxml");
+		JasperReport jr = JasperCompileManager.compileReport("report.jrxml");
         
 	      //Preparing parameters
           Map<String, Object> parameters = new HashMap<String, Object>();
