@@ -146,7 +146,7 @@
 			<image scaleImage="RealSize">
 				<reportElement positionType="Float" x="3" y="-57" width="116" height="144" uuid="8ecaf400-1062-477c-9d4d-b9c1db616e41"/>
 				<graphicElement fill="Solid"/>
-				<imageExpression><![CDATA["C:/Users/DHEERAJ NEERAJA/Downloads/logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["/logo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
