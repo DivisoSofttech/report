@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subreport2" pageWidth="164" pageHeight="842" columnWidth="124" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="39978d56-c142-4373-a6cb-d6d5245abe7b">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (32)"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit." value="mm"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="mm"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="mm"/>
@@ -58,14 +58,14 @@
 				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="4" y="10" width="20" height="20" uuid="9426fd4b-1182-4dda-905d-318eb7f9ed30"/>
+				<reportElement positionType="Float" x="5" y="12" width="20" height="20" uuid="9426fd4b-1182-4dda-905d-318eb7f9ed30"/>
 				<textElement>
-					<font size="11"/>
+					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA["X"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="20" y="11" width="70" height="20" uuid="96c99138-9628-430e-b412-29cd20a75c12"/>
+				<reportElement positionType="Float" x="20" y="10" width="70" height="20" uuid="96c99138-9628-430e-b412-29cd20a75c12"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>

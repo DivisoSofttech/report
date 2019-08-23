@@ -134,17 +134,17 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{store_name}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{store_name}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="10" y="37" width="100" height="30" uuid="8e3c4a8a-6c49-4546-8304-7217e7df79be"/>
+				<reportElement x="12" y="37" width="100" height="30" uuid="8e3c4a8a-6c49-4546-8304-7217e7df79be"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{store_phone}]]></textFieldExpression>
 			</textField>
 			<image scaleImage="RealSize">
-				<reportElement positionType="Float" x="3" y="-57" width="116" height="144" uuid="8ecaf400-1062-477c-9d4d-b9c1db616e41"/>
+				<reportElement positionType="Float" x="4" y="-58" width="116" height="144" uuid="8ecaf400-1062-477c-9d4d-b9c1db616e41"/>
 				<graphicElement fill="Solid"/>
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
@@ -355,7 +355,7 @@
 				<text><![CDATA[Order Placed at]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="115" y="643" width="24" height="20" uuid="5f1098a1-2b5d-44df-ab39-3101ec2a43e7"/>
+				<reportElement positionType="Float" x="99" y="641" width="43" height="20" uuid="5f1098a1-2b5d-44df-ab39-3101ec2a43e7"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -369,7 +369,7 @@
 				<text><![CDATA[Order Accepted at]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="115" y="663" width="23" height="20" uuid="733a0f99-b147-448a-8acd-8fad3babd695"/>
+				<reportElement positionType="Float" x="99" y="663" width="45" height="20" uuid="733a0f99-b147-448a-8acd-8fad3babd695"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
