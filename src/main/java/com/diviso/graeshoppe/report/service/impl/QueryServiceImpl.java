@@ -23,12 +23,15 @@ public class QueryServiceImpl implements QueryService {
 
 	public ReportSummary createReportSummary(String storeId) {
 	
-		Instant dateBegin = Instant.parse(LocalDate.now().toString() + "T00:00:00Z");
-		Instant dateEnd = Instant.parse(LocalDate.now().toString() + "T23:59:59Z");
+		/*Instant dateBegin = Instant.parse(LocalDate.now().toString() + "T00:00:00Z");
+		Instant dateEnd = Instant.parse(LocalDate.now().toString() + "T23:59:59Z");*/
+		
+		Instant dateBegin = Instant.parse("2019-08-27T00:00:00Z");
+		Instant dateEnd = Instant.parse("2019-08-27T23:59:59Z");
 		ReportSummary reportSummary = new ReportSummary();
 		reportSummary.setTypeAllCount(
 				ReportQueryResourceApi.countAllOrdersByDateAndStoreIdUsingGET(dateBegin, dateEnd, storeId).getBody());
-
+/*
 		List<String> allReference = ReportQueryResourceApi
 				.findAllPaymentReferenceByDateAndStoreIdUsingGET(dateBegin, dateEnd, storeId).getBody();
 		
@@ -43,7 +46,7 @@ public class QueryServiceImpl implements QueryService {
 		reportSummary.setTypeDeliveryCount(ReportQueryResourceApi
 				.countOrdersByStoreIdAndDeliveryTypeUsingGET(dateBegin, dateEnd, storeId, "collection").getBody());
 		List<String> collectionReference=	ReportQueryResourceApi.findAllPaymentRefByDeliveryTypeUsingGET(dateBegin, dateEnd, "collection", storeId).getBody();
-		reportSummary.setTypeDeliveryTotal(calculateTotal(getPaymentReference(collectionReference)));	
+		reportSummary.setTypeDeliveryTotal(calculateTotal(getPaymentReference(collectionReference)));	*/
 		return reportSummary;
 	}
 
