@@ -39,12 +39,12 @@ public class QueryServiceImpl implements QueryService {
 
 		reportSummary.setTypeAllTotal(calculateTotal(convertStringToLong(getPaymentReference(allReference))));
 
-		List<Long> paymentIdByCard = findByPaymentType("card", allReference);
+		List<Long> paymentIdByCard = findByPaymentType("card", getPaymentReference(allReference));
 
 		reportSummary.setTypeCardTotal(calculateTotal(paymentIdByCard));
 		reportSummary.setTypeCardCount(paymentIdByCard.size());
 
-		List<Long> paymentIdByCash = findByPaymentType("cash", allReference);
+		List<Long> paymentIdByCash = findByPaymentType("cash",getPaymentReference(allReference));
 		reportSummary.setTypeCashTotal(calculateTotal(paymentIdByCash));
 		reportSummary.setTypeCardCount(paymentIdByCash.size());
 		reportSummary.setTypeDeliveryCount(ReportQueryResourceApi
