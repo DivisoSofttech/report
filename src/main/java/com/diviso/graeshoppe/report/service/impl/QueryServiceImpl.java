@@ -21,15 +21,15 @@ public class QueryServiceImpl implements QueryService {
 	@Autowired
 	PaymentResourceApi paymentResourceApi;
 
-	public ReportSummary createReportSummary(String storeId) {
+	public ReportSummary createReportSummary(LocalDate date,String storeId) {
 
-		/*
-		 * Instant dateBegin = Instant.parse(LocalDate.now().toString() + "T00:00:00Z");
-		 * Instant dateEnd = Instant.parse(LocalDate.now().toString() + "T23:59:59Z");
-		 */
+		
+		 Instant dateBegin = Instant.parse(date.toString() + "T00:00:00Z");
+		  Instant dateEnd = Instant.parse(date.toString() + "T23:59:59Z");
+		 
 
-		Instant dateBegin = Instant.parse("2019-08-27T00:00:00Z");
-		Instant dateEnd = Instant.parse("2019-08-27T23:59:59Z");
+		/*Instant dateBegin = Instant.parse("2019-08-27T00:00:00Z");
+		Instant dateEnd = Instant.parse("2019-08-27T23:59:59Z");*/
 		ReportSummary reportSummary = new ReportSummary();
 		reportSummary.setTypeAllCount(
 				ReportQueryResourceApi.countAllOrdersByDateAndStoreIdUsingGET(dateBegin, dateEnd, storeId).getBody());
