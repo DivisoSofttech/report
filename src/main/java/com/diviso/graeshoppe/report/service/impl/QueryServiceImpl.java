@@ -45,7 +45,7 @@ public class QueryServiceImpl implements QueryService {
 		reportSummary.setTypeCardCount(paymentIdByCard.size());
 
 		List<Long> paymentIdByCash = findByPaymentType("cash",getPaymentReference(allReference));
-		reportSummary.setTypeCardCount(paymentIdByCash.size());
+		reportSummary.setTypeCashCount(paymentIdByCash.size());
 		reportSummary.setTypeCashTotal(calculateTotal(paymentIdByCash));
 		reportSummary.setTypeCardCount(paymentIdByCash.size());
 		reportSummary.setTypeDeliveryCount(ReportQueryResourceApi
