@@ -14,7 +14,7 @@ import com.diviso.graeshoppe.report.service.QueryService;
  * REST controller for managing Reports.
  */
 @RestController
-//@RequestMapping("/api")
+@RequestMapping("/api")
 public class QueryResource {
 	
 	@Autowired
