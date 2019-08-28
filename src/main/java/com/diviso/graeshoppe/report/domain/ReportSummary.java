@@ -9,7 +9,7 @@ public class ReportSummary {
 	private Integer typeDeliveryCount;
 	private Double typeDeliveryTotal;
 
-	private Long typeCollectionCount;
+	private Integer typeCollectionCount;
 	private Double typeCollectionTotal;
 
 	
@@ -42,10 +42,10 @@ public class ReportSummary {
 	public void setTypeDeliveryTotal(Double typeDeliveryTotal) {
 		this.typeDeliveryTotal = typeDeliveryTotal;
 	}
-	public Long getTypeCollectionCount() {
+	public Integer getTypeCollectionCount() {
 		return typeCollectionCount;
 	}
-	public void setTypeCollectionCount(Long typeCollectionCount) {
+	public void setTypeCollectionCount(Integer typeCollectionCount) {
 		this.typeCollectionCount = typeCollectionCount;
 	}
 	public Double getTypeCollectionTotal() {

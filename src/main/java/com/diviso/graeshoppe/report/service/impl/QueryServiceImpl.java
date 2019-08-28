@@ -43,10 +43,10 @@ public class QueryServiceImpl implements QueryService {
 
 		List<String> deleveryReference=	ReportQueryResourceApi.findAllPaymentRefByDeliveryTypeUsingGET(dateBegin, dateEnd, "delivery", storeId).getBody();
 		reportSummary.setTypeDeliveryTotal(calculateTotal(getPaymentReference(deleveryReference)));
-		reportSummary.setTypeDeliveryCount(ReportQueryResourceApi
+		reportSummary.setTypeCollectionCount(ReportQueryResourceApi
 				.countOrdersByStoreIdAndDeliveryTypeUsingGET(dateBegin, dateEnd, storeId, "collection").getBody());
 		List<String> collectionReference=	ReportQueryResourceApi.findAllPaymentRefByDeliveryTypeUsingGET(dateBegin, dateEnd, "collection", storeId).getBody();
-		reportSummary.setTypeDeliveryTotal(calculateTotal(getPaymentReference(collectionReference)));	
+		reportSummary.setTypeCollectionTotal(calculateTotal(getPaymentReference(collectionReference)));	
 		return reportSummary;
 	}
 
