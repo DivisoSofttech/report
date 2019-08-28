@@ -31,7 +31,7 @@ public class QueryServiceImpl implements QueryService {
 		ReportSummary reportSummary = new ReportSummary();
 		reportSummary.setTypeAllCount(
 				ReportQueryResourceApi.countAllOrdersByDateAndStoreIdUsingGET(dateBegin, dateEnd, storeId).getBody());
-/*
+
 		List<String> allReference = ReportQueryResourceApi
 				.findAllPaymentReferenceByDateAndStoreIdUsingGET(dateBegin, dateEnd, storeId).getBody();
 		
@@ -46,7 +46,7 @@ public class QueryServiceImpl implements QueryService {
 		reportSummary.setTypeDeliveryCount(ReportQueryResourceApi
 				.countOrdersByStoreIdAndDeliveryTypeUsingGET(dateBegin, dateEnd, storeId, "collection").getBody());
 		List<String> collectionReference=	ReportQueryResourceApi.findAllPaymentRefByDeliveryTypeUsingGET(dateBegin, dateEnd, "collection", storeId).getBody();
-		reportSummary.setTypeDeliveryTotal(calculateTotal(getPaymentReference(collectionReference)));	*/
+		reportSummary.setTypeDeliveryTotal(calculateTotal(getPaymentReference(collectionReference)));	
 		return reportSummary;
 	}
 
