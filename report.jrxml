@@ -377,7 +377,7 @@
 				<textFieldExpression><![CDATA["Restaurant Notes :"]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="0" y="134" width="152" height="21" uuid="fe024154-2323-4811-a603-073e4a4ec1f9"/>
+				<reportElement x="-12" y="134" width="166" height="21" uuid="fe024154-2323-4811-a603-073e4a4ec1f9"/>
 				<subreportParameter name="order_master_id">
 					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -413,7 +413,7 @@
 				<textFieldExpression><![CDATA[$F{customer_order}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="-11" y="547" width="127" height="20" uuid="444498cf-8934-456e-8be5-690a962356c9"/>
+				<reportElement positionType="Float" x="-11" y="547" width="132" height="20" uuid="444498cf-8934-456e-8be5-690a962356c9"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
