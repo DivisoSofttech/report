@@ -89,6 +89,10 @@ public class ReportCommandResource {
 		master.setDueDate(orderMaster.getDueDate());
 		master.setDueTime(orderMaster.getDueTime());
 		master.setMethodOfOrder(orderMaster.getMethodOfOrder());
+		if(orderMaster.getNotes().equals(null))
+		{
+			master.setNotes("No notes mentioned");
+		}
 		master.setNotes(orderMaster.getNotes());
 		master.setTotalDue(orderMaster.getTotalDue());
 		master.setOrderAcceptedAt(orderMaster.getOrderAcceptedAt());
