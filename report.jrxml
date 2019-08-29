@@ -348,7 +348,7 @@
 				<text><![CDATA[Order Accepted at]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="68" y="605" width="76" height="20" uuid="733a0f99-b147-448a-8acd-8fad3babd695"/>
+				<reportElement positionType="Float" x="79" y="605" width="65" height="20" uuid="733a0f99-b147-448a-8acd-8fad3babd695"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -377,7 +377,7 @@
 				<textFieldExpression><![CDATA["Restaurant Notes :"]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="-12" y="134" width="172" height="21" uuid="fe024154-2323-4811-a603-073e4a4ec1f9"/>
+				<reportElement x="-11" y="134" width="172" height="21" uuid="fe024154-2323-4811-a603-073e4a4ec1f9"/>
 				<subreportParameter name="order_master_id">
 					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -409,7 +409,7 @@
 				<textFieldExpression><![CDATA["Due"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="113" y="547" width="21" height="20" uuid="d0786b85-6441-4588-b453-5143950ec83c"/>
+				<reportElement positionType="Float" x="119" y="547" width="21" height="20" uuid="d0786b85-6441-4588-b453-5143950ec83c"/>
 				<textFieldExpression><![CDATA[$F{customer_order}]]></textFieldExpression>
 			</textField>
 			<staticText>
