@@ -72,7 +72,7 @@
 				<textFieldExpression><![CDATA[$F{item}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="79" y="10" width="51" height="21" uuid="1725dc9e-e3ac-47f0-8fbc-1c4de65b23ba"/>
+				<reportElement positionType="Float" x="100" y="10" width="43" height="21" uuid="1725dc9e-e3ac-47f0-8fbc-1c4de65b23ba"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
