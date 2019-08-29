@@ -58,21 +58,21 @@
 				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="3" y="13" width="20" height="20" uuid="9426fd4b-1182-4dda-905d-318eb7f9ed30"/>
+				<reportElement positionType="Float" x="3" y="14" width="20" height="17" uuid="9426fd4b-1182-4dda-905d-318eb7f9ed30"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA["X"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="18" y="10" width="70" height="20" uuid="96c99138-9628-430e-b412-29cd20a75c12"/>
+				<reportElement positionType="Float" x="18" y="11" width="70" height="20" uuid="96c99138-9628-430e-b412-29cd20a75c12"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{item}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="97" y="10" width="37" height="20" uuid="1725dc9e-e3ac-47f0-8fbc-1c4de65b23ba"/>
+				<reportElement positionType="Float" x="79" y="10" width="51" height="21" uuid="1725dc9e-e3ac-47f0-8fbc-1c4de65b23ba"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
