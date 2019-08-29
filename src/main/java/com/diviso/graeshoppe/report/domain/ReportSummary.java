@@ -9,14 +9,14 @@ public class ReportSummary {
 	private Integer typeDeliveryCount;
 	private Double typeDeliveryTotal;
 
-	private Long typeCollectionCount;
+	private Integer typeCollectionCount;
 	private Double typeCollectionTotal;
 
 	
-	private Long typeCashCount;
+	private Integer typeCashCount;
 	private Double typeCashTotal;
 
-	private Long typeCardCount;
+	private Integer typeCardCount;
 	private Double typeCardTotal;
 	public Long getTypeAllCount() {
 		return typeAllCount;
@@ -42,10 +42,10 @@ public class ReportSummary {
 	public void setTypeDeliveryTotal(Double typeDeliveryTotal) {
 		this.typeDeliveryTotal = typeDeliveryTotal;
 	}
-	public Long getTypeCollectionCount() {
+	public Integer getTypeCollectionCount() {
 		return typeCollectionCount;
 	}
-	public void setTypeCollectionCount(Long typeCollectionCount) {
+	public void setTypeCollectionCount(Integer typeCollectionCount) {
 		this.typeCollectionCount = typeCollectionCount;
 	}
 	public Double getTypeCollectionTotal() {
@@ -54,10 +54,10 @@ public class ReportSummary {
 	public void setTypeCollectionTotal(Double typeCollectionTotal) {
 		this.typeCollectionTotal = typeCollectionTotal;
 	}
-	public Long getTypeCashCount() {
+	public Integer getTypeCashCount() {
 		return typeCashCount;
 	}
-	public void setTypeCashCount(Long typeCashCount) {
+	public void setTypeCashCount(Integer typeCashCount) {
 		this.typeCashCount = typeCashCount;
 	}
 	public Double getTypeCashTotal() {
@@ -66,10 +66,10 @@ public class ReportSummary {
 	public void setTypeCashTotal(Double typeCashTotal) {
 		this.typeCashTotal = typeCashTotal;
 	}
-	public Long getTypeCardCount() {
+	public Integer getTypeCardCount() {
 		return typeCardCount;
 	}
-	public void setTypeCardCount(Long typeCardCount) {
+	public void setTypeCardCount(Integer typeCardCount) {
 		this.typeCardCount = typeCardCount;
 	}
 	public Double getTypeCardTotal() {

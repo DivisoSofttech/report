@@ -1,5 +1,7 @@
 package com.diviso.graeshoppe.report.web.rest;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,16 +16,16 @@ import com.diviso.graeshoppe.report.service.QueryService;
  * REST controller for managing Reports.
  */
 @RestController
-//@RequestMapping("/api")
+@RequestMapping("/api")
 public class QueryResource {
 	
 	@Autowired
 	private  QueryService queryService;
 	
-@GetMapping("report/{storeId}")
+@GetMapping("report/{date}/{storeId}")
 	
-	public ReportSummary createReportSummary(@PathVariable String storeId) {
-		return queryService.createReportSummary(storeId);
+	public ReportSummary createReportSummary(@PathVariable LocalDate date,@PathVariable String storeId) {
+		return queryService.createReportSummary(date,storeId);
 	}
 	
 	
