@@ -273,7 +273,7 @@
 				<textFieldExpression><![CDATA["Customer Id :"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="68" y="290" width="48" height="20" uuid="6fc5f82f-4099-4a51-808b-dfafca67b8df"/>
+				<reportElement positionType="Float" x="65" y="290" width="48" height="20" uuid="6fc5f82f-4099-4a51-808b-dfafca67b8df"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
@@ -409,11 +409,11 @@
 				<textFieldExpression><![CDATA["Due"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="122" y="547" width="21" height="20" uuid="d0786b85-6441-4588-b453-5143950ec83c"/>
+				<reportElement positionType="Float" x="113" y="547" width="21" height="20" uuid="d0786b85-6441-4588-b453-5143950ec83c"/>
 				<textFieldExpression><![CDATA[$F{customer_order}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="-11" y="547" width="137" height="20" uuid="444498cf-8934-456e-8be5-690a962356c9"/>
+				<reportElement positionType="Float" x="-11" y="547" width="127" height="20" uuid="444498cf-8934-456e-8be5-690a962356c9"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
