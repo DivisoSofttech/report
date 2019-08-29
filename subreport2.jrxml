@@ -60,7 +60,7 @@
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="-3" y="15" width="15" height="11" uuid="9426fd4b-1182-4dda-905d-318eb7f9ed30"/>
 				<textElement>
-					<font size="7"/>
+					<font fontName="Caladea" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA["X"]]></textFieldExpression>
 			</textField>
