@@ -39,10 +39,10 @@ eureka:
             git-branch: ${git.branch:}
 ribbon:
     eureka:
-        enabled: true
+        enabled: false
 feign:
     hystrix:
-        enabled: true
+        enabled: false
 #    client:
 #        config:
 #            default:

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ordersummary" pageWidth="164" pageHeight="842" columnWidth="124" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="8ad5ebb0-4cdc-4c81-83b6-fc89caebbd3a">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (33)"/>
+	<queryString language="SQL">
+		<![CDATA[select * from  report.order_master where  report.order_master.id =1]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="store_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="store_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="store_phone" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="store_phone"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="method_of_order" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="method_of_order"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="due_date" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="due_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="due_time" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="due_time"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="order_number" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="order_number"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="notes" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="notes"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="delivery_charge" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="delivery_charge"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="service_charge" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="service_charge"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="total_due" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="total_due"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="order_status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="order_status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="customer_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="customer_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="pincode" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="pincode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="house_no_or_building_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="house_no_or_building_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="road_name_area_or_street" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="road_name_area_or_street"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="city" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="city"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="state" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="state"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="landmark" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="landmark"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="phone" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="phone"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="alternate_phone" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="alternate_phone"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="address_type" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="address_type"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="order_from_customer" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="order_from_customer"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="customer_order" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="customer_order"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="order_place_at" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="order_place_at"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="order_accepted_at" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="order_accepted_at"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="-10" y="0" width="150" height="30" uuid="a3bf2d6e-960e-4f30-828b-c97220922780"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FOOD EXP]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="353" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="10" width="130" height="20" uuid="3c1dc704-61be-4246-b705-3ac61e44b089"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{store_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="-20" y="40" width="164" height="30" uuid="c50b6ba7-74b7-4ec6-a3a0-41fe6ed0fe56"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Order Summary"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-20" y="70" width="164" height="1" uuid="281a23a4-7a2a-4531-bbef-08308adff3de"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement positionType="Float" x="-20" y="80" width="134" height="20" uuid="93831759-3036-469e-a8ac-d96db08de0a9"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["End Of Day Summary ,-"]]></textFieldExpression>
+			</textField>
+			<textField pattern="M/d/yy">
+				<reportElement positionType="Float" x="30" y="100" width="110" height="20" uuid="d7011ee4-d36b-4fc7-8f8d-e7e3d49d2c45"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-20" y="130" width="160" height="1" uuid="672aaca2-1294-45d2-8f07-02629d257655"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="-20" y="140" width="50" height="20" uuid="207e72c8-e3fb-4dd2-8746-1b23eb573b25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Type"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="44" y="141" width="43" height="19" uuid="528b5c1d-dd6f-4fd8-9984-2ec030b7ca80"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Total"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="95" y="141" width="47" height="19" uuid="cdedfeb0-fcc9-4f80-bd9d-f230d8f3ee24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["value"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-18" y="170" width="162" height="1" uuid="91d9ebd3-f5b7-4840-b52c-c3891f25171f"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="-18" y="316" width="162" height="1" uuid="9b357dbd-14b7-43ed-bd2f-46aad6976e83"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField pattern="MMMM d, yyyy">
+				<reportElement positionType="Float" x="-18" y="326" width="105" height="20" uuid="623e80e5-8f25-40d0-86f7-37f458f1fc79"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm:ss a">
+				<reportElement x="80" y="326" width="64" height="24" uuid="62479521-d936-4465-afbc-7f59773eddb0"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="-15" y="176" width="35" height="24" uuid="1e20f305-4ab7-492a-9ec3-037091069497"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["All"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="-16" y="201" width="46" height="20" uuid="2277ecab-8bf2-4522-99b1-6f01c277a0a5"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Card"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="-17" y="227" width="53" height="20" uuid="d26ce914-75d7-4904-8224-d7f2e7adac59"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Cash"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="-17" y="254" width="64" height="21" uuid="55243de2-f31b-4a13-bedf-b8d6aec8c927"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Delivery"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="-17" y="284" width="74" height="21" uuid="6fa49d8d-bf30-4193-b6b6-169f13c0ab26"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Collection"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

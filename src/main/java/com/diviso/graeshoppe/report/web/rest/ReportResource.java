@@ -15,6 +15,7 @@
  */
 package com.diviso.graeshoppe.report.web.rest;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -112,6 +113,32 @@ public class ReportResource {
 	      try
 	      {
 	        pdfContents=reportService.getReportAsPdf(orderMasterId);
+	      }
+	      catch (JRException e) {
+	           e.printStackTrace();
+	      }
+	     
+	        HttpHeaders headers = new HttpHeaders();
+	        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+	       String fileName ="report.pdf";
+	        headers.add("content-disposition", "attachment; filename=" + fileName);
+	        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(
+	     	           pdfContents, headers, HttpStatus.OK);	      
+	       return response;
+	   }
+
+	
+	
+	 @GetMapping("/reportSummary/{date}/{storeId}")
+	 public ResponseEntity<byte[]> getReportSummaryAsPdf(@PathVariable LocalDate date,@PathVariable String storeId) {
+	       
+	       //log.debug("REST request to get a pdf");
+	     
+	       byte[] pdfContents = null;
+	    
+	      try
+	      {
+	        pdfContents=reportService.getReportSummaryAsPdf(date,storeId);
 	      }
 	      catch (JRException e) {
 	           e.printStackTrace();
