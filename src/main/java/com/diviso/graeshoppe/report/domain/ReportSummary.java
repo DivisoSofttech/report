@@ -6,6 +6,7 @@ public class ReportSummary {
 	
 	private LocalDate localDate;
 	private String storeId;
+	
 	private Long typeAllCount;
 	private Double typeAllTotal;
 
@@ -95,5 +96,11 @@ public class ReportSummary {
 	}
 	public void setLocalDate(LocalDate localDate) {
 		this.localDate = localDate;
+	}
+	public String getStoreId() {
+		return storeId;
+	}
+	public void setStoreId(String storeId) {
+		this.storeId = storeId;
 	}
 }

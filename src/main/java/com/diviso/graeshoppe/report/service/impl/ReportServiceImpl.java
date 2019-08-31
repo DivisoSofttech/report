@@ -65,7 +65,7 @@ public class ReportServiceImpl implements ReportService{
 
 	@Override
 	public byte[] getReportSummaryAsPdf(LocalDate date,String storeId) throws JRException {
-		JasperReport jr = JasperCompileManager.compileReport("reportsummary.jrxml");
+		JasperReport jr = JasperCompileManager.compileReport("ordersummary.jrxml");
 		
 		ReportSummary reportSummary = queryService.createReportSummary(date, storeId);
 		reportSummaryList.add(reportSummary);
