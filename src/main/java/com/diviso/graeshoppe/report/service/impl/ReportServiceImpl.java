@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.diviso.graeshoppe.report.client.order.model.Reportsummary;
 import com.diviso.graeshoppe.report.domain.ReportSummary;
-import com.diviso.graeshoppe.report.jasper.ReportSummaryFactory;
+
 import com.diviso.graeshoppe.report.service.QueryService;
 import com.diviso.graeshoppe.report.service.ReportService;
 

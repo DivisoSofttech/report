@@ -1,7 +1,11 @@
 package com.diviso.graeshoppe.report.domain;
 
+import java.time.LocalDate;
+
 public class ReportSummary {
 	
+	private LocalDate localDate;
+	private String storeId;
 	private Long typeAllCount;
 	private Double typeAllTotal;
 
@@ -85,5 +89,11 @@ public class ReportSummary {
 				+ typeCollectionCount + ", typeCollectionTotal=" + typeCollectionTotal + ", typeCashCount="
 				+ typeCashCount + ", typeCashTotal=" + typeCashTotal + ", typeCardCount=" + typeCardCount
 				+ ", typeCardTotal=" + typeCardTotal + "]";
+	}
+	public LocalDate getLocalDate() {
+		return localDate;
+	}
+	public void setLocalDate(LocalDate localDate) {
+		this.localDate = localDate;
 	}
 }

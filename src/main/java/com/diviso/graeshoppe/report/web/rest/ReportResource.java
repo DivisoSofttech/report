@@ -146,7 +146,7 @@ public class ReportResource {
 	     
 	        HttpHeaders headers = new HttpHeaders();
 	        headers.setContentType(MediaType.parseMediaType("application/pdf"));
-	       String fileName ="report.pdf";
+	       String fileName ="reportsummary.pdf";
 	        headers.add("content-disposition", "attachment; filename=" + fileName);
 	        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(
 	     	           pdfContents, headers, HttpStatus.OK);	      

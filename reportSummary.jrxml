@@ -184,7 +184,7 @@
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="62" y="173" width="32" height="28" uuid="4f134bd3-0e8b-4ebd-a18c-ba9f95b0b3ab"/>
+				<reportElement positionType="Float" x="62" y="176" width="39" height="24" uuid="4f134bd3-0e8b-4ebd-a18c-ba9f95b0b3ab"/>
 				<textFieldExpression><![CDATA[$F{typeAllTotal}]]></textFieldExpression>
 			</textField>
 			<textField>

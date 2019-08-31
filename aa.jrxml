@@ -7,7 +7,7 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (37)"/>
 	<parameter name="order_master_id" class="java.lang.Integer"/>
 	<queryString language="SQL">
-		<![CDATA[select om.store_name, om.store_phone, ol.total, ol.item, au.aux_item,co.combo_item from order_master om right  join order_line ol on om.id = ol.order_master_id right join aux_item au on ol.id = au.order_line_id right join combo_item co on ol.id = co.order_line_id]]>
+		<![CDATA[select om.store_name, om.store_phone, ol.total, ol.item, au.aux_item,co.combo_item from order_master om inner  join order_line ol on om.id = ol.order_master_id right join aux_item au on ol.id = au.order_line_id right join combo_item co on ol.id = co.order_line_id and om.id=  $P{order_master_id} ]]>
 	</queryString>
 	<field name="store_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="store_name"/>
@@ -53,7 +53,7 @@
 	<detail>
 		<band height="53" splitType="Stretch">
 			<textField>
-				<reportElement isPrintRepeatedValues="false" x="62" y="20" width="100" height="30" uuid="25217cef-3835-4fd2-bed5-b9286555b806"/>
+				<reportElement isPrintRepeatedValues="false" x="64" y="20" width="100" height="30" uuid="25217cef-3835-4fd2-bed5-b9286555b806"/>
 				<textFieldExpression><![CDATA[$F{item}]]></textFieldExpression>
 			</textField>
 			<textField>
