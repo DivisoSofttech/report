@@ -41,6 +41,38 @@ spring:
     jackson:
         serialization:
             indent-output: true
+    cloud:
+        stream:
+            kafka:
+                binder:
+                    brokers:  dev.servers.divisosofttech.com
+                    zk-nodes: dev.servers.divisosofttech.com
+                streams:
+                  binder:
+                    brokers: dev.servers.divisosofttech.com
+                    configuration:
+                      schema.registry.url: http://dev.servers.divisosofttech.com:8081
+                      commit.interval.ms: 1000
+                      default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                      default.value.serde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde 
+                  bindings:
+                    sensor:
+                      consumer:
+                           keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                           valueSerde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
+            bindings:
+                payment:
+                    consumer:
+                      useNativeDecoding: true
+                    destination: payment
+                    contentType: application/*+avro
+                    group: payment-groups   
+                order:
+                    consumer:
+                      useNativeDecoding: true
+                    destination: order
+                    contentType: application/*+avro
+                    group: order-groups                               
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/report?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
@@ -66,17 +98,17 @@ spring:
             hibernate.generate_statistics: true
     data:
         elasticsearch:
-            cluster-name: 507f5edb2bc243509cf817eb605aea0f
-            cluster-nodes: https://507f5edb2bc243509cf817eb605aea0f.asia-northeast1.gcp.cloud.es.io:9243/
+            cluster-name: 73af03d382dd4317b9515b023d8e7c20
+            cluster-nodes: https://73af03d382dd4317b9515b023d8e7c20.asia-northeast1.gcp.cloud.es.io:9243/
             properties:
                 path:
                     logs: target/elasticsearch/log
                     data: target/elasticsearch/data
         jest:
-            password: D022NWI8x1Z42QPg40vq25S4 
+            password: YjmXxrSuAGlEo30uK4IW94cw 
             username: elastic
             readTimeout: 10000
-            uri: https://507f5edb2bc243509cf817eb605aea0f.asia-northeast1.gcp.cloud.es.io:9243/
+            uri: https://73af03d382dd4317b9515b023d8e7c20.asia-northeast1.gcp.cloud.es.io:9243/
     liquibase:
         contexts: dev
     mail:

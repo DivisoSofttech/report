@@ -12,6 +12,16 @@
 
 	<repositories>
 		<!-- jhipster-needle-maven-repository -->
+		<repository>
+			<id>confluent</id>
+			<url>http://packages.confluent.io/maven/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 
 	<pluginRepositories>
@@ -22,6 +32,8 @@
 
 	<properties>
 		<!-- Build properties -->
+				<avro.version>1.8.2</avro.version>
+		<confluent.version>4.1.0</confluent.version>
 		<maven.version>3.0.0</maven.version>
 		<java.version>1.8</java.version>
 		<scala.version>2.12.6</scala.version>
@@ -315,6 +327,68 @@
 			<artifactId>log4j-core</artifactId>
 			<version>2.7</version>
 		</dependency>
+		
+		<!-- Kafka support -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream-binder-kafka</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream-test-support</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream-binder-kafka-streams</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream-schema</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.confluent</groupId>
+			<artifactId>kafka-avro-serializer</artifactId>
+			<version>${confluent.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>io.confluent</groupId>
+			<artifactId>kafka-schema-registry-client</artifactId>
+			<version>${confluent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.avro</groupId>
+			<artifactId>avro</artifactId>
+			<version>1.8.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.confluent</groupId>
+			<artifactId>kafka-streams-avro-serde</artifactId>
+			<version>${confluent.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		
+		
 		<!-- end of Spring Data Jest dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -431,6 +505,25 @@
 	<build>
 		<defaultGoal>spring-boot:run</defaultGoal>
 		<plugins>
+		<plugin>
+				<groupId>org.apache.avro</groupId>
+				<artifactId>avro-maven-plugin</artifactId>
+				<version>${avro.version}</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>schema</goal>
+						</goals>
+						<configuration>
+							<stringType>String</stringType>
+							<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+							<sourceDirectory>src/main/resources/avro</sourceDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -828,11 +921,11 @@
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-undertow</artifactId>
 				</dependency>
-				<dependency>
+				<!-- <dependency>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-devtools</artifactId>
 					<optional>true</optional>
-				</dependency>
+				</dependency> -->
 			</dependencies>
 			<build>
 				<plugins>
@@ -1016,6 +1109,25 @@
 							<configuration>
 								<lifecycleMappingMetadata>
 									<pluginExecutions>
+									<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.avro
+										</groupId>
+										<artifactId>
+											avro-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.8.2,)
+										</versionRange>
+										<goals>
+											<goal>schema</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
 										<pluginExecution>
 											<pluginExecutionFilter>
 												<groupId>org.jacoco</groupId>

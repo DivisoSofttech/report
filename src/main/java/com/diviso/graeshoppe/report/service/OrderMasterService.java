@@ -1,5 +1,6 @@
 package com.diviso.graeshoppe.report.service;
 
+import com.diviso.graeshoppe.order.avro.Order;
 import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
 
 import org.springframework.data.domain.Page;
@@ -20,6 +21,8 @@ public interface OrderMasterService {
      */
     OrderMasterDTO save(OrderMasterDTO orderMasterDTO);
 
+    Optional<OrderMasterDTO> findByOrderNumber(String orderNumber);
+   public  void convertAndSaveOrderMaster(Order order);
     /**
      * Get all the orderMasters.
      *
