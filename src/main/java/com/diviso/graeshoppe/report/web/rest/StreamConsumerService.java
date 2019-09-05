@@ -25,18 +25,18 @@ public class StreamConsumerService {
 	public void listenToPayment(KStream<String, Payment> message) {
 		message.foreach((key, value) -> {
 			System.out.println("payment Value consumed is " + value);
-			OrderMasterDTO orderMasterDTO = orderMasterService.findByOrderNumber(value.getTargetId()).get();
-			if (orderMasterDTO != null) {
-				if (!value.getPaymentType().equals("cod")) {
-					LOG.info("Order paid");
-					orderMasterDTO.setOrderStatus("ORDER PAID");
-				} else {
-					LOG.info("Order Not paid");
-					orderMasterDTO.setOrderStatus("ORDER NOT PAID");
-				}
-				orderMasterService.save(orderMasterDTO);
-			}
-		});
+//			OrderMasterDTO orderMasterDTO = orderMasterService.findByOrderNumber(value.getTargetId()).get();
+//			if (orderMasterDTO != null) {
+//				if (!value.getPaymentType().equals("cod")) {
+//					LOG.info("Order paid");
+//					orderMasterDTO.setOrderStatus("ORDER PAID");
+//				} else {
+//					LOG.info("Order Not paid");
+//					orderMasterDTO.setOrderStatus("ORDER NOT PAID");
+//				}
+//				orderMasterService.save(orderMasterDTO);
+//			}
+//		});
 	}
 
 	@StreamListener(MessageBinderConfiguration.ORDER)
