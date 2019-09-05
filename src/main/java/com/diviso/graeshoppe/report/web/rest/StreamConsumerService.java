@@ -26,7 +26,7 @@ public class StreamConsumerService {
 		message.foreach((key,value)->{
 				System.out.println("payment Value consumed is "+value);
 				OrderMasterDTO orderMasterDTO=orderMasterService.findByOrderNumber(value.getTargetId()).get();
-				if(value.getPaymentType()!="cod") {
+				if(!value.getPaymentType().equals("cod")) {
 					LOG.info("Order paid");
 					orderMasterDTO.setOrderStatus("ORDER PAID");
 				}else {

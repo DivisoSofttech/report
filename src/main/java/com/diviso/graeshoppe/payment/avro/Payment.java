@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Payment extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 2835122591468748128L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Payment\",\"namespace\":\"com.diviso.graeshoppe.payment.avro\",\"fields\":[{\"name\":\"ref\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"payee\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"payer\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"targetId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"paymentType\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"provider\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"amount\",\"type\":\"double\"},{\"name\":\"tax\",\"type\":\"double\"},{\"name\":\"total\",\"type\":\"double\"},{\"name\":\"status\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"dateAndTime\",\"type\":\"long\",\"logicalType\":\"date\"}]}");
+  private static final long serialVersionUID = -5880886337173817399L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Payment\",\"namespace\":\"com.diviso.graeshoppe.payment.avro\",\"fields\":[{\"name\":\"ref\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"payee\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"payer\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"targetId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"paymentType\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"provider\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"amount\",\"type\":\"double\"},{\"name\":\"tax\",\"type\":[\"null\",\"double\"],\"default\":0.0},{\"name\":\"total\",\"type\":\"double\"},{\"name\":\"status\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"dateAndTime\",\"type\":\"long\",\"logicalType\":\"date\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -58,7 +58,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
   @Deprecated public java.lang.String paymentType;
   @Deprecated public java.lang.String provider;
   @Deprecated public double amount;
-  @Deprecated public double tax;
+  @Deprecated public java.lang.Double tax;
   @Deprecated public double total;
   @Deprecated public java.lang.String status;
   @Deprecated public long dateAndTime;
@@ -351,7 +351,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
     private java.lang.String paymentType;
     private java.lang.String provider;
     private double amount;
-    private double tax;
+    private java.lang.Double tax;
     private double total;
     private java.lang.String status;
     private long dateAndTime;
@@ -750,7 +750,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @param value The value of 'tax'.
       * @return This builder.
       */
-    public com.diviso.graeshoppe.payment.avro.Payment.Builder setTax(double value) {
+    public com.diviso.graeshoppe.payment.avro.Payment.Builder setTax(java.lang.Double value) {
       validate(fields()[7], value);
       this.tax = value;
       fieldSetFlags()[7] = true;
@@ -771,6 +771,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder clearTax() {
+      tax = null;
       fieldSetFlags()[7] = false;
       return this;
     }
