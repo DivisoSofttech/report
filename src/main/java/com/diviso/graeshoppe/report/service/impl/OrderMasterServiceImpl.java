@@ -239,7 +239,9 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	private OrderLine toOrderLine(com.diviso.graeshoppe.order.avro.OrderLine orderLine) {
 		OrderLine line = new OrderLine();
 		Product product = reportService.findProductByProductId(orderLine.getProductId());
-		line.setItem(product.getName()); // query to get productname
+		if(product!=null) {
+		line.setItem(product.getName());
+		}								// query to get productname
 		line.setQuantity(orderLine.getQuantity());
 		line.setTotal(orderLine.getTotal());
 		line.setAuxItems(orderLine.getAuxilaryOrderLines().stream().map(this::toAuxItem).collect(Collectors.toSet()));
