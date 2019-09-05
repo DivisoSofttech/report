@@ -10,6 +10,7 @@ import com.diviso.graeshoppe.order.avro.Order;import com.diviso.graeshoppe.repor
 import com.diviso.graeshoppe.report.client.product.model.Product;
 import com.diviso.graeshoppe.report.client.store.model.Store;
 import com.diviso.graeshoppe.report.domain.AuxItem;
+import com.diviso.graeshoppe.report.domain.ComboItem;
 import com.diviso.graeshoppe.report.domain.OrderLine;
 import com.diviso.graeshoppe.report.domain.OrderMaster;
 import com.diviso.graeshoppe.report.repository.ComboItemRepository;
@@ -243,9 +244,16 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		line.setTotal(orderLine.getTotal());
 		line.setAuxItems(orderLine.getAuxilaryOrderLines().stream().map(this::toAuxItem).collect(Collectors.toSet()));
 		List<ComboLineItem> comboItems=reportService.findCombosByProductId(orderLine.getProductId());
-		line.setComboItems(new HashSet(comboItems));
+		line.setComboItems(comboItems.stream().map(this::toComboItem).collect(Collectors.toSet()));
 		return line;
 
+	}
+	
+	private ComboItem toComboItem(ComboLineItem lineitem) {
+		ComboItem comboItem=new ComboItem();
+		comboItem.setComboItem(lineitem.getProduct().getName());
+		comboItem.setQuantity(lineitem.getQuantity());
+		return comboItem;
 	}
 
 	private AuxItem toAuxItem(AuxilaryOrderLine aux) {
