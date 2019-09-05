@@ -26,9 +26,9 @@
 	"name":"DeliveryInfo",
 	"fields":[
 		{"name":"deliveryType","type":["null","string"]},
-		{"name":"deliveryCharge","type":"double"},
+		{"name":"deliveryCharge","type":["null","double"],"default":0.0},
 		{"name":"deliveryNotes","type":["null","string"],"default": null},
-		{"name":"deliveryAddress","type":"com.diviso.graeshoppe.order.avro.Address","default": null}	
+		{"name":"deliveryAddress","type":["null","com.diviso.graeshoppe.order.avro.Address"],"default": null}	
 		]
 	},
 	
@@ -105,7 +105,7 @@
 			   {"name":"approvalDetails","type":["null","com.diviso.graeshoppe.order.avro.ApprovalDetails"]},
 			   {"name":"status","type":["null","com.diviso.graeshoppe.order.avro.Status"]},
 			   {"name":"orderLines","type":{"type":"array","items":"com.diviso.graeshoppe.order.avro.OrderLine"}},
-			   {"name":"offerLines","type":{"type":"array","items":"com.diviso.graeshoppe.order.avro.Offer"},"default":null}
+			   {"name":"offerLines","type":{"type":"array","items":"com.diviso.graeshoppe.order.avro.Offer"}}
 			   
 			]
 	}
