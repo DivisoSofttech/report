@@ -36,7 +36,7 @@ public class StreamConsumerService {
 //				}
 //				orderMasterService.save(orderMasterDTO);
 //			}
-//		});
+	});
 	}
 
 	@StreamListener(MessageBinderConfiguration.ORDER)
