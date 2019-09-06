@@ -103,7 +103,7 @@ public class ReportResource {
 		return orderMaster;
 	}
 	
-	@GetMapping("/pdf/{orderMasterId}")
+	@GetMapping("/pdf/{orderNumber}")
 	public ResponseEntity<byte[]> getReportAsPdf(@PathVariable String orderNumber) {
 	       
 	       //log.debug("REST request to get a pdf");
