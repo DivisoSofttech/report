@@ -1,18 +1,35 @@
 package com.diviso.graeshoppe.report.service.impl;
 
+import com.diviso.graeshoppe.report.service.AuxItemService;
+import com.diviso.graeshoppe.report.service.ComboItemService;
+import com.diviso.graeshoppe.report.service.OrderLineService;
 import com.diviso.graeshoppe.report.service.OrderMasterService;
+import com.diviso.graeshoppe.report.service.ReportService;
 import com.diviso.graeshoppe.order.avro.AuxilaryOrderLine;
-import com.diviso.graeshoppe.order.avro.Order;
+import com.diviso.graeshoppe.order.avro.Order;import com.diviso.graeshoppe.report.client.product.model.ComboLineItem;
+import com.diviso.graeshoppe.report.client.product.model.Product;
+import com.diviso.graeshoppe.report.client.store.model.Store;
 import com.diviso.graeshoppe.report.domain.AuxItem;
+import com.diviso.graeshoppe.report.domain.ComboItem;
 import com.diviso.graeshoppe.report.domain.OrderLine;
 import com.diviso.graeshoppe.report.domain.OrderMaster;
+import com.diviso.graeshoppe.report.repository.ComboItemRepository;
+import com.diviso.graeshoppe.report.repository.OrderLineRepository;
 import com.diviso.graeshoppe.report.repository.OrderMasterRepository;
 import com.diviso.graeshoppe.report.repository.search.OrderMasterSearchRepository;
+import com.diviso.graeshoppe.report.service.dto.AuxItemDTO;
+import com.diviso.graeshoppe.report.service.dto.ComboItemDTO;
+import com.diviso.graeshoppe.report.service.dto.OrderLineDTO;
 import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
+import com.diviso.graeshoppe.report.service.mapper.AuxItemMapper;
+import com.diviso.graeshoppe.report.service.mapper.ComboItemMapper;
+import com.diviso.graeshoppe.report.service.mapper.OrderLineMapper;
 import com.diviso.graeshoppe.report.service.mapper.OrderMasterMapper;
+import com.netflix.discovery.converters.Auto;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -20,6 +37,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -32,122 +51,134 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 @Transactional
 public class OrderMasterServiceImpl implements OrderMasterService {
 
-    private final Logger log = LoggerFactory.getLogger(OrderMasterServiceImpl.class);
+	private final Logger log = LoggerFactory.getLogger(OrderMasterServiceImpl.class);
 
-    private final OrderMasterRepository orderMasterRepository;
+	private final OrderMasterRepository orderMasterRepository;
 
-    private final OrderMasterMapper orderMasterMapper;
+	@Autowired
+	private OrderLineMapper orderLineMapper;
+	@Autowired
+	private AuxItemMapper auxItemMapper;
+	
+	@Autowired
+	private ComboItemMapper comboItemMapper;
+	
+	@Autowired
+	private ReportService reportService;
+	@Autowired
+	private OrderLineService orderLineService;
+	@Autowired
+	private AuxItemService auxItemService;
+	@Autowired
+	private ComboItemService comboItemService;
+	private final OrderMasterMapper orderMasterMapper;
 
-    private final OrderMasterSearchRepository orderMasterSearchRepository;
+	private final OrderMasterSearchRepository orderMasterSearchRepository;
 
-    public OrderMasterServiceImpl(OrderMasterRepository orderMasterRepository, OrderMasterMapper orderMasterMapper, OrderMasterSearchRepository orderMasterSearchRepository) {
-        this.orderMasterRepository = orderMasterRepository;
-        this.orderMasterMapper = orderMasterMapper;
-        this.orderMasterSearchRepository = orderMasterSearchRepository;
-    }
+	public OrderMasterServiceImpl(OrderMasterRepository orderMasterRepository, OrderMasterMapper orderMasterMapper,
+			OrderMasterSearchRepository orderMasterSearchRepository) {
+		this.orderMasterRepository = orderMasterRepository;
+		this.orderMasterMapper = orderMasterMapper;
+		this.orderMasterSearchRepository = orderMasterSearchRepository;
+	}
 
-    /**
-     * Save a orderMaster.
-     *
-     * @param orderMasterDTO the entity to save
-     * @return the persisted entity
-     */
-    @Override
-    public OrderMasterDTO save(OrderMasterDTO orderMasterDTO) {
-        log.debug("Request to save OrderMaster : {}", orderMasterDTO);
+	/**
+	 * Save a orderMaster.
+	 *
+	 * @param orderMasterDTO the entity to save
+	 * @return the persisted entity
+	 */
+	@Override
+	public OrderMasterDTO save(OrderMasterDTO orderMasterDTO) {
+		log.debug("Request to save OrderMaster : {}", orderMasterDTO);
 
-        OrderMaster orderMaster = orderMasterMapper.toEntity(orderMasterDTO);
-        orderMaster = orderMasterRepository.save(orderMaster);
-        OrderMasterDTO result = orderMasterMapper.toDto(orderMaster);
-        orderMasterSearchRepository.save(orderMaster);
-        return result;
-    }
+		OrderMaster orderMaster = orderMasterMapper.toEntity(orderMasterDTO);
+		orderMaster = orderMasterRepository.save(orderMaster);
+		OrderMasterDTO result = orderMasterMapper.toDto(orderMaster);
+		orderMasterSearchRepository.save(orderMaster);
+		return result;
+	}
 
-    /**
-     * Get all the orderMasters.
-     *
-     * @param pageable the pagination information
-     * @return the list of entities
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public Page<OrderMasterDTO> findAll(Pageable pageable) {
-        log.debug("Request to get all OrderMasters");
-        return orderMasterRepository.findAll(pageable)
-            .map(orderMasterMapper::toDto);
-    }
+	/**
+	 * Get all the orderMasters.
+	 *
+	 * @param pageable the pagination information
+	 * @return the list of entities
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public Page<OrderMasterDTO> findAll(Pageable pageable) {
+		log.debug("Request to get all OrderMasters");
+		return orderMasterRepository.findAll(pageable).map(orderMasterMapper::toDto);
+	}
 
+	/**
+	 * Get one orderMaster by id.
+	 *
+	 * @param id the id of the entity
+	 * @return the entity
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public Optional<OrderMasterDTO> findOne(Long id) {
+		log.debug("Request to get OrderMaster : {}", id);
+		return orderMasterRepository.findById(id).map(orderMasterMapper::toDto);
+	}
 
-    /**
-     * Get one orderMaster by id.
-     *
-     * @param id the id of the entity
-     * @return the entity
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public Optional<OrderMasterDTO> findOne(Long id) {
-        log.debug("Request to get OrderMaster : {}", id);
-        return orderMasterRepository.findById(id)
-            .map(orderMasterMapper::toDto);
-    }
+	/**
+	 * Delete the orderMaster by id.
+	 *
+	 * @param id the id of the entity
+	 */
+	@Override
+	public void delete(Long id) {
+		log.debug("Request to delete OrderMaster : {}", id);
+		orderMasterRepository.deleteById(id);
+		orderMasterSearchRepository.deleteById(id);
+	}
 
-    /**
-     * Delete the orderMaster by id.
-     *
-     * @param id the id of the entity
-     */
-    @Override
-    public void delete(Long id) {
-        log.debug("Request to delete OrderMaster : {}", id);
-        orderMasterRepository.deleteById(id);
-        orderMasterSearchRepository.deleteById(id);
-    }
+	/**
+	 * Search for the orderMaster corresponding to the query.
+	 *
+	 * @param query    the query of the search
+	 * @param pageable the pagination information
+	 * @return the list of entities
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public Page<OrderMasterDTO> search(String query, Pageable pageable) {
+		log.debug("Request to search for a page of OrderMasters for query {}", query);
+		return orderMasterSearchRepository.search(queryStringQuery(query), pageable).map(orderMasterMapper::toDto);
+	}
 
-    /**
-     * Search for the orderMaster corresponding to the query.
-     *
-     * @param query the query of the search
-     * @param pageable the pagination information
-     * @return the list of entities
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public Page<OrderMasterDTO> search(String query, Pageable pageable) {
-        log.debug("Request to search for a page of OrderMasters for query {}", query);
-        return orderMasterSearchRepository.search(queryStringQuery(query), pageable)
-            .map(orderMasterMapper::toDto);
-    }
+	/**
+	 * Search for the orderMaster corresponding to the order id.
+	 *
+	 *
+	 * @param order id
+	 * @return the list of entities
+	 */
 
-    /**
-     * Search for the orderMaster corresponding to the order id.
-     *
-     *
-     * @param order id
-     * @return the list of entities
-     */
-    
 	@Override
 	public OrderMasterDTO findOrderMasterByOrderNumber(String orderNumber) {
-		 log.debug("Request to get OrderMaster by order id : {}", orderNumber);
-	        return orderMasterMapper.toDto(orderMasterRepository.findOrderMasterByOrderNumber(orderNumber));
-	          
+		log.debug("Request to get OrderMaster by order id : {}", orderNumber);
+		return orderMasterMapper.toDto(orderMasterRepository.findOrderMasterByOrderNumber(orderNumber));
 
 	}
-	
-	
-	
+
 	@Override
 	public void convertAndSaveOrderMaster(Order order) {
-		OrderMaster orderMaster=new OrderMaster();
-		orderMaster.setStoreName(null);
-		orderMaster.setStorePhone(0l);
+		Store store = reportService.findStoreByStoreId(order.getStoreId());
+		OrderMaster orderMaster = new OrderMaster();
+		orderMaster.setStoreName(store.getName());
+		orderMaster.setStorePhone(store.getContactNo());
 		orderMaster.setMethodOfOrder(order.getDeliveryInfo().getDeliveryType().toUpperCase());
 		orderMaster.setOrderNumber(order.getOrderId());
 		orderMaster.setServiceCharge(order.getDeliveryInfo().getDeliveryCharge());
-		if(order.getDeliveryInfo().getDeliveryAddress()!=null) {
+		if (order.getDeliveryInfo().getDeliveryAddress() != null) {
 			orderMaster.setRoadNameAreaOrStreet(order.getDeliveryInfo().getDeliveryAddress().getRoadNameAreaOrStreet());
-			orderMaster.setHouseNoOrBuildingName(order.getDeliveryInfo().getDeliveryAddress().getHouseNoOrBuildingName());
+			orderMaster
+					.setHouseNoOrBuildingName(order.getDeliveryInfo().getDeliveryAddress().getHouseNoOrBuildingName());
 			orderMaster.setCity(order.getDeliveryInfo().getDeliveryAddress().getCity());
 			orderMaster.setLandmark(order.getDeliveryInfo().getDeliveryAddress().getLandmark());
 			orderMaster.setPhone(order.getDeliveryInfo().getDeliveryAddress().getPhone());
@@ -161,38 +192,76 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setNotes(order.getDeliveryInfo().getDeliveryNotes());
 		orderMaster.setOrderFromCustomer(order.getOrderCountRestaurant());
 		orderMaster.setTotalDue(order.getGrandTotal());
-		Instant expectedDelivery =Instant.ofEpochMilli(order.getApprovalDetails().getExpectedDelivery());
+		Instant expectedDelivery = Instant.ofEpochMilli(order.getApprovalDetails().getExpectedDelivery());
 		String dueDate = Date.from(expectedDelivery).toString().substring(4, 10);
+		log.info("Expected delivery at is " + dueDate);
 		String dueTime = Date.from(expectedDelivery).toString().substring(11, 16);
 		orderMaster.setDueDate(dueDate);
 		orderMaster.setDueTime(dueTime);
 		orderMaster.setCustomerOrder(order.getOrderCountgraeshoppe());
-		Instant orderDate =Instant.ofEpochMilli(order.getDate());
+		Instant orderDate = Instant.ofEpochMilli(order.getDate());
 		String orderPlacedAt = Date.from(orderDate).toString().substring(4, 10);
+		log.info("Order placed at is " + orderPlacedAt);
 		orderMaster.setOrderPlaceAt(orderPlacedAt);
-		if(order.getApprovalDetails()!=null) {
-			Instant acceptedDate =Instant.ofEpochMilli(order.getApprovalDetails().getAcceptedAt());
+		if (order.getApprovalDetails() != null) {
+			Instant acceptedDate = Instant.ofEpochMilli(order.getApprovalDetails().getAcceptedAt());
 			String orderAcceptedAt = Date.from(acceptedDate).toString().substring(4, 10);
 			orderMaster.setOrderAcceptedAt(orderAcceptedAt);
-
+			log.info("Order accepted atis " + orderAcceptedAt);
 		}
-		orderMaster.setOrderLines(order.getOrderLines().stream().map(this::toOrderLine).collect(Collectors.toSet()));
-		
+
+		log.info("The order master going to persist is " + orderMaster);
+		OrderMaster result = orderMasterRepository.save(orderMaster);
+		order.getOrderLines().stream().map(this::toOrderLine).collect(Collectors.toSet())
+		.forEach(orderline -> {
+			// saving orderlines
+			OrderLineDTO lineDTO = orderLineMapper.toDto(orderline);
+			lineDTO.setOrderMasterId(result.getId());
+			OrderLineDTO resultLineDTO = orderLineService.save(lineDTO);
+			
+			//saving the combos of orderline
+			orderline.getComboItems().forEach(comboItem->{
+				ComboItemDTO comboItemDTO=comboItemMapper.toDto(comboItem);
+				comboItemDTO.setOrderLineId(resultLineDTO.getId());
+				comboItemService.save(comboItemDTO);
+			});
+			
+			//saving the aux items of the particular line
+			orderline.getAuxItems()
+			.forEach(auxItem -> {
+				AuxItemDTO auxItemDTO=auxItemMapper.toDto(auxItem);
+				auxItemDTO.setOrderLineId(resultLineDTO.getId());
+				auxItemService.save(auxItemDTO);
+			});
+		});
 	}
-	
+
 	private OrderLine toOrderLine(com.diviso.graeshoppe.order.avro.OrderLine orderLine) {
-		OrderLine line=new OrderLine();
-		line.setItem(null); //query to get productname
+		OrderLine line = new OrderLine();
+		Product product = reportService.findProductByProductId(orderLine.getProductId());
+		if(product!=null) {
+		line.setItem(product.getName());
+		}								// query to get productname
 		line.setQuantity(orderLine.getQuantity());
 		line.setTotal(orderLine.getTotal());
 		line.setAuxItems(orderLine.getAuxilaryOrderLines().stream().map(this::toAuxItem).collect(Collectors.toSet()));
+		List<ComboLineItem> comboItems=reportService.findCombosByProductId(orderLine.getProductId());
+		line.setComboItems(comboItems.stream().map(this::toComboItem).collect(Collectors.toSet()));
 		return line;
-		
+
 	}
 	
+	private ComboItem toComboItem(ComboLineItem lineitem) {
+		ComboItem comboItem=new ComboItem();
+		comboItem.setComboItem(lineitem.getProduct().getName());
+		comboItem.setQuantity(lineitem.getQuantity());
+		return comboItem;
+	}
+
 	private AuxItem toAuxItem(AuxilaryOrderLine aux) {
-		AuxItem auxItem=new AuxItem();
-		auxItem.setAuxItem(null); //query to get aux name
+		AuxItem auxItem = new AuxItem();
+		Product product = reportService.findProductByProductId(aux.getProductId());
+		auxItem.setAuxItem(product.getName()); // query to get aux name
 		auxItem.setQuantity(aux.getQuantity());
 		auxItem.setTotal(aux.getTotal());
 		return auxItem;

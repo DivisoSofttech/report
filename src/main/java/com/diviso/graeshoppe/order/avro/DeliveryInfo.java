@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class DeliveryInfo extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 2515100543128045855L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"DeliveryInfo\",\"namespace\":\"com.diviso.graeshoppe.order.avro\",\"fields\":[{\"name\":\"deliveryType\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"deliveryCharge\",\"type\":\"double\"},{\"name\":\"deliveryNotes\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"deliveryAddress\",\"type\":{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"customerId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"pincode\",\"type\":\"long\"},{\"name\":\"houseNoOrBuildingName\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"roadNameAreaOrStreet\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"city\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"state\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"landmark\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"name\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"addressType\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"phone\",\"type\":\"long\",\"default\":null},{\"name\":\"alternatePhone\",\"type\":[\"null\",\"long\"],\"default\":null}]},\"default\":null}]}");
+  private static final long serialVersionUID = 2820618934374478005L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"DeliveryInfo\",\"namespace\":\"com.diviso.graeshoppe.order.avro\",\"fields\":[{\"name\":\"deliveryType\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"deliveryCharge\",\"type\":[\"null\",\"double\"],\"default\":0.0},{\"name\":\"deliveryNotes\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"deliveryAddress\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"customerId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"pincode\",\"type\":\"long\"},{\"name\":\"houseNoOrBuildingName\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"roadNameAreaOrStreet\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"city\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"state\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"landmark\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"name\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"addressType\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"phone\",\"type\":\"long\",\"default\":null},{\"name\":\"alternatePhone\",\"type\":[\"null\",\"long\"],\"default\":null}]}],\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -52,7 +52,7 @@ public class DeliveryInfo extends org.apache.avro.specific.SpecificRecordBase im
   }
 
   @Deprecated public java.lang.String deliveryType;
-  @Deprecated public double deliveryCharge;
+  @Deprecated public java.lang.Double deliveryCharge;
   @Deprecated public java.lang.String deliveryNotes;
   @Deprecated public com.diviso.graeshoppe.order.avro.Address deliveryAddress;
 
@@ -198,7 +198,7 @@ public class DeliveryInfo extends org.apache.avro.specific.SpecificRecordBase im
     implements org.apache.avro.data.RecordBuilder<DeliveryInfo> {
 
     private java.lang.String deliveryType;
-    private double deliveryCharge;
+    private java.lang.Double deliveryCharge;
     private java.lang.String deliveryNotes;
     private com.diviso.graeshoppe.order.avro.Address deliveryAddress;
     private com.diviso.graeshoppe.order.avro.Address.Builder deliveryAddressBuilder;
@@ -312,7 +312,7 @@ public class DeliveryInfo extends org.apache.avro.specific.SpecificRecordBase im
       * @param value The value of 'deliveryCharge'.
       * @return This builder.
       */
-    public com.diviso.graeshoppe.order.avro.DeliveryInfo.Builder setDeliveryCharge(double value) {
+    public com.diviso.graeshoppe.order.avro.DeliveryInfo.Builder setDeliveryCharge(java.lang.Double value) {
       validate(fields()[1], value);
       this.deliveryCharge = value;
       fieldSetFlags()[1] = true;
@@ -333,6 +333,7 @@ public class DeliveryInfo extends org.apache.avro.specific.SpecificRecordBase im
       * @return This builder.
       */
     public com.diviso.graeshoppe.order.avro.DeliveryInfo.Builder clearDeliveryCharge() {
+      deliveryCharge = null;
       fieldSetFlags()[1] = false;
       return this;
     }
