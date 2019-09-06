@@ -12,6 +12,7 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="mm"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="mm"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="mm"/>
+	<parameter name="order_master_id" class="java.lang.Integer"/>
 	<queryString language="SQL">
 		<![CDATA[select ct.* from (
 (select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', method_of_order as 'method_of_order', due_date as 'due_date', due_time as 'due_time', order_number as 'order_number', notes as 'notes', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street', city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at', ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', ai.id as 'auxid',aux_item as 'aux_item', ai.quantity as 'auxquantity',ai.total as 'auxtotal', order_line_id as 'order_line_id',"" as 'comboid', "" as 'combo_item',"" as 'comboquantity', "" as 'comboorder_line_id' from order_master om, order_line ol, aux_item ai where om.id = ol.order_master_id and ol.id = ai.order_line_id) UNION
@@ -26,7 +27,7 @@
 							
 							
 (select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', method_of_order as 'method_of_order', due_date as 'due_date', due_time as 'due_time', order_number as 'order_number', notes as 'notes', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street', city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at',ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "" as 'auxid',"" as 'aux_item',"" as 'auxquantity',"" as 'auxtotal', "" as 'order_line_id',"" as 'comboid',"" as 'combo_item',"" as 'comboquantity', "" as 'comboorder_line_id'  from order_master om, order_line ol, combo_item ci where om.id = ol.order_master_id and ol.id NOT IN 
-							( select ol_1.id   from order_line ol_1, aux_item ai_1, combo_item ci_1  where ol_1.id = ai_1.order_line_id OR ol_1.id = ci_1.order_line_id))) ct where ct.omid='1'
+							( select ol_1.id   from order_line ol_1, aux_item ai_1, combo_item ci_1  where ol_1.id = ai_1.order_line_id OR ol_1.id = ci_1.order_line_id))) ct where ct.omid= $P{order_master_id} 
 							order by item]]>
 	</queryString>
 	<field name="omid" class="java.lang.Long">
@@ -307,7 +308,9 @@
 				<textFieldExpression><![CDATA[$F{auxquantity}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="1" y="3" width="27" height="17" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="2d33d67c-0820-4d76-a797-734cca964b01"/>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="1" y="3" width="27" height="17" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="2d33d67c-0820-4d76-a797-734cca964b01">
+					<printWhenExpression><![CDATA[$F{aux_item}!=null]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
