@@ -104,7 +104,7 @@ public class ReportResource {
 	}
 	
 	@GetMapping("/pdf/{orderMasterId}")
-	public ResponseEntity<byte[]> getReportAsPdf(@PathVariable Long orderMasterId) {
+	public ResponseEntity<byte[]> getReportAsPdf(@PathVariable String orderNumber) {
 	       
 	       //log.debug("REST request to get a pdf");
 	     
@@ -112,7 +112,7 @@ public class ReportResource {
 	    
 	      try
 	      {
-	        pdfContents=reportService.getReportAsPdf(orderMasterId);
+	        pdfContents=reportService.getReportAsPdf(orderNumber);
 	      }
 	      catch (JRException e) {
 	           e.printStackTrace();
