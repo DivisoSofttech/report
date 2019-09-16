@@ -15,20 +15,20 @@
 	<parameter name="order_master_id" class="java.lang.Integer"/>
 	<queryString language="SQL">
 		<![CDATA[select ct.* from (
-(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', method_of_order as 'method_of_order', due_date as 'due_date', due_time as 'due_time', order_number as 'order_number', notes as 'notes', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street', city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at', ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', ai.id as 'auxid',aux_item as 'aux_item', ai.quantity as 'auxquantity',ai.total as 'auxtotal', order_line_id as 'order_line_id',"" as 'comboid', "" as 'combo_item',"" as 'comboquantity', "" as 'comboorder_line_id' from order_master om, order_line ol, aux_item ai where om.id = ol.order_master_id and ol.id = ai.order_line_id) UNION
+(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', method_of_order as 'method_of_order', due_date as 'due_date', due_time as 'due_time', order_number as 'order_number', notes as 'notes', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street', city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at', ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', ai.id as 'auxid',aux_item as 'aux_item', ai.quantity as 'auxquantity',ai.total as 'auxtotal', order_line_id as 'order_line_id',"[]" as 'comboid', "[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id' from order_master om, order_line ol, aux_item ai where om.id = ol.order_master_id and ol.id = ai.order_line_id) UNION
 
 
-(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', method_of_order as 'method_of_order', due_date as 'due_date', due_time as 'due_time', order_number as 'order_number', notes as 'notes', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street' ,city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at', ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "" as 'auxid',"" as 'aux_item',"" as 'auxquantity',"" as 'auxtotal', "" as 'order_line_id',ci.id as 'comboid', combo_item as 'combo_item',ci.quantity as 'comboquantity', order_line_id as 'comboorder_line_id'   from order_master om, order_line ol, combo_item ci where om.id = ol.order_master_id and ol.id = ci.order_line_id) UNION
+(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', method_of_order as 'method_of_order', due_date as 'due_date', due_time as 'due_time', order_number as 'order_number', notes as 'notes', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street' ,city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at', ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',ci.id as 'comboid', combo_item as 'combo_item',ci.quantity as 'comboquantity', order_line_id as 'comboorder_line_id'   from order_master om, order_line ol, combo_item ci where om.id = ol.order_master_id and ol.id = ci.order_line_id) UNION
 
 
-(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', method_of_order as 'method_of_order', due_date as 'due_date', due_time as 'due_time', order_number as 'order_number', notes as 'notes', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street' ,city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer' ,customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at',ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id',"" as 'auxid',"" as 'aux_item',"" as 'auxquantity',"" as 'auxtotal', "" as 'order_line_id',"" as 'comboid', "" as 'combo_item',"" as 'comboquantity', "" as 'comboorder_line_id' from order_master om, order_line ol, aux_item ai where om.id = ol.order_master_id and ol.id NOT IN 
+(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', method_of_order as 'method_of_order', due_date as 'due_date', due_time as 'due_time', order_number as 'order_number', notes as 'notes', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street' ,city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer' ,customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at',ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id',"[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',"[]" as 'comboid', "[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id' from order_master om, order_line ol, aux_item ai where om.id = ol.order_master_id and ol.id NOT IN 
 							( select ol_1.id   from order_line ol_1, aux_item ai_1, combo_item ci_1  where ol_1.id = ai_1.order_line_id OR ol_1.id = ci_1.order_line_id))
 													UNION
 							
 							
-(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', method_of_order as 'method_of_order', due_date as 'due_date', due_time as 'due_time', order_number as 'order_number', notes as 'notes', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street', city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at',ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "" as 'auxid',"" as 'aux_item',"" as 'auxquantity',"" as 'auxtotal', "" as 'order_line_id',"" as 'comboid',"" as 'combo_item',"" as 'comboquantity', "" as 'comboorder_line_id'  from order_master om, order_line ol, combo_item ci where om.id = ol.order_master_id and ol.id NOT IN 
-							( select ol_1.id   from order_line ol_1, aux_item ai_1, combo_item ci_1  where ol_1.id = ai_1.order_line_id OR ol_1.id = ci_1.order_line_id))) ct where ct.omid= $P{order_master_id} 
-							order by item]]>
+(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', method_of_order as 'method_of_order', due_date as 'due_date', due_time as 'due_time', order_number as 'order_number', notes as 'notes', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street', city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at',ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',"[]" as 'comboid',"[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id'  from order_master om, order_line ol, combo_item ci where om.id = ol.order_master_id and ol.id NOT IN 
+							( select ol_1.id   from order_line ol_1, aux_item ai_1, combo_item ci_1  where ol_1.id = ai_1.order_line_id OR ol_1.id = ci_1.order_line_id))) ct where ct.omid=$P{order_master_id} 
+							order by item ]]>
 	</queryString>
 	<field name="omid" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="omid"/>
@@ -277,7 +277,7 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="25" splitType="Stretch">
+		<band height="36" splitType="Stretch">
 			<textField>
 				<reportElement positionType="Float" isPrintRepeatedValues="false" x="1" y="3" width="27" height="22" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="ba691e5e-4db1-4f32-90b7-1667a2f35bbf"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -291,25 +291,27 @@
 				<textFieldExpression><![CDATA[$F{olquantity}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="30" y="3" width="57" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="bdd42b14-0c83-4f0f-83f7-1405c59521e2"/>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="30" y="3" width="57" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="bdd42b14-0c83-4f0f-83f7-1405c59521e2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{item}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="94" y="5" width="44" height="19" isRemoveLineWhenBlank="true" uuid="59b7a720-a5df-4556-853d-3f04a945981c"/>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="94" y="5" width="44" height="19" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="59b7a720-a5df-4556-853d-3f04a945981c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{oltotal}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="20">
+		<band height="31">
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-20" y="2" width="22" height="15" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="aca92657-152d-4def-aafa-e8ade7f9a075"/>
+				<reportElement positionType="Float" x="-20" y="2" width="22" height="15" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="aca92657-152d-4def-aafa-e8ade7f9a075">
+					<printWhenExpression><![CDATA[!$F{aux_item}.equals("[]")]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{auxquantity}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" isPrintRepeatedValues="false" x="1" y="3" width="27" height="17" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="2d33d67c-0820-4d76-a797-734cca964b01">
-					<printWhenExpression><![CDATA[$F{aux_item}!=null]]></printWhenExpression>
+					<printWhenExpression><![CDATA[!$F{aux_item}.equals("[]")]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10"/>
@@ -317,24 +319,32 @@
 				<textFieldExpression><![CDATA["X"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="90" y="3" width="48" height="17" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="f05be3b6-64ee-45ce-9599-4aed9eeb254d"/>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="90" y="3" width="48" height="17" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="f05be3b6-64ee-45ce-9599-4aed9eeb254d">
+					<printWhenExpression><![CDATA[!$F{aux_item}.equals("[]")]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{auxtotal}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="35" y="3" width="52" height="16" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="343467f3-d4a3-401b-8d98-7ae2a432b144"/>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="35" y="3" width="52" height="16" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="343467f3-d4a3-401b-8d98-7ae2a432b144">
+					<printWhenExpression><![CDATA[!$F{aux_item}.equals("[]")]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{aux_item}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="16">
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="82" y="4" width="27" height="10" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="b55fa7a0-58ba-46ef-918c-585c8a2e01df"/>
+				<reportElement positionType="Float" x="82" y="4" width="27" height="10" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="b55fa7a0-58ba-46ef-918c-585c8a2e01df">
+					<printWhenExpression><![CDATA[!$F{combo_item}.equals("[]")]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{comboquantity}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="32" y="3" width="55" height="13" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="6d9fbbd8-cf9b-488c-bd5d-6a38e65bcb2f"/>
+				<reportElement positionType="Float" x="32" y="3" width="55" height="13" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="6d9fbbd8-cf9b-488c-bd5d-6a38e65bcb2f">
+					<printWhenExpression><![CDATA[!$F{combo_item}.equals("[]")]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{combo_item}]]></textFieldExpression>
 			</textField>
