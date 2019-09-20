@@ -160,6 +160,7 @@ public class ReportResource {
 		       //log.debug("REST request to get a pdf");
 		     
 		       byte[] pdfContents = null;
+		     
 		    
 		      try
 		      {

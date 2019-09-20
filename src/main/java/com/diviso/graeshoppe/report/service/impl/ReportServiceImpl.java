@@ -128,8 +128,10 @@ public class ReportServiceImpl implements ReportService {
 
 	@Override
 	public byte[] getReportWithAuxAndComboAsPdf(String orderNumber) throws JRException {
-		//JasperReport jr = JasperCompileManager.compileReport("reportcomboaux.jrxml");
-
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+orderNumber);
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/reportcomboaux.jrxml");
+		
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>********>>>>>>>"+orderNumber);
 		// Preparing parameters
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("order_master_id", orderNumber);
@@ -140,8 +142,9 @@ public class ReportServiceImpl implements ReportService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		JasperPrint jp = JasperFillManager.fillReport("src/main/resources/report/reportcomboaux.jasper", parameters, conn);
-
+		System.out.println(">>>>>>>>>>>>>>>>################>>>>>>>>>>>>>>>"+orderNumber);
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		System.out.println(">>>>>>>>>>>>>>&&&&&&&&&&&&&&&&&&>>>>>>>>>>>>>>>>>"+orderNumber);
 		return JasperExportManager.exportReportToPdf(jp);
 
 	}
