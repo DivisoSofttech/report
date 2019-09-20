@@ -32,4 +32,11 @@ public interface ReportService {
 	 * @return
 	 */
 	List<ComboLineItem> findCombosByProductId(Long id);
+
+	
+	/**
+	 * @param orderNumber
+	 * @return
+	 */
+	byte[] getReportWithAuxAndComboAsPdf(String orderNumber) throws JRException;
 }

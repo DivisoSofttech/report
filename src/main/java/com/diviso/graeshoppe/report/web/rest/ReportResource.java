@@ -154,6 +154,31 @@ public class ReportResource {
 	   }
 
 	
+	 @GetMapping("/auxcombo/{orderNumber}")
+		public ResponseEntity<byte[]> getReportWithAuxAndComboAsPdf(@PathVariable String orderNumber) {
+		       
+		       //log.debug("REST request to get a pdf");
+		     
+		       byte[] pdfContents = null;
+		    
+		      try
+		      {
+		        pdfContents=reportService.getReportWithAuxAndComboAsPdf(orderNumber);
+		      }
+		      catch (JRException e) {
+		           e.printStackTrace();
+		      }
+		     
+		        HttpHeaders headers = new HttpHeaders();
+		        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		       String fileName ="reportAuxCombo.pdf";
+		        headers.add("content-disposition", "attachment; filename=" + fileName);
+		        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(
+		     	           pdfContents, headers, HttpStatus.OK);	      
+		       return response;
+		   }
+
+		
 	
 	
 	
