@@ -64,7 +64,7 @@ public class ReportServiceImpl implements ReportService {
 
 	@Override
 	public byte[] getReportAsPdf(String orderNumber) throws JRException {
-		JasperReport jr = JasperCompileManager.compileReport("report.jrxml");
+		//JasperReport jr = JasperCompileManager.compileReport("report.jrxml");
 
 		// Preparing parameters
 		Map<String, Object> parameters = new HashMap<String, Object>();
@@ -76,7 +76,7 @@ public class ReportServiceImpl implements ReportService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		JasperPrint jp = JasperFillManager.fillReport("src/main/resources/report/report.jasper", parameters, conn);
 
 		return JasperExportManager.exportReportToPdf(jp);
 
@@ -84,7 +84,7 @@ public class ReportServiceImpl implements ReportService {
 
 	@Override
 	public byte[] getReportSummaryAsPdf(LocalDate date, String storeId) throws JRException {
-		JasperReport jr = JasperCompileManager.compileReport("ordersummary.jrxml");
+		//JasperReport jr = JasperCompileManager.compileReport("ordersummary.jrxml");
 
 		ReportSummary reportSummary = queryService.createReportSummary(date, storeId);
 		reportSummaryList.add(reportSummary);
@@ -94,7 +94,7 @@ public class ReportServiceImpl implements ReportService {
 //Preparing parameters
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
-		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, collectionDatasource);
+		JasperPrint jp = JasperFillManager.fillReport("src/main/resources/report/reportsummary.jasper", parameters, collectionDatasource);
 
 		return JasperExportManager.exportReportToPdf(jp);
 
@@ -124,6 +124,29 @@ public class ReportServiceImpl implements ReportService {
 	public List<ComboLineItem> findCombosByProductId(Long id) {
 		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(termQuery("product.id", id)).build();
 		return elasticsearchOperations.queryForList(searchQuery, ComboLineItem.class);
+	}
+
+	@Override
+	public byte[] getReportWithAuxAndComboAsPdf(String orderNumber) throws JRException {
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+orderNumber);
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/reportcomboaux.jrxml");
+		
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>********>>>>>>>"+orderNumber);
+		// Preparing parameters
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("order_master_id", orderNumber);
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(">>>>>>>>>>>>>>>>################>>>>>>>>>>>>>>>"+orderNumber);
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		System.out.println(">>>>>>>>>>>>>>&&&&&&&&&&&&&&&&&&>>>>>>>>>>>>>>>>>"+orderNumber);
+		return JasperExportManager.exportReportToPdf(jp);
+
 	}
 
 
