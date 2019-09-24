@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -34,11 +35,8 @@ public class OrderMaster implements Serializable {
     @Column(name = "method_of_order")
     private String methodOfOrder;
 
-    @Column(name = "due_date")
-    private String dueDate;
-
-    @Column(name = "due_time")
-    private String dueTime;
+    @Column(name = "due_date_and_time")
+    private Instant dueDateAndTime;
 
     @Column(name = "order_number")
     private String orderNumber;
@@ -62,7 +60,7 @@ public class OrderMaster implements Serializable {
     private String customerId;
 
     @Column(name = "pincode")
-    private Long pincode;
+    private String pincode;
 
     @Column(name = "house_no_or_building_name")
     private String houseNoOrBuildingName;
@@ -98,10 +96,10 @@ public class OrderMaster implements Serializable {
     private Long customerOrder;
 
     @Column(name = "order_place_at")
-    private String orderPlaceAt;
+    private Instant orderPlaceAt;
 
     @Column(name = "order_accepted_at")
-    private String orderAcceptedAt;
+    private Instant orderAcceptedAt;
 
     @OneToMany(mappedBy = "orderMaster")
     private Set<OrderLine> orderLines = new HashSet<>();
@@ -153,30 +151,17 @@ public class OrderMaster implements Serializable {
         this.methodOfOrder = methodOfOrder;
     }
 
-    public String getDueDate() {
-        return dueDate;
+    public Instant getDueDateAndTime() {
+        return dueDateAndTime;
     }
 
-    public OrderMaster dueDate(String dueDate) {
-        this.dueDate = dueDate;
+    public OrderMaster dueDateAndTime(Instant dueDateAndTime) {
+        this.dueDateAndTime = dueDateAndTime;
         return this;
     }
 
-    public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public String getDueTime() {
-        return dueTime;
-    }
-
-    public OrderMaster dueTime(String dueTime) {
-        this.dueTime = dueTime;
-        return this;
-    }
-
-    public void setDueTime(String dueTime) {
-        this.dueTime = dueTime;
+    public void setDueDateAndTime(Instant dueDateAndTime) {
+        this.dueDateAndTime = dueDateAndTime;
     }
 
     public String getOrderNumber() {
@@ -270,16 +255,16 @@ public class OrderMaster implements Serializable {
         this.customerId = customerId;
     }
 
-    public Long getPincode() {
+    public String getPincode() {
         return pincode;
     }
 
-    public OrderMaster pincode(Long pincode) {
+    public OrderMaster pincode(String pincode) {
         this.pincode = pincode;
         return this;
     }
 
-    public void setPincode(Long pincode) {
+    public void setPincode(String pincode) {
         this.pincode = pincode;
     }
 
@@ -426,29 +411,29 @@ public class OrderMaster implements Serializable {
         this.customerOrder = customerOrder;
     }
 
-    public String getOrderPlaceAt() {
+    public Instant getOrderPlaceAt() {
         return orderPlaceAt;
     }
 
-    public OrderMaster orderPlaceAt(String orderPlaceAt) {
+    public OrderMaster orderPlaceAt(Instant orderPlaceAt) {
         this.orderPlaceAt = orderPlaceAt;
         return this;
     }
 
-    public void setOrderPlaceAt(String orderPlaceAt) {
+    public void setOrderPlaceAt(Instant orderPlaceAt) {
         this.orderPlaceAt = orderPlaceAt;
     }
 
-    public String getOrderAcceptedAt() {
+    public Instant getOrderAcceptedAt() {
         return orderAcceptedAt;
     }
 
-    public OrderMaster orderAcceptedAt(String orderAcceptedAt) {
+    public OrderMaster orderAcceptedAt(Instant orderAcceptedAt) {
         this.orderAcceptedAt = orderAcceptedAt;
         return this;
     }
 
-    public void setOrderAcceptedAt(String orderAcceptedAt) {
+    public void setOrderAcceptedAt(Instant orderAcceptedAt) {
         this.orderAcceptedAt = orderAcceptedAt;
     }
 
@@ -505,8 +490,7 @@ public class OrderMaster implements Serializable {
             ", storeName='" + getStoreName() + "'" +
             ", storePhone=" + getStorePhone() +
             ", methodOfOrder='" + getMethodOfOrder() + "'" +
-            ", dueDate='" + getDueDate() + "'" +
-            ", dueTime='" + getDueTime() + "'" +
+            ", dueDateAndTime='" + getDueDateAndTime() + "'" +
             ", orderNumber='" + getOrderNumber() + "'" +
             ", notes='" + getNotes() + "'" +
             ", deliveryCharge=" + getDeliveryCharge() +
@@ -514,7 +498,7 @@ public class OrderMaster implements Serializable {
             ", totalDue=" + getTotalDue() +
             ", orderStatus='" + getOrderStatus() + "'" +
             ", customerId='" + getCustomerId() + "'" +
-            ", pincode=" + getPincode() +
+            ", pincode='" + getPincode() + "'" +
             ", houseNoOrBuildingName='" + getHouseNoOrBuildingName() + "'" +
             ", roadNameAreaOrStreet='" + getRoadNameAreaOrStreet() + "'" +
             ", city='" + getCity() + "'" +

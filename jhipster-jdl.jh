@@ -7,8 +7,7 @@ entity OrderMaster{
 storeName String,
 storePhone Long,
 methodOfOrder String,
-dueDate String,
-dueTime String,
+dueDateAndTime  Instant,
 orderNumber String,
 notes String,
 deliveryCharge Double,
@@ -16,7 +15,7 @@ serviceCharge Double,
 totalDue Double,
 orderStatus String,
 customerId String,
-pincode Long,
+pincode String,
 houseNoOrBuildingName String,
 roadNameAreaOrStreet String,
 city String,
@@ -28,8 +27,8 @@ alternatePhone Long,
 addressType String,
 orderFromCustomer Long,
 customerOrder Long,
-orderPlaceAt String,
-orderAcceptedAt String
+orderPlaceAt Instant,
+orderAcceptedAt Instant
 
 }
 

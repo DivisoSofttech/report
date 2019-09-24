@@ -162,7 +162,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	@Override
 	public OrderMasterDTO findOrderMasterByOrderNumber(String orderNumber) {
 		log.debug("Request to get OrderMaster by order id : {}", orderNumber);
-		return orderMasterMapper.toDto(orderMasterRepository.findOrderMasterByOrderNumber(orderNumber));
+		return orderMasterRepository.findByOrderNumber(orderNumber).map(orderMasterMapper::toDto).get();
 
 	}
 
@@ -193,21 +193,26 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setOrderFromCustomer(order.getOrderCountRestaurant());
 		orderMaster.setTotalDue(order.getGrandTotal());
 		Instant expectedDelivery = Instant.ofEpochMilli(order.getApprovalDetails().getExpectedDelivery());
-		String dueDate = Date.from(expectedDelivery).toString().substring(4, 10);
-		log.info("Expected delivery at is " + dueDate);
-		String dueTime = Date.from(expectedDelivery).toString().substring(11, 16);
-		orderMaster.setDueDate(dueDate);
-		orderMaster.setDueTime(dueTime);
+		orderMaster.setDueDateAndTime(expectedDelivery);
+		/*
+		 * String dueDate = Date.from(expectedDelivery).toString().substring(4, 10);
+		 * log.info("Expected delivery at is " + dueDate); String dueTime =
+		 * Date.from(expectedDelivery).toString().substring(11, 16);
+		 * orderMaster.setDueDate(dueDate); orderMaster.setDueTime(dueTime);
+		 */
 		orderMaster.setCustomerOrder(order.getOrderCountgraeshoppe());
 		Instant orderDate = Instant.ofEpochMilli(order.getDate());
-		String orderPlacedAt = Date.from(orderDate).toString().substring(4, 10);
-		log.info("Order placed at is " + orderPlacedAt);
-		orderMaster.setOrderPlaceAt(orderPlacedAt);
+		/*
+		 * String orderPlacedAt = Date.from(orderDate).toString().substring(4, 10);
+		 * log.info("Order placed at is " + orderPlacedAt);
+		 * orderMaster.setOrderPlaceAt(orderPlacedAt);
+		 */
+		orderMaster.setOrderPlaceAt(orderDate);
 		if (order.getApprovalDetails() != null) {
 			Instant acceptedDate = Instant.ofEpochMilli(order.getApprovalDetails().getAcceptedAt());
-			String orderAcceptedAt = Date.from(acceptedDate).toString().substring(4, 10);
-			orderMaster.setOrderAcceptedAt(orderAcceptedAt);
-			log.info("Order accepted atis " + orderAcceptedAt);
+			//String orderAcceptedAt = Date.from(acceptedDate).toString().substring(4, 10);
+			orderMaster.setOrderAcceptedAt(acceptedDate);
+			// log.info("Order accepted atis " + orderAcceptedAt);
 		}
 
 		log.info("The order master going to persist is " + orderMaster);

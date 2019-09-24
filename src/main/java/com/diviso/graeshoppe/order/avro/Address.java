@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Address extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -1212565670298375093L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Address\",\"namespace\":\"com.diviso.graeshoppe.order.avro\",\"fields\":[{\"name\":\"customerId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"pincode\",\"type\":\"long\"},{\"name\":\"houseNoOrBuildingName\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"roadNameAreaOrStreet\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"city\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"state\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"landmark\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"name\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"addressType\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"phone\",\"type\":\"long\",\"default\":null},{\"name\":\"alternatePhone\",\"type\":[\"null\",\"long\"],\"default\":null}]}");
+  private static final long serialVersionUID = 4513416060970487221L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Address\",\"namespace\":\"com.diviso.graeshoppe.order.avro\",\"fields\":[{\"name\":\"customerId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"pincode\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"houseNoOrBuildingName\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"roadNameAreaOrStreet\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"city\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"state\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"landmark\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"name\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"addressType\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"phone\",\"type\":\"long\",\"default\":null},{\"name\":\"alternatePhone\",\"type\":[\"null\",\"long\"],\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -52,7 +52,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
   }
 
   @Deprecated public java.lang.String customerId;
-  @Deprecated public long pincode;
+  @Deprecated public java.lang.String pincode;
   @Deprecated public java.lang.String houseNoOrBuildingName;
   @Deprecated public java.lang.String roadNameAreaOrStreet;
   @Deprecated public java.lang.String city;
@@ -84,7 +84,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
    * @param phone The new value for phone
    * @param alternatePhone The new value for alternatePhone
    */
-  public Address(java.lang.String customerId, java.lang.Long pincode, java.lang.String houseNoOrBuildingName, java.lang.String roadNameAreaOrStreet, java.lang.String city, java.lang.String state, java.lang.String landmark, java.lang.String name, java.lang.String addressType, java.lang.Long phone, java.lang.Long alternatePhone) {
+  public Address(java.lang.String customerId, java.lang.String pincode, java.lang.String houseNoOrBuildingName, java.lang.String roadNameAreaOrStreet, java.lang.String city, java.lang.String state, java.lang.String landmark, java.lang.String name, java.lang.String addressType, java.lang.Long phone, java.lang.Long alternatePhone) {
     this.customerId = customerId;
     this.pincode = pincode;
     this.houseNoOrBuildingName = houseNoOrBuildingName;
@@ -122,7 +122,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: customerId = (java.lang.String)value$; break;
-    case 1: pincode = (java.lang.Long)value$; break;
+    case 1: pincode = (java.lang.String)value$; break;
     case 2: houseNoOrBuildingName = (java.lang.String)value$; break;
     case 3: roadNameAreaOrStreet = (java.lang.String)value$; break;
     case 4: city = (java.lang.String)value$; break;
@@ -156,7 +156,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
    * Gets the value of the 'pincode' field.
    * @return The value of the 'pincode' field.
    */
-  public java.lang.Long getPincode() {
+  public java.lang.String getPincode() {
     return pincode;
   }
 
@@ -164,7 +164,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
    * Sets the value of the 'pincode' field.
    * @param value the value to set.
    */
-  public void setPincode(java.lang.Long value) {
+  public void setPincode(java.lang.String value) {
     this.pincode = value;
   }
 
@@ -345,7 +345,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
     implements org.apache.avro.data.RecordBuilder<Address> {
 
     private java.lang.String customerId;
-    private long pincode;
+    private java.lang.String pincode;
     private java.lang.String houseNoOrBuildingName;
     private java.lang.String roadNameAreaOrStreet;
     private java.lang.String city;
@@ -508,7 +508,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * Gets the value of the 'pincode' field.
       * @return The value.
       */
-    public java.lang.Long getPincode() {
+    public java.lang.String getPincode() {
       return pincode;
     }
 
@@ -517,7 +517,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @param value The value of 'pincode'.
       * @return This builder.
       */
-    public com.diviso.graeshoppe.order.avro.Address.Builder setPincode(long value) {
+    public com.diviso.graeshoppe.order.avro.Address.Builder setPincode(java.lang.String value) {
       validate(fields()[1], value);
       this.pincode = value;
       fieldSetFlags()[1] = true;
@@ -538,6 +538,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.order.avro.Address.Builder clearPincode() {
+      pincode = null;
       fieldSetFlags()[1] = false;
       return this;
     }
@@ -898,7 +899,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       try {
         Address record = new Address();
         record.customerId = fieldSetFlags()[0] ? this.customerId : (java.lang.String) defaultValue(fields()[0]);
-        record.pincode = fieldSetFlags()[1] ? this.pincode : (java.lang.Long) defaultValue(fields()[1]);
+        record.pincode = fieldSetFlags()[1] ? this.pincode : (java.lang.String) defaultValue(fields()[1]);
         record.houseNoOrBuildingName = fieldSetFlags()[2] ? this.houseNoOrBuildingName : (java.lang.String) defaultValue(fields()[2]);
         record.roadNameAreaOrStreet = fieldSetFlags()[3] ? this.roadNameAreaOrStreet : (java.lang.String) defaultValue(fields()[3]);
         record.city = fieldSetFlags()[4] ? this.city : (java.lang.String) defaultValue(fields()[4]);

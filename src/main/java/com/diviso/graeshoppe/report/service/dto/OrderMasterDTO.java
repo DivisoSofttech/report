@@ -1,4 +1,5 @@
 package com.diviso.graeshoppe.report.service.dto;
+import java.time.Instant;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -15,9 +16,7 @@ public class OrderMasterDTO implements Serializable {
 
     private String methodOfOrder;
 
-    private String dueDate;
-
-    private String dueTime;
+    private Instant dueDateAndTime;
 
     private String orderNumber;
 
@@ -33,7 +32,7 @@ public class OrderMasterDTO implements Serializable {
 
     private String customerId;
 
-    private Long pincode;
+    private String pincode;
 
     private String houseNoOrBuildingName;
 
@@ -57,9 +56,9 @@ public class OrderMasterDTO implements Serializable {
 
     private Long customerOrder;
 
-    private String orderPlaceAt;
+    private Instant orderPlaceAt;
 
-    private String orderAcceptedAt;
+    private Instant orderAcceptedAt;
 
 
     public Long getId() {
@@ -94,20 +93,12 @@ public class OrderMasterDTO implements Serializable {
         this.methodOfOrder = methodOfOrder;
     }
 
-    public String getDueDate() {
-        return dueDate;
+    public Instant getDueDateAndTime() {
+        return dueDateAndTime;
     }
 
-    public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public String getDueTime() {
-        return dueTime;
-    }
-
-    public void setDueTime(String dueTime) {
-        this.dueTime = dueTime;
+    public void setDueDateAndTime(Instant dueDateAndTime) {
+        this.dueDateAndTime = dueDateAndTime;
     }
 
     public String getOrderNumber() {
@@ -166,11 +157,11 @@ public class OrderMasterDTO implements Serializable {
         this.customerId = customerId;
     }
 
-    public Long getPincode() {
+    public String getPincode() {
         return pincode;
     }
 
-    public void setPincode(Long pincode) {
+    public void setPincode(String pincode) {
         this.pincode = pincode;
     }
 
@@ -262,19 +253,19 @@ public class OrderMasterDTO implements Serializable {
         this.customerOrder = customerOrder;
     }
 
-    public String getOrderPlaceAt() {
+    public Instant getOrderPlaceAt() {
         return orderPlaceAt;
     }
 
-    public void setOrderPlaceAt(String orderPlaceAt) {
+    public void setOrderPlaceAt(Instant orderPlaceAt) {
         this.orderPlaceAt = orderPlaceAt;
     }
 
-    public String getOrderAcceptedAt() {
+    public Instant getOrderAcceptedAt() {
         return orderAcceptedAt;
     }
 
-    public void setOrderAcceptedAt(String orderAcceptedAt) {
+    public void setOrderAcceptedAt(Instant orderAcceptedAt) {
         this.orderAcceptedAt = orderAcceptedAt;
     }
 
@@ -306,8 +297,7 @@ public class OrderMasterDTO implements Serializable {
             ", storeName='" + getStoreName() + "'" +
             ", storePhone=" + getStorePhone() +
             ", methodOfOrder='" + getMethodOfOrder() + "'" +
-            ", dueDate='" + getDueDate() + "'" +
-            ", dueTime='" + getDueTime() + "'" +
+            ", dueDateAndTime='" + getDueDateAndTime() + "'" +
             ", orderNumber='" + getOrderNumber() + "'" +
             ", notes='" + getNotes() + "'" +
             ", deliveryCharge=" + getDeliveryCharge() +
@@ -315,7 +305,7 @@ public class OrderMasterDTO implements Serializable {
             ", totalDue=" + getTotalDue() +
             ", orderStatus='" + getOrderStatus() + "'" +
             ", customerId='" + getCustomerId() + "'" +
-            ", pincode=" + getPincode() +
+            ", pincode='" + getPincode() + "'" +
             ", houseNoOrBuildingName='" + getHouseNoOrBuildingName() + "'" +
             ", roadNameAreaOrStreet='" + getRoadNameAreaOrStreet() + "'" +
             ", city='" + getCity() + "'" +
