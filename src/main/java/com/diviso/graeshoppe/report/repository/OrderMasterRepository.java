@@ -5,7 +5,6 @@ import com.diviso.graeshoppe.report.domain.OrderMaster;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.*;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 
@@ -16,13 +15,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrderMasterRepository extends JpaRepository<OrderMaster, Long> {
 
-	/**
-	 * @param orderNumber
-	 * @return
-	 */
-	OrderMaster findOrderMasterByOrderNumber(@Param("orderNumber")String orderNumber);
-	
 	Optional<OrderMaster> findByOrderNumber(String orderNumber);
 
 }
-

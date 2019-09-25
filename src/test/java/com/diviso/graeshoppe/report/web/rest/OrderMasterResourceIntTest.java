@@ -28,6 +28,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.List;
 
@@ -58,11 +60,8 @@ public class OrderMasterResourceIntTest {
     private static final String DEFAULT_METHOD_OF_ORDER = "AAAAAAAAAA";
     private static final String UPDATED_METHOD_OF_ORDER = "BBBBBBBBBB";
 
-    private static final String DEFAULT_DUE_DATE = "AAAAAAAAAA";
-    private static final String UPDATED_DUE_DATE = "BBBBBBBBBB";
-
-    private static final String DEFAULT_DUE_TIME = "AAAAAAAAAA";
-    private static final String UPDATED_DUE_TIME = "BBBBBBBBBB";
+    private static final Instant DEFAULT_DUE_DATE_AND_TIME = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_DUE_DATE_AND_TIME = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     private static final String DEFAULT_ORDER_NUMBER = "AAAAAAAAAA";
     private static final String UPDATED_ORDER_NUMBER = "BBBBBBBBBB";
@@ -85,8 +84,8 @@ public class OrderMasterResourceIntTest {
     private static final String DEFAULT_CUSTOMER_ID = "AAAAAAAAAA";
     private static final String UPDATED_CUSTOMER_ID = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_PINCODE = 1L;
-    private static final Long UPDATED_PINCODE = 2L;
+    private static final String DEFAULT_PINCODE = "AAAAAAAAAA";
+    private static final String UPDATED_PINCODE = "BBBBBBBBBB";
 
     private static final String DEFAULT_HOUSE_NO_OR_BUILDING_NAME = "AAAAAAAAAA";
     private static final String UPDATED_HOUSE_NO_OR_BUILDING_NAME = "BBBBBBBBBB";
@@ -121,11 +120,11 @@ public class OrderMasterResourceIntTest {
     private static final Long DEFAULT_CUSTOMER_ORDER = 1L;
     private static final Long UPDATED_CUSTOMER_ORDER = 2L;
 
-    private static final String DEFAULT_ORDER_PLACE_AT = "AAAAAAAAAA";
-    private static final String UPDATED_ORDER_PLACE_AT = "BBBBBBBBBB";
+    private static final Instant DEFAULT_ORDER_PLACE_AT = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_ORDER_PLACE_AT = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
-    private static final String DEFAULT_ORDER_ACCEPTED_AT = "AAAAAAAAAA";
-    private static final String UPDATED_ORDER_ACCEPTED_AT = "BBBBBBBBBB";
+    private static final Instant DEFAULT_ORDER_ACCEPTED_AT = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_ORDER_ACCEPTED_AT = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     @Autowired
     private OrderMasterRepository orderMasterRepository;
@@ -186,8 +185,7 @@ public class OrderMasterResourceIntTest {
             .storeName(DEFAULT_STORE_NAME)
             .storePhone(DEFAULT_STORE_PHONE)
             .methodOfOrder(DEFAULT_METHOD_OF_ORDER)
-            .dueDate(DEFAULT_DUE_DATE)
-            .dueTime(DEFAULT_DUE_TIME)
+            .dueDateAndTime(DEFAULT_DUE_DATE_AND_TIME)
             .orderNumber(DEFAULT_ORDER_NUMBER)
             .notes(DEFAULT_NOTES)
             .deliveryCharge(DEFAULT_DELIVERY_CHARGE)
@@ -236,8 +234,7 @@ public class OrderMasterResourceIntTest {
         assertThat(testOrderMaster.getStoreName()).isEqualTo(DEFAULT_STORE_NAME);
         assertThat(testOrderMaster.getStorePhone()).isEqualTo(DEFAULT_STORE_PHONE);
         assertThat(testOrderMaster.getMethodOfOrder()).isEqualTo(DEFAULT_METHOD_OF_ORDER);
-        assertThat(testOrderMaster.getDueDate()).isEqualTo(DEFAULT_DUE_DATE);
-        assertThat(testOrderMaster.getDueTime()).isEqualTo(DEFAULT_DUE_TIME);
+        assertThat(testOrderMaster.getDueDateAndTime()).isEqualTo(DEFAULT_DUE_DATE_AND_TIME);
         assertThat(testOrderMaster.getOrderNumber()).isEqualTo(DEFAULT_ORDER_NUMBER);
         assertThat(testOrderMaster.getNotes()).isEqualTo(DEFAULT_NOTES);
         assertThat(testOrderMaster.getDeliveryCharge()).isEqualTo(DEFAULT_DELIVERY_CHARGE);
@@ -301,8 +298,7 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].storeName").value(hasItem(DEFAULT_STORE_NAME.toString())))
             .andExpect(jsonPath("$.[*].storePhone").value(hasItem(DEFAULT_STORE_PHONE.intValue())))
             .andExpect(jsonPath("$.[*].methodOfOrder").value(hasItem(DEFAULT_METHOD_OF_ORDER.toString())))
-            .andExpect(jsonPath("$.[*].dueDate").value(hasItem(DEFAULT_DUE_DATE.toString())))
-            .andExpect(jsonPath("$.[*].dueTime").value(hasItem(DEFAULT_DUE_TIME.toString())))
+            .andExpect(jsonPath("$.[*].dueDateAndTime").value(hasItem(DEFAULT_DUE_DATE_AND_TIME.toString())))
             .andExpect(jsonPath("$.[*].orderNumber").value(hasItem(DEFAULT_ORDER_NUMBER.toString())))
             .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES.toString())))
             .andExpect(jsonPath("$.[*].deliveryCharge").value(hasItem(DEFAULT_DELIVERY_CHARGE.doubleValue())))
@@ -310,7 +306,7 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].totalDue").value(hasItem(DEFAULT_TOTAL_DUE.doubleValue())))
             .andExpect(jsonPath("$.[*].orderStatus").value(hasItem(DEFAULT_ORDER_STATUS.toString())))
             .andExpect(jsonPath("$.[*].customerId").value(hasItem(DEFAULT_CUSTOMER_ID.toString())))
-            .andExpect(jsonPath("$.[*].pincode").value(hasItem(DEFAULT_PINCODE.intValue())))
+            .andExpect(jsonPath("$.[*].pincode").value(hasItem(DEFAULT_PINCODE.toString())))
             .andExpect(jsonPath("$.[*].houseNoOrBuildingName").value(hasItem(DEFAULT_HOUSE_NO_OR_BUILDING_NAME.toString())))
             .andExpect(jsonPath("$.[*].roadNameAreaOrStreet").value(hasItem(DEFAULT_ROAD_NAME_AREA_OR_STREET.toString())))
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY.toString())))
@@ -340,8 +336,7 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.storeName").value(DEFAULT_STORE_NAME.toString()))
             .andExpect(jsonPath("$.storePhone").value(DEFAULT_STORE_PHONE.intValue()))
             .andExpect(jsonPath("$.methodOfOrder").value(DEFAULT_METHOD_OF_ORDER.toString()))
-            .andExpect(jsonPath("$.dueDate").value(DEFAULT_DUE_DATE.toString()))
-            .andExpect(jsonPath("$.dueTime").value(DEFAULT_DUE_TIME.toString()))
+            .andExpect(jsonPath("$.dueDateAndTime").value(DEFAULT_DUE_DATE_AND_TIME.toString()))
             .andExpect(jsonPath("$.orderNumber").value(DEFAULT_ORDER_NUMBER.toString()))
             .andExpect(jsonPath("$.notes").value(DEFAULT_NOTES.toString()))
             .andExpect(jsonPath("$.deliveryCharge").value(DEFAULT_DELIVERY_CHARGE.doubleValue()))
@@ -349,7 +344,7 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.totalDue").value(DEFAULT_TOTAL_DUE.doubleValue()))
             .andExpect(jsonPath("$.orderStatus").value(DEFAULT_ORDER_STATUS.toString()))
             .andExpect(jsonPath("$.customerId").value(DEFAULT_CUSTOMER_ID.toString()))
-            .andExpect(jsonPath("$.pincode").value(DEFAULT_PINCODE.intValue()))
+            .andExpect(jsonPath("$.pincode").value(DEFAULT_PINCODE.toString()))
             .andExpect(jsonPath("$.houseNoOrBuildingName").value(DEFAULT_HOUSE_NO_OR_BUILDING_NAME.toString()))
             .andExpect(jsonPath("$.roadNameAreaOrStreet").value(DEFAULT_ROAD_NAME_AREA_OR_STREET.toString()))
             .andExpect(jsonPath("$.city").value(DEFAULT_CITY.toString()))
@@ -389,8 +384,7 @@ public class OrderMasterResourceIntTest {
             .storeName(UPDATED_STORE_NAME)
             .storePhone(UPDATED_STORE_PHONE)
             .methodOfOrder(UPDATED_METHOD_OF_ORDER)
-            .dueDate(UPDATED_DUE_DATE)
-            .dueTime(UPDATED_DUE_TIME)
+            .dueDateAndTime(UPDATED_DUE_DATE_AND_TIME)
             .orderNumber(UPDATED_ORDER_NUMBER)
             .notes(UPDATED_NOTES)
             .deliveryCharge(UPDATED_DELIVERY_CHARGE)
@@ -426,8 +420,7 @@ public class OrderMasterResourceIntTest {
         assertThat(testOrderMaster.getStoreName()).isEqualTo(UPDATED_STORE_NAME);
         assertThat(testOrderMaster.getStorePhone()).isEqualTo(UPDATED_STORE_PHONE);
         assertThat(testOrderMaster.getMethodOfOrder()).isEqualTo(UPDATED_METHOD_OF_ORDER);
-        assertThat(testOrderMaster.getDueDate()).isEqualTo(UPDATED_DUE_DATE);
-        assertThat(testOrderMaster.getDueTime()).isEqualTo(UPDATED_DUE_TIME);
+        assertThat(testOrderMaster.getDueDateAndTime()).isEqualTo(UPDATED_DUE_DATE_AND_TIME);
         assertThat(testOrderMaster.getOrderNumber()).isEqualTo(UPDATED_ORDER_NUMBER);
         assertThat(testOrderMaster.getNotes()).isEqualTo(UPDATED_NOTES);
         assertThat(testOrderMaster.getDeliveryCharge()).isEqualTo(UPDATED_DELIVERY_CHARGE);
@@ -512,8 +505,7 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].storeName").value(hasItem(DEFAULT_STORE_NAME)))
             .andExpect(jsonPath("$.[*].storePhone").value(hasItem(DEFAULT_STORE_PHONE.intValue())))
             .andExpect(jsonPath("$.[*].methodOfOrder").value(hasItem(DEFAULT_METHOD_OF_ORDER)))
-            .andExpect(jsonPath("$.[*].dueDate").value(hasItem(DEFAULT_DUE_DATE)))
-            .andExpect(jsonPath("$.[*].dueTime").value(hasItem(DEFAULT_DUE_TIME)))
+            .andExpect(jsonPath("$.[*].dueDateAndTime").value(hasItem(DEFAULT_DUE_DATE_AND_TIME.toString())))
             .andExpect(jsonPath("$.[*].orderNumber").value(hasItem(DEFAULT_ORDER_NUMBER)))
             .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES)))
             .andExpect(jsonPath("$.[*].deliveryCharge").value(hasItem(DEFAULT_DELIVERY_CHARGE.doubleValue())))
@@ -521,7 +513,7 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].totalDue").value(hasItem(DEFAULT_TOTAL_DUE.doubleValue())))
             .andExpect(jsonPath("$.[*].orderStatus").value(hasItem(DEFAULT_ORDER_STATUS)))
             .andExpect(jsonPath("$.[*].customerId").value(hasItem(DEFAULT_CUSTOMER_ID)))
-            .andExpect(jsonPath("$.[*].pincode").value(hasItem(DEFAULT_PINCODE.intValue())))
+            .andExpect(jsonPath("$.[*].pincode").value(hasItem(DEFAULT_PINCODE)))
             .andExpect(jsonPath("$.[*].houseNoOrBuildingName").value(hasItem(DEFAULT_HOUSE_NO_OR_BUILDING_NAME)))
             .andExpect(jsonPath("$.[*].roadNameAreaOrStreet").value(hasItem(DEFAULT_ROAD_NAME_AREA_OR_STREET)))
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY)))
@@ -533,8 +525,8 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].addressType").value(hasItem(DEFAULT_ADDRESS_TYPE)))
             .andExpect(jsonPath("$.[*].orderFromCustomer").value(hasItem(DEFAULT_ORDER_FROM_CUSTOMER.intValue())))
             .andExpect(jsonPath("$.[*].customerOrder").value(hasItem(DEFAULT_CUSTOMER_ORDER.intValue())))
-            .andExpect(jsonPath("$.[*].orderPlaceAt").value(hasItem(DEFAULT_ORDER_PLACE_AT)))
-            .andExpect(jsonPath("$.[*].orderAcceptedAt").value(hasItem(DEFAULT_ORDER_ACCEPTED_AT)));
+            .andExpect(jsonPath("$.[*].orderPlaceAt").value(hasItem(DEFAULT_ORDER_PLACE_AT.toString())))
+            .andExpect(jsonPath("$.[*].orderAcceptedAt").value(hasItem(DEFAULT_ORDER_ACCEPTED_AT.toString())));
     }
 
     @Test

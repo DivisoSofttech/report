@@ -34,11 +34,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="due_date" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="due_time" type="varchar(255)">
+            <column name="due_date_and_time" type="datetime">
                 <constraints nullable="true" />
             </column>
 
@@ -70,7 +66,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="pincode" type="bigint">
+            <column name="pincode" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
@@ -118,16 +114,19 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="order_place_at" type="varchar(255)">
+            <column name="order_place_at" type="datetime">
                 <constraints nullable="true" />
             </column>
 
-            <column name="order_accepted_at" type="varchar(255)">
+            <column name="order_accepted_at" type="datetime">
                 <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
+        <dropDefaultValue tableName="order_master" columnName="due_date_and_time" columnDataType="datetime"/>
+        <dropDefaultValue tableName="order_master" columnName="order_place_at" columnDataType="datetime"/>
+        <dropDefaultValue tableName="order_master" columnName="order_accepted_at" columnDataType="datetime"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
