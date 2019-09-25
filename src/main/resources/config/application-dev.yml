@@ -66,13 +66,13 @@ spring:
                       useNativeDecoding: true
                     destination: payment
                     contentType: application/*+avro
-                    group: payment-groups   
+                    group: payment-report-groups   
                 order:
                     consumer:
                       useNativeDecoding: true
                     destination: order
                     contentType: application/*+avro
-                    group: order-groups                               
+                    group: order-report-groups                               
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/report?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
