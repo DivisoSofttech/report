@@ -160,11 +160,15 @@ public class ReportResource {
 		       //log.debug("REST request to get a pdf");
 		     
 		       byte[] pdfContents = null;
+		       System.out.println(">>>>>>>>>>>>>>>>>>>>"+orderNumber);
 		     
 		    
 		      try
 		      {
+		    	  
+		    	  System.out.println("starting of try block>>>>>>>>>>>>>>>>>>>>"+orderNumber);
 		        pdfContents=reportService.getReportWithAuxAndComboAsPdf(orderNumber);
+		        System.out.println("ending try block>>>>>>>>>>>>>>>>>>>>"+orderNumber);
 		      }
 		      catch (JRException e) {
 		           e.printStackTrace();

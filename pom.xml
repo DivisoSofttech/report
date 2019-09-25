@@ -168,8 +168,9 @@
 <dependency>
     <groupId>net.sf.jasperreports</groupId>
     <artifactId>jasperreports-fonts</artifactId>
-    <version>6.0.0</version>
+    <version>6.8.0</version>
 </dependency>
+
 
 
 		<!-- https://mvnrepository.com/artifact/com.codahale.metrics/metrics-core -->
