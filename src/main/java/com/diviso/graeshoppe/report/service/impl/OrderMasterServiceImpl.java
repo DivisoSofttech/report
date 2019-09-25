@@ -174,7 +174,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setStorePhone(store.getContactNo());
 		orderMaster.setMethodOfOrder(order.getDeliveryInfo().getDeliveryType().toUpperCase());
 		orderMaster.setOrderNumber(order.getOrderId());
-		orderMaster.setServiceCharge(order.getDeliveryInfo().getDeliveryCharge());
+		orderMaster.setDeliveryCharge(order.getDeliveryInfo().getDeliveryCharge());
 		if (order.getDeliveryInfo().getDeliveryAddress() != null) {
 			orderMaster.setRoadNameAreaOrStreet(order.getDeliveryInfo().getDeliveryAddress().getRoadNameAreaOrStreet());
 			orderMaster
