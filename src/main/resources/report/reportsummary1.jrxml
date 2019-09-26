@@ -59,12 +59,12 @@
 	<title>
 		<band height="86" splitType="Stretch">
 			<image scaleImage="RealSize">
-				<reportElement positionType="Float" x="-1" y="-64" width="116" height="144" uuid="e8dbfce8-2f5d-44d0-a465-26e0899b535d"/>
+				<reportElement positionType="Float" x="-1" y="-45" width="116" height="126" uuid="e8dbfce8-2f5d-44d0-a465-26e0899b535d"/>
 				<graphicElement fill="Solid"/>
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="7" y="30" width="100" height="30" uuid="0a748c6b-64ab-450b-9ab4-4644428a3675"/>
+				<reportElement x="9" y="37" width="100" height="30" uuid="0a748c6b-64ab-450b-9ab4-4644428a3675"/>
 				<textFieldExpression><![CDATA[$F{storeId}]]></textFieldExpression>
 			</textField>
 		</band>
