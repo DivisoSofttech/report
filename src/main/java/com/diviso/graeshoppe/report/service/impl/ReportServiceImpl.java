@@ -92,17 +92,18 @@ public class ReportServiceImpl implements ReportService {
 	public byte[] getReportSummaryAsPdf(LocalDate date, String storeId) throws JRException {
 		//JasperReport jr = JasperCompileManager.compileReport("ordersummary.jrxml");
 
-		ReportSummary reportSummary = queryService.createReportSummary(date, storeId);
-		reportSummaryList.add(reportSummary);
-		JRBeanCollectionDataSource collectionDatasource = new JRBeanCollectionDataSource(
-				ReportServiceImpl.getReportSummaryList());
-
-//Preparing parameters
 		Map<String, Object> parameters = new HashMap<String, Object>();
-
-		JasperPrint jp = JasperFillManager.fillReport("src/main/resources/report/reportsummary1.jasper", parameters,
-				collectionDatasource);
-
+		parameters.put("date", date);
+		parameters.put("store_name", storeId);
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		JasperPrint jp = JasperFillManager.fillReport("src/main/resources/report/reportSummary.jasper", parameters, conn);
 		return JasperExportManager.exportReportToPdf(jp);
 
 	}
