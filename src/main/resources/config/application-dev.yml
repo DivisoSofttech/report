@@ -45,8 +45,8 @@ spring:
         stream:
             kafka:
                 binder:
-                    brokers:  
-                    zk-nodes: 
+                    brokers: dev.servers.divisosofttech.com
+                    zk-nodes: dev.servers.divisosofttech.com
                 streams:
                   binder:
                     brokers: dev.servers.divisosofttech.com
