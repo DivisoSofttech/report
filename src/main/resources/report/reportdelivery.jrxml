@@ -239,37 +239,38 @@
 				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="-15" y="111" width="26" height="20" uuid="5a4f617e-9f1a-45a0-b223-5251a5bfd95e"/>
+				<reportElement positionType="Float" x="94" y="228" width="44" height="20" uuid="e9c388e2-2268-451c-9a68-4d66fa86f2f3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["EUR"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="-15" y="112" width="26" height="18" uuid="22eef44c-0483-4b5b-b6a7-71fd7b5c42cc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Due"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="dd/MM/yy">
-				<reportElement positionType="Float" x="11" y="113" width="40" height="18" uuid="6ae2a93d-2b12-4806-8be6-101e740b0ae8"/>
+				<reportElement positionType="Float" x="11" y="113" width="40" height="18" uuid="24af6672-8643-41cf-b726-c8e51658382f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{due_date}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="43" y="113" width="34" height="18" uuid="f6198640-8bb4-49fe-af2b-6b361fbd9400"/>
+				<reportElement positionType="Float" x="43" y="113" width="34" height="18" uuid="9a582b8c-a83f-428c-b5cb-fa7940635f95"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA["At"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="68" y="116" width="39" height="18" uuid="eb2c5fdb-30da-497e-9822-c3b49297aba3"/>
+				<reportElement positionType="Float" x="65" y="113" width="39" height="18" uuid="35953208-a839-4f5c-baf1-d40357ac7a13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA["ASAP"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="h:mm a">
-				<reportElement positionType="Float" x="100" y="113" width="39" height="18" uuid="c9f9fbcb-9898-4910-a71a-4c0a4c20051b"/>
+				<reportElement positionType="Float" x="100" y="113" width="39" height="18" uuid="2bff4f23-614a-482f-9ca1-d481b8d7cdc4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{due_time}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement positionType="Float" x="94" y="228" width="44" height="20" uuid="e9c388e2-2268-451c-9a68-4d66fa86f2f3"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11"/>
-				</textElement>
-				<textFieldExpression><![CDATA["EUR"]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

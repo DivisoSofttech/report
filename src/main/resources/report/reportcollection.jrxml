@@ -245,7 +245,7 @@
 				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="-15" y="111" width="26" height="20" uuid="84f6da9a-a5ac-435d-b0c9-16a1bc4c9946"/>
+				<reportElement positionType="Float" x="-15" y="112" width="26" height="18" uuid="84f6da9a-a5ac-435d-b0c9-16a1bc4c9946"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
@@ -262,7 +262,8 @@
 				<textFieldExpression><![CDATA["At"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="68" y="116" width="39" height="18" uuid="80ee588d-450e-4abc-9192-aa7fedc5772b"/>
+				<reportElement positionType="Float" x="65" y="113" width="39" height="18" uuid="80ee588d-450e-4abc-9192-aa7fedc5772b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA["ASAP"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="h:mm a">
