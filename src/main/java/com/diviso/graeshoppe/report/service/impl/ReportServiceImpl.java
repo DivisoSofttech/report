@@ -165,7 +165,7 @@ public class ReportServiceImpl implements ReportService {
 		OrderMasterDTO orderMasterDto =orderMasterService.findOrderMasterByOrderNumber(orderNumber);
 		if(orderMasterDto.getMethodOfOrder().equalsIgnoreCase("delivery"))
 		  {
-		jp = JasperFillManager.fillReport("src/main/resources/report/reportdelivery.jasper", parameters, conn);
+			  jp = JasperFillManager.fillReport("src/main/resources/report/reportdelivery.jasper", parameters, conn);
 		  } 
 		  else if(orderMasterDto.getMethodOfOrder().equalsIgnoreCase("collection")) {
 			  jp = JasperFillManager.fillReport("src/main/resources/report/reportcollection.jasper", parameters, conn); 
