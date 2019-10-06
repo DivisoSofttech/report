@@ -344,7 +344,7 @@
 			</textField>
 			<staticText>
 				<reportElement key="" positionType="Float" x="-12" y="7" width="80" height="20" uuid="a93b4d72-bc30-4cd8-aee6-24bbbac0644a"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" markup="">
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
 					<font size="11"/>
 				</textElement>
 				<text><![CDATA[Delivery Charge]]></text>
