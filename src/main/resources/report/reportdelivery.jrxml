@@ -30,7 +30,12 @@
 							
 							
 (select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', method_of_order as 'method_of_order', date(due_date_and_time) as 'due_date', time(due_date_and_time) as 'due_time', order_number as 'order_number', notes as 'notes', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street', city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at',ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',"[]" as 'comboid',"[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id'  from order_master om, order_line ol, combo_item ci where om.id = ol.order_master_id and ol.id NOT IN 
-							( select ol_1.id   from order_line ol_1, aux_item ai_1, combo_item ci_1  where ol_1.id = ai_1.order_line_id OR ol_1.id = ci_1.order_line_id))) ct where ct.order_number=$P{order_number} 
+							( select ol_1.id   from order_line ol_1, aux_item ai_1, combo_item ci_1  where ol_1.id = ai_1.order_line_id OR ol_1.id = ci_1.order_line_id))
+							
+							UNION
+							
+(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', method_of_order as 'method_of_order', date(due_date_and_time) as 'due_date', time(due_date_and_time) as 'due_time', order_number as 'order_number', notes as 'notes', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street', city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at',ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',"[]" as 'comboid',"[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id'  from order_master om, order_line ol where om.id = ol.order_master_id  )							
+							) ct where ct.order_number='GR-1055'
 							 order by item]]>
 	</queryString>
 	<field name="omid" class="java.lang.Long">
@@ -48,11 +53,11 @@
 	<field name="due_date" class="java.sql.Date">
 		<property name="com.jaspersoft.studio.field.label" value="due_date"/>
 	</field>
-	<field name="order_number" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="order_number"/>
-	</field>
 	<field name="due_time" class="java.sql.Time">
 		<property name="com.jaspersoft.studio.field.label" value="due_time"/>
+	</field>
+	<field name="order_number" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="order_number"/>
 	</field>
 	<field name="notes" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="notes"/>
@@ -202,7 +207,9 @@
 				<textFieldExpression><![CDATA["Restaurant Notes :"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-12" y="183" width="145" height="15" uuid="cc7db3bd-97ef-4767-bac0-488d4334084e"/>
+				<reportElement positionType="Float" x="-12" y="183" width="145" height="15" uuid="cc7db3bd-97ef-4767-bac0-488d4334084e">
+					<printWhenExpression><![CDATA[$F{aux_item}!=null]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
 					<font size="11"/>
 				</textElement>
