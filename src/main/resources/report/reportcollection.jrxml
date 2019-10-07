@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="auxcomboCollection" pageWidth="164" pageHeight="842" columnWidth="124" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="b31dfe08-ccd8-411c-9df0-f8ec7679aeaa">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="136"/>
@@ -209,7 +209,7 @@
 				<textFieldExpression><![CDATA[$F{notes}.substring(0, 1)+$F{notes}.substring(1, $F{notes}.length()).toLowerCase()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="94" y="228" width="44" height="20" uuid="cd2715c1-135d-4aaf-b806-c3ff64fac8ec"/>
+				<reportElement positionType="Float" x="99" y="228" width="44" height="20" uuid="cd2715c1-135d-4aaf-b806-c3ff64fac8ec"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
@@ -244,14 +244,14 @@
 				<textFieldExpression><![CDATA["Ring me on :"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="58" y="199" width="81" height="20" uuid="d780805a-7c48-4e6b-94de-84655e4d6d68"/>
+				<reportElement positionType="Float" x="58" y="198" width="81" height="22" uuid="d780805a-7c48-4e6b-94de-84655e4d6d68"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="11" isBold="false" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="-15" y="112" width="26" height="18" uuid="84f6da9a-a5ac-435d-b0c9-16a1bc4c9946"/>
+				<reportElement positionType="Float" x="-20" y="113" width="30" height="18" uuid="84f6da9a-a5ac-435d-b0c9-16a1bc4c9946"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
@@ -293,7 +293,7 @@
 				<textFieldExpression><![CDATA[String.format("%1$2s x %2$-40.40s", $F{olquantity}, $F{item})]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="100" y="0" width="40" height="14" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="4f938975-5c33-4277-8a79-49ca4fb0ceee"/>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="103" y="0" width="40" height="14" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="4f938975-5c33-4277-8a79-49ca4fb0ceee"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{oltotal}]]></textFieldExpression>
 			</textField>
@@ -308,7 +308,7 @@
 				<textFieldExpression><![CDATA[String.format("%1$2s x %2$-20.20s", $F{auxquantity},$F{aux_item})]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="100" y="-1" width="40" height="15" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="748a899e-5524-41f1-b727-5535b67434af">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="103" y="-1" width="40" height="15" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="748a899e-5524-41f1-b727-5535b67434af">
 					<printWhenExpression><![CDATA[!$F{aux_item}.equals("[]")]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
@@ -341,7 +341,7 @@
 	<summary>
 		<band height="281" splitType="Stretch">
 			<staticText>
-				<reportElement positionType="Float" x="-12" y="7" width="80" height="20" uuid="baee1158-e76b-4dde-8a04-82cb8916bf6f"/>
+				<reportElement positionType="Float" mode="Transparent" x="-12" y="7" width="96" height="20" uuid="baee1158-e76b-4dde-8a04-82cb8916bf6f"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
@@ -383,7 +383,7 @@
 				<textFieldExpression><![CDATA[$F{order_status}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="-11" y="123" width="128" height="18" uuid="c9081338-59a8-4d80-af10-9a6f088d9442"/>
+				<reportElement positionType="Float" x="-12" y="123" width="128" height="18" uuid="c9081338-59a8-4d80-af10-9a6f088d9442"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -395,11 +395,11 @@
 				<textFieldExpression><![CDATA[$F{order_from_customer}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="118" y="142" width="21" height="20" uuid="6f6715ef-0b97-464c-932c-83698a04bb2d"/>
+				<reportElement positionType="Float" x="121" y="142" width="21" height="20" uuid="6f6715ef-0b97-464c-932c-83698a04bb2d"/>
 				<textFieldExpression><![CDATA[$F{customer_order}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="-11" y="142" width="132" height="20" uuid="05d1d186-83f3-4514-8b10-323e7cb0c5c2"/>
+				<reportElement positionType="Float" x="-12" y="142" width="140" height="20" uuid="05d1d186-83f3-4514-8b10-323e7cb0c5c2"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
@@ -420,14 +420,14 @@
 				<textFieldExpression><![CDATA[$F{order_place_at}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="74" y="202" width="65" height="20" uuid="a1f77b63-e1ad-40d5-acc2-179ffd078cdc"/>
+				<reportElement positionType="Float" x="76" y="202" width="65" height="20" uuid="a1f77b63-e1ad-40d5-acc2-179ffd078cdc"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{order_accepted_at}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="-11" y="202" width="88" height="20" uuid="d4c9dc55-4927-48ac-ac04-d29d9911bd7d"/>
+				<reportElement positionType="Float" x="-11" y="202" width="90" height="20" uuid="d4c9dc55-4927-48ac-ac04-d29d9911bd7d"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
