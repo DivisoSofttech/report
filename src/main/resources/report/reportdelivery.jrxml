@@ -236,10 +236,10 @@
 				<textElement verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Ring me on :"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["ring me on"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="58" y="196" width="81" height="20" uuid="0b8ec1f7-0478-4a9c-bb71-bc975e623f68"/>
+				<reportElement positionType="Float" x="56" y="196" width="81" height="20" uuid="0b8ec1f7-0478-4a9c-bb71-bc975e623f68"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="11" isBold="false" isItalic="true"/>
 				</textElement>
@@ -253,7 +253,7 @@
 				<textFieldExpression><![CDATA["EUR"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="-16" y="113" width="31" height="18" uuid="22eef44c-0483-4b5b-b6a7-71fd7b5c42cc"/>
+				<reportElement positionType="Float" x="-16" y="112" width="31" height="18" uuid="22eef44c-0483-4b5b-b6a7-71fd7b5c42cc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
