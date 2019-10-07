@@ -244,7 +244,7 @@
 				<textFieldExpression><![CDATA["Ring me on :"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="58" y="198" width="81" height="22" uuid="d780805a-7c48-4e6b-94de-84655e4d6d68"/>
+				<reportElement positionType="Float" x="58" y="196" width="81" height="22" uuid="d780805a-7c48-4e6b-94de-84655e4d6d68"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="11" isBold="false" isItalic="true"/>
 				</textElement>
@@ -258,7 +258,7 @@
 				<textFieldExpression><![CDATA["Due"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="dd/MM/yy">
-				<reportElement positionType="Float" x="11" y="113" width="40" height="18" uuid="3a436493-28df-4d2c-9a53-8170198c09b4"/>
+				<reportElement positionType="Float" x="11" y="114" width="40" height="18" uuid="3a436493-28df-4d2c-9a53-8170198c09b4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{due_date}]]></textFieldExpression>
 			</textField>
@@ -273,7 +273,7 @@
 				<textFieldExpression><![CDATA["ASAP"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="h:mm a">
-				<reportElement positionType="Float" x="100" y="113" width="39" height="18" uuid="281497f7-fc90-4e12-8f4a-610104c5073d"/>
+				<reportElement positionType="Float" x="100" y="114" width="39" height="18" uuid="281497f7-fc90-4e12-8f4a-610104c5073d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{due_time}]]></textFieldExpression>
 			</textField>
