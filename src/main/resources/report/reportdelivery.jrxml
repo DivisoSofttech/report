@@ -239,7 +239,7 @@
 				<textFieldExpression><![CDATA["ring me on"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="55" y="200" width="81" height="20" uuid="0b8ec1f7-0478-4a9c-bb71-bc975e623f68"/>
+				<reportElement positionType="Float" x="50" y="200" width="81" height="20" uuid="0b8ec1f7-0478-4a9c-bb71-bc975e623f68"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="11" isBold="false" isItalic="true"/>
 				</textElement>
@@ -270,12 +270,12 @@
 				<textFieldExpression><![CDATA["At"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="65" y="113" width="39" height="18" uuid="35953208-a839-4f5c-baf1-d40357ac7a13"/>
+				<reportElement positionType="Float" x="63" y="113" width="39" height="18" uuid="35953208-a839-4f5c-baf1-d40357ac7a13"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA["ASAP"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="h:mm a">
-				<reportElement positionType="Float" x="91" y="116" width="49" height="18" uuid="2bff4f23-614a-482f-9ca1-d481b8d7cdc4"/>
+				<reportElement positionType="Float" x="91" y="113" width="52" height="18" uuid="2bff4f23-614a-482f-9ca1-d481b8d7cdc4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{due_time}]]></textFieldExpression>
 			</textField>
@@ -378,7 +378,7 @@
 				<textFieldExpression><![CDATA["Customer Id :"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="65" y="115" width="48" height="20" uuid="5bf800a0-8a05-4913-8661-5e046a2d5ec1"/>
+				<reportElement positionType="Float" x="63" y="115" width="48" height="20" uuid="5bf800a0-8a05-4913-8661-5e046a2d5ec1"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
