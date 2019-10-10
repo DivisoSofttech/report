@@ -182,35 +182,7 @@
 				<textFieldExpression><![CDATA[$F{store_phone}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="58" y="127" width="81" height="20" uuid="5639216f-3c79-43ae-8eca-a903d9483469"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{order_number}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="-4" y="127" width="91" height="20" uuid="824df5e8-3454-48ea-9638-6ecf9650f5d6"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="11"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Order Number :"]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-12" y="163" width="112" height="17" uuid="feec9836-6b1e-4ae0-844b-d31210673d93"/>
-				<textElement>
-					<font size="11"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Restaurant Notes :"]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-12" y="183" width="145" height="15" uuid="e1170bb2-4b61-4f66-b947-133c080332a9"/>
-				<textElement textAlignment="Left" verticalAlignment="Top">
-					<font size="11"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{notes}.substring(0, 1)+$F{notes}.substring(1, $F{notes}.length()).toLowerCase()]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement positionType="Float" x="99" y="228" width="44" height="20" uuid="cd2715c1-135d-4aaf-b806-c3ff64fac8ec"/>
+				<reportElement positionType="Float" x="99" y="226" width="44" height="20" uuid="cd2715c1-135d-4aaf-b806-c3ff64fac8ec"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
@@ -228,55 +200,85 @@
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
 			<line>
-				<reportElement positionType="Float" x="-17" y="226" width="162" height="1" uuid="9fbcc339-54c1-4ae7-94d8-4ed08d809b07"/>
+				<reportElement positionType="Float" x="-17" y="223" width="162" height="1" uuid="9fbcc339-54c1-4ae7-94d8-4ed08d809b07"/>
 			</line>
 			<textField>
-				<reportElement positionType="Float" x="-15" y="88" width="159" height="18" uuid="d2e7763c-9753-40e4-89d8-51339dcc4aee"/>
+				<reportElement positionType="Float" x="-15" y="88" width="159" height="18" uuid="f5dc5f68-1065-46b7-a971-99bcb6dd2672"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{method_of_order}.toUpperCase()]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-12" y="199" width="70" height="21" uuid="95a2de41-2ad4-4e4d-b645-e78eb25fc191"/>
-				<textElement verticalAlignment="Middle">
-					<font size="11"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Ring me on :"]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="57" y="195" width="81" height="22" uuid="d780805a-7c48-4e6b-94de-84655e4d6d68"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="11" isBold="false" isItalic="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
-			</textField>
 			<textField>
-				<reportElement positionType="Float" x="-20" y="113" width="30" height="18" uuid="84f6da9a-a5ac-435d-b0c9-16a1bc4c9946"/>
+				<reportElement positionType="Float" x="-18" y="112" width="31" height="18" uuid="12b94da0-e03b-4c98-b58d-a56e9ada012f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Due"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="dd/MM/yy">
-				<reportElement positionType="Float" x="11" y="116" width="40" height="18" uuid="3a436493-28df-4d2c-9a53-8170198c09b4"/>
+				<reportElement positionType="Float" x="11" y="116" width="40" height="18" uuid="acbfa2b6-afb3-4d51-9b66-5e8bb3fd4bf2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{due_date}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="43" y="113" width="34" height="18" uuid="55355fa2-545a-4c38-9a0c-7cb0a2a7d9bd"/>
+				<reportElement positionType="Float" x="43" y="113" width="34" height="18" uuid="395c5c59-9891-4f91-b483-47f054546695"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA["At"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="65" y="113" width="39" height="18" uuid="80ee588d-450e-4abc-9192-aa7fedc5772b"/>
+				<reportElement positionType="Float" x="63" y="113" width="39" height="18" uuid="779323a2-3e24-48d5-a241-7db58034c3a5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA["ASAP"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="h:mm a">
-				<reportElement positionType="Float" x="91" y="116" width="39" height="18" uuid="281497f7-fc90-4e12-8f4a-610104c5073d"/>
+				<reportElement positionType="Float" x="92" y="113" width="52" height="18" uuid="7a95cfc6-fdab-48d7-94a2-f4fce90be352"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{due_time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-6" y="127" width="98" height="20" uuid="ca2b4c53-7348-4359-bca0-219ab64983ad"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Order Number :"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="58" y="127" width="81" height="20" uuid="851121fd-ee8e-4fe0-9a0d-f96716a276fd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{order_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="-12" y="163" width="116" height="17" uuid="087ad394-406a-4eb7-90c1-22acdae8ded9"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Restaurant Notes :"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="-12" y="183" width="145" height="15" uuid="968c6e1c-a35f-406f-b349-8b1562cd180d">
+					<printWhenExpression><![CDATA[$F{aux_item}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{notes}.substring(0, 1)+$F{notes}.substring(1, $F{notes}.length()).toLowerCase()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="-12" y="199" width="70" height="21" uuid="f399e2c6-426f-4361-b4ec-73d2d42a4aa9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ring me on"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="45" y="200" width="81" height="20" uuid="caefd620-c6f0-49b2-ab94-aa060790b02a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
