@@ -59,7 +59,6 @@
 	<field name="order_number" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="order_number"/>
 	</field>
-	<field name="Field_1" class="java.lang.String"/>
 	<field name="notes" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="notes"/>
 	</field>
