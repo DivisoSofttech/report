@@ -22,7 +22,7 @@ public class QueryResource {
 	@Autowired
 	private  QueryService queryService;
 	
-@GetMapping("report/{date}/{storeId}")
+@GetMapping("/report/{date}/{storeId}")
 	
 	public ReportSummary createReportSummary(@PathVariable LocalDate date,@PathVariable String storeId) {
 		return queryService.createReportSummary(date,storeId);
