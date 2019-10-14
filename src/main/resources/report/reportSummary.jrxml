@@ -79,7 +79,7 @@
 				<textFieldExpression><![CDATA["Order Summary"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="-20" y="100" width="134" height="20" uuid="371a2536-30ca-4a76-ae9d-473a6e9bb345"/>
+				<reportElement positionType="Float" x="-16" y="100" width="134" height="20" uuid="371a2536-30ca-4a76-ae9d-473a6e9bb345"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
@@ -123,7 +123,7 @@
 	<detail>
 		<band height="168" splitType="Stretch">
 			<textField>
-				<reportElement x="-23" y="11" width="50" height="20" uuid="edf0ab3e-bd13-434a-9ba6-0362a635fa4e"/>
+				<reportElement positionType="Float" x="-23" y="11" width="50" height="20" uuid="edf0ab3e-bd13-434a-9ba6-0362a635fa4e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
@@ -150,37 +150,37 @@
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement positionType="Float" x="-18" y="47" width="35" height="24" uuid="be89d3f2-7c18-4631-93a7-e6f6cd4150cf"/>
+				<reportElement positionType="Float" x="-10" y="47" width="35" height="24" uuid="be89d3f2-7c18-4631-93a7-e6f6cd4150cf"/>
 				<textElement>
-					<font size="14"/>
+					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["All"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="-19" y="72" width="46" height="20" uuid="85d43241-8058-4ba9-b426-c1b78a9697c4"/>
+				<reportElement positionType="Float" x="-11" y="72" width="46" height="20" uuid="85d43241-8058-4ba9-b426-c1b78a9697c4"/>
 				<textElement>
-					<font size="14"/>
+					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Card"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="-20" y="98" width="53" height="20" uuid="cbae0613-3d22-4658-9013-08028034733e"/>
+				<reportElement positionType="Float" x="-12" y="98" width="53" height="20" uuid="cbae0613-3d22-4658-9013-08028034733e"/>
 				<textElement>
-					<font size="14"/>
+					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Cash"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="-20" y="123" width="64" height="21" uuid="f2157e0d-6265-4ca7-b915-dc2b5f80edb1"/>
+				<reportElement positionType="Float" x="-12" y="123" width="64" height="21" uuid="f2157e0d-6265-4ca7-b915-dc2b5f80edb1"/>
 				<textElement>
-					<font size="14"/>
+					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Delivery"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="-20" y="147" width="68" height="21" uuid="7c3a96ac-4700-4808-a09f-0c2d69b16059"/>
+				<reportElement positionType="Float" x="-13" y="147" width="68" height="21" uuid="7c3a96ac-4700-4808-a09f-0c2d69b16059"/>
 				<textElement>
-					<font size="14"/>
+					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Collection"]]></textFieldExpression>
 			</textField>
@@ -255,7 +255,7 @@
 	<summary>
 		<band height="37" splitType="Stretch">
 			<textField pattern="MMMM d, yyyy">
-				<reportElement positionType="Float" x="-22" y="13" width="105" height="20" uuid="9e6722f6-0996-4af5-af2a-30f252931e2f"/>
+				<reportElement positionType="Float" x="-16" y="13" width="105" height="20" uuid="9e6722f6-0996-4af5-af2a-30f252931e2f"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
