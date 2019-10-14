@@ -1,6 +1,7 @@
 package com.diviso.graeshoppe.report.web.rest;
 
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 import org.apache.kafka.streams.kstream.KStream;
 import org.slf4j.Logger;
@@ -28,6 +29,7 @@ public class StreamConsumerService {
 		message.foreach((key, value) -> {
 			System.out.println("payment Value consumed is " + value);
 			Optional<OrderMasterDTO> orderMaster = orderMasterService.findByOrderNumber(value.getTargetId());
+			
 			if (orderMaster.isPresent()) {
 				OrderMasterDTO orderMasterDTO = orderMaster.get();
 				if (!value.getPaymentType().equals("cod")) {
@@ -39,20 +41,38 @@ public class StreamConsumerService {
 				}
 				orderMasterService.save(orderMasterDTO);
 			} else {
-				try {
-					Thread.sleep(10000l);
-					OrderMasterDTO orderMasterDTO = orderMaster.get();
-					if (!value.getPaymentType().equals("cod")) {
-						LOG.info("Order paid");
-						orderMasterDTO.setOrderStatus("ORDER PAID");
-					} else {
-						LOG.info("Order Not paid");
-						orderMasterDTO.setOrderStatus("ORDER NOT PAID");
+				
+				CompletableFuture<String> completableFuture=new CompletableFuture<>();
+				CompletableFuture.runAsync(()->{
+					System.out.println("Inside RunAsync+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+					if(orderMasterService.findByOrderNumber(value.getTargetId()).isPresent()) {
+						System.out.println("Inside If check ++++++++++++++++++++++++++++++++++");
+						 try {
+							Thread.sleep(1000l);
+							System.out.println("Thread is went to sleep"+Thread.currentThread().getName());
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						OrderMasterDTO orderMasterDTO = orderMaster.get();
+						if (!value.getPaymentType().equals("cod")) {
+							LOG.info("Order paid");
+							orderMasterDTO.setOrderStatus("ORDER PAID");
+						} else {
+							LOG.info("Order Not paid");
+							orderMasterDTO.setOrderStatus("ORDER NOT PAID");
+						}
+					completableFuture.complete("Completed");
 					}
-					orderMasterService.save(orderMasterDTO);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				});
+				
+				/*
+				 * try { Thread.sleep(10000l); OrderMasterDTO orderMasterDTO =
+				 * orderMaster.get(); if (!value.getPaymentType().equals("cod")) {
+				 * LOG.info("Order paid"); orderMasterDTO.setOrderStatus("ORDER PAID"); } else {
+				 * LOG.info("Order Not paid"); orderMasterDTO.setOrderStatus("ORDER NOT PAID");
+				 * } orderMasterService.save(orderMasterDTO); } catch (InterruptedException e) {
+				 * e.printStackTrace(); }
+				 */
 			}
 
 		});
