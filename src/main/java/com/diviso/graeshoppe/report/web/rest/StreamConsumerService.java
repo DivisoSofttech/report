@@ -69,7 +69,7 @@ public class StreamConsumerService {
 								orderMasterDTO.setOrderStatus("ORDER NOT PAID");
 							}
 						orderMasterService.save(orderMasterDTO);
-						// executeFlag=false;
+						executeFlag=false;
 						completableFuture.complete("Completed");
 						
 						}
