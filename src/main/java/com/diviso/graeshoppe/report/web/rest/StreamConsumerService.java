@@ -15,6 +15,7 @@ import com.diviso.graeshoppe.payment.avro.Payment;
 import com.diviso.graeshoppe.report.config.MessageBinderConfiguration;
 import com.diviso.graeshoppe.report.service.OrderMasterService;
 import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
+import com.sun.jna.Library.Handler;
 
 @EnableBinding(MessageBinderConfiguration.class)
 public class StreamConsumerService {
@@ -46,6 +47,7 @@ public class StreamConsumerService {
 				CompletableFuture.runAsync(()->{
 					System.out.println("Inside RunAsync+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 					boolean executeFlag=true;
+					int count=0;
 					while(executeFlag) {
 						System.out.println("Inside Loop");
 						 try {
@@ -58,6 +60,7 @@ public class StreamConsumerService {
 						if(dto.isPresent()) {
 							System.out.println("Inside If check ++++++++++++++++++++++++++++++++++");
 							OrderMasterDTO orderMasterDTO = orderMaster.get();
+							System.out.println(" if check is ***"+!value.getPaymentType().equals("cod"));
 							if (!value.getPaymentType().equals("cod")) {
 								LOG.info("Order paid");
 								orderMasterDTO.setOrderStatus("ORDER PAID");
@@ -68,6 +71,7 @@ public class StreamConsumerService {
 						orderMasterService.save(orderMasterDTO);
 						executeFlag=false;
 						completableFuture.complete("Completed");
+						count++;
 						}
 					}
 					
