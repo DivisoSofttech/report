@@ -138,21 +138,21 @@ public class ReportServiceImpl implements ReportService {
 	public byte[] getReportWithAuxAndComboAsPdf(String orderNumber) throws JRException {
 
 		
-	 /* JasperReport jr = null; 
+	  JasperReport jr = null; 
 	  OrderMasterDTO orderMasterDto =orderMasterService.findOrderMasterByOrderNumber(orderNumber);
 	 
 	  // Preparing parameters
 	  if(orderMasterDto.getMethodOfOrder().equalsIgnoreCase("delivery"))
 	  {
-		  jr=JasperCompileManager.compileReport("src/main/resources/report/reportcomboaux.jrxml"); 
+		  jr=JasperCompileManager.compileReport("src/main/resources/report/reportdelivery.jrxml"); 
 	  } 
 	  else if(orderMasterDto.getMethodOfOrder().equalsIgnoreCase("collection")) {
 		   
-		  jr=JasperCompileManager.compileReport("src/main/resources/report/auxcomboCollection.jrxml"); 
-	  }*/
+		  jr=JasperCompileManager.compileReport("src/main/resources/report/reportcollection.jrxml"); 
+	  }
 		 
 		//JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/reportcomboaux.jrxml");
-		JasperPrint jp=null;
+		
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("order_number", orderNumber);
 		Connection conn = null;
@@ -162,15 +162,17 @@ public class ReportServiceImpl implements ReportService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		OrderMasterDTO orderMasterDto =orderMasterService.findOrderMasterByOrderNumber(orderNumber);
+		JasperPrint jp=JasperFillManager.fillReport(jr, parameters, conn);
+		
+		/*OrderMasterDTO orderMasterDto =orderMasterService.findOrderMasterByOrderNumber(orderNumber);
 		if(orderMasterDto.getMethodOfOrder().equalsIgnoreCase("delivery"))
 		  {
-		jp = JasperFillManager.fillReport("src/main/resources/report/reportdelivery.jasper", parameters, conn);
+			  jp = JasperFillManager.fillReport(jr, parameters, conn);
 		  } 
 		  else if(orderMasterDto.getMethodOfOrder().equalsIgnoreCase("collection")) {
-			  jp = JasperFillManager.fillReport("src/main/resources/report/reportcollection.jasper", parameters, conn); 
+			  jp = JasperFillManager.fillReport(jr, parameters, conn); 
 			  
-		  }
+		  }*/
 	
 		return JasperExportManager.exportReportToPdf(jp);
 
