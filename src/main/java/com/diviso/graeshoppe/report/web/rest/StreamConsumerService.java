@@ -45,24 +45,32 @@ public class StreamConsumerService {
 				CompletableFuture<String> completableFuture=new CompletableFuture<>();
 				CompletableFuture.runAsync(()->{
 					System.out.println("Inside RunAsync+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-					if(orderMasterService.findByOrderNumber(value.getTargetId()).isPresent()) {
-						System.out.println("Inside If check ++++++++++++++++++++++++++++++++++");
+					boolean executeFlag=true;
+					while(executeFlag) {
+						System.out.println("Inside Loop");
 						 try {
-							Thread.sleep(1000l);
-							System.out.println("Thread is went to sleep"+Thread.currentThread().getName());
-						} catch (InterruptedException e) {
-							e.printStackTrace();
+								Thread.sleep(1000l);
+								System.out.println("Thread is went to sleep"+Thread.currentThread().getName());
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						Optional<OrderMasterDTO> dto=orderMasterService.findByOrderNumber(value.getTargetId());
+						if(dto.isPresent()) {
+							System.out.println("Inside If check ++++++++++++++++++++++++++++++++++");
+							OrderMasterDTO orderMasterDTO = orderMaster.get();
+							if (!value.getPaymentType().equals("cod")) {
+								LOG.info("Order paid");
+								orderMasterDTO.setOrderStatus("ORDER PAID");
+							} else {
+								LOG.info("Order Not paid");
+								orderMasterDTO.setOrderStatus("ORDER NOT PAID");
+							}
+						completableFuture.complete("Completed");
+						orderMasterService.save(orderMasterDTO);
+						executeFlag=false;
 						}
-						OrderMasterDTO orderMasterDTO = orderMaster.get();
-						if (!value.getPaymentType().equals("cod")) {
-							LOG.info("Order paid");
-							orderMasterDTO.setOrderStatus("ORDER PAID");
-						} else {
-							LOG.info("Order Not paid");
-							orderMasterDTO.setOrderStatus("ORDER NOT PAID");
-						}
-					completableFuture.complete("Completed");
 					}
+					
 				});
 				
 				/*
