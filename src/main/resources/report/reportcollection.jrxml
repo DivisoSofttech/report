@@ -292,10 +292,10 @@
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" isPrintRepeatedValues="false" x="-15" y="0" width="109" height="14" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="ca1323ec-17a2-4fee-bac4-eb6b5636c9ef"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[String.format("%1$2s x %2$-40.40s", $F{olquantity}, $F{item})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[String.format("%1$2s x %2$-50.50s", $F{olquantity}, $F{item})]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="103" y="0" width="40" height="14" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="4f938975-5c33-4277-8a79-49ca4fb0ceee"/>
+				<reportElement positionType="Float" x="103" y="0" width="40" height="14" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="4f938975-5c33-4277-8a79-49ca4fb0ceee"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{oltotal}]]></textFieldExpression>
 			</textField>
@@ -310,7 +310,7 @@
 				<textFieldExpression><![CDATA[String.format("%1$2s x %2$-20.20s", $F{auxquantity},$F{aux_item})]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="103" y="-1" width="40" height="15" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="748a899e-5524-41f1-b727-5535b67434af">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="101" y="-1" width="40" height="15" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="748a899e-5524-41f1-b727-5535b67434af">
 					<printWhenExpression><![CDATA[!$F{aux_item}.equals("[]")]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
