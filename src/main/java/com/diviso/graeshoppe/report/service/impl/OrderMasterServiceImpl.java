@@ -171,49 +171,47 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		if(order.getDeliveryInfo().getDeliveryNotes() == null) {
 			order.getDeliveryInfo().setDeliveryNotes("**notes not provided**");
 		}
-		OrderMaster master=new OrderMaster();
-		master.setOrderNumber(order.getOrderId());
-		OrderMaster result = orderMasterRepository.save(master);
+		OrderMaster orderMaster=new OrderMaster();
 		Store store = reportService.findStoreByStoreId(order.getStoreId());
-		result.setStoreName(store.getName());
-		result.setStorePhone(store.getContactNo());
-		result.setMethodOfOrder(order.getDeliveryInfo().getDeliveryType().toUpperCase());
-		result.setOrderNumber(order.getOrderId());
-		result.setDeliveryCharge(order.getDeliveryInfo().getDeliveryCharge());
+		orderMaster.setStoreName(store.getName());
+		orderMaster.setStorePhone(store.getContactNo());
+		orderMaster.setMethodOfOrder(order.getDeliveryInfo().getDeliveryType().toUpperCase());
+		orderMaster.setOrderNumber(order.getOrderId());
+		orderMaster.setDeliveryCharge(order.getDeliveryInfo().getDeliveryCharge());
 		if (order.getDeliveryInfo().getDeliveryAddress() != null) {
-			result.setRoadNameAreaOrStreet(order.getDeliveryInfo().getDeliveryAddress().getRoadNameAreaOrStreet());
-			result
+			orderMaster.setRoadNameAreaOrStreet(order.getDeliveryInfo().getDeliveryAddress().getRoadNameAreaOrStreet());
+			orderMaster
 					.setHouseNoOrBuildingName(order.getDeliveryInfo().getDeliveryAddress().getHouseNoOrBuildingName());
-			result.setCity(order.getDeliveryInfo().getDeliveryAddress().getCity());
-			result.setLandmark(order.getDeliveryInfo().getDeliveryAddress().getLandmark());
-			result.setPhone(order.getDeliveryInfo().getDeliveryAddress().getPhone());
-			result.setAlternatePhone(order.getDeliveryInfo().getDeliveryAddress().getAlternatePhone());
-			result.setPincode(order.getDeliveryInfo().getDeliveryAddress().getPincode());
-			result.setState(order.getDeliveryInfo().getDeliveryAddress().getState());
-			result.setAddressType(order.getDeliveryInfo().getDeliveryAddress().getAddressType());
-			result.setName(order.getDeliveryInfo().getDeliveryAddress().getName());
+			orderMaster.setCity(order.getDeliveryInfo().getDeliveryAddress().getCity());
+			orderMaster.setLandmark(order.getDeliveryInfo().getDeliveryAddress().getLandmark());
+			orderMaster.setPhone(order.getDeliveryInfo().getDeliveryAddress().getPhone());
+			orderMaster.setAlternatePhone(order.getDeliveryInfo().getDeliveryAddress().getAlternatePhone());
+			orderMaster.setPincode(order.getDeliveryInfo().getDeliveryAddress().getPincode());
+			orderMaster.setState(order.getDeliveryInfo().getDeliveryAddress().getState());
+			orderMaster.setAddressType(order.getDeliveryInfo().getDeliveryAddress().getAddressType());
+			orderMaster.setName(order.getDeliveryInfo().getDeliveryAddress().getName());
 		}
-		result.setCustomerId(order.getCustomerId());
-		result.setNotes(order.getDeliveryInfo().getDeliveryNotes());
-		result.setOrderFromCustomer(order.getOrderCountRestaurant());
-		result.setTotalDue(order.getGrandTotal());
+		orderMaster.setCustomerId(order.getCustomerId());
+		orderMaster.setNotes(order.getDeliveryInfo().getDeliveryNotes());
+		orderMaster.setOrderFromCustomer(order.getOrderCountRestaurant());
+		orderMaster.setTotalDue(order.getGrandTotal());
 		Instant expectedDelivery = Instant.ofEpochMilli(order.getApprovalDetails().getExpectedDelivery());
-		result.setDueDateAndTime(expectedDelivery);
-		result.setCustomerOrder(order.getOrderCountgraeshoppe());
+		orderMaster.setDueDateAndTime(expectedDelivery);
+		orderMaster.setCustomerOrder(order.getOrderCountgraeshoppe());
 		Instant orderDate = Instant.ofEpochMilli(order.getDate());
-		result.setOrderPlaceAt(orderDate);
+		orderMaster.setOrderPlaceAt(orderDate);
 		if (order.getApprovalDetails() != null) {
 			Instant acceptedDate = Instant.ofEpochMilli(order.getApprovalDetails().getAcceptedAt());
-			result.setOrderAcceptedAt(acceptedDate);
+			orderMaster.setOrderAcceptedAt(acceptedDate);
 		}
 
-		log.info("The order master going to persist is ^^^^^^^^^^^^^^^^^ " + result);
-		OrderMaster updatedResult = orderMasterRepository.save(result);
+		log.info("The order master going to persist is ^^^^^^^^^^^^^^^^^ " + orderMaster);
+		OrderMaster updatedResult = orderMasterRepository.save(orderMaster);
 		order.getOrderLines().stream().map(this::toOrderLine).collect(Collectors.toSet())
 		.forEach(orderline -> {
 			// saving orderlines
 			OrderLineDTO lineDTO = orderLineMapper.toDto(orderline);
-			lineDTO.setOrderMasterId(result.getId());
+			lineDTO.setOrderMasterId(updatedResult.getId());
 			OrderLineDTO resultLineDTO = orderLineService.save(lineDTO);
 			
 			//saving the combos of orderline

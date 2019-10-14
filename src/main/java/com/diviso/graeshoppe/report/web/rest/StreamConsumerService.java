@@ -15,7 +15,6 @@ import com.diviso.graeshoppe.payment.avro.Payment;
 import com.diviso.graeshoppe.report.config.MessageBinderConfiguration;
 import com.diviso.graeshoppe.report.service.OrderMasterService;
 import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
-import com.sun.jna.Library.Handler;
 
 @EnableBinding(MessageBinderConfiguration.class)
 public class StreamConsumerService {
@@ -30,7 +29,7 @@ public class StreamConsumerService {
 		message.foreach((key, value) -> {
 			System.out.println("payment Value consumed is " + value);
 			Optional<OrderMasterDTO> orderMaster = orderMasterService.findByOrderNumber(value.getTargetId());
-			
+
 			if (orderMaster.isPresent()) {
 				OrderMasterDTO orderMasterDTO = orderMaster.get();
 				if (!value.getPaymentType().equals("cod")) {
@@ -42,25 +41,24 @@ public class StreamConsumerService {
 				}
 				orderMasterService.save(orderMasterDTO);
 			} else {
-				
-				CompletableFuture<String> completableFuture=new CompletableFuture<>();
-				CompletableFuture.runAsync(()->{
+
+				CompletableFuture<String> completableFuture = new CompletableFuture<>();
+				CompletableFuture.runAsync(() -> {
 					System.out.println("Inside RunAsync+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-					boolean executeFlag=true;
-					int count=0;
-					while(executeFlag) {
-						System.out.println("Inside Loop "+count);
-						 try {
-								Thread.sleep(2000l);
-								System.out.println("Thread is went to sleep"+Thread.currentThread().getName());
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
-						Optional<OrderMasterDTO> dto=orderMasterService.findByOrderNumber(value.getTargetId());
-						if(dto.isPresent()) {
+					boolean executeFlag = true;
+					int count = 0;
+					while (executeFlag) {
+						System.out.println("Inside Loop " + count);
+						try {
+							Thread.sleep(2000l);
+							System.out.println("Thread is went to sleep" + Thread.currentThread().getName());
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						Optional<OrderMasterDTO> dto = orderMasterService.findByOrderNumber(value.getTargetId());
+						if (dto.isPresent()) {
 							System.out.println("Inside If check ++++++++++++++++++++++++++++++++++");
 							OrderMasterDTO orderMasterDTO = dto.get();
-							System.out.println(" if check is ***"+!value.getPaymentType().equals("cod"));
 							if (!value.getPaymentType().equals("cod")) {
 								LOG.info("Order paid");
 								orderMasterDTO.setOrderStatus("ORDER PAID");
@@ -68,16 +66,15 @@ public class StreamConsumerService {
 								LOG.info("Order Not paid");
 								orderMasterDTO.setOrderStatus("ORDER NOT PAID");
 							}
-						orderMasterService.save(orderMasterDTO);
-						executeFlag=false;
-						completableFuture.complete("Completed");
-						
+							orderMasterService.save(orderMasterDTO);
+							executeFlag = false;
+							completableFuture.complete("Completed");
 						}
 						count++;
 					}
-					
+
 				});
-				
+
 				/*
 				 * try { Thread.sleep(10000l); OrderMasterDTO orderMasterDTO =
 				 * orderMaster.get(); if (!value.getPaymentType().equals("cod")) {

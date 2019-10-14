@@ -17,7 +17,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "order_line")
-@Document(indexName = "orderline")
+@Document(indexName = "reportorderline")
 public class OrderLine implements Serializable {
 
     private static final long serialVersionUID = 1L;
