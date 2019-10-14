@@ -130,7 +130,7 @@ public class ReportResource {
 	
 	
 	 @GetMapping("/reportSummary/{date}/{storeId}")
-	 public ResponseEntity<byte[]> getReportSummaryAsPdf(@PathVariable LocalDate date,@PathVariable String storeId) {
+	 public ResponseEntity<byte[]> getReportSummaryAsPdf(@PathVariable String date,@PathVariable String storeId) {
 	       
 	       //log.debug("REST request to get a pdf");
 	     
@@ -138,7 +138,7 @@ public class ReportResource {
 	    
 	      try
 	      {
-	        pdfContents=reportService.getReportSummaryAsPdf(date,storeId);
+	        pdfContents=reportService.getReportSummaryAsPdf(LocalDate.parse(date),storeId);
 	      }
 	      catch (JRException e) {
 	           e.printStackTrace();
