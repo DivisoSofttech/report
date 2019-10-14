@@ -40,7 +40,7 @@ public class StreamConsumerService {
 				orderMasterService.save(orderMasterDTO);
 			} else {
 				try {
-					Thread.sleep(1000l);
+					Thread.sleep(10000l);
 					OrderMasterDTO orderMasterDTO = orderMaster.get();
 					if (!value.getPaymentType().equals("cod")) {
 						LOG.info("Order paid");
