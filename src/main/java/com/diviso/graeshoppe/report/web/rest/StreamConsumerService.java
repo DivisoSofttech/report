@@ -49,7 +49,7 @@ public class StreamConsumerService {
 					boolean executeFlag=true;
 					int count=0;
 					while(executeFlag) {
-						System.out.println("Inside Loop");
+						System.out.println("Inside Loop "+count);
 						 try {
 								Thread.sleep(1000l);
 								System.out.println("Thread is went to sleep"+Thread.currentThread().getName());
@@ -59,7 +59,7 @@ public class StreamConsumerService {
 						Optional<OrderMasterDTO> dto=orderMasterService.findByOrderNumber(value.getTargetId());
 						if(dto.isPresent()) {
 							System.out.println("Inside If check ++++++++++++++++++++++++++++++++++");
-							OrderMasterDTO orderMasterDTO = orderMaster.get();
+							OrderMasterDTO orderMasterDTO = dto.get();
 							System.out.println(" if check is ***"+!value.getPaymentType().equals("cod"));
 							if (!value.getPaymentType().equals("cod")) {
 								LOG.info("Order paid");
