@@ -51,7 +51,7 @@ public class StreamConsumerService {
 					while(executeFlag) {
 						System.out.println("Inside Loop "+count);
 						 try {
-								Thread.sleep(1000l);
+								Thread.sleep(2000l);
 								System.out.println("Thread is went to sleep"+Thread.currentThread().getName());
 							} catch (InterruptedException e) {
 								e.printStackTrace();
@@ -69,10 +69,11 @@ public class StreamConsumerService {
 								orderMasterDTO.setOrderStatus("ORDER NOT PAID");
 							}
 						orderMasterService.save(orderMasterDTO);
-						executeFlag=false;
+						// executeFlag=false;
 						completableFuture.complete("Completed");
-						count++;
+						
 						}
+						count++;
 					}
 					
 				});
