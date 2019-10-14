@@ -65,9 +65,9 @@ public class StreamConsumerService {
 								LOG.info("Order Not paid");
 								orderMasterDTO.setOrderStatus("ORDER NOT PAID");
 							}
-						completableFuture.complete("Completed");
 						orderMasterService.save(orderMasterDTO);
 						executeFlag=false;
+						completableFuture.complete("Completed");
 						}
 					}
 					
