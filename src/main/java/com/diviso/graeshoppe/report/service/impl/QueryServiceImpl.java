@@ -196,7 +196,7 @@ public class QueryServiceImpl implements QueryService {
 		Set<OrderLine> orderLines=new HashSet<OrderLine>(findOrderLineByOrderMaster(master.getId()));
 		orderAggregator.getOrderMaster().setOrderLines(orderLines);
 		
-		System.out.println("+++++++++++++++++++++++++++++++++++++++"+orderAggregator.getOrderLine());;
+		System.out.println("+++++++++++++++++++++++++++++++++++++++"+orderAggregator.getOrderMaster().getOrderLines());;
 		
 		
 		for(OrderLine orderLine : orderAggregator.getOrderMaster().getOrderLines()) {
