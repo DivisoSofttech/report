@@ -23,6 +23,7 @@ public class ReportSummary {
 
 	private Integer typeCardCount;
 	private Double typeCardTotal;
+	
 	public Long getTypeAllCount() {
 		return typeAllCount;
 	}
