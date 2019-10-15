@@ -14,12 +14,8 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "dueDate",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "dueTime",
-            "fieldType": "String"
+            "fieldName": "dueDateAndTime",
+            "fieldType": "Instant"
         },
         {
             "fieldName": "orderNumber",
@@ -51,7 +47,7 @@
         },
         {
             "fieldName": "pincode",
-            "fieldType": "Long"
+            "fieldType": "String"
         },
         {
             "fieldName": "houseNoOrBuildingName",
@@ -99,11 +95,11 @@
         },
         {
             "fieldName": "orderPlaceAt",
-            "fieldType": "String"
+            "fieldType": "Instant"
         },
         {
             "fieldName": "orderAcceptedAt",
-            "fieldType": "String"
+            "fieldType": "Instant"
         }
     ],
     "relationships": [
