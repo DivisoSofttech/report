@@ -163,7 +163,7 @@ public class QueryServiceImpl implements QueryService {
 	public List<OrderLine> findOrderLineByOrderMaster(@PathVariable Long orderMasterId) {
 		log.info("orderMaster Id is " + orderMasterId);
 		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(termQuery("orderMaster.id", orderMasterId))
-				.withIndices("reportorderline").withTypes("reportorderline").build();
+				.withIndices("reportorderline").build();
 		return elasticsearchOperations.queryForList(searchQuery, OrderLine.class);
 	  
 	  }
