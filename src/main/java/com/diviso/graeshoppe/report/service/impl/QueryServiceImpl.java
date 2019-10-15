@@ -194,6 +194,9 @@ public class QueryServiceImpl implements QueryService {
 		
 		orderAggregator.setOrderLine(findOrderLineByOrderMaster(orderAggregator.getOrderMaster().getId()));
 		
+		System.out.println("+++++++++++++++++++++++++++++++++++++++"+orderAggregator.getOrderLine());;
+		
+		
 		for(OrderLine orderLine : orderAggregator.getOrderLine()) {
 			
 			orderAggregator.setComboItem(findComboItemByOrderLine(orderLine.getId()));
