@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class ReportSummary {
 	
-	private LocalDate localDate;
+	private LocalDate date;
 	private String storeId;
 	
 	private Long typeAllCount;
@@ -23,6 +23,7 @@ public class ReportSummary {
 
 	private Integer typeCardCount;
 	private Double typeCardTotal;
+	
 	public Long getTypeAllCount() {
 		return typeAllCount;
 	}
@@ -91,16 +92,17 @@ public class ReportSummary {
 				+ typeCashCount + ", typeCashTotal=" + typeCashTotal + ", typeCardCount=" + typeCardCount
 				+ ", typeCardTotal=" + typeCardTotal + "]";
 	}
-	public LocalDate getLocalDate() {
-		return localDate;
-	}
-	public void setLocalDate(LocalDate localDate) {
-		this.localDate = localDate;
-	}
+	
 	public String getStoreId() {
 		return storeId;
 	}
 	public void setStoreId(String storeId) {
 		this.storeId = storeId;
+	}
+	public LocalDate getDate() {
+		return date;
+	}
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 }

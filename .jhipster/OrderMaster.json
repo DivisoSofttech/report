@@ -14,7 +14,8 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "dueDateAndTime",
+
+            "fieldName": "expectedDelivery",
             "fieldType": "Instant"
         },
         {

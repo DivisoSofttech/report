@@ -16,7 +16,7 @@ public class OrderMasterDTO implements Serializable {
 
     private String methodOfOrder;
 
-    private Instant dueDateAndTime;
+    private Instant expectedDelivery;
 
     private String orderNumber;
 
@@ -93,12 +93,12 @@ public class OrderMasterDTO implements Serializable {
         this.methodOfOrder = methodOfOrder;
     }
 
-    public Instant getDueDateAndTime() {
-        return dueDateAndTime;
+    public Instant getExpectedDelivery() {
+        return expectedDelivery;
     }
 
-    public void setDueDateAndTime(Instant dueDateAndTime) {
-        this.dueDateAndTime = dueDateAndTime;
+    public void setExpectedDelivery(Instant expectedDelivery) {
+        this.expectedDelivery = expectedDelivery;
     }
 
     public String getOrderNumber() {
@@ -297,7 +297,7 @@ public class OrderMasterDTO implements Serializable {
             ", storeName='" + getStoreName() + "'" +
             ", storePhone=" + getStorePhone() +
             ", methodOfOrder='" + getMethodOfOrder() + "'" +
-            ", dueDateAndTime='" + getDueDateAndTime() + "'" +
+            ", expectedDelivery='" + getExpectedDelivery() + "'" +
             ", orderNumber='" + getOrderNumber() + "'" +
             ", notes='" + getNotes() + "'" +
             ", deliveryCharge=" + getDeliveryCharge() +
