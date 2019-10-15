@@ -1,25 +1,64 @@
 package com.diviso.graeshoppe.report.service.impl;
 
+import static org.elasticsearch.index.query.QueryBuilders.termQuery;
+
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
+import org.springframework.data.elasticsearch.core.query.StringQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import com.diviso.graeshoppe.report.domain.ReportSummary;
 import com.diviso.graeshoppe.report.client.order.api.ReportQueryResourceApi;
 import com.diviso.graeshoppe.report.client.payment.api.PaymentResourceApi;
 import com.diviso.graeshoppe.report.client.payment.model.PaymentDTO;
+import com.diviso.graeshoppe.report.domain.AuxItem;
+import com.diviso.graeshoppe.report.domain.ComboItem;
+import com.diviso.graeshoppe.report.domain.OrderAggregator;
+import com.diviso.graeshoppe.report.domain.OrderLine;
+import com.diviso.graeshoppe.report.domain.OrderMaster;
+import com.diviso.graeshoppe.report.domain.ReportSummary;
 import com.diviso.graeshoppe.report.service.QueryService;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.*;
+import com.github.vanroy.springdata.jest.JestElasticsearchTemplate;
+
+import io.searchbox.client.JestClient;
 
 @Service
 @Transactional
 public class QueryServiceImpl implements QueryService {
+	
+	
+	private final JestClient jestClient;
+	private final JestElasticsearchTemplate elasticsearchTemplate;
+
+	int i = 0;
+	Long count = 0L;
+	private final Logger log = LoggerFactory.getLogger(QueryServiceImpl.class);
+
+	public QueryServiceImpl(JestClient jestClient) {
+		this.jestClient = jestClient;
+		this.elasticsearchTemplate = new JestElasticsearchTemplate(this.jestClient);
+	}
+
+	@Autowired
+	ElasticsearchOperations elasticsearchOperations;
+	
 	@Autowired
 	ReportQueryResourceApi ReportQueryResourceApi;
 	@Autowired
 	PaymentResourceApi paymentResourceApi;
+	
+	
+	
 
 	public ReportSummary createReportSummary(LocalDate date,String storeId) {
 
@@ -110,6 +149,58 @@ public class QueryServiceImpl implements QueryService {
 		}
 
 		return paymentIdList;
+	}
+
+	@Override
+	public OrderMaster findOrderMasterByOrderNumber(@PathVariable String orderNumber) {
+	  
+		StringQuery searchQuery = new StringQuery(termQuery("orderNumber", orderNumber).toString());
+		return elasticsearchOperations.queryForObject(searchQuery, OrderMaster.class);
+	  
+	  }
+	
+	@Override
+	public List<OrderLine> findOrderLineByOrderMaster(@PathVariable Long orderMasterId) {
+		log.info("orderMaster Id is " + orderMasterId);
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(termQuery("orderMaster.id", orderMasterId))
+				.withIndices("reportorderline").withTypes("reportorderline").build();
+		return elasticsearchOperations.queryForList(searchQuery, OrderLine.class);
+	  
+	  }
+	 
+	@Override
+	public List<ComboItem> findComboItemByOrderLine(@PathVariable Long orderLineId) {
+		log.info("orderLine Id is " + orderLineId);
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(termQuery("orderLine.id", orderLineId))
+		.build();
+		return elasticsearchOperations.queryForList(searchQuery, ComboItem.class);
+	  
+	  }
+	
+	@Override
+	public List<AuxItem> findAuxItemByOrderLine(@PathVariable Long orderLineId) {
+		log.info("orderLine Id is " + orderLineId);
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(termQuery("orderLine.id", orderLineId))
+		.build();
+		return elasticsearchOperations.queryForList(searchQuery, AuxItem.class);
+	  }
+	
+	@Override
+	public OrderAggregator getOrderAggregator(String orderNumber) {
+
+		OrderAggregator orderAggregator= new OrderAggregator();
+		
+		orderAggregator.setOrderMaster(findOrderMasterByOrderNumber(orderNumber));
+		
+		orderAggregator.setOrderLine(findOrderLineByOrderMaster(orderAggregator.getOrderMaster().getId()));
+		
+		for(OrderLine orderLine : orderAggregator.getOrderLine()) {
+			
+			orderAggregator.setComboItem(findComboItemByOrderLine(orderLine.getId()));
+			orderAggregator.setAuxitem(findAuxItemByOrderLine(orderLine.getId()));
+			
+		}
+		return orderAggregator;
 	}
 
 }
