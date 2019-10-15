@@ -15,7 +15,9 @@
  */
 package com.diviso.graeshoppe.report.web.rest;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.diviso.graeshoppe.report.domain.ReportSummary;
 import com.diviso.graeshoppe.report.service.ReportService;
 import com.diviso.graeshoppe.report.service.dto.OrderLine;
 import com.diviso.graeshoppe.report.service.dto.OrderMaster;
@@ -184,7 +187,14 @@ public class ReportResource {
 		   }
 
 		
+		
 	
-	
-	
+	  @GetMapping("/reportview/{expectedDelivery}/{storeName}")
+	  
+	  public ReportSummary createReportSummary(@PathVariable String expectedDelivery,@PathVariable String storeName) {
+	   return reportService.createReportSummary(expectedDelivery,storeName); 
+	   }
+	  
 }
+	 
+	

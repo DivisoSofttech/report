@@ -7,7 +7,7 @@ entity OrderMaster{
 storeName String,
 storePhone Long,
 methodOfOrder String,
-dueDateAndTime  Instant,
+expectedDelivery  Instant,
 orderNumber String,
 notes String,
 deliveryCharge Double,

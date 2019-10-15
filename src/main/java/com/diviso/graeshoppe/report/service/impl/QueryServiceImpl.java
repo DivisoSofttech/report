@@ -71,7 +71,7 @@ public class QueryServiceImpl implements QueryService {
 		Instant dateEnd = Instant.parse("2019-08-27T23:59:59Z");*/
 		ReportSummary reportSummary = new ReportSummary();
 		
-		reportSummary.setLocalDate(date);
+		reportSummary.setDate(date);
 		reportSummary.setStoreId(storeId);
 		reportSummary.setTypeAllCount(
 				ReportQueryResourceApi.countAllOrdersByDateAndStoreIdUsingGET(dateBegin, dateEnd, storeId).getBody());

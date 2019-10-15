@@ -36,5 +36,16 @@
     ],
     "skipClient": true,
     "skipUserManagement": true
+  },
+  "generator-jhipster-swagger-cli": {
+    "promptValues": {
+      "inputSpec": "http://dev.ci1.divisosofttech.com:8084/v2/api-docs",
+      "cliName": "product"
+    },
+    "apis": {
+      "product": {
+        "spec": "http://dev.ci1.divisosofttech.com:8084/v2/api-docs"
+      }
+    }
   }
 }

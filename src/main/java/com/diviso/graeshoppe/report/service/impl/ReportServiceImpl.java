@@ -4,6 +4,7 @@ import static org.elasticsearch.index.query.QueryBuilders.termQuery;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ import com.diviso.graeshoppe.report.client.product.model.Product;
 import com.diviso.graeshoppe.report.client.store.model.Store;
 import com.diviso.graeshoppe.report.domain.OrderMaster;
 import com.diviso.graeshoppe.report.domain.ReportSummary;
+import com.diviso.graeshoppe.report.repository.OrderMasterRepository;
 import com.diviso.graeshoppe.report.service.OrderMasterService;
 import com.diviso.graeshoppe.report.service.QueryService;
 import com.diviso.graeshoppe.report.service.ReportService;
@@ -59,6 +61,9 @@ public class ReportServiceImpl implements ReportService {
 
 	@Autowired
 	OrderMasterService orderMasterService;
+	
+	@Autowired
+	OrderMasterRepository orderMasterRepository;
 
 	private static List<ReportSummary> reportSummaryList = new ArrayList<ReportSummary>();
 
@@ -178,4 +183,33 @@ public class ReportServiceImpl implements ReportService {
 
 	}
 
+	
+
+	@Override
+	public ReportSummary createReportSummary(String expectedDelivery, String storeName) {
+		Instant dateBegin = Instant.parse(expectedDelivery.toString() + "T00:00:00Z"); 
+		Instant dateEnd = Instant.parse(expectedDelivery.toString() + "T23:59:59Z");
+		ReportSummary reportSummary = new ReportSummary();
+	    reportSummary.setDate(LocalDate.parse(expectedDelivery)); 
+	    reportSummary.setStoreId(storeName);
+		
+		 reportSummary.setTypeAllCount(orderMasterRepository.countByExpectedDeliveryBetweenAndStoreName(dateBegin,dateEnd,storeName));
+		reportSummary.setTypeAllTotal(orderMasterRepository.sumOfTotalDue(dateBegin,dateEnd,storeName));
+		reportSummary.setTypeDeliveryCount(orderMasterRepository.countByMethodOfOrderAndStoreName(dateBegin,dateEnd,storeName,"delivery"));
+		reportSummary.setTypeCollectionCount(orderMasterRepository.countByMethodOfOrderAndStoreName(dateBegin,dateEnd,storeName,"collection"));
+		reportSummary.setTypeDeliveryTotal(orderMasterRepository.sumOfTotalByOrderType(dateBegin,dateEnd,storeName,"delivery"));
+		reportSummary.setTypeCollectionTotal(orderMasterRepository.sumOfTotalByOrderType(dateBegin,dateEnd,storeName,"collection"));
+		reportSummary.setTypeCardCount(orderMasterRepository.countByOrderStatusAndStoreName(dateBegin,dateEnd,storeName,"order paid"));
+		reportSummary.setTypeCashCount(orderMasterRepository.countByOrderStatusAndStoreName(dateBegin,dateEnd,storeName,"order not paid"));
+		reportSummary.setTypeCardTotal(orderMasterRepository.sumOftotalByOrderStatus(dateBegin,dateEnd,storeName,"order paid"));
+		reportSummary.setTypeCashTotal(orderMasterRepository.sumOftotalByOrderStatus(dateBegin,dateEnd,storeName,"order not paid"));
+		
+		
+		return reportSummary; 
+	}
+		
+	
+
 }
+
+
