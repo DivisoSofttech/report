@@ -35,8 +35,8 @@ public class OrderMaster implements Serializable {
     @Column(name = "method_of_order")
     private String methodOfOrder;
 
-    @Column(name = "due_date_and_time")
-    private Instant dueDateAndTime;
+    @Column(name = "expected_delivery")
+    private Instant expectedDelivery;
 
     @Column(name = "order_number")
     private String orderNumber;
@@ -151,17 +151,17 @@ public class OrderMaster implements Serializable {
         this.methodOfOrder = methodOfOrder;
     }
 
-    public Instant getDueDateAndTime() {
-        return dueDateAndTime;
+    public Instant getExpectedDelivery() {
+        return expectedDelivery;
     }
 
-    public OrderMaster dueDateAndTime(Instant dueDateAndTime) {
-        this.dueDateAndTime = dueDateAndTime;
+    public OrderMaster expectedDelivery(Instant expectedDelivery) {
+        this.expectedDelivery = expectedDelivery;
         return this;
     }
 
-    public void setDueDateAndTime(Instant dueDateAndTime) {
-        this.dueDateAndTime = dueDateAndTime;
+    public void setExpectedDelivery(Instant expectedDelivery) {
+        this.expectedDelivery = expectedDelivery;
     }
 
     public String getOrderNumber() {
@@ -490,7 +490,7 @@ public class OrderMaster implements Serializable {
             ", storeName='" + getStoreName() + "'" +
             ", storePhone=" + getStorePhone() +
             ", methodOfOrder='" + getMethodOfOrder() + "'" +
-            ", dueDateAndTime='" + getDueDateAndTime() + "'" +
+            ", expectedDelivery='" + getExpectedDelivery() + "'" +
             ", orderNumber='" + getOrderNumber() + "'" +
             ", notes='" + getNotes() + "'" +
             ", deliveryCharge=" + getDeliveryCharge() +

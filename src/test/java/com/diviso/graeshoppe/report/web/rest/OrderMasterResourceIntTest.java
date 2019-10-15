@@ -60,8 +60,8 @@ public class OrderMasterResourceIntTest {
     private static final String DEFAULT_METHOD_OF_ORDER = "AAAAAAAAAA";
     private static final String UPDATED_METHOD_OF_ORDER = "BBBBBBBBBB";
 
-    private static final Instant DEFAULT_DUE_DATE_AND_TIME = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_DUE_DATE_AND_TIME = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final Instant DEFAULT_EXPECTED_DELIVERY = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_EXPECTED_DELIVERY = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     private static final String DEFAULT_ORDER_NUMBER = "AAAAAAAAAA";
     private static final String UPDATED_ORDER_NUMBER = "BBBBBBBBBB";
@@ -185,7 +185,7 @@ public class OrderMasterResourceIntTest {
             .storeName(DEFAULT_STORE_NAME)
             .storePhone(DEFAULT_STORE_PHONE)
             .methodOfOrder(DEFAULT_METHOD_OF_ORDER)
-            .dueDateAndTime(DEFAULT_DUE_DATE_AND_TIME)
+            .expectedDelivery(DEFAULT_EXPECTED_DELIVERY)
             .orderNumber(DEFAULT_ORDER_NUMBER)
             .notes(DEFAULT_NOTES)
             .deliveryCharge(DEFAULT_DELIVERY_CHARGE)
@@ -234,7 +234,7 @@ public class OrderMasterResourceIntTest {
         assertThat(testOrderMaster.getStoreName()).isEqualTo(DEFAULT_STORE_NAME);
         assertThat(testOrderMaster.getStorePhone()).isEqualTo(DEFAULT_STORE_PHONE);
         assertThat(testOrderMaster.getMethodOfOrder()).isEqualTo(DEFAULT_METHOD_OF_ORDER);
-        assertThat(testOrderMaster.getDueDateAndTime()).isEqualTo(DEFAULT_DUE_DATE_AND_TIME);
+        assertThat(testOrderMaster.getExpectedDelivery()).isEqualTo(DEFAULT_EXPECTED_DELIVERY);
         assertThat(testOrderMaster.getOrderNumber()).isEqualTo(DEFAULT_ORDER_NUMBER);
         assertThat(testOrderMaster.getNotes()).isEqualTo(DEFAULT_NOTES);
         assertThat(testOrderMaster.getDeliveryCharge()).isEqualTo(DEFAULT_DELIVERY_CHARGE);
@@ -298,7 +298,7 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].storeName").value(hasItem(DEFAULT_STORE_NAME.toString())))
             .andExpect(jsonPath("$.[*].storePhone").value(hasItem(DEFAULT_STORE_PHONE.intValue())))
             .andExpect(jsonPath("$.[*].methodOfOrder").value(hasItem(DEFAULT_METHOD_OF_ORDER.toString())))
-            .andExpect(jsonPath("$.[*].dueDateAndTime").value(hasItem(DEFAULT_DUE_DATE_AND_TIME.toString())))
+            .andExpect(jsonPath("$.[*].expectedDelivery").value(hasItem(DEFAULT_EXPECTED_DELIVERY.toString())))
             .andExpect(jsonPath("$.[*].orderNumber").value(hasItem(DEFAULT_ORDER_NUMBER.toString())))
             .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES.toString())))
             .andExpect(jsonPath("$.[*].deliveryCharge").value(hasItem(DEFAULT_DELIVERY_CHARGE.doubleValue())))
@@ -336,7 +336,7 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.storeName").value(DEFAULT_STORE_NAME.toString()))
             .andExpect(jsonPath("$.storePhone").value(DEFAULT_STORE_PHONE.intValue()))
             .andExpect(jsonPath("$.methodOfOrder").value(DEFAULT_METHOD_OF_ORDER.toString()))
-            .andExpect(jsonPath("$.dueDateAndTime").value(DEFAULT_DUE_DATE_AND_TIME.toString()))
+            .andExpect(jsonPath("$.expectedDelivery").value(DEFAULT_EXPECTED_DELIVERY.toString()))
             .andExpect(jsonPath("$.orderNumber").value(DEFAULT_ORDER_NUMBER.toString()))
             .andExpect(jsonPath("$.notes").value(DEFAULT_NOTES.toString()))
             .andExpect(jsonPath("$.deliveryCharge").value(DEFAULT_DELIVERY_CHARGE.doubleValue()))
@@ -384,7 +384,7 @@ public class OrderMasterResourceIntTest {
             .storeName(UPDATED_STORE_NAME)
             .storePhone(UPDATED_STORE_PHONE)
             .methodOfOrder(UPDATED_METHOD_OF_ORDER)
-            .dueDateAndTime(UPDATED_DUE_DATE_AND_TIME)
+            .expectedDelivery(UPDATED_EXPECTED_DELIVERY)
             .orderNumber(UPDATED_ORDER_NUMBER)
             .notes(UPDATED_NOTES)
             .deliveryCharge(UPDATED_DELIVERY_CHARGE)
@@ -420,7 +420,7 @@ public class OrderMasterResourceIntTest {
         assertThat(testOrderMaster.getStoreName()).isEqualTo(UPDATED_STORE_NAME);
         assertThat(testOrderMaster.getStorePhone()).isEqualTo(UPDATED_STORE_PHONE);
         assertThat(testOrderMaster.getMethodOfOrder()).isEqualTo(UPDATED_METHOD_OF_ORDER);
-        assertThat(testOrderMaster.getDueDateAndTime()).isEqualTo(UPDATED_DUE_DATE_AND_TIME);
+        assertThat(testOrderMaster.getExpectedDelivery()).isEqualTo(UPDATED_EXPECTED_DELIVERY);
         assertThat(testOrderMaster.getOrderNumber()).isEqualTo(UPDATED_ORDER_NUMBER);
         assertThat(testOrderMaster.getNotes()).isEqualTo(UPDATED_NOTES);
         assertThat(testOrderMaster.getDeliveryCharge()).isEqualTo(UPDATED_DELIVERY_CHARGE);
@@ -505,7 +505,7 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].storeName").value(hasItem(DEFAULT_STORE_NAME)))
             .andExpect(jsonPath("$.[*].storePhone").value(hasItem(DEFAULT_STORE_PHONE.intValue())))
             .andExpect(jsonPath("$.[*].methodOfOrder").value(hasItem(DEFAULT_METHOD_OF_ORDER)))
-            .andExpect(jsonPath("$.[*].dueDateAndTime").value(hasItem(DEFAULT_DUE_DATE_AND_TIME.toString())))
+            .andExpect(jsonPath("$.[*].expectedDelivery").value(hasItem(DEFAULT_EXPECTED_DELIVERY.toString())))
             .andExpect(jsonPath("$.[*].orderNumber").value(hasItem(DEFAULT_ORDER_NUMBER)))
             .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES)))
             .andExpect(jsonPath("$.[*].deliveryCharge").value(hasItem(DEFAULT_DELIVERY_CHARGE.doubleValue())))

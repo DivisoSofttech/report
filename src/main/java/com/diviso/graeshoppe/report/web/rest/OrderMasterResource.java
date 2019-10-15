@@ -1,7 +1,4 @@
 package com.diviso.graeshoppe.report.web.rest;
-
-import com.diviso.graeshoppe.report.service.OrderLineService;
-//import com.codahale.metrics.annotation.Timed;
 import com.diviso.graeshoppe.report.service.OrderMasterService;
 import com.diviso.graeshoppe.report.web.rest.errors.BadRequestAlertException;
 import com.diviso.graeshoppe.report.web.rest.util.HeaderUtil;
@@ -10,7 +7,6 @@ import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -40,9 +36,6 @@ public class OrderMasterResource {
 
     private final OrderMasterService orderMasterService;
 
-
-  
-
     public OrderMasterResource(OrderMasterService orderMasterService) {
         this.orderMasterService = orderMasterService;
     }
@@ -55,14 +48,11 @@ public class OrderMasterResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/order-masters")
-  //  @Timed
     public ResponseEntity<OrderMasterDTO> createOrderMaster(@RequestBody OrderMasterDTO orderMasterDTO) throws URISyntaxException {
         log.debug("REST request to save OrderMaster : {}", orderMasterDTO);
         if (orderMasterDTO.getId() != null) {
             throw new BadRequestAlertException("A new orderMaster cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        
-        
         OrderMasterDTO result = orderMasterService.save(orderMasterDTO);
         return ResponseEntity.created(new URI("/api/order-masters/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -79,7 +69,6 @@ public class OrderMasterResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/order-masters")
-    //@Timed
     public ResponseEntity<OrderMasterDTO> updateOrderMaster(@RequestBody OrderMasterDTO orderMasterDTO) throws URISyntaxException {
         log.debug("REST request to update OrderMaster : {}", orderMasterDTO);
         if (orderMasterDTO.getId() == null) {
@@ -98,7 +87,6 @@ public class OrderMasterResource {
      * @return the ResponseEntity with status 200 (OK) and the list of orderMasters in body
      */
     @GetMapping("/order-masters")
-    //@Timed
     public ResponseEntity<List<OrderMasterDTO>> getAllOrderMasters(Pageable pageable) {
         log.debug("REST request to get a page of OrderMasters");
         Page<OrderMasterDTO> page = orderMasterService.findAll(pageable);
@@ -113,7 +101,6 @@ public class OrderMasterResource {
      * @return the ResponseEntity with status 200 (OK) and with body the orderMasterDTO, or with status 404 (Not Found)
      */
     @GetMapping("/order-masters/{id}")
-    //@Timed
     public ResponseEntity<OrderMasterDTO> getOrderMaster(@PathVariable Long id) {
         log.debug("REST request to get OrderMaster : {}", id);
         Optional<OrderMasterDTO> orderMasterDTO = orderMasterService.findOne(id);
@@ -127,7 +114,6 @@ public class OrderMasterResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/order-masters/{id}")
-    //@Timed
     public ResponseEntity<Void> deleteOrderMaster(@PathVariable Long id) {
         log.debug("REST request to delete OrderMaster : {}", id);
         orderMasterService.delete(id);
@@ -143,28 +129,11 @@ public class OrderMasterResource {
      * @return the result of the search
      */
     @GetMapping("/_search/order-masters")
-    //@Timed
     public ResponseEntity<List<OrderMasterDTO>> searchOrderMasters(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of OrderMasters for query {}", query);
         Page<OrderMasterDTO> page = orderMasterService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/order-masters");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    
-    /**
-     * Get  /order-masters by order id/:id : delete the "id" orderMaster.
-     *
-     * @param id the id of the order
-     * @return the ResponseEntity with status 200 (OK)
-     */
-    @GetMapping("/ordermasterbyorder/{orderNumber}")
-    public ResponseEntity<OrderMasterDTO> findOrderMasterByOrderId(@PathVariable String orderNumber) {
-        log.debug("REST request to delete OrderMaster : {}", orderNumber);
-        OrderMasterDTO orderMasterDTO= orderMasterService.findOrderMasterByOrderNumber(orderNumber);
-        return ResponseEntity.ok().body((orderMasterDTO));
-    }
-
-    
-    
 }

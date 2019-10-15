@@ -196,7 +196,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setOrderFromCustomer(order.getOrderCountRestaurant());
 		orderMaster.setTotalDue(order.getGrandTotal());
 		Instant expectedDelivery = Instant.ofEpochMilli(order.getApprovalDetails().getExpectedDelivery());
-		orderMaster.setDueDateAndTime(expectedDelivery);
+		orderMaster.setExpectedDelivery(expectedDelivery);
 		orderMaster.setCustomerOrder(order.getOrderCountgraeshoppe());
 		Instant orderDate = Instant.ofEpochMilli(order.getDate());
 		orderMaster.setOrderPlaceAt(orderDate);
