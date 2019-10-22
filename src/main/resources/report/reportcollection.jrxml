@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="auxcomboCollection" pageWidth="164" pageHeight="842" columnWidth="124" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="b31dfe08-ccd8-411c-9df0-f8ec7679aeaa">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="136"/>
@@ -222,8 +222,10 @@
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="43" y="113" width="34" height="18" uuid="395c5c59-9891-4f91-b483-47f054546695"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["At"]]></textFieldExpression>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["at"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="63" y="113" width="39" height="18" uuid="779323a2-3e24-48d5-a241-7db58034c3a5"/>
@@ -275,7 +277,7 @@
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="45" y="200" width="81" height="20" uuid="caefd620-c6f0-49b2-ab94-aa060790b02a"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="11" isBold="false" isItalic="true"/>
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
 			</textField>
@@ -438,7 +440,7 @@
 			<textField>
 				<reportElement positionType="Float" x="-11" y="245" width="151" height="16" uuid="8775ab54-5598-4e9e-9b3c-3760e4d57851"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["powered by graeshoppe"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Powered by Graeshoppe"]]></textFieldExpression>
 			</textField>
 			<textField pattern="MMMMM dd, yyyy">
 				<reportElement positionType="Float" x="15" y="259" width="62" height="22" uuid="89ccc1a1-a4b7-4fdb-8de7-6eb56139662b"/>
@@ -456,6 +458,13 @@
 					<pen lineWidth="1.0"/>
 				</graphicElement>
 			</line>
+			<staticText>
+				<reportElement positionType="Float" x="-12" y="159" width="140" height="20" uuid="6bb9c294-70ea-4981-875b-dbd30a9cd645"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Loyalty order number :]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>
