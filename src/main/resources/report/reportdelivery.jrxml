@@ -387,7 +387,7 @@
 			<staticText>
 				<reportElement positionType="Float" x="-12" y="145" width="143" height="20" uuid="3420043d-255b-44d4-9960-5fa2122ccb17"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="12"/>
+					<font size="11"/>
 				</textElement>
 				<text><![CDATA[Customer details :]]></text>
 			</staticText>
@@ -419,14 +419,14 @@
 				<textFieldExpression><![CDATA[$F{house_no_or_building_name}.substring(0, 1)+$F{house_no_or_building_name}.substring(1, $F{house_no_or_building_name}.length()).toLowerCase()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="-12" y="192" width="145" height="21" uuid="3f7ad432-69c2-4def-bbc9-8e613eaf76c7"/>
+				<reportElement positionType="Float" x="-12" y="190" width="144" height="20" uuid="3f7ad432-69c2-4def-bbc9-8e613eaf76c7"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="14" isBold="false" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{city}.substring(0, 1)+$F{city}.substring(1, $F{city}.length()).toLowerCase()]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement positionType="Float" x="-21" y="265" width="164" height="1" uuid="5dd09d8c-9770-4649-9e6a-ccecfc2fa620"/>
+				<reportElement positionType="Float" x="-21" y="260" width="164" height="1" uuid="5dd09d8c-9770-4649-9e6a-ccecfc2fa620"/>
 			</line>
 			<staticText>
 				<reportElement positionType="Float" x="-12" y="270" width="128" height="18" uuid="04f6cad2-cce5-4b65-94f2-426b7135d6d4"/>
@@ -436,12 +436,12 @@
 				<text><![CDATA[Order From This Customer :]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="111" y="269" width="20" height="20" uuid="9676ba81-e1ae-4926-8e53-d98ccaebae8d"/>
+				<reportElement positionType="Float" x="109" y="269" width="20" height="20" uuid="9676ba81-e1ae-4926-8e53-d98ccaebae8d"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{order_from_customer}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="117" y="289" width="21" height="20" uuid="e0f85bc7-c846-41f0-ae07-5fda9b92caa8"/>
+				<reportElement positionType="Float" x="115" y="289" width="21" height="20" uuid="e0f85bc7-c846-41f0-ae07-5fda9b92caa8"/>
 				<textFieldExpression><![CDATA[$F{customer_order}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -481,17 +481,23 @@
 			</staticText>
 			<textField>
 				<reportElement positionType="Float" x="-11" y="382" width="151" height="16" uuid="3eb87081-72ce-4a09-aa20-801830bc7af7"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
 				<textFieldExpression><![CDATA["Powered by Graeshoppe"]]></textFieldExpression>
 			</textField>
 			<textField pattern="MMMMM dd, yyyy">
 				<reportElement positionType="Float" x="15" y="396" width="62" height="22" uuid="4485b814-f86d-41cb-92df-228559633a28"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField pattern="HH:mm">
-				<reportElement positionType="Float" x="62" y="396" width="55" height="22" uuid="873b080b-2ada-4180-bf03-fde7fe0b2ea2"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement positionType="Float" x="62" y="396" width="64" height="22" uuid="873b080b-2ada-4180-bf03-fde7fe0b2ea2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -499,17 +505,17 @@
 				<textElement>
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[Loyalty order number :]]></text>
+				<text><![CDATA[Order Count for Loyalty:]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="-12" y="241" width="144" height="17" uuid="88b402fb-8a7f-47cb-8d50-efd754ff00fc"/>
+				<reportElement positionType="Float" x="-12" y="232" width="144" height="20" uuid="88b402fb-8a7f-47cb-8d50-efd754ff00fc"/>
 				<textElement>
 					<font size="14" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{pincode}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="-12" y="215" width="144" height="25" uuid="e91dad65-ac5a-471c-8404-1c0d9a6b1684"/>
+				<reportElement positionType="Float" x="-12" y="211" width="144" height="20" uuid="e91dad65-ac5a-471c-8404-1c0d9a6b1684"/>
 				<textElement>
 					<font size="14" isItalic="true"/>
 				</textElement>
