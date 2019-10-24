@@ -5,7 +5,9 @@ import static org.elasticsearch.index.query.QueryBuilders.termQuery;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -154,7 +156,7 @@ public class QueryServiceImpl implements QueryService {
 	@Override
 	public OrderMaster findOrderMasterByOrderNumber(@PathVariable String orderNumber) {
 	  
-		StringQuery searchQuery = new StringQuery(termQuery("orderNumber", orderNumber).toString());
+		StringQuery searchQuery = new StringQuery(termQuery("orderNumber.keyword", orderNumber).toString());
 		return elasticsearchOperations.queryForObject(searchQuery, OrderMaster.class);
 	  
 	  }
@@ -163,7 +165,7 @@ public class QueryServiceImpl implements QueryService {
 	public List<OrderLine> findOrderLineByOrderMaster(@PathVariable Long orderMasterId) {
 		log.info("orderMaster Id is " + orderMasterId);
 		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(termQuery("orderMaster.id", orderMasterId))
-				.withIndices("reportorderline").withTypes("reportorderline").build();
+				.withIndices("reportorderline").build();
 		return elasticsearchOperations.queryForList(searchQuery, OrderLine.class);
 	  
 	  }
@@ -189,18 +191,20 @@ public class QueryServiceImpl implements QueryService {
 	public OrderAggregator getOrderAggregator(String orderNumber) {
 
 		OrderAggregator orderAggregator= new OrderAggregator();
+		OrderMaster master=findOrderMasterByOrderNumber(orderNumber);
+		orderAggregator.setOrderMaster(master);
+		Set<OrderLine> orderLines=new HashSet<OrderLine>(findOrderLineByOrderMaster(master.getId()));
+		orderAggregator.getOrderMaster().setOrderLines(orderLines);
 		
-		orderAggregator.setOrderMaster(findOrderMasterByOrderNumber(orderNumber));
-		
-		orderAggregator.setOrderLine(findOrderLineByOrderMaster(orderAggregator.getOrderMaster().getId()));
-		
-		System.out.println("+++++++++++++++++++++++++++++++++++++++"+orderAggregator.getOrderLine());;
+		System.out.println("+++++++++++++++++++++++++++++++++++++++"+orderAggregator.getOrderMaster());;
 		
 		
-		for(OrderLine orderLine : orderAggregator.getOrderLine()) {
+		for(OrderLine orderLine : orderAggregator.getOrderMaster().getOrderLines()) {
 			
-			orderAggregator.setComboItem(findComboItemByOrderLine(orderLine.getId()));
-			orderAggregator.setAuxitem(findAuxItemByOrderLine(orderLine.getId()));
+			List<ComboItem> combos=findComboItemByOrderLine(orderLine.getId());
+			List<AuxItem> auxes=findAuxItemByOrderLine(orderLine.getId());
+			orderLine.setComboItems(new HashSet<>(combos));
+			orderLine.setAuxItems(new HashSet<>(auxes));
 			
 		}
 		return orderAggregator;
