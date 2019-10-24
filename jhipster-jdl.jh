@@ -4,8 +4,10 @@
 */
 
 entity OrderMaster{
+storeIdpcode String,
 storeName String,
 storePhone Long,
+storelocationName String,
 methodOfOrder String,
 expectedDelivery  Instant,
 orderNumber String,

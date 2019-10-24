@@ -22,11 +22,19 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="store_idpcode" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="store_name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
             <column name="store_phone" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="storelocation_name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 

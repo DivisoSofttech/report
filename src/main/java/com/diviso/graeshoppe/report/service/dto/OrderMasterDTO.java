@@ -10,9 +10,13 @@ public class OrderMasterDTO implements Serializable {
 
     private Long id;
 
+    private String storeIdpcode;
+
     private String storeName;
 
     private Long storePhone;
+
+    private String storelocationName;
 
     private String methodOfOrder;
 
@@ -75,6 +79,14 @@ public class OrderMasterDTO implements Serializable {
         this.id = id;
     }
 
+    public String getStoreIdpcode() {
+        return storeIdpcode;
+    }
+
+    public void setStoreIdpcode(String storeIdpcode) {
+        this.storeIdpcode = storeIdpcode;
+    }
+
     public String getStoreName() {
         return storeName;
     }
@@ -89,6 +101,14 @@ public class OrderMasterDTO implements Serializable {
 
     public void setStorePhone(Long storePhone) {
         this.storePhone = storePhone;
+    }
+
+    public String getStorelocationName() {
+        return storelocationName;
+    }
+
+    public void setStorelocationName(String storelocationName) {
+        this.storelocationName = storelocationName;
     }
 
     public String getMethodOfOrder() {
@@ -324,8 +344,10 @@ public class OrderMasterDTO implements Serializable {
     public String toString() {
         return "OrderMasterDTO{" +
             "id=" + getId() +
+            ", storeIdpcode='" + getStoreIdpcode() + "'" +
             ", storeName='" + getStoreName() + "'" +
             ", storePhone=" + getStorePhone() +
+            ", storelocationName='" + getStorelocationName() + "'" +
             ", methodOfOrder='" + getMethodOfOrder() + "'" +
             ", expectedDelivery='" + getExpectedDelivery() + "'" +
             ", orderNumber='" + getOrderNumber() + "'" +
