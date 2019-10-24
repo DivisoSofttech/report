@@ -28,7 +28,10 @@ addressType String,
 orderFromCustomer Long,
 customerOrder Long,
 orderPlaceAt Instant,
-orderAcceptedAt Instant
+orderAcceptedAt Instant,
+allergyNote String,
+preOrderDate Instant,
+email String
 
 }
 

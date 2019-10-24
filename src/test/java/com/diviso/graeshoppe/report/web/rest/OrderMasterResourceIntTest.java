@@ -126,6 +126,15 @@ public class OrderMasterResourceIntTest {
     private static final Instant DEFAULT_ORDER_ACCEPTED_AT = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_ORDER_ACCEPTED_AT = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
+    private static final String DEFAULT_ALLERGY_NOTE = "AAAAAAAAAA";
+    private static final String UPDATED_ALLERGY_NOTE = "BBBBBBBBBB";
+
+    private static final Instant DEFAULT_PRE_ORDER_DATE = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_PRE_ORDER_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+
+    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
+
     @Autowired
     private OrderMasterRepository orderMasterRepository;
 
@@ -206,7 +215,10 @@ public class OrderMasterResourceIntTest {
             .orderFromCustomer(DEFAULT_ORDER_FROM_CUSTOMER)
             .customerOrder(DEFAULT_CUSTOMER_ORDER)
             .orderPlaceAt(DEFAULT_ORDER_PLACE_AT)
-            .orderAcceptedAt(DEFAULT_ORDER_ACCEPTED_AT);
+            .orderAcceptedAt(DEFAULT_ORDER_ACCEPTED_AT)
+            .allergyNote(DEFAULT_ALLERGY_NOTE)
+            .preOrderDate(DEFAULT_PRE_ORDER_DATE)
+            .email(DEFAULT_EMAIL);
         return orderMaster;
     }
 
@@ -256,6 +268,9 @@ public class OrderMasterResourceIntTest {
         assertThat(testOrderMaster.getCustomerOrder()).isEqualTo(DEFAULT_CUSTOMER_ORDER);
         assertThat(testOrderMaster.getOrderPlaceAt()).isEqualTo(DEFAULT_ORDER_PLACE_AT);
         assertThat(testOrderMaster.getOrderAcceptedAt()).isEqualTo(DEFAULT_ORDER_ACCEPTED_AT);
+        assertThat(testOrderMaster.getAllergyNote()).isEqualTo(DEFAULT_ALLERGY_NOTE);
+        assertThat(testOrderMaster.getPreOrderDate()).isEqualTo(DEFAULT_PRE_ORDER_DATE);
+        assertThat(testOrderMaster.getEmail()).isEqualTo(DEFAULT_EMAIL);
 
         // Validate the OrderMaster in Elasticsearch
         verify(mockOrderMasterSearchRepository, times(1)).save(testOrderMaster);
@@ -319,7 +334,10 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].orderFromCustomer").value(hasItem(DEFAULT_ORDER_FROM_CUSTOMER.intValue())))
             .andExpect(jsonPath("$.[*].customerOrder").value(hasItem(DEFAULT_CUSTOMER_ORDER.intValue())))
             .andExpect(jsonPath("$.[*].orderPlaceAt").value(hasItem(DEFAULT_ORDER_PLACE_AT.toString())))
-            .andExpect(jsonPath("$.[*].orderAcceptedAt").value(hasItem(DEFAULT_ORDER_ACCEPTED_AT.toString())));
+            .andExpect(jsonPath("$.[*].orderAcceptedAt").value(hasItem(DEFAULT_ORDER_ACCEPTED_AT.toString())))
+            .andExpect(jsonPath("$.[*].allergyNote").value(hasItem(DEFAULT_ALLERGY_NOTE.toString())))
+            .andExpect(jsonPath("$.[*].preOrderDate").value(hasItem(DEFAULT_PRE_ORDER_DATE.toString())))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())));
     }
     
     @Test
@@ -357,7 +375,10 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.orderFromCustomer").value(DEFAULT_ORDER_FROM_CUSTOMER.intValue()))
             .andExpect(jsonPath("$.customerOrder").value(DEFAULT_CUSTOMER_ORDER.intValue()))
             .andExpect(jsonPath("$.orderPlaceAt").value(DEFAULT_ORDER_PLACE_AT.toString()))
-            .andExpect(jsonPath("$.orderAcceptedAt").value(DEFAULT_ORDER_ACCEPTED_AT.toString()));
+            .andExpect(jsonPath("$.orderAcceptedAt").value(DEFAULT_ORDER_ACCEPTED_AT.toString()))
+            .andExpect(jsonPath("$.allergyNote").value(DEFAULT_ALLERGY_NOTE.toString()))
+            .andExpect(jsonPath("$.preOrderDate").value(DEFAULT_PRE_ORDER_DATE.toString()))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()));
     }
 
     @Test
@@ -405,7 +426,10 @@ public class OrderMasterResourceIntTest {
             .orderFromCustomer(UPDATED_ORDER_FROM_CUSTOMER)
             .customerOrder(UPDATED_CUSTOMER_ORDER)
             .orderPlaceAt(UPDATED_ORDER_PLACE_AT)
-            .orderAcceptedAt(UPDATED_ORDER_ACCEPTED_AT);
+            .orderAcceptedAt(UPDATED_ORDER_ACCEPTED_AT)
+            .allergyNote(UPDATED_ALLERGY_NOTE)
+            .preOrderDate(UPDATED_PRE_ORDER_DATE)
+            .email(UPDATED_EMAIL);
         OrderMasterDTO orderMasterDTO = orderMasterMapper.toDto(updatedOrderMaster);
 
         restOrderMasterMockMvc.perform(put("/api/order-masters")
@@ -442,6 +466,9 @@ public class OrderMasterResourceIntTest {
         assertThat(testOrderMaster.getCustomerOrder()).isEqualTo(UPDATED_CUSTOMER_ORDER);
         assertThat(testOrderMaster.getOrderPlaceAt()).isEqualTo(UPDATED_ORDER_PLACE_AT);
         assertThat(testOrderMaster.getOrderAcceptedAt()).isEqualTo(UPDATED_ORDER_ACCEPTED_AT);
+        assertThat(testOrderMaster.getAllergyNote()).isEqualTo(UPDATED_ALLERGY_NOTE);
+        assertThat(testOrderMaster.getPreOrderDate()).isEqualTo(UPDATED_PRE_ORDER_DATE);
+        assertThat(testOrderMaster.getEmail()).isEqualTo(UPDATED_EMAIL);
 
         // Validate the OrderMaster in Elasticsearch
         verify(mockOrderMasterSearchRepository, times(1)).save(testOrderMaster);
@@ -526,7 +553,10 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].orderFromCustomer").value(hasItem(DEFAULT_ORDER_FROM_CUSTOMER.intValue())))
             .andExpect(jsonPath("$.[*].customerOrder").value(hasItem(DEFAULT_CUSTOMER_ORDER.intValue())))
             .andExpect(jsonPath("$.[*].orderPlaceAt").value(hasItem(DEFAULT_ORDER_PLACE_AT.toString())))
-            .andExpect(jsonPath("$.[*].orderAcceptedAt").value(hasItem(DEFAULT_ORDER_ACCEPTED_AT.toString())));
+            .andExpect(jsonPath("$.[*].orderAcceptedAt").value(hasItem(DEFAULT_ORDER_ACCEPTED_AT.toString())))
+            .andExpect(jsonPath("$.[*].allergyNote").value(hasItem(DEFAULT_ALLERGY_NOTE)))
+            .andExpect(jsonPath("$.[*].preOrderDate").value(hasItem(DEFAULT_PRE_ORDER_DATE.toString())))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)));
     }
 
     @Test

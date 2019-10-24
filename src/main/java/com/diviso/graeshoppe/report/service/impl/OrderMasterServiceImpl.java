@@ -178,13 +178,17 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setMethodOfOrder(order.getDeliveryInfo().getDeliveryType().toUpperCase());
 		orderMaster.setOrderNumber(order.getOrderId());
 		orderMaster.setDeliveryCharge(order.getDeliveryInfo().getDeliveryCharge());
+		orderMaster.setPhone(order.getCustomerPhone());
+		orderMaster.setAllergyNote(order.getAllergyNote());
+		orderMaster.setPreOrderDate(Instant.ofEpochMilli(order.getPreOrderDate()));
 		if (order.getDeliveryInfo().getDeliveryAddress() != null) {
 			orderMaster.setRoadNameAreaOrStreet(order.getDeliveryInfo().getDeliveryAddress().getRoadNameAreaOrStreet());
+			orderMaster.setEmail(order.getDeliveryInfo().getDeliveryAddress().getEmail());
 			orderMaster
 					.setHouseNoOrBuildingName(order.getDeliveryInfo().getDeliveryAddress().getHouseNoOrBuildingName());
 			orderMaster.setCity(order.getDeliveryInfo().getDeliveryAddress().getCity());
 			orderMaster.setLandmark(order.getDeliveryInfo().getDeliveryAddress().getLandmark());
-			orderMaster.setPhone(order.getDeliveryInfo().getDeliveryAddress().getPhone());
+			// orderMaster.setPhone(order.getDeliveryInfo().getDeliveryAddress().getPhone());
 			orderMaster.setAlternatePhone(order.getDeliveryInfo().getDeliveryAddress().getAlternatePhone());
 			orderMaster.setPincode(order.getDeliveryInfo().getDeliveryAddress().getPincode());
 			orderMaster.setState(order.getDeliveryInfo().getDeliveryAddress().getState());

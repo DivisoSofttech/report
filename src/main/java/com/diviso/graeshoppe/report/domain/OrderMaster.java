@@ -101,6 +101,15 @@ public class OrderMaster implements Serializable {
     @Column(name = "order_accepted_at")
     private Instant orderAcceptedAt;
 
+    @Column(name = "allergy_note")
+    private String allergyNote;
+
+    @Column(name = "pre_order_date")
+    private Instant preOrderDate;
+
+    @Column(name = "email")
+    private String email;
+
     @OneToMany(mappedBy = "orderMaster")
     private Set<OrderLine> orderLines = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -437,6 +446,45 @@ public class OrderMaster implements Serializable {
         this.orderAcceptedAt = orderAcceptedAt;
     }
 
+    public String getAllergyNote() {
+        return allergyNote;
+    }
+
+    public OrderMaster allergyNote(String allergyNote) {
+        this.allergyNote = allergyNote;
+        return this;
+    }
+
+    public void setAllergyNote(String allergyNote) {
+        this.allergyNote = allergyNote;
+    }
+
+    public Instant getPreOrderDate() {
+        return preOrderDate;
+    }
+
+    public OrderMaster preOrderDate(Instant preOrderDate) {
+        this.preOrderDate = preOrderDate;
+        return this;
+    }
+
+    public void setPreOrderDate(Instant preOrderDate) {
+        this.preOrderDate = preOrderDate;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public OrderMaster email(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Set<OrderLine> getOrderLines() {
         return orderLines;
     }
@@ -512,6 +560,9 @@ public class OrderMaster implements Serializable {
             ", customerOrder=" + getCustomerOrder() +
             ", orderPlaceAt='" + getOrderPlaceAt() + "'" +
             ", orderAcceptedAt='" + getOrderAcceptedAt() + "'" +
+            ", allergyNote='" + getAllergyNote() + "'" +
+            ", preOrderDate='" + getPreOrderDate() + "'" +
+            ", email='" + getEmail() + "'" +
             "}";
     }
 }

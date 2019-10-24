@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Address extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 4513416060970487221L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Address\",\"namespace\":\"com.diviso.graeshoppe.order.avro\",\"fields\":[{\"name\":\"customerId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"pincode\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"houseNoOrBuildingName\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"roadNameAreaOrStreet\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"city\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"state\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"landmark\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"name\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"addressType\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"phone\",\"type\":\"long\",\"default\":null},{\"name\":\"alternatePhone\",\"type\":[\"null\",\"long\"],\"default\":null}]}");
+  private static final long serialVersionUID = -5474198033296263608L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Address\",\"namespace\":\"com.diviso.graeshoppe.order.avro\",\"fields\":[{\"name\":\"customerId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"pincode\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"houseNoOrBuildingName\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"roadNameAreaOrStreet\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"email\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"city\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"state\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"landmark\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"name\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"addressType\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"phone\",\"type\":\"long\",\"default\":null},{\"name\":\"alternatePhone\",\"type\":[\"null\",\"long\"],\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -55,6 +55,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
   @Deprecated public java.lang.String pincode;
   @Deprecated public java.lang.String houseNoOrBuildingName;
   @Deprecated public java.lang.String roadNameAreaOrStreet;
+  @Deprecated public java.lang.String email;
   @Deprecated public java.lang.String city;
   @Deprecated public java.lang.String state;
   @Deprecated public java.lang.String landmark;
@@ -76,6 +77,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
    * @param pincode The new value for pincode
    * @param houseNoOrBuildingName The new value for houseNoOrBuildingName
    * @param roadNameAreaOrStreet The new value for roadNameAreaOrStreet
+   * @param email The new value for email
    * @param city The new value for city
    * @param state The new value for state
    * @param landmark The new value for landmark
@@ -84,11 +86,12 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
    * @param phone The new value for phone
    * @param alternatePhone The new value for alternatePhone
    */
-  public Address(java.lang.String customerId, java.lang.String pincode, java.lang.String houseNoOrBuildingName, java.lang.String roadNameAreaOrStreet, java.lang.String city, java.lang.String state, java.lang.String landmark, java.lang.String name, java.lang.String addressType, java.lang.Long phone, java.lang.Long alternatePhone) {
+  public Address(java.lang.String customerId, java.lang.String pincode, java.lang.String houseNoOrBuildingName, java.lang.String roadNameAreaOrStreet, java.lang.String email, java.lang.String city, java.lang.String state, java.lang.String landmark, java.lang.String name, java.lang.String addressType, java.lang.Long phone, java.lang.Long alternatePhone) {
     this.customerId = customerId;
     this.pincode = pincode;
     this.houseNoOrBuildingName = houseNoOrBuildingName;
     this.roadNameAreaOrStreet = roadNameAreaOrStreet;
+    this.email = email;
     this.city = city;
     this.state = state;
     this.landmark = landmark;
@@ -106,13 +109,14 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
     case 1: return pincode;
     case 2: return houseNoOrBuildingName;
     case 3: return roadNameAreaOrStreet;
-    case 4: return city;
-    case 5: return state;
-    case 6: return landmark;
-    case 7: return name;
-    case 8: return addressType;
-    case 9: return phone;
-    case 10: return alternatePhone;
+    case 4: return email;
+    case 5: return city;
+    case 6: return state;
+    case 7: return landmark;
+    case 8: return name;
+    case 9: return addressType;
+    case 10: return phone;
+    case 11: return alternatePhone;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -125,13 +129,14 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
     case 1: pincode = (java.lang.String)value$; break;
     case 2: houseNoOrBuildingName = (java.lang.String)value$; break;
     case 3: roadNameAreaOrStreet = (java.lang.String)value$; break;
-    case 4: city = (java.lang.String)value$; break;
-    case 5: state = (java.lang.String)value$; break;
-    case 6: landmark = (java.lang.String)value$; break;
-    case 7: name = (java.lang.String)value$; break;
-    case 8: addressType = (java.lang.String)value$; break;
-    case 9: phone = (java.lang.Long)value$; break;
-    case 10: alternatePhone = (java.lang.Long)value$; break;
+    case 4: email = (java.lang.String)value$; break;
+    case 5: city = (java.lang.String)value$; break;
+    case 6: state = (java.lang.String)value$; break;
+    case 7: landmark = (java.lang.String)value$; break;
+    case 8: name = (java.lang.String)value$; break;
+    case 9: addressType = (java.lang.String)value$; break;
+    case 10: phone = (java.lang.Long)value$; break;
+    case 11: alternatePhone = (java.lang.Long)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -198,6 +203,22 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
    */
   public void setRoadNameAreaOrStreet(java.lang.String value) {
     this.roadNameAreaOrStreet = value;
+  }
+
+  /**
+   * Gets the value of the 'email' field.
+   * @return The value of the 'email' field.
+   */
+  public java.lang.String getEmail() {
+    return email;
+  }
+
+  /**
+   * Sets the value of the 'email' field.
+   * @param value the value to set.
+   */
+  public void setEmail(java.lang.String value) {
+    this.email = value;
   }
 
   /**
@@ -348,6 +369,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
     private java.lang.String pincode;
     private java.lang.String houseNoOrBuildingName;
     private java.lang.String roadNameAreaOrStreet;
+    private java.lang.String email;
     private java.lang.String city;
     private java.lang.String state;
     private java.lang.String landmark;
@@ -383,33 +405,37 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
         this.roadNameAreaOrStreet = data().deepCopy(fields()[3].schema(), other.roadNameAreaOrStreet);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.city)) {
-        this.city = data().deepCopy(fields()[4].schema(), other.city);
+      if (isValidValue(fields()[4], other.email)) {
+        this.email = data().deepCopy(fields()[4].schema(), other.email);
         fieldSetFlags()[4] = true;
       }
-      if (isValidValue(fields()[5], other.state)) {
-        this.state = data().deepCopy(fields()[5].schema(), other.state);
+      if (isValidValue(fields()[5], other.city)) {
+        this.city = data().deepCopy(fields()[5].schema(), other.city);
         fieldSetFlags()[5] = true;
       }
-      if (isValidValue(fields()[6], other.landmark)) {
-        this.landmark = data().deepCopy(fields()[6].schema(), other.landmark);
+      if (isValidValue(fields()[6], other.state)) {
+        this.state = data().deepCopy(fields()[6].schema(), other.state);
         fieldSetFlags()[6] = true;
       }
-      if (isValidValue(fields()[7], other.name)) {
-        this.name = data().deepCopy(fields()[7].schema(), other.name);
+      if (isValidValue(fields()[7], other.landmark)) {
+        this.landmark = data().deepCopy(fields()[7].schema(), other.landmark);
         fieldSetFlags()[7] = true;
       }
-      if (isValidValue(fields()[8], other.addressType)) {
-        this.addressType = data().deepCopy(fields()[8].schema(), other.addressType);
+      if (isValidValue(fields()[8], other.name)) {
+        this.name = data().deepCopy(fields()[8].schema(), other.name);
         fieldSetFlags()[8] = true;
       }
-      if (isValidValue(fields()[9], other.phone)) {
-        this.phone = data().deepCopy(fields()[9].schema(), other.phone);
+      if (isValidValue(fields()[9], other.addressType)) {
+        this.addressType = data().deepCopy(fields()[9].schema(), other.addressType);
         fieldSetFlags()[9] = true;
       }
-      if (isValidValue(fields()[10], other.alternatePhone)) {
-        this.alternatePhone = data().deepCopy(fields()[10].schema(), other.alternatePhone);
+      if (isValidValue(fields()[10], other.phone)) {
+        this.phone = data().deepCopy(fields()[10].schema(), other.phone);
         fieldSetFlags()[10] = true;
+      }
+      if (isValidValue(fields()[11], other.alternatePhone)) {
+        this.alternatePhone = data().deepCopy(fields()[11].schema(), other.alternatePhone);
+        fieldSetFlags()[11] = true;
       }
     }
 
@@ -435,33 +461,37 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
         this.roadNameAreaOrStreet = data().deepCopy(fields()[3].schema(), other.roadNameAreaOrStreet);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.city)) {
-        this.city = data().deepCopy(fields()[4].schema(), other.city);
+      if (isValidValue(fields()[4], other.email)) {
+        this.email = data().deepCopy(fields()[4].schema(), other.email);
         fieldSetFlags()[4] = true;
       }
-      if (isValidValue(fields()[5], other.state)) {
-        this.state = data().deepCopy(fields()[5].schema(), other.state);
+      if (isValidValue(fields()[5], other.city)) {
+        this.city = data().deepCopy(fields()[5].schema(), other.city);
         fieldSetFlags()[5] = true;
       }
-      if (isValidValue(fields()[6], other.landmark)) {
-        this.landmark = data().deepCopy(fields()[6].schema(), other.landmark);
+      if (isValidValue(fields()[6], other.state)) {
+        this.state = data().deepCopy(fields()[6].schema(), other.state);
         fieldSetFlags()[6] = true;
       }
-      if (isValidValue(fields()[7], other.name)) {
-        this.name = data().deepCopy(fields()[7].schema(), other.name);
+      if (isValidValue(fields()[7], other.landmark)) {
+        this.landmark = data().deepCopy(fields()[7].schema(), other.landmark);
         fieldSetFlags()[7] = true;
       }
-      if (isValidValue(fields()[8], other.addressType)) {
-        this.addressType = data().deepCopy(fields()[8].schema(), other.addressType);
+      if (isValidValue(fields()[8], other.name)) {
+        this.name = data().deepCopy(fields()[8].schema(), other.name);
         fieldSetFlags()[8] = true;
       }
-      if (isValidValue(fields()[9], other.phone)) {
-        this.phone = data().deepCopy(fields()[9].schema(), other.phone);
+      if (isValidValue(fields()[9], other.addressType)) {
+        this.addressType = data().deepCopy(fields()[9].schema(), other.addressType);
         fieldSetFlags()[9] = true;
       }
-      if (isValidValue(fields()[10], other.alternatePhone)) {
-        this.alternatePhone = data().deepCopy(fields()[10].schema(), other.alternatePhone);
+      if (isValidValue(fields()[10], other.phone)) {
+        this.phone = data().deepCopy(fields()[10].schema(), other.phone);
         fieldSetFlags()[10] = true;
+      }
+      if (isValidValue(fields()[11], other.alternatePhone)) {
+        this.alternatePhone = data().deepCopy(fields()[11].schema(), other.alternatePhone);
+        fieldSetFlags()[11] = true;
       }
     }
 
@@ -622,6 +652,45 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
     }
 
     /**
+      * Gets the value of the 'email' field.
+      * @return The value.
+      */
+    public java.lang.String getEmail() {
+      return email;
+    }
+
+    /**
+      * Sets the value of the 'email' field.
+      * @param value The value of 'email'.
+      * @return This builder.
+      */
+    public com.diviso.graeshoppe.order.avro.Address.Builder setEmail(java.lang.String value) {
+      validate(fields()[4], value);
+      this.email = value;
+      fieldSetFlags()[4] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'email' field has been set.
+      * @return True if the 'email' field has been set, false otherwise.
+      */
+    public boolean hasEmail() {
+      return fieldSetFlags()[4];
+    }
+
+
+    /**
+      * Clears the value of the 'email' field.
+      * @return This builder.
+      */
+    public com.diviso.graeshoppe.order.avro.Address.Builder clearEmail() {
+      email = null;
+      fieldSetFlags()[4] = false;
+      return this;
+    }
+
+    /**
       * Gets the value of the 'city' field.
       * @return The value.
       */
@@ -635,9 +704,9 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.order.avro.Address.Builder setCity(java.lang.String value) {
-      validate(fields()[4], value);
+      validate(fields()[5], value);
       this.city = value;
-      fieldSetFlags()[4] = true;
+      fieldSetFlags()[5] = true;
       return this;
     }
 
@@ -646,7 +715,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'city' field has been set, false otherwise.
       */
     public boolean hasCity() {
-      return fieldSetFlags()[4];
+      return fieldSetFlags()[5];
     }
 
 
@@ -656,7 +725,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       */
     public com.diviso.graeshoppe.order.avro.Address.Builder clearCity() {
       city = null;
-      fieldSetFlags()[4] = false;
+      fieldSetFlags()[5] = false;
       return this;
     }
 
@@ -674,9 +743,9 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.order.avro.Address.Builder setState(java.lang.String value) {
-      validate(fields()[5], value);
+      validate(fields()[6], value);
       this.state = value;
-      fieldSetFlags()[5] = true;
+      fieldSetFlags()[6] = true;
       return this;
     }
 
@@ -685,7 +754,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'state' field has been set, false otherwise.
       */
     public boolean hasState() {
-      return fieldSetFlags()[5];
+      return fieldSetFlags()[6];
     }
 
 
@@ -695,7 +764,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       */
     public com.diviso.graeshoppe.order.avro.Address.Builder clearState() {
       state = null;
-      fieldSetFlags()[5] = false;
+      fieldSetFlags()[6] = false;
       return this;
     }
 
@@ -713,9 +782,9 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.order.avro.Address.Builder setLandmark(java.lang.String value) {
-      validate(fields()[6], value);
+      validate(fields()[7], value);
       this.landmark = value;
-      fieldSetFlags()[6] = true;
+      fieldSetFlags()[7] = true;
       return this;
     }
 
@@ -724,7 +793,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'landmark' field has been set, false otherwise.
       */
     public boolean hasLandmark() {
-      return fieldSetFlags()[6];
+      return fieldSetFlags()[7];
     }
 
 
@@ -734,7 +803,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       */
     public com.diviso.graeshoppe.order.avro.Address.Builder clearLandmark() {
       landmark = null;
-      fieldSetFlags()[6] = false;
+      fieldSetFlags()[7] = false;
       return this;
     }
 
@@ -752,9 +821,9 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.order.avro.Address.Builder setName(java.lang.String value) {
-      validate(fields()[7], value);
+      validate(fields()[8], value);
       this.name = value;
-      fieldSetFlags()[7] = true;
+      fieldSetFlags()[8] = true;
       return this;
     }
 
@@ -763,7 +832,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'name' field has been set, false otherwise.
       */
     public boolean hasName() {
-      return fieldSetFlags()[7];
+      return fieldSetFlags()[8];
     }
 
 
@@ -773,7 +842,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       */
     public com.diviso.graeshoppe.order.avro.Address.Builder clearName() {
       name = null;
-      fieldSetFlags()[7] = false;
+      fieldSetFlags()[8] = false;
       return this;
     }
 
@@ -791,9 +860,9 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.order.avro.Address.Builder setAddressType(java.lang.String value) {
-      validate(fields()[8], value);
+      validate(fields()[9], value);
       this.addressType = value;
-      fieldSetFlags()[8] = true;
+      fieldSetFlags()[9] = true;
       return this;
     }
 
@@ -802,7 +871,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'addressType' field has been set, false otherwise.
       */
     public boolean hasAddressType() {
-      return fieldSetFlags()[8];
+      return fieldSetFlags()[9];
     }
 
 
@@ -812,7 +881,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       */
     public com.diviso.graeshoppe.order.avro.Address.Builder clearAddressType() {
       addressType = null;
-      fieldSetFlags()[8] = false;
+      fieldSetFlags()[9] = false;
       return this;
     }
 
@@ -830,9 +899,9 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.order.avro.Address.Builder setPhone(long value) {
-      validate(fields()[9], value);
+      validate(fields()[10], value);
       this.phone = value;
-      fieldSetFlags()[9] = true;
+      fieldSetFlags()[10] = true;
       return this;
     }
 
@@ -841,7 +910,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'phone' field has been set, false otherwise.
       */
     public boolean hasPhone() {
-      return fieldSetFlags()[9];
+      return fieldSetFlags()[10];
     }
 
 
@@ -850,7 +919,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.order.avro.Address.Builder clearPhone() {
-      fieldSetFlags()[9] = false;
+      fieldSetFlags()[10] = false;
       return this;
     }
 
@@ -868,9 +937,9 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.order.avro.Address.Builder setAlternatePhone(java.lang.Long value) {
-      validate(fields()[10], value);
+      validate(fields()[11], value);
       this.alternatePhone = value;
-      fieldSetFlags()[10] = true;
+      fieldSetFlags()[11] = true;
       return this;
     }
 
@@ -879,7 +948,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'alternatePhone' field has been set, false otherwise.
       */
     public boolean hasAlternatePhone() {
-      return fieldSetFlags()[10];
+      return fieldSetFlags()[11];
     }
 
 
@@ -889,7 +958,7 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
       */
     public com.diviso.graeshoppe.order.avro.Address.Builder clearAlternatePhone() {
       alternatePhone = null;
-      fieldSetFlags()[10] = false;
+      fieldSetFlags()[11] = false;
       return this;
     }
 
@@ -902,13 +971,14 @@ public class Address extends org.apache.avro.specific.SpecificRecordBase impleme
         record.pincode = fieldSetFlags()[1] ? this.pincode : (java.lang.String) defaultValue(fields()[1]);
         record.houseNoOrBuildingName = fieldSetFlags()[2] ? this.houseNoOrBuildingName : (java.lang.String) defaultValue(fields()[2]);
         record.roadNameAreaOrStreet = fieldSetFlags()[3] ? this.roadNameAreaOrStreet : (java.lang.String) defaultValue(fields()[3]);
-        record.city = fieldSetFlags()[4] ? this.city : (java.lang.String) defaultValue(fields()[4]);
-        record.state = fieldSetFlags()[5] ? this.state : (java.lang.String) defaultValue(fields()[5]);
-        record.landmark = fieldSetFlags()[6] ? this.landmark : (java.lang.String) defaultValue(fields()[6]);
-        record.name = fieldSetFlags()[7] ? this.name : (java.lang.String) defaultValue(fields()[7]);
-        record.addressType = fieldSetFlags()[8] ? this.addressType : (java.lang.String) defaultValue(fields()[8]);
-        record.phone = fieldSetFlags()[9] ? this.phone : (java.lang.Long) defaultValue(fields()[9]);
-        record.alternatePhone = fieldSetFlags()[10] ? this.alternatePhone : (java.lang.Long) defaultValue(fields()[10]);
+        record.email = fieldSetFlags()[4] ? this.email : (java.lang.String) defaultValue(fields()[4]);
+        record.city = fieldSetFlags()[5] ? this.city : (java.lang.String) defaultValue(fields()[5]);
+        record.state = fieldSetFlags()[6] ? this.state : (java.lang.String) defaultValue(fields()[6]);
+        record.landmark = fieldSetFlags()[7] ? this.landmark : (java.lang.String) defaultValue(fields()[7]);
+        record.name = fieldSetFlags()[8] ? this.name : (java.lang.String) defaultValue(fields()[8]);
+        record.addressType = fieldSetFlags()[9] ? this.addressType : (java.lang.String) defaultValue(fields()[9]);
+        record.phone = fieldSetFlags()[10] ? this.phone : (java.lang.Long) defaultValue(fields()[10]);
+        record.alternatePhone = fieldSetFlags()[11] ? this.alternatePhone : (java.lang.Long) defaultValue(fields()[11]);
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);

@@ -60,6 +60,12 @@ public class OrderMasterDTO implements Serializable {
 
     private Instant orderAcceptedAt;
 
+    private String allergyNote;
+
+    private Instant preOrderDate;
+
+    private String email;
+
 
     public Long getId() {
         return id;
@@ -269,6 +275,30 @@ public class OrderMasterDTO implements Serializable {
         this.orderAcceptedAt = orderAcceptedAt;
     }
 
+    public String getAllergyNote() {
+        return allergyNote;
+    }
+
+    public void setAllergyNote(String allergyNote) {
+        this.allergyNote = allergyNote;
+    }
+
+    public Instant getPreOrderDate() {
+        return preOrderDate;
+    }
+
+    public void setPreOrderDate(Instant preOrderDate) {
+        this.preOrderDate = preOrderDate;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -319,6 +349,9 @@ public class OrderMasterDTO implements Serializable {
             ", customerOrder=" + getCustomerOrder() +
             ", orderPlaceAt='" + getOrderPlaceAt() + "'" +
             ", orderAcceptedAt='" + getOrderAcceptedAt() + "'" +
+            ", allergyNote='" + getAllergyNote() + "'" +
+            ", preOrderDate='" + getPreOrderDate() + "'" +
+            ", email='" + getEmail() + "'" +
             "}";
     }
 }

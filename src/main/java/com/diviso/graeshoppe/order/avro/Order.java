@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Order extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 3886088162068093028L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Order\",\"namespace\":\"com.diviso.graeshoppe.order.avro\",\"fields\":[{\"name\":\"orderId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"customerId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"storeId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"date\",\"type\":\"long\",\"logicalType\":\"date\"},{\"name\":\"grandTotal\",\"type\":\"double\"},{\"name\":\"paymentRef\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"email\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"orderCountRestaurant\",\"type\":[\"null\",\"long\"]},{\"name\":\"orderCountgraeshoppe\",\"type\":[\"null\",\"long\"]},{\"name\":\"deliveryInfo\",\"type\":{\"type\":\"record\",\"name\":\"DeliveryInfo\",\"fields\":[{\"name\":\"deliveryType\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"deliveryCharge\",\"type\":[\"null\",\"double\"],\"default\":0.0},{\"name\":\"deliveryNotes\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"deliveryAddress\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"customerId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"pincode\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"houseNoOrBuildingName\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"roadNameAreaOrStreet\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"city\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"state\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"landmark\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"name\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"addressType\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"phone\",\"type\":\"long\",\"default\":null},{\"name\":\"alternatePhone\",\"type\":[\"null\",\"long\"],\"default\":null}]}],\"default\":null}]}},{\"name\":\"approvalDetails\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"ApprovalDetails\",\"fields\":[{\"name\":\"acceptedAt\",\"type\":\"long\",\"default\":0,\"logicalType\":\"date\"},{\"name\":\"expectedDelivery\",\"type\":[\"null\",\"long\"],\"default\":null,\"logicalType\":\"date\"},{\"name\":\"decision\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null}]}]},{\"name\":\"status\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"Status\",\"fields\":[{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"name\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]}]}]},{\"name\":\"orderLines\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OrderLine\",\"fields\":[{\"name\":\"productId\",\"type\":\"long\"},{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"pricePerUnit\",\"type\":\"double\"},{\"name\":\"total\",\"type\":\"double\"},{\"name\":\"auxilaryOrderLines\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"AuxilaryOrderLine\",\"fields\":[{\"name\":\"productId\",\"type\":\"long\"},{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"pricePerUnit\",\"type\":\"double\"},{\"name\":\"total\",\"type\":\"double\"}]}}}]}}},{\"name\":\"offerLines\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"Offer\",\"fields\":[{\"name\":\"offerRef\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null}]}}}]}");
+  private static final long serialVersionUID = 1189255449841599533L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Order\",\"namespace\":\"com.diviso.graeshoppe.order.avro\",\"fields\":[{\"name\":\"orderId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"customerId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"storeId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"date\",\"type\":\"long\",\"logicalType\":\"date\"},{\"name\":\"grandTotal\",\"type\":\"double\"},{\"name\":\"paymentRef\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"allergyNote\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"preOrderDate\",\"type\":\"long\",\"default\":0,\"logicalType\":\"date\"},{\"name\":\"email\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"customerPhone\",\"type\":\"long\",\"default\":null},{\"name\":\"orderCountRestaurant\",\"type\":[\"null\",\"long\"]},{\"name\":\"orderCountgraeshoppe\",\"type\":[\"null\",\"long\"]},{\"name\":\"deliveryInfo\",\"type\":{\"type\":\"record\",\"name\":\"DeliveryInfo\",\"fields\":[{\"name\":\"deliveryType\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"deliveryCharge\",\"type\":[\"null\",\"double\"],\"default\":0.0},{\"name\":\"deliveryNotes\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"deliveryAddress\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"Address\",\"fields\":[{\"name\":\"customerId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"pincode\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"houseNoOrBuildingName\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"roadNameAreaOrStreet\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"email\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"city\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"state\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"landmark\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"name\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"addressType\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"phone\",\"type\":\"long\",\"default\":null},{\"name\":\"alternatePhone\",\"type\":[\"null\",\"long\"],\"default\":null}]}],\"default\":null}]}},{\"name\":\"approvalDetails\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"ApprovalDetails\",\"fields\":[{\"name\":\"acceptedAt\",\"type\":\"long\",\"default\":0,\"logicalType\":\"date\"},{\"name\":\"expectedDelivery\",\"type\":[\"null\",\"long\"],\"default\":null,\"logicalType\":\"date\"},{\"name\":\"decision\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null}]}]},{\"name\":\"status\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"Status\",\"fields\":[{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"name\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]}]}]},{\"name\":\"orderLines\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"OrderLine\",\"fields\":[{\"name\":\"productId\",\"type\":\"long\"},{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"pricePerUnit\",\"type\":\"double\"},{\"name\":\"total\",\"type\":\"double\"},{\"name\":\"auxilaryOrderLines\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"AuxilaryOrderLine\",\"fields\":[{\"name\":\"productId\",\"type\":\"long\"},{\"name\":\"quantity\",\"type\":\"int\"},{\"name\":\"pricePerUnit\",\"type\":\"double\"},{\"name\":\"total\",\"type\":\"double\"}]}}}]}}},{\"name\":\"offerLines\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"Offer\",\"fields\":[{\"name\":\"offerRef\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null}]}}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -57,7 +57,10 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
   @Deprecated public long date;
   @Deprecated public double grandTotal;
   @Deprecated public java.lang.String paymentRef;
+  @Deprecated public java.lang.String allergyNote;
+  @Deprecated public long preOrderDate;
   @Deprecated public java.lang.String email;
+  @Deprecated public long customerPhone;
   @Deprecated public java.lang.Long orderCountRestaurant;
   @Deprecated public java.lang.Long orderCountgraeshoppe;
   @Deprecated public com.diviso.graeshoppe.order.avro.DeliveryInfo deliveryInfo;
@@ -81,7 +84,10 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
    * @param date The new value for date
    * @param grandTotal The new value for grandTotal
    * @param paymentRef The new value for paymentRef
+   * @param allergyNote The new value for allergyNote
+   * @param preOrderDate The new value for preOrderDate
    * @param email The new value for email
+   * @param customerPhone The new value for customerPhone
    * @param orderCountRestaurant The new value for orderCountRestaurant
    * @param orderCountgraeshoppe The new value for orderCountgraeshoppe
    * @param deliveryInfo The new value for deliveryInfo
@@ -90,14 +96,17 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
    * @param orderLines The new value for orderLines
    * @param offerLines The new value for offerLines
    */
-  public Order(java.lang.String orderId, java.lang.String customerId, java.lang.String storeId, java.lang.Long date, java.lang.Double grandTotal, java.lang.String paymentRef, java.lang.String email, java.lang.Long orderCountRestaurant, java.lang.Long orderCountgraeshoppe, com.diviso.graeshoppe.order.avro.DeliveryInfo deliveryInfo, com.diviso.graeshoppe.order.avro.ApprovalDetails approvalDetails, com.diviso.graeshoppe.order.avro.Status status, java.util.List<com.diviso.graeshoppe.order.avro.OrderLine> orderLines, java.util.List<com.diviso.graeshoppe.order.avro.Offer> offerLines) {
+  public Order(java.lang.String orderId, java.lang.String customerId, java.lang.String storeId, java.lang.Long date, java.lang.Double grandTotal, java.lang.String paymentRef, java.lang.String allergyNote, java.lang.Long preOrderDate, java.lang.String email, java.lang.Long customerPhone, java.lang.Long orderCountRestaurant, java.lang.Long orderCountgraeshoppe, com.diviso.graeshoppe.order.avro.DeliveryInfo deliveryInfo, com.diviso.graeshoppe.order.avro.ApprovalDetails approvalDetails, com.diviso.graeshoppe.order.avro.Status status, java.util.List<com.diviso.graeshoppe.order.avro.OrderLine> orderLines, java.util.List<com.diviso.graeshoppe.order.avro.Offer> offerLines) {
     this.orderId = orderId;
     this.customerId = customerId;
     this.storeId = storeId;
     this.date = date;
     this.grandTotal = grandTotal;
     this.paymentRef = paymentRef;
+    this.allergyNote = allergyNote;
+    this.preOrderDate = preOrderDate;
     this.email = email;
+    this.customerPhone = customerPhone;
     this.orderCountRestaurant = orderCountRestaurant;
     this.orderCountgraeshoppe = orderCountgraeshoppe;
     this.deliveryInfo = deliveryInfo;
@@ -117,14 +126,17 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
     case 3: return date;
     case 4: return grandTotal;
     case 5: return paymentRef;
-    case 6: return email;
-    case 7: return orderCountRestaurant;
-    case 8: return orderCountgraeshoppe;
-    case 9: return deliveryInfo;
-    case 10: return approvalDetails;
-    case 11: return status;
-    case 12: return orderLines;
-    case 13: return offerLines;
+    case 6: return allergyNote;
+    case 7: return preOrderDate;
+    case 8: return email;
+    case 9: return customerPhone;
+    case 10: return orderCountRestaurant;
+    case 11: return orderCountgraeshoppe;
+    case 12: return deliveryInfo;
+    case 13: return approvalDetails;
+    case 14: return status;
+    case 15: return orderLines;
+    case 16: return offerLines;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -139,14 +151,17 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
     case 3: date = (java.lang.Long)value$; break;
     case 4: grandTotal = (java.lang.Double)value$; break;
     case 5: paymentRef = (java.lang.String)value$; break;
-    case 6: email = (java.lang.String)value$; break;
-    case 7: orderCountRestaurant = (java.lang.Long)value$; break;
-    case 8: orderCountgraeshoppe = (java.lang.Long)value$; break;
-    case 9: deliveryInfo = (com.diviso.graeshoppe.order.avro.DeliveryInfo)value$; break;
-    case 10: approvalDetails = (com.diviso.graeshoppe.order.avro.ApprovalDetails)value$; break;
-    case 11: status = (com.diviso.graeshoppe.order.avro.Status)value$; break;
-    case 12: orderLines = (java.util.List<com.diviso.graeshoppe.order.avro.OrderLine>)value$; break;
-    case 13: offerLines = (java.util.List<com.diviso.graeshoppe.order.avro.Offer>)value$; break;
+    case 6: allergyNote = (java.lang.String)value$; break;
+    case 7: preOrderDate = (java.lang.Long)value$; break;
+    case 8: email = (java.lang.String)value$; break;
+    case 9: customerPhone = (java.lang.Long)value$; break;
+    case 10: orderCountRestaurant = (java.lang.Long)value$; break;
+    case 11: orderCountgraeshoppe = (java.lang.Long)value$; break;
+    case 12: deliveryInfo = (com.diviso.graeshoppe.order.avro.DeliveryInfo)value$; break;
+    case 13: approvalDetails = (com.diviso.graeshoppe.order.avro.ApprovalDetails)value$; break;
+    case 14: status = (com.diviso.graeshoppe.order.avro.Status)value$; break;
+    case 15: orderLines = (java.util.List<com.diviso.graeshoppe.order.avro.OrderLine>)value$; break;
+    case 16: offerLines = (java.util.List<com.diviso.graeshoppe.order.avro.Offer>)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -248,6 +263,38 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
   }
 
   /**
+   * Gets the value of the 'allergyNote' field.
+   * @return The value of the 'allergyNote' field.
+   */
+  public java.lang.String getAllergyNote() {
+    return allergyNote;
+  }
+
+  /**
+   * Sets the value of the 'allergyNote' field.
+   * @param value the value to set.
+   */
+  public void setAllergyNote(java.lang.String value) {
+    this.allergyNote = value;
+  }
+
+  /**
+   * Gets the value of the 'preOrderDate' field.
+   * @return The value of the 'preOrderDate' field.
+   */
+  public java.lang.Long getPreOrderDate() {
+    return preOrderDate;
+  }
+
+  /**
+   * Sets the value of the 'preOrderDate' field.
+   * @param value the value to set.
+   */
+  public void setPreOrderDate(java.lang.Long value) {
+    this.preOrderDate = value;
+  }
+
+  /**
    * Gets the value of the 'email' field.
    * @return The value of the 'email' field.
    */
@@ -261,6 +308,22 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
    */
   public void setEmail(java.lang.String value) {
     this.email = value;
+  }
+
+  /**
+   * Gets the value of the 'customerPhone' field.
+   * @return The value of the 'customerPhone' field.
+   */
+  public java.lang.Long getCustomerPhone() {
+    return customerPhone;
+  }
+
+  /**
+   * Sets the value of the 'customerPhone' field.
+   * @param value the value to set.
+   */
+  public void setCustomerPhone(java.lang.Long value) {
+    this.customerPhone = value;
   }
 
   /**
@@ -413,7 +476,10 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
     private long date;
     private double grandTotal;
     private java.lang.String paymentRef;
+    private java.lang.String allergyNote;
+    private long preOrderDate;
     private java.lang.String email;
+    private long customerPhone;
     private java.lang.Long orderCountRestaurant;
     private java.lang.Long orderCountgraeshoppe;
     private com.diviso.graeshoppe.order.avro.DeliveryInfo deliveryInfo;
@@ -460,46 +526,58 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
         this.paymentRef = data().deepCopy(fields()[5].schema(), other.paymentRef);
         fieldSetFlags()[5] = true;
       }
-      if (isValidValue(fields()[6], other.email)) {
-        this.email = data().deepCopy(fields()[6].schema(), other.email);
+      if (isValidValue(fields()[6], other.allergyNote)) {
+        this.allergyNote = data().deepCopy(fields()[6].schema(), other.allergyNote);
         fieldSetFlags()[6] = true;
       }
-      if (isValidValue(fields()[7], other.orderCountRestaurant)) {
-        this.orderCountRestaurant = data().deepCopy(fields()[7].schema(), other.orderCountRestaurant);
+      if (isValidValue(fields()[7], other.preOrderDate)) {
+        this.preOrderDate = data().deepCopy(fields()[7].schema(), other.preOrderDate);
         fieldSetFlags()[7] = true;
       }
-      if (isValidValue(fields()[8], other.orderCountgraeshoppe)) {
-        this.orderCountgraeshoppe = data().deepCopy(fields()[8].schema(), other.orderCountgraeshoppe);
+      if (isValidValue(fields()[8], other.email)) {
+        this.email = data().deepCopy(fields()[8].schema(), other.email);
         fieldSetFlags()[8] = true;
       }
-      if (isValidValue(fields()[9], other.deliveryInfo)) {
-        this.deliveryInfo = data().deepCopy(fields()[9].schema(), other.deliveryInfo);
+      if (isValidValue(fields()[9], other.customerPhone)) {
+        this.customerPhone = data().deepCopy(fields()[9].schema(), other.customerPhone);
         fieldSetFlags()[9] = true;
+      }
+      if (isValidValue(fields()[10], other.orderCountRestaurant)) {
+        this.orderCountRestaurant = data().deepCopy(fields()[10].schema(), other.orderCountRestaurant);
+        fieldSetFlags()[10] = true;
+      }
+      if (isValidValue(fields()[11], other.orderCountgraeshoppe)) {
+        this.orderCountgraeshoppe = data().deepCopy(fields()[11].schema(), other.orderCountgraeshoppe);
+        fieldSetFlags()[11] = true;
+      }
+      if (isValidValue(fields()[12], other.deliveryInfo)) {
+        this.deliveryInfo = data().deepCopy(fields()[12].schema(), other.deliveryInfo);
+        fieldSetFlags()[12] = true;
       }
       if (other.hasDeliveryInfoBuilder()) {
         this.deliveryInfoBuilder = com.diviso.graeshoppe.order.avro.DeliveryInfo.newBuilder(other.getDeliveryInfoBuilder());
       }
-      if (isValidValue(fields()[10], other.approvalDetails)) {
-        this.approvalDetails = data().deepCopy(fields()[10].schema(), other.approvalDetails);
-        fieldSetFlags()[10] = true;
+      if (isValidValue(fields()[13], other.approvalDetails)) {
+        this.approvalDetails = data().deepCopy(fields()[13].schema(), other.approvalDetails);
+        fieldSetFlags()[13] = true;
       }
       if (other.hasApprovalDetailsBuilder()) {
         this.approvalDetailsBuilder = com.diviso.graeshoppe.order.avro.ApprovalDetails.newBuilder(other.getApprovalDetailsBuilder());
       }
-      if (isValidValue(fields()[11], other.status)) {
-        this.status = data().deepCopy(fields()[11].schema(), other.status);
-        fieldSetFlags()[11] = true;
+      if (isValidValue(fields()[14], other.status)) {
+        this.status = data().deepCopy(fields()[14].schema(), other.status);
+        fieldSetFlags()[14] = true;
       }
       if (other.hasStatusBuilder()) {
         this.statusBuilder = com.diviso.graeshoppe.order.avro.Status.newBuilder(other.getStatusBuilder());
       }
-      if (isValidValue(fields()[12], other.orderLines)) {
-        this.orderLines = data().deepCopy(fields()[12].schema(), other.orderLines);
-        fieldSetFlags()[12] = true;
+      if (isValidValue(fields()[15], other.orderLines)) {
+        this.orderLines = data().deepCopy(fields()[15].schema(), other.orderLines);
+        fieldSetFlags()[15] = true;
       }
-      if (isValidValue(fields()[13], other.offerLines)) {
-        this.offerLines = data().deepCopy(fields()[13].schema(), other.offerLines);
-        fieldSetFlags()[13] = true;
+      if (isValidValue(fields()[16], other.offerLines)) {
+        this.offerLines = data().deepCopy(fields()[16].schema(), other.offerLines);
+        fieldSetFlags()[16] = true;
       }
     }
 
@@ -533,40 +611,52 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
         this.paymentRef = data().deepCopy(fields()[5].schema(), other.paymentRef);
         fieldSetFlags()[5] = true;
       }
-      if (isValidValue(fields()[6], other.email)) {
-        this.email = data().deepCopy(fields()[6].schema(), other.email);
+      if (isValidValue(fields()[6], other.allergyNote)) {
+        this.allergyNote = data().deepCopy(fields()[6].schema(), other.allergyNote);
         fieldSetFlags()[6] = true;
       }
-      if (isValidValue(fields()[7], other.orderCountRestaurant)) {
-        this.orderCountRestaurant = data().deepCopy(fields()[7].schema(), other.orderCountRestaurant);
+      if (isValidValue(fields()[7], other.preOrderDate)) {
+        this.preOrderDate = data().deepCopy(fields()[7].schema(), other.preOrderDate);
         fieldSetFlags()[7] = true;
       }
-      if (isValidValue(fields()[8], other.orderCountgraeshoppe)) {
-        this.orderCountgraeshoppe = data().deepCopy(fields()[8].schema(), other.orderCountgraeshoppe);
+      if (isValidValue(fields()[8], other.email)) {
+        this.email = data().deepCopy(fields()[8].schema(), other.email);
         fieldSetFlags()[8] = true;
       }
-      if (isValidValue(fields()[9], other.deliveryInfo)) {
-        this.deliveryInfo = data().deepCopy(fields()[9].schema(), other.deliveryInfo);
+      if (isValidValue(fields()[9], other.customerPhone)) {
+        this.customerPhone = data().deepCopy(fields()[9].schema(), other.customerPhone);
         fieldSetFlags()[9] = true;
       }
-      this.deliveryInfoBuilder = null;
-      if (isValidValue(fields()[10], other.approvalDetails)) {
-        this.approvalDetails = data().deepCopy(fields()[10].schema(), other.approvalDetails);
+      if (isValidValue(fields()[10], other.orderCountRestaurant)) {
+        this.orderCountRestaurant = data().deepCopy(fields()[10].schema(), other.orderCountRestaurant);
         fieldSetFlags()[10] = true;
       }
-      this.approvalDetailsBuilder = null;
-      if (isValidValue(fields()[11], other.status)) {
-        this.status = data().deepCopy(fields()[11].schema(), other.status);
+      if (isValidValue(fields()[11], other.orderCountgraeshoppe)) {
+        this.orderCountgraeshoppe = data().deepCopy(fields()[11].schema(), other.orderCountgraeshoppe);
         fieldSetFlags()[11] = true;
       }
-      this.statusBuilder = null;
-      if (isValidValue(fields()[12], other.orderLines)) {
-        this.orderLines = data().deepCopy(fields()[12].schema(), other.orderLines);
+      if (isValidValue(fields()[12], other.deliveryInfo)) {
+        this.deliveryInfo = data().deepCopy(fields()[12].schema(), other.deliveryInfo);
         fieldSetFlags()[12] = true;
       }
-      if (isValidValue(fields()[13], other.offerLines)) {
-        this.offerLines = data().deepCopy(fields()[13].schema(), other.offerLines);
+      this.deliveryInfoBuilder = null;
+      if (isValidValue(fields()[13], other.approvalDetails)) {
+        this.approvalDetails = data().deepCopy(fields()[13].schema(), other.approvalDetails);
         fieldSetFlags()[13] = true;
+      }
+      this.approvalDetailsBuilder = null;
+      if (isValidValue(fields()[14], other.status)) {
+        this.status = data().deepCopy(fields()[14].schema(), other.status);
+        fieldSetFlags()[14] = true;
+      }
+      this.statusBuilder = null;
+      if (isValidValue(fields()[15], other.orderLines)) {
+        this.orderLines = data().deepCopy(fields()[15].schema(), other.orderLines);
+        fieldSetFlags()[15] = true;
+      }
+      if (isValidValue(fields()[16], other.offerLines)) {
+        this.offerLines = data().deepCopy(fields()[16].schema(), other.offerLines);
+        fieldSetFlags()[16] = true;
       }
     }
 
@@ -803,6 +893,83 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
     }
 
     /**
+      * Gets the value of the 'allergyNote' field.
+      * @return The value.
+      */
+    public java.lang.String getAllergyNote() {
+      return allergyNote;
+    }
+
+    /**
+      * Sets the value of the 'allergyNote' field.
+      * @param value The value of 'allergyNote'.
+      * @return This builder.
+      */
+    public com.diviso.graeshoppe.order.avro.Order.Builder setAllergyNote(java.lang.String value) {
+      validate(fields()[6], value);
+      this.allergyNote = value;
+      fieldSetFlags()[6] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'allergyNote' field has been set.
+      * @return True if the 'allergyNote' field has been set, false otherwise.
+      */
+    public boolean hasAllergyNote() {
+      return fieldSetFlags()[6];
+    }
+
+
+    /**
+      * Clears the value of the 'allergyNote' field.
+      * @return This builder.
+      */
+    public com.diviso.graeshoppe.order.avro.Order.Builder clearAllergyNote() {
+      allergyNote = null;
+      fieldSetFlags()[6] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'preOrderDate' field.
+      * @return The value.
+      */
+    public java.lang.Long getPreOrderDate() {
+      return preOrderDate;
+    }
+
+    /**
+      * Sets the value of the 'preOrderDate' field.
+      * @param value The value of 'preOrderDate'.
+      * @return This builder.
+      */
+    public com.diviso.graeshoppe.order.avro.Order.Builder setPreOrderDate(long value) {
+      validate(fields()[7], value);
+      this.preOrderDate = value;
+      fieldSetFlags()[7] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'preOrderDate' field has been set.
+      * @return True if the 'preOrderDate' field has been set, false otherwise.
+      */
+    public boolean hasPreOrderDate() {
+      return fieldSetFlags()[7];
+    }
+
+
+    /**
+      * Clears the value of the 'preOrderDate' field.
+      * @return This builder.
+      */
+    public com.diviso.graeshoppe.order.avro.Order.Builder clearPreOrderDate() {
+      fieldSetFlags()[7] = false;
+      return this;
+    }
+
+    /**
       * Gets the value of the 'email' field.
       * @return The value.
       */
@@ -816,9 +983,9 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public com.diviso.graeshoppe.order.avro.Order.Builder setEmail(java.lang.String value) {
-      validate(fields()[6], value);
+      validate(fields()[8], value);
       this.email = value;
-      fieldSetFlags()[6] = true;
+      fieldSetFlags()[8] = true;
       return this;
     }
 
@@ -827,7 +994,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'email' field has been set, false otherwise.
       */
     public boolean hasEmail() {
-      return fieldSetFlags()[6];
+      return fieldSetFlags()[8];
     }
 
 
@@ -837,7 +1004,45 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public com.diviso.graeshoppe.order.avro.Order.Builder clearEmail() {
       email = null;
-      fieldSetFlags()[6] = false;
+      fieldSetFlags()[8] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'customerPhone' field.
+      * @return The value.
+      */
+    public java.lang.Long getCustomerPhone() {
+      return customerPhone;
+    }
+
+    /**
+      * Sets the value of the 'customerPhone' field.
+      * @param value The value of 'customerPhone'.
+      * @return This builder.
+      */
+    public com.diviso.graeshoppe.order.avro.Order.Builder setCustomerPhone(long value) {
+      validate(fields()[9], value);
+      this.customerPhone = value;
+      fieldSetFlags()[9] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'customerPhone' field has been set.
+      * @return True if the 'customerPhone' field has been set, false otherwise.
+      */
+    public boolean hasCustomerPhone() {
+      return fieldSetFlags()[9];
+    }
+
+
+    /**
+      * Clears the value of the 'customerPhone' field.
+      * @return This builder.
+      */
+    public com.diviso.graeshoppe.order.avro.Order.Builder clearCustomerPhone() {
+      fieldSetFlags()[9] = false;
       return this;
     }
 
@@ -855,9 +1060,9 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public com.diviso.graeshoppe.order.avro.Order.Builder setOrderCountRestaurant(java.lang.Long value) {
-      validate(fields()[7], value);
+      validate(fields()[10], value);
       this.orderCountRestaurant = value;
-      fieldSetFlags()[7] = true;
+      fieldSetFlags()[10] = true;
       return this;
     }
 
@@ -866,7 +1071,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'orderCountRestaurant' field has been set, false otherwise.
       */
     public boolean hasOrderCountRestaurant() {
-      return fieldSetFlags()[7];
+      return fieldSetFlags()[10];
     }
 
 
@@ -876,7 +1081,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public com.diviso.graeshoppe.order.avro.Order.Builder clearOrderCountRestaurant() {
       orderCountRestaurant = null;
-      fieldSetFlags()[7] = false;
+      fieldSetFlags()[10] = false;
       return this;
     }
 
@@ -894,9 +1099,9 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public com.diviso.graeshoppe.order.avro.Order.Builder setOrderCountgraeshoppe(java.lang.Long value) {
-      validate(fields()[8], value);
+      validate(fields()[11], value);
       this.orderCountgraeshoppe = value;
-      fieldSetFlags()[8] = true;
+      fieldSetFlags()[11] = true;
       return this;
     }
 
@@ -905,7 +1110,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'orderCountgraeshoppe' field has been set, false otherwise.
       */
     public boolean hasOrderCountgraeshoppe() {
-      return fieldSetFlags()[8];
+      return fieldSetFlags()[11];
     }
 
 
@@ -915,7 +1120,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public com.diviso.graeshoppe.order.avro.Order.Builder clearOrderCountgraeshoppe() {
       orderCountgraeshoppe = null;
-      fieldSetFlags()[8] = false;
+      fieldSetFlags()[11] = false;
       return this;
     }
 
@@ -933,10 +1138,10 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public com.diviso.graeshoppe.order.avro.Order.Builder setDeliveryInfo(com.diviso.graeshoppe.order.avro.DeliveryInfo value) {
-      validate(fields()[9], value);
+      validate(fields()[12], value);
       this.deliveryInfoBuilder = null;
       this.deliveryInfo = value;
-      fieldSetFlags()[9] = true;
+      fieldSetFlags()[12] = true;
       return this;
     }
 
@@ -945,7 +1150,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'deliveryInfo' field has been set, false otherwise.
       */
     public boolean hasDeliveryInfo() {
-      return fieldSetFlags()[9];
+      return fieldSetFlags()[12];
     }
 
     /**
@@ -989,7 +1194,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
     public com.diviso.graeshoppe.order.avro.Order.Builder clearDeliveryInfo() {
       deliveryInfo = null;
       deliveryInfoBuilder = null;
-      fieldSetFlags()[9] = false;
+      fieldSetFlags()[12] = false;
       return this;
     }
 
@@ -1007,10 +1212,10 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public com.diviso.graeshoppe.order.avro.Order.Builder setApprovalDetails(com.diviso.graeshoppe.order.avro.ApprovalDetails value) {
-      validate(fields()[10], value);
+      validate(fields()[13], value);
       this.approvalDetailsBuilder = null;
       this.approvalDetails = value;
-      fieldSetFlags()[10] = true;
+      fieldSetFlags()[13] = true;
       return this;
     }
 
@@ -1019,7 +1224,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'approvalDetails' field has been set, false otherwise.
       */
     public boolean hasApprovalDetails() {
-      return fieldSetFlags()[10];
+      return fieldSetFlags()[13];
     }
 
     /**
@@ -1063,7 +1268,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
     public com.diviso.graeshoppe.order.avro.Order.Builder clearApprovalDetails() {
       approvalDetails = null;
       approvalDetailsBuilder = null;
-      fieldSetFlags()[10] = false;
+      fieldSetFlags()[13] = false;
       return this;
     }
 
@@ -1081,10 +1286,10 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public com.diviso.graeshoppe.order.avro.Order.Builder setStatus(com.diviso.graeshoppe.order.avro.Status value) {
-      validate(fields()[11], value);
+      validate(fields()[14], value);
       this.statusBuilder = null;
       this.status = value;
-      fieldSetFlags()[11] = true;
+      fieldSetFlags()[14] = true;
       return this;
     }
 
@@ -1093,7 +1298,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'status' field has been set, false otherwise.
       */
     public boolean hasStatus() {
-      return fieldSetFlags()[11];
+      return fieldSetFlags()[14];
     }
 
     /**
@@ -1137,7 +1342,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
     public com.diviso.graeshoppe.order.avro.Order.Builder clearStatus() {
       status = null;
       statusBuilder = null;
-      fieldSetFlags()[11] = false;
+      fieldSetFlags()[14] = false;
       return this;
     }
 
@@ -1155,9 +1360,9 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public com.diviso.graeshoppe.order.avro.Order.Builder setOrderLines(java.util.List<com.diviso.graeshoppe.order.avro.OrderLine> value) {
-      validate(fields()[12], value);
+      validate(fields()[15], value);
       this.orderLines = value;
-      fieldSetFlags()[12] = true;
+      fieldSetFlags()[15] = true;
       return this;
     }
 
@@ -1166,7 +1371,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'orderLines' field has been set, false otherwise.
       */
     public boolean hasOrderLines() {
-      return fieldSetFlags()[12];
+      return fieldSetFlags()[15];
     }
 
 
@@ -1176,7 +1381,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public com.diviso.graeshoppe.order.avro.Order.Builder clearOrderLines() {
       orderLines = null;
-      fieldSetFlags()[12] = false;
+      fieldSetFlags()[15] = false;
       return this;
     }
 
@@ -1194,9 +1399,9 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public com.diviso.graeshoppe.order.avro.Order.Builder setOfferLines(java.util.List<com.diviso.graeshoppe.order.avro.Offer> value) {
-      validate(fields()[13], value);
+      validate(fields()[16], value);
       this.offerLines = value;
-      fieldSetFlags()[13] = true;
+      fieldSetFlags()[16] = true;
       return this;
     }
 
@@ -1205,7 +1410,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'offerLines' field has been set, false otherwise.
       */
     public boolean hasOfferLines() {
-      return fieldSetFlags()[13];
+      return fieldSetFlags()[16];
     }
 
 
@@ -1215,7 +1420,7 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
       */
     public com.diviso.graeshoppe.order.avro.Order.Builder clearOfferLines() {
       offerLines = null;
-      fieldSetFlags()[13] = false;
+      fieldSetFlags()[16] = false;
       return this;
     }
 
@@ -1230,26 +1435,29 @@ public class Order extends org.apache.avro.specific.SpecificRecordBase implement
         record.date = fieldSetFlags()[3] ? this.date : (java.lang.Long) defaultValue(fields()[3]);
         record.grandTotal = fieldSetFlags()[4] ? this.grandTotal : (java.lang.Double) defaultValue(fields()[4]);
         record.paymentRef = fieldSetFlags()[5] ? this.paymentRef : (java.lang.String) defaultValue(fields()[5]);
-        record.email = fieldSetFlags()[6] ? this.email : (java.lang.String) defaultValue(fields()[6]);
-        record.orderCountRestaurant = fieldSetFlags()[7] ? this.orderCountRestaurant : (java.lang.Long) defaultValue(fields()[7]);
-        record.orderCountgraeshoppe = fieldSetFlags()[8] ? this.orderCountgraeshoppe : (java.lang.Long) defaultValue(fields()[8]);
+        record.allergyNote = fieldSetFlags()[6] ? this.allergyNote : (java.lang.String) defaultValue(fields()[6]);
+        record.preOrderDate = fieldSetFlags()[7] ? this.preOrderDate : (java.lang.Long) defaultValue(fields()[7]);
+        record.email = fieldSetFlags()[8] ? this.email : (java.lang.String) defaultValue(fields()[8]);
+        record.customerPhone = fieldSetFlags()[9] ? this.customerPhone : (java.lang.Long) defaultValue(fields()[9]);
+        record.orderCountRestaurant = fieldSetFlags()[10] ? this.orderCountRestaurant : (java.lang.Long) defaultValue(fields()[10]);
+        record.orderCountgraeshoppe = fieldSetFlags()[11] ? this.orderCountgraeshoppe : (java.lang.Long) defaultValue(fields()[11]);
         if (deliveryInfoBuilder != null) {
           record.deliveryInfo = this.deliveryInfoBuilder.build();
         } else {
-          record.deliveryInfo = fieldSetFlags()[9] ? this.deliveryInfo : (com.diviso.graeshoppe.order.avro.DeliveryInfo) defaultValue(fields()[9]);
+          record.deliveryInfo = fieldSetFlags()[12] ? this.deliveryInfo : (com.diviso.graeshoppe.order.avro.DeliveryInfo) defaultValue(fields()[12]);
         }
         if (approvalDetailsBuilder != null) {
           record.approvalDetails = this.approvalDetailsBuilder.build();
         } else {
-          record.approvalDetails = fieldSetFlags()[10] ? this.approvalDetails : (com.diviso.graeshoppe.order.avro.ApprovalDetails) defaultValue(fields()[10]);
+          record.approvalDetails = fieldSetFlags()[13] ? this.approvalDetails : (com.diviso.graeshoppe.order.avro.ApprovalDetails) defaultValue(fields()[13]);
         }
         if (statusBuilder != null) {
           record.status = this.statusBuilder.build();
         } else {
-          record.status = fieldSetFlags()[11] ? this.status : (com.diviso.graeshoppe.order.avro.Status) defaultValue(fields()[11]);
+          record.status = fieldSetFlags()[14] ? this.status : (com.diviso.graeshoppe.order.avro.Status) defaultValue(fields()[14]);
         }
-        record.orderLines = fieldSetFlags()[12] ? this.orderLines : (java.util.List<com.diviso.graeshoppe.order.avro.OrderLine>) defaultValue(fields()[12]);
-        record.offerLines = fieldSetFlags()[13] ? this.offerLines : (java.util.List<com.diviso.graeshoppe.order.avro.Offer>) defaultValue(fields()[13]);
+        record.orderLines = fieldSetFlags()[15] ? this.orderLines : (java.util.List<com.diviso.graeshoppe.order.avro.OrderLine>) defaultValue(fields()[15]);
+        record.offerLines = fieldSetFlags()[16] ? this.offerLines : (java.util.List<com.diviso.graeshoppe.order.avro.Offer>) defaultValue(fields()[16]);
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
