@@ -51,11 +51,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = ReportApp.class)
 public class OrderMasterResourceIntTest {
 
+    private static final String DEFAULT_STORE_IDPCODE = "AAAAAAAAAA";
+    private static final String UPDATED_STORE_IDPCODE = "BBBBBBBBBB";
+
     private static final String DEFAULT_STORE_NAME = "AAAAAAAAAA";
     private static final String UPDATED_STORE_NAME = "BBBBBBBBBB";
 
     private static final Long DEFAULT_STORE_PHONE = 1L;
     private static final Long UPDATED_STORE_PHONE = 2L;
+
+    private static final String DEFAULT_STORELOCATION_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_STORELOCATION_NAME = "BBBBBBBBBB";
 
     private static final String DEFAULT_METHOD_OF_ORDER = "AAAAAAAAAA";
     private static final String UPDATED_METHOD_OF_ORDER = "BBBBBBBBBB";
@@ -191,8 +197,10 @@ public class OrderMasterResourceIntTest {
      */
     public static OrderMaster createEntity(EntityManager em) {
         OrderMaster orderMaster = new OrderMaster()
+            .storeIdpcode(DEFAULT_STORE_IDPCODE)
             .storeName(DEFAULT_STORE_NAME)
             .storePhone(DEFAULT_STORE_PHONE)
+            .storelocationName(DEFAULT_STORELOCATION_NAME)
             .methodOfOrder(DEFAULT_METHOD_OF_ORDER)
             .expectedDelivery(DEFAULT_EXPECTED_DELIVERY)
             .orderNumber(DEFAULT_ORDER_NUMBER)
@@ -243,8 +251,10 @@ public class OrderMasterResourceIntTest {
         List<OrderMaster> orderMasterList = orderMasterRepository.findAll();
         assertThat(orderMasterList).hasSize(databaseSizeBeforeCreate + 1);
         OrderMaster testOrderMaster = orderMasterList.get(orderMasterList.size() - 1);
+        assertThat(testOrderMaster.getStoreIdpcode()).isEqualTo(DEFAULT_STORE_IDPCODE);
         assertThat(testOrderMaster.getStoreName()).isEqualTo(DEFAULT_STORE_NAME);
         assertThat(testOrderMaster.getStorePhone()).isEqualTo(DEFAULT_STORE_PHONE);
+        assertThat(testOrderMaster.getStorelocationName()).isEqualTo(DEFAULT_STORELOCATION_NAME);
         assertThat(testOrderMaster.getMethodOfOrder()).isEqualTo(DEFAULT_METHOD_OF_ORDER);
         assertThat(testOrderMaster.getExpectedDelivery()).isEqualTo(DEFAULT_EXPECTED_DELIVERY);
         assertThat(testOrderMaster.getOrderNumber()).isEqualTo(DEFAULT_ORDER_NUMBER);
@@ -310,8 +320,10 @@ public class OrderMasterResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(orderMaster.getId().intValue())))
+            .andExpect(jsonPath("$.[*].storeIdpcode").value(hasItem(DEFAULT_STORE_IDPCODE.toString())))
             .andExpect(jsonPath("$.[*].storeName").value(hasItem(DEFAULT_STORE_NAME.toString())))
             .andExpect(jsonPath("$.[*].storePhone").value(hasItem(DEFAULT_STORE_PHONE.intValue())))
+            .andExpect(jsonPath("$.[*].storelocationName").value(hasItem(DEFAULT_STORELOCATION_NAME.toString())))
             .andExpect(jsonPath("$.[*].methodOfOrder").value(hasItem(DEFAULT_METHOD_OF_ORDER.toString())))
             .andExpect(jsonPath("$.[*].expectedDelivery").value(hasItem(DEFAULT_EXPECTED_DELIVERY.toString())))
             .andExpect(jsonPath("$.[*].orderNumber").value(hasItem(DEFAULT_ORDER_NUMBER.toString())))
@@ -351,8 +363,10 @@ public class OrderMasterResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(orderMaster.getId().intValue()))
+            .andExpect(jsonPath("$.storeIdpcode").value(DEFAULT_STORE_IDPCODE.toString()))
             .andExpect(jsonPath("$.storeName").value(DEFAULT_STORE_NAME.toString()))
             .andExpect(jsonPath("$.storePhone").value(DEFAULT_STORE_PHONE.intValue()))
+            .andExpect(jsonPath("$.storelocationName").value(DEFAULT_STORELOCATION_NAME.toString()))
             .andExpect(jsonPath("$.methodOfOrder").value(DEFAULT_METHOD_OF_ORDER.toString()))
             .andExpect(jsonPath("$.expectedDelivery").value(DEFAULT_EXPECTED_DELIVERY.toString()))
             .andExpect(jsonPath("$.orderNumber").value(DEFAULT_ORDER_NUMBER.toString()))
@@ -402,8 +416,10 @@ public class OrderMasterResourceIntTest {
         // Disconnect from session so that the updates on updatedOrderMaster are not directly saved in db
         em.detach(updatedOrderMaster);
         updatedOrderMaster
+            .storeIdpcode(UPDATED_STORE_IDPCODE)
             .storeName(UPDATED_STORE_NAME)
             .storePhone(UPDATED_STORE_PHONE)
+            .storelocationName(UPDATED_STORELOCATION_NAME)
             .methodOfOrder(UPDATED_METHOD_OF_ORDER)
             .expectedDelivery(UPDATED_EXPECTED_DELIVERY)
             .orderNumber(UPDATED_ORDER_NUMBER)
@@ -441,8 +457,10 @@ public class OrderMasterResourceIntTest {
         List<OrderMaster> orderMasterList = orderMasterRepository.findAll();
         assertThat(orderMasterList).hasSize(databaseSizeBeforeUpdate);
         OrderMaster testOrderMaster = orderMasterList.get(orderMasterList.size() - 1);
+        assertThat(testOrderMaster.getStoreIdpcode()).isEqualTo(UPDATED_STORE_IDPCODE);
         assertThat(testOrderMaster.getStoreName()).isEqualTo(UPDATED_STORE_NAME);
         assertThat(testOrderMaster.getStorePhone()).isEqualTo(UPDATED_STORE_PHONE);
+        assertThat(testOrderMaster.getStorelocationName()).isEqualTo(UPDATED_STORELOCATION_NAME);
         assertThat(testOrderMaster.getMethodOfOrder()).isEqualTo(UPDATED_METHOD_OF_ORDER);
         assertThat(testOrderMaster.getExpectedDelivery()).isEqualTo(UPDATED_EXPECTED_DELIVERY);
         assertThat(testOrderMaster.getOrderNumber()).isEqualTo(UPDATED_ORDER_NUMBER);
@@ -529,8 +547,10 @@ public class OrderMasterResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(orderMaster.getId().intValue())))
+            .andExpect(jsonPath("$.[*].storeIdpcode").value(hasItem(DEFAULT_STORE_IDPCODE)))
             .andExpect(jsonPath("$.[*].storeName").value(hasItem(DEFAULT_STORE_NAME)))
             .andExpect(jsonPath("$.[*].storePhone").value(hasItem(DEFAULT_STORE_PHONE.intValue())))
+            .andExpect(jsonPath("$.[*].storelocationName").value(hasItem(DEFAULT_STORELOCATION_NAME)))
             .andExpect(jsonPath("$.[*].methodOfOrder").value(hasItem(DEFAULT_METHOD_OF_ORDER)))
             .andExpect(jsonPath("$.[*].expectedDelivery").value(hasItem(DEFAULT_EXPECTED_DELIVERY.toString())))
             .andExpect(jsonPath("$.[*].orderNumber").value(hasItem(DEFAULT_ORDER_NUMBER)))

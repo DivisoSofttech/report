@@ -26,11 +26,17 @@ public class OrderMaster implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "store_idpcode")
+    private String storeIdpcode;
+
     @Column(name = "store_name")
     private String storeName;
 
     @Column(name = "store_phone")
     private Long storePhone;
+
+    @Column(name = "storelocation_name")
+    private String storelocationName;
 
     @Column(name = "method_of_order")
     private String methodOfOrder;
@@ -121,6 +127,19 @@ public class OrderMaster implements Serializable {
         this.id = id;
     }
 
+    public String getStoreIdpcode() {
+        return storeIdpcode;
+    }
+
+    public OrderMaster storeIdpcode(String storeIdpcode) {
+        this.storeIdpcode = storeIdpcode;
+        return this;
+    }
+
+    public void setStoreIdpcode(String storeIdpcode) {
+        this.storeIdpcode = storeIdpcode;
+    }
+
     public String getStoreName() {
         return storeName;
     }
@@ -145,6 +164,19 @@ public class OrderMaster implements Serializable {
 
     public void setStorePhone(Long storePhone) {
         this.storePhone = storePhone;
+    }
+
+    public String getStorelocationName() {
+        return storelocationName;
+    }
+
+    public OrderMaster storelocationName(String storelocationName) {
+        this.storelocationName = storelocationName;
+        return this;
+    }
+
+    public void setStorelocationName(String storelocationName) {
+        this.storelocationName = storelocationName;
     }
 
     public String getMethodOfOrder() {
@@ -535,8 +567,10 @@ public class OrderMaster implements Serializable {
     public String toString() {
         return "OrderMaster{" +
             "id=" + getId() +
+            ", storeIdpcode='" + getStoreIdpcode() + "'" +
             ", storeName='" + getStoreName() + "'" +
             ", storePhone=" + getStorePhone() +
+            ", storelocationName='" + getStorelocationName() + "'" +
             ", methodOfOrder='" + getMethodOfOrder() + "'" +
             ", expectedDelivery='" + getExpectedDelivery() + "'" +
             ", orderNumber='" + getOrderNumber() + "'" +
