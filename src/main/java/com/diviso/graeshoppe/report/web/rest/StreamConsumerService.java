@@ -24,6 +24,7 @@ public class StreamConsumerService {
 	@Autowired
 	private OrderMasterService orderMasterService;
 
+	@SuppressWarnings("static-access")
 	@StreamListener(MessageBinderConfiguration.PAYMENT)
 	public void listenToPayment(KStream<String, Payment> message) {
 		message.foreach((key, value) -> {
@@ -43,7 +44,7 @@ public class StreamConsumerService {
 			} else {
 
 				CompletableFuture<String> completableFuture = new CompletableFuture<>();
-				CompletableFuture.runAsync(() -> {
+				completableFuture.runAsync(() -> {
 					System.out.println("Inside RunAsync+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 					boolean executeFlag = true;
 					int count = 0;
