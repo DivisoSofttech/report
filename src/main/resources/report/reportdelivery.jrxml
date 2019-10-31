@@ -466,7 +466,7 @@
 				<textFieldExpression><![CDATA[$F{order_place_at}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="70" y="342" width="65" height="20" uuid="6c23c63c-beb8-4354-bbb3-eb1260ae2a7e"/>
+				<reportElement positionType="Float" x="70" y="342" width="70" height="20" uuid="6c23c63c-beb8-4354-bbb3-eb1260ae2a7e"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -500,13 +500,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement positionType="Float" x="-12" y="304" width="140" height="20" uuid="a9b06051-e6cc-4982-ba8d-b3271cb07894"/>
-				<textElement>
-					<font size="9"/>
-				</textElement>
-				<text><![CDATA[Order Count for Loyalty:]]></text>
-			</staticText>
 			<textField>
 				<reportElement positionType="Float" x="-12" y="232" width="144" height="20" uuid="88b402fb-8a7f-47cb-8d50-efd754ff00fc"/>
 				<textElement>
