@@ -494,7 +494,7 @@
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField pattern="HH:mm">
-				<reportElement positionType="Float" x="53" y="387" width="88" height="22" uuid="873b080b-2ada-4180-bf03-fde7fe0b2ea2"/>
+				<reportElement positionType="Float" x="53" y="380" width="88" height="22" uuid="873b080b-2ada-4180-bf03-fde7fe0b2ea2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
