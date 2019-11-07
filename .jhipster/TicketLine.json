@@ -1,0 +1,43 @@
+{
+    "name": "TicketLine",
+    "fields": [
+        {
+            "fieldName": "productId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "productName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "quantity",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "total",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "sale",
+            "otherEntityName": "sale",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191102042322",
+    "entityTableName": "ticket_line",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "report",
+    "applications": "*",
+    "microserviceName": "report"
+}

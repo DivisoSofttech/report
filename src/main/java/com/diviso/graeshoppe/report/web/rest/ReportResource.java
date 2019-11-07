@@ -195,6 +195,32 @@ public class ReportResource {
 	   return reportService.createReportSummary(expectedDelivery,storeName); 
 	   }
 	  
+	  
+	  @GetMapping("/salereport/{storeidpcode}")
+		 public ResponseEntity<byte[]> getSaleReportAsPdf(@PathVariable String storeidpcode) {
+		       
+		       //log.debug("REST request to get a pdf");
+		     
+		       byte[] pdfContents = null;
+		    
+		      try
+		      {
+		        pdfContents=reportService.getSaleReportAsPdf(storeidpcode);
+		      }
+		      catch (JRException e) {
+		           e.printStackTrace();
+		      }
+		     
+		        HttpHeaders headers = new HttpHeaders();
+		        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		       String fileName ="salereport.pdf";
+		        headers.add("content-disposition", "attachment; filename=" + fileName);
+		        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(
+		     	           pdfContents, headers, HttpStatus.OK);	      
+		       return response;
+		   }
+
+	  
 }
 	 
 	

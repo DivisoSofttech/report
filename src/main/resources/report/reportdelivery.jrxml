@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportcomboaux" pageWidth="164" pageHeight="842" columnWidth="124" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="4f9c452d-ec08-4c11-b02e-84e1e88767b7">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (37)"/>
@@ -181,7 +181,7 @@
 				<textFieldExpression><![CDATA[$F{store_phone}]]></textFieldExpression>
 			</textField>
 			<image scaleImage="RealSize">
-				<reportElement positionType="Float" x="2" y="-58" width="116" height="144" uuid="3cba4762-53c6-475f-902e-332d4514fd69"/>
+				<reportElement positionType="Float" x="3" y="-58" width="116" height="144" uuid="3cba4762-53c6-475f-902e-332d4514fd69"/>
 				<graphicElement fill="Solid"/>
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
