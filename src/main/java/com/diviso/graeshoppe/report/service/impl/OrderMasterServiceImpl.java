@@ -172,7 +172,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		}
 		OrderMaster orderMaster=new OrderMaster();
 		Store store = reportService.findStoreByStoreId(order.getStoreId());
-		Customer customer=customerResourceApi.findByReferenceUsingGET(order.getCustomerId()).getBody();
+		Customer customer=reportService.findCustomerByReference(order.getCustomerId());
 		orderMaster.setStoreName(store.getName());
 		orderMaster.setStorePhone(store.getContactNo());
 		orderMaster.setMethodOfOrder(order.getDeliveryInfo().getDeliveryType().toUpperCase());

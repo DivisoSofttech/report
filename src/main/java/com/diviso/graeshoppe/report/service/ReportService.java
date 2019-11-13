@@ -3,6 +3,7 @@ package com.diviso.graeshoppe.report.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.diviso.graeshoppe.report.client.customer.model.Customer;
 import com.diviso.graeshoppe.report.client.product.model.ComboLineItem;
 import com.diviso.graeshoppe.report.client.product.model.Product;
 import com.diviso.graeshoppe.report.client.store.model.Store;
@@ -45,6 +46,8 @@ public interface ReportService {
 	ReportSummary createReportSummary(String expectedDelivery, String storeName);
 
 	byte[] getSaleReportAsPdf(String storeidpcode)throws JRException;
+
+	Customer findCustomerByReference(String reference);
 	
 	
 	

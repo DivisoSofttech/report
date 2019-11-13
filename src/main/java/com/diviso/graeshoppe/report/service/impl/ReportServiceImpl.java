@@ -20,6 +20,7 @@ import org.springframework.data.elasticsearch.core.query.StringQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.diviso.graeshoppe.report.client.customer.model.Customer;
 import com.diviso.graeshoppe.report.client.product.model.ComboLineItem;
 import com.diviso.graeshoppe.report.client.product.model.Product;
 import com.diviso.graeshoppe.report.client.store.model.Store;
@@ -123,6 +124,12 @@ public class ReportServiceImpl implements ReportService {
 		return elasticsearchOperations.queryForObject(stringQuery, Store.class);
 	}
 
+	@Override
+	public Customer findCustomerByReference(String reference) {
+		StringQuery stringQuery = new StringQuery(termQuery("reference", reference).toString());
+		return elasticsearchOperations.queryForObject(stringQuery, Customer.class);
+	}
+	
 	@Override
 	public Product findProductByProductId(Long productId) {
 		StringQuery stringQuery = new StringQuery(termQuery("id", productId).toString());
