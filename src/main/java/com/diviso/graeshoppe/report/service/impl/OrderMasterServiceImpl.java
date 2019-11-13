@@ -6,7 +6,10 @@ import com.diviso.graeshoppe.report.service.OrderLineService;
 import com.diviso.graeshoppe.report.service.OrderMasterService;
 import com.diviso.graeshoppe.report.service.ReportService;
 import com.diviso.graeshoppe.order.avro.AuxilaryOrderLine;
-import com.diviso.graeshoppe.order.avro.Order;import com.diviso.graeshoppe.report.client.product.model.ComboLineItem;
+import com.diviso.graeshoppe.order.avro.Order;
+import com.diviso.graeshoppe.report.client.customer.api.CustomerResourceApi;
+import com.diviso.graeshoppe.report.client.customer.model.Customer;
+import com.diviso.graeshoppe.report.client.product.model.ComboLineItem;
 import com.diviso.graeshoppe.report.client.product.model.Product;
 import com.diviso.graeshoppe.report.client.store.model.Store;
 import com.diviso.graeshoppe.report.domain.AuxItem;
@@ -67,6 +70,8 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	private ComboItemService comboItemService;
 	private final OrderMasterMapper orderMasterMapper;
 
+	@Autowired
+	private CustomerResourceApi customerResourceApi;
 	private final OrderMasterSearchRepository orderMasterSearchRepository;
 
 	public OrderMasterServiceImpl(OrderMasterRepository orderMasterRepository, OrderMasterMapper orderMasterMapper,
@@ -167,6 +172,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		}
 		OrderMaster orderMaster=new OrderMaster();
 		Store store = reportService.findStoreByStoreId(order.getStoreId());
+		Customer customer=customerResourceApi.findByReferenceUsingGET(order.getCustomerId()).getBody();
 		orderMaster.setStoreName(store.getName());
 		orderMaster.setStorePhone(store.getContactNo());
 		orderMaster.setMethodOfOrder(order.getDeliveryInfo().getDeliveryType().toUpperCase());
@@ -189,10 +195,11 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 			orderMaster.setAddressType(order.getDeliveryInfo().getDeliveryAddress().getAddressType());
 			orderMaster.setName(order.getDeliveryInfo().getDeliveryAddress().getName());
 		}
-		orderMaster.setCustomerId(order.getCustomerId());
+		orderMaster.setCustomerId(customer.getCustomerUniqueId());
 		orderMaster.setNotes(order.getDeliveryInfo().getDeliveryNotes());
 		orderMaster.setOrderFromCustomer(order.getOrderCountRestaurant());
 		orderMaster.setTotalDue(order.getGrandTotal());
+		orderMaster.storelocationName(store.getStoreAddress().getLandmark());
 		Instant expectedDelivery = Instant.ofEpochMilli(order.getApprovalDetails().getExpectedDelivery());
 		orderMaster.setExpectedDelivery(expectedDelivery);
 		orderMaster.setCustomerOrder(order.getOrderCountgraeshoppe());
