@@ -43,6 +43,8 @@ public interface ReportService {
 
 	
 	ReportSummary createReportSummary(String expectedDelivery, String storeName);
+
+	byte[] getSaleReportAsPdf(String storeidpcode)throws JRException;
 	
 	
 	

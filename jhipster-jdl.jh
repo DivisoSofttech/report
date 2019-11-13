@@ -57,11 +57,28 @@ quantity Integer,
 total Double
 }
 
+entity Sale{
+storeName String,
+storePhone Long,
+storeidpcode String,
+customerId Long,
+date Instant,
+grandTotal Double
+}
+
+entity TicketLine{
+productId Long,
+productName String,
+quantity Integer,
+price Double,
+total Double
+}
 
 relationship OneToMany{
 OrderMaster{OrderLine} to OrderLine,
 OrderLine{auxItem} to AuxItem,
-OrderLine{comboItem} to ComboItem
+OrderLine{comboItem} to ComboItem,
+Sale{TicketLine} to TicketLine
 }
 
 

@@ -2,6 +2,10 @@
     "name": "OrderMaster",
     "fields": [
         {
+            "fieldName": "storeIdpcode",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "storeName",
             "fieldType": "String"
         },
@@ -10,11 +14,14 @@
             "fieldType": "Long"
         },
         {
+            "fieldName": "storelocationName",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "methodOfOrder",
             "fieldType": "String"
         },
         {
-
             "fieldName": "expectedDelivery",
             "fieldType": "Instant"
         },
@@ -101,6 +108,18 @@
         {
             "fieldName": "orderAcceptedAt",
             "fieldType": "Instant"
+        },
+        {
+            "fieldName": "allergyNote",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "preOrderDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
         }
     ],
     "relationships": [

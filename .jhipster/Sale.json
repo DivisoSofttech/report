@@ -1,0 +1,47 @@
+{
+    "name": "Sale",
+    "fields": [
+        {
+            "fieldName": "storeName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "storePhone",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "storeidpcode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "customerId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "grandTotal",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "ticketLine",
+            "otherEntityName": "ticketLine",
+            "otherEntityRelationshipName": "sale"
+        }
+    ],
+    "changelogDate": "20191102042321",
+    "entityTableName": "sale",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "report",
+    "applications": "*",
+    "microserviceName": "report"
+}

@@ -203,6 +203,23 @@ public class ReportServiceImpl implements ReportService {
 		
 		return reportSummary; 
 	}
+
+	@Override
+	public byte[] getSaleReportAsPdf(String storeidpcode) throws JRException {
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/sale.jrxml");
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("store_i_d_pcode", storeidpcode);
+				Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		return JasperExportManager.exportReportToPdf(jp);
+	}
 		
 	
 
