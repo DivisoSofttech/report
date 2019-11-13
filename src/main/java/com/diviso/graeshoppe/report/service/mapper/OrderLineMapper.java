@@ -11,10 +11,12 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {OrderMasterMapper.class})
 public interface OrderLineMapper extends EntityMapper<OrderLineDTO, OrderLine> {
 
-    @Mapping(source = "orderMaster.id", target = "orderMasterId")
+    @Override
+	@Mapping(source = "orderMaster.id", target = "orderMasterId")
     OrderLineDTO toDto(OrderLine orderLine);
 
-    @Mapping(source = "orderMasterId", target = "orderMaster")
+    @Override
+	@Mapping(source = "orderMasterId", target = "orderMaster")
     @Mapping(target = "auxItems", ignore = true)
     @Mapping(target = "comboItems", ignore = true)
     OrderLine toEntity(OrderLineDTO orderLineDTO);

@@ -20,11 +20,9 @@ import org.springframework.data.elasticsearch.core.query.StringQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.diviso.graeshoppe.report.client.order.model.Reportsummary;
 import com.diviso.graeshoppe.report.client.product.model.ComboLineItem;
 import com.diviso.graeshoppe.report.client.product.model.Product;
 import com.diviso.graeshoppe.report.client.store.model.Store;
-import com.diviso.graeshoppe.report.domain.OrderMaster;
 import com.diviso.graeshoppe.report.domain.ReportSummary;
 import com.diviso.graeshoppe.report.repository.OrderMasterRepository;
 import com.diviso.graeshoppe.report.service.OrderMasterService;
@@ -40,8 +38,6 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.util.JRLoader;
 
 @Service
 @Transactional

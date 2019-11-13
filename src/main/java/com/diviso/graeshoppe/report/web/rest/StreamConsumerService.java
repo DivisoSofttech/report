@@ -44,7 +44,7 @@ public class StreamConsumerService {
 			} else {
 
 				CompletableFuture<String> completableFuture = new CompletableFuture<>();
-				completableFuture.runAsync(() -> {
+				CompletableFuture.runAsync(() -> {
 					System.out.println("Inside RunAsync+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 					boolean executeFlag = true;
 					int count = 0;
@@ -76,14 +76,6 @@ public class StreamConsumerService {
 
 				});
 
-				/*
-				 * try { Thread.sleep(10000l); OrderMasterDTO orderMasterDTO =
-				 * orderMaster.get(); if (!value.getPaymentType().equals("cod")) {
-				 * LOG.info("Order paid"); orderMasterDTO.setOrderStatus("ORDER PAID"); } else {
-				 * LOG.info("Order Not paid"); orderMasterDTO.setOrderStatus("ORDER NOT PAID");
-				 * } orderMasterService.save(orderMasterDTO); } catch (InterruptedException e) {
-				 * e.printStackTrace(); }
-				 */
 			}
 
 		});
@@ -93,6 +85,12 @@ public class StreamConsumerService {
 	public void listenToOrder(KStream<String, Order> message) {
 		message.foreach((key, value) -> {
 			System.out.println("order Value consumed is " + value);
+			if(value.getStatus().equals("CREATE")) {
+				
+			} else if(value.getStatus().equals("UPDATE")) {
+				
+			}
+			
 			orderMasterService.convertAndSaveOrderMaster(value);
 		});
 	}

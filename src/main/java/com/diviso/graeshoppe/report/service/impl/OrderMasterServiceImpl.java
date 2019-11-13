@@ -13,8 +13,6 @@ import com.diviso.graeshoppe.report.domain.AuxItem;
 import com.diviso.graeshoppe.report.domain.ComboItem;
 import com.diviso.graeshoppe.report.domain.OrderLine;
 import com.diviso.graeshoppe.report.domain.OrderMaster;
-import com.diviso.graeshoppe.report.repository.ComboItemRepository;
-import com.diviso.graeshoppe.report.repository.OrderLineRepository;
 import com.diviso.graeshoppe.report.repository.OrderMasterRepository;
 import com.diviso.graeshoppe.report.repository.search.OrderMasterSearchRepository;
 import com.diviso.graeshoppe.report.service.dto.AuxItemDTO;
@@ -25,8 +23,6 @@ import com.diviso.graeshoppe.report.service.mapper.AuxItemMapper;
 import com.diviso.graeshoppe.report.service.mapper.ComboItemMapper;
 import com.diviso.graeshoppe.report.service.mapper.OrderLineMapper;
 import com.diviso.graeshoppe.report.service.mapper.OrderMasterMapper;
-import com.netflix.discovery.converters.Auto;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +32,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

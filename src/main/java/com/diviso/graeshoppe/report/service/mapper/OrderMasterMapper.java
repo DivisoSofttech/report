@@ -12,7 +12,8 @@ import org.mapstruct.*;
 public interface OrderMasterMapper extends EntityMapper<OrderMasterDTO, OrderMaster> {
 
 
-    @Mapping(target = "orderLines", ignore = true)
+    @Override
+	@Mapping(target = "orderLines", ignore = true)
     OrderMaster toEntity(OrderMasterDTO orderMasterDTO);
 
     default OrderMaster fromId(Long id) {

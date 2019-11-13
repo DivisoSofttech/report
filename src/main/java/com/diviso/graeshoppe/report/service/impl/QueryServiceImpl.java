@@ -62,6 +62,7 @@ public class QueryServiceImpl implements QueryService {
 	
 	
 
+	@Override
 	public ReportSummary createReportSummary(LocalDate date,String storeId) {
 
 		
