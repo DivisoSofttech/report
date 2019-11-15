@@ -98,11 +98,9 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
     this.dateAndTime = dateAndTime;
   }
 
-  @Override
-public org.apache.avro.Schema getSchema() { return SCHEMA$; }
+  public org.apache.avro.Schema getSchema() { return SCHEMA$; }
   // Used by DatumWriter.  Applications should not call.
-  @Override
-public java.lang.Object get(int field$) {
+  public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return ref;
     case 1: return payee;
@@ -120,8 +118,7 @@ public java.lang.Object get(int field$) {
   }
 
   // Used by DatumReader.  Applications should not call.
-  @Override
-@SuppressWarnings(value="unchecked")
+  @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: ref = (java.lang.String)value$; break;
@@ -919,7 +916,7 @@ public java.lang.Object get(int field$) {
 
   @SuppressWarnings("unchecked")
   private static final org.apache.avro.io.DatumWriter<Payment>
-    WRITER$ = MODEL$.createDatumWriter(SCHEMA$);
+    WRITER$ = (org.apache.avro.io.DatumWriter<Payment>)MODEL$.createDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
@@ -928,7 +925,7 @@ public java.lang.Object get(int field$) {
 
   @SuppressWarnings("unchecked")
   private static final org.apache.avro.io.DatumReader<Payment>
-    READER$ = MODEL$.createDatumReader(SCHEMA$);
+    READER$ = (org.apache.avro.io.DatumReader<Payment>)MODEL$.createDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {
