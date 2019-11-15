@@ -54,6 +54,14 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="sub_total" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="order_discount_amount" type="double">
+                <constraints nullable="true" />
+            </column>
+
             <column name="delivery_charge" type="double">
                 <constraints nullable="true" />
             </column>

@@ -1,6 +1,8 @@
 package com.diviso.graeshoppe.report.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -47,6 +49,12 @@ public class OrderMaster implements Serializable {
 
     @Column(name = "notes")
     private String notes;
+
+    @Column(name = "sub_total")
+    private Double subTotal;
+
+    @Column(name = "order_discount_amount")
+    private Double orderDiscountAmount;
 
     @Column(name = "delivery_charge")
     private Double deliveryCharge;
@@ -116,6 +124,8 @@ public class OrderMaster implements Serializable {
 
     @OneToMany(mappedBy = "orderMaster")
     private Set<OrderLine> orderLines = new HashSet<>();
+    @OneToMany(mappedBy = "orderMaster")
+    private Set<OfferLine> offerLines = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -227,6 +237,32 @@ public class OrderMaster implements Serializable {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public Double getSubTotal() {
+        return subTotal;
+    }
+
+    public OrderMaster subTotal(Double subTotal) {
+        this.subTotal = subTotal;
+        return this;
+    }
+
+    public void setSubTotal(Double subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    public Double getOrderDiscountAmount() {
+        return orderDiscountAmount;
+    }
+
+    public OrderMaster orderDiscountAmount(Double orderDiscountAmount) {
+        this.orderDiscountAmount = orderDiscountAmount;
+        return this;
+    }
+
+    public void setOrderDiscountAmount(Double orderDiscountAmount) {
+        this.orderDiscountAmount = orderDiscountAmount;
     }
 
     public Double getDeliveryCharge() {
@@ -539,6 +575,31 @@ public class OrderMaster implements Serializable {
     public void setOrderLines(Set<OrderLine> orderLines) {
         this.orderLines = orderLines;
     }
+
+    public Set<OfferLine> getOfferLines() {
+        return offerLines;
+    }
+
+    public OrderMaster offerLines(Set<OfferLine> offerLines) {
+        this.offerLines = offerLines;
+        return this;
+    }
+
+    public OrderMaster addOfferLines(OfferLine offerLine) {
+        this.offerLines.add(offerLine);
+        offerLine.setOrderMaster(this);
+        return this;
+    }
+
+    public OrderMaster removeOfferLines(OfferLine offerLine) {
+        this.offerLines.remove(offerLine);
+        offerLine.setOrderMaster(null);
+        return this;
+    }
+
+    public void setOfferLines(Set<OfferLine> offerLines) {
+        this.offerLines = offerLines;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -573,6 +634,8 @@ public class OrderMaster implements Serializable {
             ", expectedDelivery='" + getExpectedDelivery() + "'" +
             ", orderNumber='" + getOrderNumber() + "'" +
             ", notes='" + getNotes() + "'" +
+            ", subTotal=" + getSubTotal() +
+            ", orderDiscountAmount=" + getOrderDiscountAmount() +
             ", deliveryCharge=" + getDeliveryCharge() +
             ", serviceCharge=" + getServiceCharge() +
             ", totalDue=" + getTotalDue() +

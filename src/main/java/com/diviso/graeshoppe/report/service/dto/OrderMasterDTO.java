@@ -26,6 +26,10 @@ public class OrderMasterDTO implements Serializable {
 
     private String notes;
 
+    private Double subTotal;
+
+    private Double orderDiscountAmount;
+
     private Double deliveryCharge;
 
     private Double serviceCharge;
@@ -141,6 +145,22 @@ public class OrderMasterDTO implements Serializable {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public Double getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(Double subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    public Double getOrderDiscountAmount() {
+        return orderDiscountAmount;
+    }
+
+    public void setOrderDiscountAmount(Double orderDiscountAmount) {
+        this.orderDiscountAmount = orderDiscountAmount;
     }
 
     public Double getDeliveryCharge() {
@@ -352,6 +372,8 @@ public class OrderMasterDTO implements Serializable {
             ", expectedDelivery='" + getExpectedDelivery() + "'" +
             ", orderNumber='" + getOrderNumber() + "'" +
             ", notes='" + getNotes() + "'" +
+            ", subTotal=" + getSubTotal() +
+            ", orderDiscountAmount=" + getOrderDiscountAmount() +
             ", deliveryCharge=" + getDeliveryCharge() +
             ", serviceCharge=" + getServiceCharge() +
             ", totalDue=" + getTotalDue() +

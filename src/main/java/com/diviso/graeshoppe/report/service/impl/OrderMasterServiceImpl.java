@@ -14,6 +14,7 @@ import com.diviso.graeshoppe.report.client.product.model.Product;
 import com.diviso.graeshoppe.report.client.store.model.Store;
 import com.diviso.graeshoppe.report.domain.AuxItem;
 import com.diviso.graeshoppe.report.domain.ComboItem;
+import com.diviso.graeshoppe.report.domain.OfferLine;
 import com.diviso.graeshoppe.report.domain.OrderLine;
 import com.diviso.graeshoppe.report.domain.OrderMaster;
 import com.diviso.graeshoppe.report.repository.OrderMasterRepository;
@@ -180,7 +181,16 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setDeliveryCharge(order.getDeliveryInfo().getDeliveryCharge());
 		orderMaster.setPhone(order.getCustomerPhone());
 		orderMaster.setAllergyNote(order.getAllergyNote());
+		orderMaster.setSubTotal(order.getSubTotal());
 		orderMaster.setPreOrderDate(Instant.ofEpochMilli(order.getPreOrderDate()));
+		orderMaster.setOrderDiscountAmount(0.0);
+		order.getOfferLines().forEach(offer->{
+			OfferLine offerLine=new OfferLine();
+			offerLine.setOfferRef(offer.getOfferRef());
+			offerLine.setDiscountAmount(offer.getDiscountAmount());
+			orderMaster.setOrderDiscountAmount(offer.getDiscountAmount());
+		});
+		
 		if (order.getDeliveryInfo().getDeliveryAddress() != null) {
 			orderMaster.setRoadNameAreaOrStreet(order.getDeliveryInfo().getDeliveryAddress().getRoadNameAreaOrStreet());
 			orderMaster.setEmail(order.getDeliveryInfo().getDeliveryAddress().getEmail());
@@ -209,7 +219,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 			Instant acceptedDate = Instant.ofEpochMilli(order.getApprovalDetails().getAcceptedAt());
 			orderMaster.setOrderAcceptedAt(acceptedDate);
 		}
-
+		
 		log.info("The order master going to persist is ^^^^^^^^^^^^^^^^^ " + orderMaster);
 		OrderMaster updatedResult = orderMasterRepository.save(orderMaster);
 		order.getOrderLines().stream().map(this::toOrderLine).collect(Collectors.toSet())
