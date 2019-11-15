@@ -524,7 +524,7 @@
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="-13" y="35" width="90" height="15" uuid="61a88bca-d6c9-4840-9dfb-53e698b928ac"/>
-				<textFieldExpression><![CDATA["Discount Applied :"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Discount Amount :"]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
