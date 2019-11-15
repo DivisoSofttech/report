@@ -2,6 +2,7 @@ package com.diviso.graeshoppe.report.service.impl;
 
 import com.diviso.graeshoppe.report.service.AuxItemService;
 import com.diviso.graeshoppe.report.service.ComboItemService;
+import com.diviso.graeshoppe.report.service.OfferLineService;
 import com.diviso.graeshoppe.report.service.OrderLineService;
 import com.diviso.graeshoppe.report.service.OrderMasterService;
 import com.diviso.graeshoppe.report.service.ReportService;
@@ -21,6 +22,7 @@ import com.diviso.graeshoppe.report.repository.OrderMasterRepository;
 import com.diviso.graeshoppe.report.repository.search.OrderMasterSearchRepository;
 import com.diviso.graeshoppe.report.service.dto.AuxItemDTO;
 import com.diviso.graeshoppe.report.service.dto.ComboItemDTO;
+import com.diviso.graeshoppe.report.service.dto.OfferLineDTO;
 import com.diviso.graeshoppe.report.service.dto.OrderLineDTO;
 import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
 import com.diviso.graeshoppe.report.service.mapper.AuxItemMapper;
@@ -61,6 +63,8 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	@Autowired
 	private ComboItemMapper comboItemMapper;
 	
+	@Autowired
+	private OfferLineService offerLineService;
 	@Autowired
 	private ReportService reportService;
 	@Autowired
@@ -184,12 +188,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setSubTotal(order.getSubTotal());
 		orderMaster.setPreOrderDate(Instant.ofEpochMilli(order.getPreOrderDate()));
 		orderMaster.setOrderDiscountAmount(0.0);
-		order.getOfferLines().forEach(offer->{
-			OfferLine offerLine=new OfferLine();
-			offerLine.setOfferRef(offer.getOfferRef());
-			offerLine.setDiscountAmount(offer.getDiscountAmount());
-			orderMaster.setOrderDiscountAmount(offer.getDiscountAmount());
-		});
+		
 		
 		if (order.getDeliveryInfo().getDeliveryAddress() != null) {
 			orderMaster.setRoadNameAreaOrStreet(order.getDeliveryInfo().getDeliveryAddress().getRoadNameAreaOrStreet());
@@ -222,6 +221,15 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		
 		log.info("The order master going to persist is ^^^^^^^^^^^^^^^^^ " + orderMaster);
 		OrderMaster updatedResult = orderMasterRepository.save(orderMaster);
+		order.getOfferLines().forEach(offer->{
+			OfferLineDTO offerLine=new OfferLineDTO();
+			offerLine.setOfferRef(offer.getOfferRef());
+			offerLine.setDiscountAmount(offer.getDiscountAmount());
+			orderMaster.setOrderDiscountAmount(offer.getDiscountAmount());
+			offerLine.setOrderMasterId(updatedResult.getId());
+			offerLineService.save(offerLine);
+			
+		});
 		order.getOrderLines().stream().map(this::toOrderLine).collect(Collectors.toSet())
 		.forEach(orderline -> {
 			// saving orderlines
