@@ -75,6 +75,12 @@ public class OrderMasterResourceIntTest {
     private static final String DEFAULT_NOTES = "AAAAAAAAAA";
     private static final String UPDATED_NOTES = "BBBBBBBBBB";
 
+    private static final Double DEFAULT_SUB_TOTAL = 1D;
+    private static final Double UPDATED_SUB_TOTAL = 2D;
+
+    private static final Double DEFAULT_ORDER_DISCOUNT_AMOUNT = 1D;
+    private static final Double UPDATED_ORDER_DISCOUNT_AMOUNT = 2D;
+
     private static final Double DEFAULT_DELIVERY_CHARGE = 1D;
     private static final Double UPDATED_DELIVERY_CHARGE = 2D;
 
@@ -205,6 +211,8 @@ public class OrderMasterResourceIntTest {
             .expectedDelivery(DEFAULT_EXPECTED_DELIVERY)
             .orderNumber(DEFAULT_ORDER_NUMBER)
             .notes(DEFAULT_NOTES)
+            .subTotal(DEFAULT_SUB_TOTAL)
+            .orderDiscountAmount(DEFAULT_ORDER_DISCOUNT_AMOUNT)
             .deliveryCharge(DEFAULT_DELIVERY_CHARGE)
             .serviceCharge(DEFAULT_SERVICE_CHARGE)
             .totalDue(DEFAULT_TOTAL_DUE)
@@ -259,6 +267,8 @@ public class OrderMasterResourceIntTest {
         assertThat(testOrderMaster.getExpectedDelivery()).isEqualTo(DEFAULT_EXPECTED_DELIVERY);
         assertThat(testOrderMaster.getOrderNumber()).isEqualTo(DEFAULT_ORDER_NUMBER);
         assertThat(testOrderMaster.getNotes()).isEqualTo(DEFAULT_NOTES);
+        assertThat(testOrderMaster.getSubTotal()).isEqualTo(DEFAULT_SUB_TOTAL);
+        assertThat(testOrderMaster.getOrderDiscountAmount()).isEqualTo(DEFAULT_ORDER_DISCOUNT_AMOUNT);
         assertThat(testOrderMaster.getDeliveryCharge()).isEqualTo(DEFAULT_DELIVERY_CHARGE);
         assertThat(testOrderMaster.getServiceCharge()).isEqualTo(DEFAULT_SERVICE_CHARGE);
         assertThat(testOrderMaster.getTotalDue()).isEqualTo(DEFAULT_TOTAL_DUE);
@@ -328,6 +338,8 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].expectedDelivery").value(hasItem(DEFAULT_EXPECTED_DELIVERY.toString())))
             .andExpect(jsonPath("$.[*].orderNumber").value(hasItem(DEFAULT_ORDER_NUMBER.toString())))
             .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES.toString())))
+            .andExpect(jsonPath("$.[*].subTotal").value(hasItem(DEFAULT_SUB_TOTAL.doubleValue())))
+            .andExpect(jsonPath("$.[*].orderDiscountAmount").value(hasItem(DEFAULT_ORDER_DISCOUNT_AMOUNT.doubleValue())))
             .andExpect(jsonPath("$.[*].deliveryCharge").value(hasItem(DEFAULT_DELIVERY_CHARGE.doubleValue())))
             .andExpect(jsonPath("$.[*].serviceCharge").value(hasItem(DEFAULT_SERVICE_CHARGE.doubleValue())))
             .andExpect(jsonPath("$.[*].totalDue").value(hasItem(DEFAULT_TOTAL_DUE.doubleValue())))
@@ -371,6 +383,8 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.expectedDelivery").value(DEFAULT_EXPECTED_DELIVERY.toString()))
             .andExpect(jsonPath("$.orderNumber").value(DEFAULT_ORDER_NUMBER.toString()))
             .andExpect(jsonPath("$.notes").value(DEFAULT_NOTES.toString()))
+            .andExpect(jsonPath("$.subTotal").value(DEFAULT_SUB_TOTAL.doubleValue()))
+            .andExpect(jsonPath("$.orderDiscountAmount").value(DEFAULT_ORDER_DISCOUNT_AMOUNT.doubleValue()))
             .andExpect(jsonPath("$.deliveryCharge").value(DEFAULT_DELIVERY_CHARGE.doubleValue()))
             .andExpect(jsonPath("$.serviceCharge").value(DEFAULT_SERVICE_CHARGE.doubleValue()))
             .andExpect(jsonPath("$.totalDue").value(DEFAULT_TOTAL_DUE.doubleValue()))
@@ -424,6 +438,8 @@ public class OrderMasterResourceIntTest {
             .expectedDelivery(UPDATED_EXPECTED_DELIVERY)
             .orderNumber(UPDATED_ORDER_NUMBER)
             .notes(UPDATED_NOTES)
+            .subTotal(UPDATED_SUB_TOTAL)
+            .orderDiscountAmount(UPDATED_ORDER_DISCOUNT_AMOUNT)
             .deliveryCharge(UPDATED_DELIVERY_CHARGE)
             .serviceCharge(UPDATED_SERVICE_CHARGE)
             .totalDue(UPDATED_TOTAL_DUE)
@@ -465,6 +481,8 @@ public class OrderMasterResourceIntTest {
         assertThat(testOrderMaster.getExpectedDelivery()).isEqualTo(UPDATED_EXPECTED_DELIVERY);
         assertThat(testOrderMaster.getOrderNumber()).isEqualTo(UPDATED_ORDER_NUMBER);
         assertThat(testOrderMaster.getNotes()).isEqualTo(UPDATED_NOTES);
+        assertThat(testOrderMaster.getSubTotal()).isEqualTo(UPDATED_SUB_TOTAL);
+        assertThat(testOrderMaster.getOrderDiscountAmount()).isEqualTo(UPDATED_ORDER_DISCOUNT_AMOUNT);
         assertThat(testOrderMaster.getDeliveryCharge()).isEqualTo(UPDATED_DELIVERY_CHARGE);
         assertThat(testOrderMaster.getServiceCharge()).isEqualTo(UPDATED_SERVICE_CHARGE);
         assertThat(testOrderMaster.getTotalDue()).isEqualTo(UPDATED_TOTAL_DUE);
@@ -555,6 +573,8 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].expectedDelivery").value(hasItem(DEFAULT_EXPECTED_DELIVERY.toString())))
             .andExpect(jsonPath("$.[*].orderNumber").value(hasItem(DEFAULT_ORDER_NUMBER)))
             .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES)))
+            .andExpect(jsonPath("$.[*].subTotal").value(hasItem(DEFAULT_SUB_TOTAL.doubleValue())))
+            .andExpect(jsonPath("$.[*].orderDiscountAmount").value(hasItem(DEFAULT_ORDER_DISCOUNT_AMOUNT.doubleValue())))
             .andExpect(jsonPath("$.[*].deliveryCharge").value(hasItem(DEFAULT_DELIVERY_CHARGE.doubleValue())))
             .andExpect(jsonPath("$.[*].serviceCharge").value(hasItem(DEFAULT_SERVICE_CHARGE.doubleValue())))
             .andExpect(jsonPath("$.[*].totalDue").value(hasItem(DEFAULT_TOTAL_DUE.doubleValue())))

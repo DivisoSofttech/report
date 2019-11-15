@@ -12,6 +12,8 @@ methodOfOrder String,
 expectedDelivery  Instant,
 orderNumber String,
 notes String,
+subTotal Double,
+orderDiscountAmount Double,
 deliveryCharge Double,
 serviceCharge Double,
 totalDue Double,
@@ -73,12 +75,17 @@ quantity Integer,
 price Double,
 total Double
 }
-
+ 
+ entity OfferLine{
+ 	offerRef String,
+ 	discountAmount Double
+ }
 relationship OneToMany{
 OrderMaster{OrderLine} to OrderLine,
 OrderLine{auxItem} to AuxItem,
 OrderLine{comboItem} to ComboItem,
-Sale{TicketLine} to TicketLine
+Sale{TicketLine} to TicketLine,
+OrderMaster{offerLines} to OfferLine
 }
 
 

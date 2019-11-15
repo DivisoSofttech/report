@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Offer extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 8295749247496557154L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Offer\",\"namespace\":\"com.diviso.graeshoppe.order.avro\",\"fields\":[{\"name\":\"offerRef\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null}]}");
+  private static final long serialVersionUID = 5353817265522246586L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Offer\",\"namespace\":\"com.diviso.graeshoppe.order.avro\",\"fields\":[{\"name\":\"offerRef\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"discountAmount\",\"type\":\"double\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -52,6 +52,7 @@ public class Offer extends org.apache.avro.specific.SpecificRecordBase implement
   }
 
   @Deprecated public java.lang.String offerRef;
+  @Deprecated public double discountAmount;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -63,28 +64,29 @@ public class Offer extends org.apache.avro.specific.SpecificRecordBase implement
   /**
    * All-args constructor.
    * @param offerRef The new value for offerRef
+   * @param discountAmount The new value for discountAmount
    */
-  public Offer(java.lang.String offerRef) {
+  public Offer(java.lang.String offerRef, java.lang.Double discountAmount) {
     this.offerRef = offerRef;
+    this.discountAmount = discountAmount;
   }
 
-  @Override
-public org.apache.avro.Schema getSchema() { return SCHEMA$; }
+  public org.apache.avro.Schema getSchema() { return SCHEMA$; }
   // Used by DatumWriter.  Applications should not call.
-  @Override
-public java.lang.Object get(int field$) {
+  public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return offerRef;
+    case 1: return discountAmount;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
 
   // Used by DatumReader.  Applications should not call.
-  @Override
-@SuppressWarnings(value="unchecked")
+  @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: offerRef = (java.lang.String)value$; break;
+    case 1: discountAmount = (java.lang.Double)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -103,6 +105,22 @@ public java.lang.Object get(int field$) {
    */
   public void setOfferRef(java.lang.String value) {
     this.offerRef = value;
+  }
+
+  /**
+   * Gets the value of the 'discountAmount' field.
+   * @return The value of the 'discountAmount' field.
+   */
+  public java.lang.Double getDiscountAmount() {
+    return discountAmount;
+  }
+
+  /**
+   * Sets the value of the 'discountAmount' field.
+   * @param value the value to set.
+   */
+  public void setDiscountAmount(java.lang.Double value) {
+    this.discountAmount = value;
   }
 
   /**
@@ -138,6 +156,7 @@ public java.lang.Object get(int field$) {
     implements org.apache.avro.data.RecordBuilder<Offer> {
 
     private java.lang.String offerRef;
+    private double discountAmount;
 
     /** Creates a new Builder */
     private Builder() {
@@ -154,6 +173,10 @@ public java.lang.Object get(int field$) {
         this.offerRef = data().deepCopy(fields()[0].schema(), other.offerRef);
         fieldSetFlags()[0] = true;
       }
+      if (isValidValue(fields()[1], other.discountAmount)) {
+        this.discountAmount = data().deepCopy(fields()[1].schema(), other.discountAmount);
+        fieldSetFlags()[1] = true;
+      }
     }
 
     /**
@@ -165,6 +188,10 @@ public java.lang.Object get(int field$) {
       if (isValidValue(fields()[0], other.offerRef)) {
         this.offerRef = data().deepCopy(fields()[0].schema(), other.offerRef);
         fieldSetFlags()[0] = true;
+      }
+      if (isValidValue(fields()[1], other.discountAmount)) {
+        this.discountAmount = data().deepCopy(fields()[1].schema(), other.discountAmount);
+        fieldSetFlags()[1] = true;
       }
     }
 
@@ -207,12 +234,51 @@ public java.lang.Object get(int field$) {
       return this;
     }
 
+    /**
+      * Gets the value of the 'discountAmount' field.
+      * @return The value.
+      */
+    public java.lang.Double getDiscountAmount() {
+      return discountAmount;
+    }
+
+    /**
+      * Sets the value of the 'discountAmount' field.
+      * @param value The value of 'discountAmount'.
+      * @return This builder.
+      */
+    public com.diviso.graeshoppe.order.avro.Offer.Builder setDiscountAmount(double value) {
+      validate(fields()[1], value);
+      this.discountAmount = value;
+      fieldSetFlags()[1] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'discountAmount' field has been set.
+      * @return True if the 'discountAmount' field has been set, false otherwise.
+      */
+    public boolean hasDiscountAmount() {
+      return fieldSetFlags()[1];
+    }
+
+
+    /**
+      * Clears the value of the 'discountAmount' field.
+      * @return This builder.
+      */
+    public com.diviso.graeshoppe.order.avro.Offer.Builder clearDiscountAmount() {
+      fieldSetFlags()[1] = false;
+      return this;
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public Offer build() {
       try {
         Offer record = new Offer();
         record.offerRef = fieldSetFlags()[0] ? this.offerRef : (java.lang.String) defaultValue(fields()[0]);
+        record.discountAmount = fieldSetFlags()[1] ? this.discountAmount : (java.lang.Double) defaultValue(fields()[1]);
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
@@ -222,7 +288,7 @@ public java.lang.Object get(int field$) {
 
   @SuppressWarnings("unchecked")
   private static final org.apache.avro.io.DatumWriter<Offer>
-    WRITER$ = MODEL$.createDatumWriter(SCHEMA$);
+    WRITER$ = (org.apache.avro.io.DatumWriter<Offer>)MODEL$.createDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
@@ -231,7 +297,7 @@ public java.lang.Object get(int field$) {
 
   @SuppressWarnings("unchecked")
   private static final org.apache.avro.io.DatumReader<Offer>
-    READER$ = MODEL$.createDatumReader(SCHEMA$);
+    READER$ = (org.apache.avro.io.DatumReader<Offer>)MODEL$.createDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {
