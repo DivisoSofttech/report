@@ -108,7 +108,7 @@ spring:
             password: oG1Sm3v2HCjBJRvIVxnWtGCL 
             username: elastic
             readTimeout: 10000
-            uri: https://df16c4fe157c489697dc92dd352ec27c.us-central1.gcp.cloud.es.io:9243  
+            uri: https://039a8d60bba54e46a0021ba33cb2d15d.us-west1.gcp.cloud.es.io:9243/  
     liquibase:
         contexts: dev
     mail:
