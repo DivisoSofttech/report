@@ -359,7 +359,7 @@
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="97" y="25" width="41" height="20" uuid="b0465655-49eb-4579-95a8-b23e09d54439"/>
+				<reportElement positionType="Float" x="99" y="25" width="41" height="20" uuid="b0465655-49eb-4579-95a8-b23e09d54439"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
@@ -452,7 +452,7 @@
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="HH:mm">
-				<reportElement positionType="Float" x="70" y="220" width="68" height="22" uuid="a77423fc-2719-4a6f-b346-47a671f9d1b1"/>
+				<reportElement positionType="Float" x="72" y="218" width="68" height="22" uuid="a77423fc-2719-4a6f-b346-47a671f9d1b1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>

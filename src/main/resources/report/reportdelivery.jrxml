@@ -371,7 +371,7 @@
 				<text><![CDATA[Delivery Charge :]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="97" y="47" width="41" height="20" uuid="b8e6d9d2-f216-46fa-bf0c-57b92456f2f9"/>
+				<reportElement positionType="Float" x="100" y="48" width="41" height="20" uuid="b8e6d9d2-f216-46fa-bf0c-57b92456f2f9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
@@ -505,7 +505,7 @@
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="HH:mm">
-				<reportElement positionType="Float" x="70" y="349" width="68" height="22" uuid="873b080b-2ada-4180-bf03-fde7fe0b2ea2"/>
+				<reportElement positionType="Float" x="72" y="347" width="68" height="22" uuid="873b080b-2ada-4180-bf03-fde7fe0b2ea2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
