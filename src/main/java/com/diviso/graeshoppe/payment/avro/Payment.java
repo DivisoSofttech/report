@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Payment extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -5880886337173817399L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Payment\",\"namespace\":\"com.diviso.graeshoppe.payment.avro\",\"fields\":[{\"name\":\"ref\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"payee\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"payer\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"targetId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"paymentType\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"provider\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"amount\",\"type\":\"double\"},{\"name\":\"tax\",\"type\":[\"null\",\"double\"],\"default\":0.0},{\"name\":\"total\",\"type\":\"double\"},{\"name\":\"status\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"dateAndTime\",\"type\":\"long\",\"logicalType\":\"date\"}]}");
+  private static final long serialVersionUID = 2688500310203154803L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Payment\",\"namespace\":\"com.diviso.graeshoppe.payment.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"ref\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"payee\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"payer\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"targetId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"paymentType\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"provider\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"amount\",\"type\":\"double\"},{\"name\":\"tax\",\"type\":[\"null\",\"double\"],\"default\":0.0},{\"name\":\"total\",\"type\":\"double\"},{\"name\":\"status\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"dateAndTime\",\"type\":\"long\",\"logicalType\":\"date\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -51,6 +51,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
     return DECODER.decode(b);
   }
 
+  @Deprecated public long id;
   @Deprecated public java.lang.String ref;
   @Deprecated public java.lang.String payee;
   @Deprecated public java.lang.String payer;
@@ -72,6 +73,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
 
   /**
    * All-args constructor.
+   * @param id The new value for id
    * @param ref The new value for ref
    * @param payee The new value for payee
    * @param payer The new value for payer
@@ -84,7 +86,8 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
    * @param status The new value for status
    * @param dateAndTime The new value for dateAndTime
    */
-  public Payment(java.lang.String ref, java.lang.String payee, java.lang.String payer, java.lang.String targetId, java.lang.String paymentType, java.lang.String provider, java.lang.Double amount, java.lang.Double tax, java.lang.Double total, java.lang.String status, java.lang.Long dateAndTime) {
+  public Payment(java.lang.Long id, java.lang.String ref, java.lang.String payee, java.lang.String payer, java.lang.String targetId, java.lang.String paymentType, java.lang.String provider, java.lang.Double amount, java.lang.Double tax, java.lang.Double total, java.lang.String status, java.lang.Long dateAndTime) {
+    this.id = id;
     this.ref = ref;
     this.payee = payee;
     this.payer = payer;
@@ -102,17 +105,18 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
   // Used by DatumWriter.  Applications should not call.
   public java.lang.Object get(int field$) {
     switch (field$) {
-    case 0: return ref;
-    case 1: return payee;
-    case 2: return payer;
-    case 3: return targetId;
-    case 4: return paymentType;
-    case 5: return provider;
-    case 6: return amount;
-    case 7: return tax;
-    case 8: return total;
-    case 9: return status;
-    case 10: return dateAndTime;
+    case 0: return id;
+    case 1: return ref;
+    case 2: return payee;
+    case 3: return payer;
+    case 4: return targetId;
+    case 5: return paymentType;
+    case 6: return provider;
+    case 7: return amount;
+    case 8: return tax;
+    case 9: return total;
+    case 10: return status;
+    case 11: return dateAndTime;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -121,19 +125,36 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: ref = (java.lang.String)value$; break;
-    case 1: payee = (java.lang.String)value$; break;
-    case 2: payer = (java.lang.String)value$; break;
-    case 3: targetId = (java.lang.String)value$; break;
-    case 4: paymentType = (java.lang.String)value$; break;
-    case 5: provider = (java.lang.String)value$; break;
-    case 6: amount = (java.lang.Double)value$; break;
-    case 7: tax = (java.lang.Double)value$; break;
-    case 8: total = (java.lang.Double)value$; break;
-    case 9: status = (java.lang.String)value$; break;
-    case 10: dateAndTime = (java.lang.Long)value$; break;
+    case 0: id = (java.lang.Long)value$; break;
+    case 1: ref = (java.lang.String)value$; break;
+    case 2: payee = (java.lang.String)value$; break;
+    case 3: payer = (java.lang.String)value$; break;
+    case 4: targetId = (java.lang.String)value$; break;
+    case 5: paymentType = (java.lang.String)value$; break;
+    case 6: provider = (java.lang.String)value$; break;
+    case 7: amount = (java.lang.Double)value$; break;
+    case 8: tax = (java.lang.Double)value$; break;
+    case 9: total = (java.lang.Double)value$; break;
+    case 10: status = (java.lang.String)value$; break;
+    case 11: dateAndTime = (java.lang.Long)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
+  }
+
+  /**
+   * Gets the value of the 'id' field.
+   * @return The value of the 'id' field.
+   */
+  public java.lang.Long getId() {
+    return id;
+  }
+
+  /**
+   * Sets the value of the 'id' field.
+   * @param value the value to set.
+   */
+  public void setId(java.lang.Long value) {
+    this.id = value;
   }
 
   /**
@@ -344,6 +365,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<Payment>
     implements org.apache.avro.data.RecordBuilder<Payment> {
 
+    private long id;
     private java.lang.String ref;
     private java.lang.String payee;
     private java.lang.String payer;
@@ -367,49 +389,53 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
      */
     private Builder(com.diviso.graeshoppe.payment.avro.Payment.Builder other) {
       super(other);
-      if (isValidValue(fields()[0], other.ref)) {
-        this.ref = data().deepCopy(fields()[0].schema(), other.ref);
+      if (isValidValue(fields()[0], other.id)) {
+        this.id = data().deepCopy(fields()[0].schema(), other.id);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.payee)) {
-        this.payee = data().deepCopy(fields()[1].schema(), other.payee);
+      if (isValidValue(fields()[1], other.ref)) {
+        this.ref = data().deepCopy(fields()[1].schema(), other.ref);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.payer)) {
-        this.payer = data().deepCopy(fields()[2].schema(), other.payer);
+      if (isValidValue(fields()[2], other.payee)) {
+        this.payee = data().deepCopy(fields()[2].schema(), other.payee);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.targetId)) {
-        this.targetId = data().deepCopy(fields()[3].schema(), other.targetId);
+      if (isValidValue(fields()[3], other.payer)) {
+        this.payer = data().deepCopy(fields()[3].schema(), other.payer);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.paymentType)) {
-        this.paymentType = data().deepCopy(fields()[4].schema(), other.paymentType);
+      if (isValidValue(fields()[4], other.targetId)) {
+        this.targetId = data().deepCopy(fields()[4].schema(), other.targetId);
         fieldSetFlags()[4] = true;
       }
-      if (isValidValue(fields()[5], other.provider)) {
-        this.provider = data().deepCopy(fields()[5].schema(), other.provider);
+      if (isValidValue(fields()[5], other.paymentType)) {
+        this.paymentType = data().deepCopy(fields()[5].schema(), other.paymentType);
         fieldSetFlags()[5] = true;
       }
-      if (isValidValue(fields()[6], other.amount)) {
-        this.amount = data().deepCopy(fields()[6].schema(), other.amount);
+      if (isValidValue(fields()[6], other.provider)) {
+        this.provider = data().deepCopy(fields()[6].schema(), other.provider);
         fieldSetFlags()[6] = true;
       }
-      if (isValidValue(fields()[7], other.tax)) {
-        this.tax = data().deepCopy(fields()[7].schema(), other.tax);
+      if (isValidValue(fields()[7], other.amount)) {
+        this.amount = data().deepCopy(fields()[7].schema(), other.amount);
         fieldSetFlags()[7] = true;
       }
-      if (isValidValue(fields()[8], other.total)) {
-        this.total = data().deepCopy(fields()[8].schema(), other.total);
+      if (isValidValue(fields()[8], other.tax)) {
+        this.tax = data().deepCopy(fields()[8].schema(), other.tax);
         fieldSetFlags()[8] = true;
       }
-      if (isValidValue(fields()[9], other.status)) {
-        this.status = data().deepCopy(fields()[9].schema(), other.status);
+      if (isValidValue(fields()[9], other.total)) {
+        this.total = data().deepCopy(fields()[9].schema(), other.total);
         fieldSetFlags()[9] = true;
       }
-      if (isValidValue(fields()[10], other.dateAndTime)) {
-        this.dateAndTime = data().deepCopy(fields()[10].schema(), other.dateAndTime);
+      if (isValidValue(fields()[10], other.status)) {
+        this.status = data().deepCopy(fields()[10].schema(), other.status);
         fieldSetFlags()[10] = true;
+      }
+      if (isValidValue(fields()[11], other.dateAndTime)) {
+        this.dateAndTime = data().deepCopy(fields()[11].schema(), other.dateAndTime);
+        fieldSetFlags()[11] = true;
       }
     }
 
@@ -419,50 +445,92 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
      */
     private Builder(com.diviso.graeshoppe.payment.avro.Payment other) {
             super(SCHEMA$);
-      if (isValidValue(fields()[0], other.ref)) {
-        this.ref = data().deepCopy(fields()[0].schema(), other.ref);
+      if (isValidValue(fields()[0], other.id)) {
+        this.id = data().deepCopy(fields()[0].schema(), other.id);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.payee)) {
-        this.payee = data().deepCopy(fields()[1].schema(), other.payee);
+      if (isValidValue(fields()[1], other.ref)) {
+        this.ref = data().deepCopy(fields()[1].schema(), other.ref);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.payer)) {
-        this.payer = data().deepCopy(fields()[2].schema(), other.payer);
+      if (isValidValue(fields()[2], other.payee)) {
+        this.payee = data().deepCopy(fields()[2].schema(), other.payee);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.targetId)) {
-        this.targetId = data().deepCopy(fields()[3].schema(), other.targetId);
+      if (isValidValue(fields()[3], other.payer)) {
+        this.payer = data().deepCopy(fields()[3].schema(), other.payer);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.paymentType)) {
-        this.paymentType = data().deepCopy(fields()[4].schema(), other.paymentType);
+      if (isValidValue(fields()[4], other.targetId)) {
+        this.targetId = data().deepCopy(fields()[4].schema(), other.targetId);
         fieldSetFlags()[4] = true;
       }
-      if (isValidValue(fields()[5], other.provider)) {
-        this.provider = data().deepCopy(fields()[5].schema(), other.provider);
+      if (isValidValue(fields()[5], other.paymentType)) {
+        this.paymentType = data().deepCopy(fields()[5].schema(), other.paymentType);
         fieldSetFlags()[5] = true;
       }
-      if (isValidValue(fields()[6], other.amount)) {
-        this.amount = data().deepCopy(fields()[6].schema(), other.amount);
+      if (isValidValue(fields()[6], other.provider)) {
+        this.provider = data().deepCopy(fields()[6].schema(), other.provider);
         fieldSetFlags()[6] = true;
       }
-      if (isValidValue(fields()[7], other.tax)) {
-        this.tax = data().deepCopy(fields()[7].schema(), other.tax);
+      if (isValidValue(fields()[7], other.amount)) {
+        this.amount = data().deepCopy(fields()[7].schema(), other.amount);
         fieldSetFlags()[7] = true;
       }
-      if (isValidValue(fields()[8], other.total)) {
-        this.total = data().deepCopy(fields()[8].schema(), other.total);
+      if (isValidValue(fields()[8], other.tax)) {
+        this.tax = data().deepCopy(fields()[8].schema(), other.tax);
         fieldSetFlags()[8] = true;
       }
-      if (isValidValue(fields()[9], other.status)) {
-        this.status = data().deepCopy(fields()[9].schema(), other.status);
+      if (isValidValue(fields()[9], other.total)) {
+        this.total = data().deepCopy(fields()[9].schema(), other.total);
         fieldSetFlags()[9] = true;
       }
-      if (isValidValue(fields()[10], other.dateAndTime)) {
-        this.dateAndTime = data().deepCopy(fields()[10].schema(), other.dateAndTime);
+      if (isValidValue(fields()[10], other.status)) {
+        this.status = data().deepCopy(fields()[10].schema(), other.status);
         fieldSetFlags()[10] = true;
       }
+      if (isValidValue(fields()[11], other.dateAndTime)) {
+        this.dateAndTime = data().deepCopy(fields()[11].schema(), other.dateAndTime);
+        fieldSetFlags()[11] = true;
+      }
+    }
+
+    /**
+      * Gets the value of the 'id' field.
+      * @return The value.
+      */
+    public java.lang.Long getId() {
+      return id;
+    }
+
+    /**
+      * Sets the value of the 'id' field.
+      * @param value The value of 'id'.
+      * @return This builder.
+      */
+    public com.diviso.graeshoppe.payment.avro.Payment.Builder setId(long value) {
+      validate(fields()[0], value);
+      this.id = value;
+      fieldSetFlags()[0] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'id' field has been set.
+      * @return True if the 'id' field has been set, false otherwise.
+      */
+    public boolean hasId() {
+      return fieldSetFlags()[0];
+    }
+
+
+    /**
+      * Clears the value of the 'id' field.
+      * @return This builder.
+      */
+    public com.diviso.graeshoppe.payment.avro.Payment.Builder clearId() {
+      fieldSetFlags()[0] = false;
+      return this;
     }
 
     /**
@@ -479,9 +547,9 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder setRef(java.lang.String value) {
-      validate(fields()[0], value);
+      validate(fields()[1], value);
       this.ref = value;
-      fieldSetFlags()[0] = true;
+      fieldSetFlags()[1] = true;
       return this;
     }
 
@@ -490,7 +558,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'ref' field has been set, false otherwise.
       */
     public boolean hasRef() {
-      return fieldSetFlags()[0];
+      return fieldSetFlags()[1];
     }
 
 
@@ -500,7 +568,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder clearRef() {
       ref = null;
-      fieldSetFlags()[0] = false;
+      fieldSetFlags()[1] = false;
       return this;
     }
 
@@ -518,9 +586,9 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder setPayee(java.lang.String value) {
-      validate(fields()[1], value);
+      validate(fields()[2], value);
       this.payee = value;
-      fieldSetFlags()[1] = true;
+      fieldSetFlags()[2] = true;
       return this;
     }
 
@@ -529,7 +597,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'payee' field has been set, false otherwise.
       */
     public boolean hasPayee() {
-      return fieldSetFlags()[1];
+      return fieldSetFlags()[2];
     }
 
 
@@ -539,7 +607,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder clearPayee() {
       payee = null;
-      fieldSetFlags()[1] = false;
+      fieldSetFlags()[2] = false;
       return this;
     }
 
@@ -557,9 +625,9 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder setPayer(java.lang.String value) {
-      validate(fields()[2], value);
+      validate(fields()[3], value);
       this.payer = value;
-      fieldSetFlags()[2] = true;
+      fieldSetFlags()[3] = true;
       return this;
     }
 
@@ -568,7 +636,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'payer' field has been set, false otherwise.
       */
     public boolean hasPayer() {
-      return fieldSetFlags()[2];
+      return fieldSetFlags()[3];
     }
 
 
@@ -578,7 +646,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder clearPayer() {
       payer = null;
-      fieldSetFlags()[2] = false;
+      fieldSetFlags()[3] = false;
       return this;
     }
 
@@ -596,9 +664,9 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder setTargetId(java.lang.String value) {
-      validate(fields()[3], value);
+      validate(fields()[4], value);
       this.targetId = value;
-      fieldSetFlags()[3] = true;
+      fieldSetFlags()[4] = true;
       return this;
     }
 
@@ -607,7 +675,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'targetId' field has been set, false otherwise.
       */
     public boolean hasTargetId() {
-      return fieldSetFlags()[3];
+      return fieldSetFlags()[4];
     }
 
 
@@ -617,7 +685,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder clearTargetId() {
       targetId = null;
-      fieldSetFlags()[3] = false;
+      fieldSetFlags()[4] = false;
       return this;
     }
 
@@ -635,9 +703,9 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder setPaymentType(java.lang.String value) {
-      validate(fields()[4], value);
+      validate(fields()[5], value);
       this.paymentType = value;
-      fieldSetFlags()[4] = true;
+      fieldSetFlags()[5] = true;
       return this;
     }
 
@@ -646,7 +714,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'paymentType' field has been set, false otherwise.
       */
     public boolean hasPaymentType() {
-      return fieldSetFlags()[4];
+      return fieldSetFlags()[5];
     }
 
 
@@ -656,7 +724,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder clearPaymentType() {
       paymentType = null;
-      fieldSetFlags()[4] = false;
+      fieldSetFlags()[5] = false;
       return this;
     }
 
@@ -674,9 +742,9 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder setProvider(java.lang.String value) {
-      validate(fields()[5], value);
+      validate(fields()[6], value);
       this.provider = value;
-      fieldSetFlags()[5] = true;
+      fieldSetFlags()[6] = true;
       return this;
     }
 
@@ -685,7 +753,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'provider' field has been set, false otherwise.
       */
     public boolean hasProvider() {
-      return fieldSetFlags()[5];
+      return fieldSetFlags()[6];
     }
 
 
@@ -695,7 +763,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder clearProvider() {
       provider = null;
-      fieldSetFlags()[5] = false;
+      fieldSetFlags()[6] = false;
       return this;
     }
 
@@ -713,9 +781,9 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder setAmount(double value) {
-      validate(fields()[6], value);
+      validate(fields()[7], value);
       this.amount = value;
-      fieldSetFlags()[6] = true;
+      fieldSetFlags()[7] = true;
       return this;
     }
 
@@ -724,7 +792,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'amount' field has been set, false otherwise.
       */
     public boolean hasAmount() {
-      return fieldSetFlags()[6];
+      return fieldSetFlags()[7];
     }
 
 
@@ -733,7 +801,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder clearAmount() {
-      fieldSetFlags()[6] = false;
+      fieldSetFlags()[7] = false;
       return this;
     }
 
@@ -751,9 +819,9 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder setTax(java.lang.Double value) {
-      validate(fields()[7], value);
+      validate(fields()[8], value);
       this.tax = value;
-      fieldSetFlags()[7] = true;
+      fieldSetFlags()[8] = true;
       return this;
     }
 
@@ -762,7 +830,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'tax' field has been set, false otherwise.
       */
     public boolean hasTax() {
-      return fieldSetFlags()[7];
+      return fieldSetFlags()[8];
     }
 
 
@@ -772,7 +840,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder clearTax() {
       tax = null;
-      fieldSetFlags()[7] = false;
+      fieldSetFlags()[8] = false;
       return this;
     }
 
@@ -790,9 +858,9 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder setTotal(double value) {
-      validate(fields()[8], value);
+      validate(fields()[9], value);
       this.total = value;
-      fieldSetFlags()[8] = true;
+      fieldSetFlags()[9] = true;
       return this;
     }
 
@@ -801,7 +869,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'total' field has been set, false otherwise.
       */
     public boolean hasTotal() {
-      return fieldSetFlags()[8];
+      return fieldSetFlags()[9];
     }
 
 
@@ -810,7 +878,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder clearTotal() {
-      fieldSetFlags()[8] = false;
+      fieldSetFlags()[9] = false;
       return this;
     }
 
@@ -828,9 +896,9 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder setStatus(java.lang.String value) {
-      validate(fields()[9], value);
+      validate(fields()[10], value);
       this.status = value;
-      fieldSetFlags()[9] = true;
+      fieldSetFlags()[10] = true;
       return this;
     }
 
@@ -839,7 +907,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'status' field has been set, false otherwise.
       */
     public boolean hasStatus() {
-      return fieldSetFlags()[9];
+      return fieldSetFlags()[10];
     }
 
 
@@ -849,7 +917,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder clearStatus() {
       status = null;
-      fieldSetFlags()[9] = false;
+      fieldSetFlags()[10] = false;
       return this;
     }
 
@@ -867,9 +935,9 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder setDateAndTime(long value) {
-      validate(fields()[10], value);
+      validate(fields()[11], value);
       this.dateAndTime = value;
-      fieldSetFlags()[10] = true;
+      fieldSetFlags()[11] = true;
       return this;
     }
 
@@ -878,7 +946,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return True if the 'dateAndTime' field has been set, false otherwise.
       */
     public boolean hasDateAndTime() {
-      return fieldSetFlags()[10];
+      return fieldSetFlags()[11];
     }
 
 
@@ -887,7 +955,7 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
       * @return This builder.
       */
     public com.diviso.graeshoppe.payment.avro.Payment.Builder clearDateAndTime() {
-      fieldSetFlags()[10] = false;
+      fieldSetFlags()[11] = false;
       return this;
     }
 
@@ -896,17 +964,18 @@ public class Payment extends org.apache.avro.specific.SpecificRecordBase impleme
     public Payment build() {
       try {
         Payment record = new Payment();
-        record.ref = fieldSetFlags()[0] ? this.ref : (java.lang.String) defaultValue(fields()[0]);
-        record.payee = fieldSetFlags()[1] ? this.payee : (java.lang.String) defaultValue(fields()[1]);
-        record.payer = fieldSetFlags()[2] ? this.payer : (java.lang.String) defaultValue(fields()[2]);
-        record.targetId = fieldSetFlags()[3] ? this.targetId : (java.lang.String) defaultValue(fields()[3]);
-        record.paymentType = fieldSetFlags()[4] ? this.paymentType : (java.lang.String) defaultValue(fields()[4]);
-        record.provider = fieldSetFlags()[5] ? this.provider : (java.lang.String) defaultValue(fields()[5]);
-        record.amount = fieldSetFlags()[6] ? this.amount : (java.lang.Double) defaultValue(fields()[6]);
-        record.tax = fieldSetFlags()[7] ? this.tax : (java.lang.Double) defaultValue(fields()[7]);
-        record.total = fieldSetFlags()[8] ? this.total : (java.lang.Double) defaultValue(fields()[8]);
-        record.status = fieldSetFlags()[9] ? this.status : (java.lang.String) defaultValue(fields()[9]);
-        record.dateAndTime = fieldSetFlags()[10] ? this.dateAndTime : (java.lang.Long) defaultValue(fields()[10]);
+        record.id = fieldSetFlags()[0] ? this.id : (java.lang.Long) defaultValue(fields()[0]);
+        record.ref = fieldSetFlags()[1] ? this.ref : (java.lang.String) defaultValue(fields()[1]);
+        record.payee = fieldSetFlags()[2] ? this.payee : (java.lang.String) defaultValue(fields()[2]);
+        record.payer = fieldSetFlags()[3] ? this.payer : (java.lang.String) defaultValue(fields()[3]);
+        record.targetId = fieldSetFlags()[4] ? this.targetId : (java.lang.String) defaultValue(fields()[4]);
+        record.paymentType = fieldSetFlags()[5] ? this.paymentType : (java.lang.String) defaultValue(fields()[5]);
+        record.provider = fieldSetFlags()[6] ? this.provider : (java.lang.String) defaultValue(fields()[6]);
+        record.amount = fieldSetFlags()[7] ? this.amount : (java.lang.Double) defaultValue(fields()[7]);
+        record.tax = fieldSetFlags()[8] ? this.tax : (java.lang.Double) defaultValue(fields()[8]);
+        record.total = fieldSetFlags()[9] ? this.total : (java.lang.Double) defaultValue(fields()[9]);
+        record.status = fieldSetFlags()[10] ? this.status : (java.lang.String) defaultValue(fields()[10]);
+        record.dateAndTime = fieldSetFlags()[11] ? this.dateAndTime : (java.lang.Long) defaultValue(fields()[11]);
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
