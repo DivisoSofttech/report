@@ -47,7 +47,7 @@ UNION
 
 							
 							
-ct ORDER BY item ASC
+ct ORDER BY item DESC
 							
 							
 							
@@ -313,7 +313,9 @@ ct ORDER BY item ASC
 				<textFieldExpression><![CDATA[String.format("%1$2s x %2$-50.50s", $F{olquantity}, $F{item})]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="101" y="0" width="40" height="14" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="001e83a5-7cab-45d4-a1a2-02cd12c28632"/>
+				<reportElement positionType="Float" x="101" y="0" width="40" height="14" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="001e83a5-7cab-45d4-a1a2-02cd12c28632">
+					<printWhenExpression><![CDATA[$F{aux_item}.equals("[]")&&$F{combo_item}.equals("[]")]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{oltotal}]]></textFieldExpression>
 			</textField>
@@ -481,9 +483,12 @@ ct ORDER BY item ASC
 				<textFieldExpression><![CDATA[$F{order_discount_amount}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-10" y="134" width="151" height="16" isRemoveLineWhenBlank="true" uuid="3eff4921-b0b7-4128-afb0-f76d7ae0fdf5">
+				<reportElement positionType="Float" x="-21" y="134" width="167" height="16" isRemoveLineWhenBlank="true" uuid="3eff4921-b0b7-4128-afb0-f76d7ae0fdf5">
 					<printWhenExpression><![CDATA[($F{order_from_customer}==1)]]></printWhenExpression>
 				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA["Call Customer For Verification"]]></textFieldExpression>
 			</textField>
 		</band>

@@ -556,6 +556,9 @@ ct ORDER BY item ASC
 				<reportElement positionType="Float" x="-10" y="300" width="151" height="21" isRemoveLineWhenBlank="true" uuid="18a51b23-65a5-41b3-9ee1-0f13f9e56087">
 					<printWhenExpression><![CDATA[($F{order_from_customer}==1)]]></printWhenExpression>
 				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA["Call Customer For Verification"]]></textFieldExpression>
 			</textField>
 		</band>
