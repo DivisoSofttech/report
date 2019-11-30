@@ -47,11 +47,7 @@ UNION
 
 							
 							
-ct ORDER BY item ASC
-							
-							
-							
-				]]>
+ct ORDER BY item ASC]]>
 	</queryString>
 	<field name="omid" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="omid"/>
@@ -186,7 +182,7 @@ ct ORDER BY item ASC
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="229" splitType="Stretch">
+		<band height="218" splitType="Stretch">
 			<textField>
 				<reportElement x="12" y="22" width="100" height="25" uuid="8ec6175f-a4de-4bbd-8e4f-23156f9c5275"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -214,15 +210,15 @@ ct ORDER BY item ASC
 				<textFieldExpression><![CDATA["Order Number :"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-12" y="147" width="116" height="17" uuid="22d1dfca-067d-42a9-a999-2bd56a1b0d03"/>
+				<reportElement positionType="Float" x="-12" y="147" width="116" height="17" isRemoveLineWhenBlank="true" uuid="22d1dfca-067d-42a9-a999-2bd56a1b0d03"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Restaurant Notes :"]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-12" y="167" width="145" height="15" uuid="cc7db3bd-97ef-4767-bac0-488d4334084e">
-					<printWhenExpression><![CDATA[$F{aux_item}!=null]]></printWhenExpression>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="-12" y="162" width="145" height="15" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="cc7db3bd-97ef-4767-bac0-488d4334084e">
+					<printWhenExpression><![CDATA[!$F{notes}.equalsIgnoreCase("null")]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
 					<font size="11"/>
@@ -236,7 +232,7 @@ ct ORDER BY item ASC
 				<reportElement x="-21" y="67" width="163" height="1" uuid="8ad4752c-fec7-47f6-a64e-dd159d1cb365"/>
 			</line>
 			<line>
-				<reportElement positionType="Float" x="-17" y="206" width="162" height="1" uuid="6cb58fd0-79f7-4f92-abb6-97c1480912eb"/>
+				<reportElement positionType="Float" x="-17" y="195" width="162" height="1" uuid="6cb58fd0-79f7-4f92-abb6-97c1480912eb"/>
 			</line>
 			<textField>
 				<reportElement positionType="Float" x="-15" y="72" width="159" height="18" uuid="d2e79ba7-2da1-4300-ac87-4745bd42485c"/>
@@ -245,22 +241,22 @@ ct ORDER BY item ASC
 				</textElement>
 				<textFieldExpression><![CDATA[$F{method_of_order}.toUpperCase()]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-12" y="183" width="70" height="21" uuid="a9a76cde-d830-4599-8dbb-d554f4b31d1e"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="-12" y="172" width="70" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="a9a76cde-d830-4599-8dbb-d554f4b31d1e"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA["ring me on"]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="53" y="184" width="81" height="20" uuid="0b8ec1f7-0478-4a9c-bb71-bc975e623f68"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="53" y="173" width="81" height="20" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="0b8ec1f7-0478-4a9c-bb71-bc975e623f68"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="11" isBold="false" isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="98" y="209" width="44" height="20" uuid="e9c388e2-2268-451c-9a68-4d66fa86f2f3"/>
+				<reportElement positionType="Float" x="98" y="198" width="44" height="20" uuid="e9c388e2-2268-451c-9a68-4d66fa86f2f3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>

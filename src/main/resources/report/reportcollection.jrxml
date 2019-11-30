@@ -47,11 +47,7 @@ UNION
 
 							
 							
-ct ORDER BY item DESC
-							
-							
-							
-				]]>
+ct ORDER BY item DESC]]>
 	</queryString>
 	<field name="omid" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="omid"/>
@@ -179,11 +175,8 @@ ct ORDER BY item DESC
 	<field name="comboorder_line_id" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="comboorder_line_id"/>
 	</field>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
 	<title>
-		<band height="225" splitType="Stretch">
+		<band height="216" splitType="Stretch">
 			<textField>
 				<reportElement x="12" y="22" width="100" height="25" uuid="2ae57082-416f-410f-a3e5-795362c11d44"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -213,8 +206,8 @@ ct ORDER BY item DESC
 				<textFieldExpression><![CDATA["Restaurant Notes :"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-12" y="163" width="145" height="15" uuid="de852662-a1e9-4386-85bd-af152386b169">
-					<printWhenExpression><![CDATA[$F{aux_item}!=null]]></printWhenExpression>
+				<reportElement positionType="Float" x="-12" y="156" width="145" height="10" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="de852662-a1e9-4386-85bd-af152386b169">
+					<printWhenExpression><![CDATA[!$F{notes}.equalsIgnoreCase("null")]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
 					<font size="11"/>
@@ -228,7 +221,7 @@ ct ORDER BY item DESC
 				<reportElement x="-21" y="63" width="163" height="1" uuid="068909e7-a91c-40ef-8e0a-d4625dbf081b"/>
 			</line>
 			<line>
-				<reportElement positionType="Float" x="-17" y="202" width="162" height="1" uuid="03f3c2ba-acb1-474c-a2bb-8eceba1ad1ed"/>
+				<reportElement positionType="Float" x="-17" y="193" width="162" height="1" uuid="03f3c2ba-acb1-474c-a2bb-8eceba1ad1ed"/>
 			</line>
 			<textField>
 				<reportElement positionType="Float" x="-15" y="68" width="159" height="18" uuid="5bdf8d4d-bfce-420c-a093-8ce382898f57"/>
@@ -238,14 +231,14 @@ ct ORDER BY item DESC
 				<textFieldExpression><![CDATA[$F{method_of_order}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-12" y="179" width="70" height="21" uuid="023fc2af-1776-4195-b927-158e9d43dc49"/>
+				<reportElement positionType="Float" x="-12" y="170" width="70" height="17" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="023fc2af-1776-4195-b927-158e9d43dc49"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA["ring me on"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="52" y="180" width="81" height="20" uuid="41311087-967a-46ad-a77b-3c25acbb29bb"/>
+				<reportElement positionType="Float" x="52" y="171" width="81" height="16" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="41311087-967a-46ad-a77b-3c25acbb29bb"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="11" isBold="false" isItalic="false"/>
 				</textElement>
@@ -286,7 +279,7 @@ ct ORDER BY item DESC
 				<textFieldExpression><![CDATA[$F{storelocation_name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="98" y="205" width="44" height="20" uuid="dd824e6e-ff08-4b03-9771-090cb6ad8290"/>
+				<reportElement positionType="Float" x="98" y="196" width="44" height="20" uuid="dd824e6e-ff08-4b03-9771-090cb6ad8290"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
@@ -407,13 +400,6 @@ ct ORDER BY item DESC
 				</textElement>
 				<text><![CDATA[Customer's Food Exp Orders :]]></text>
 			</staticText>
-			<staticText>
-				<reportElement positionType="Float" x="-11" y="160" width="79" height="20" uuid="2c5167aa-755f-49b3-8e6f-4a5898cd8113"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<text><![CDATA[Order Placed at :]]></text>
-			</staticText>
 			<textField>
 				<reportElement positionType="Float" x="68" y="160" width="74" height="20" uuid="3485b30c-e23d-4108-ac9d-8f05b0cac203"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -422,7 +408,7 @@ ct ORDER BY item DESC
 				<textFieldExpression><![CDATA[$F{order_place_at}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="77" y="182" width="65" height="20" uuid="580c0a9d-137e-4878-bc35-7017d878dddf"/>
+				<reportElement positionType="Float" x="73" y="182" width="65" height="20" uuid="580c0a9d-137e-4878-bc35-7017d878dddf"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -462,7 +448,7 @@ ct ORDER BY item DESC
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="HH:mm">
-				<reportElement positionType="Float" x="72" y="239" width="68" height="20" uuid="a77423fc-2719-4a6f-b346-47a671f9d1b1"/>
+				<reportElement positionType="Float" x="68" y="239" width="68" height="20" uuid="a77423fc-2719-4a6f-b346-47a671f9d1b1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -491,6 +477,13 @@ ct ORDER BY item DESC
 				</textElement>
 				<textFieldExpression><![CDATA["Call Customer For Verification"]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="-12" y="159" width="79" height="20" uuid="2c5167aa-755f-49b3-8e6f-4a5898cd8113"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Order Placed at :]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>
