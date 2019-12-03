@@ -126,7 +126,7 @@ public class ReportServiceImpl implements ReportService {
 
 	@Override
 	public Customer findCustomerByReference(String reference) {
-		StringQuery stringQuery = new StringQuery(termQuery("reference", reference).toString());
+		StringQuery stringQuery = new StringQuery(termQuery("idpCode", reference).toString());
 		return elasticsearchOperations.queryForObject(stringQuery, Customer.class);
 	}
 	
