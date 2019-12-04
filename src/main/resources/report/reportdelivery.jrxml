@@ -44,11 +44,7 @@ UNION
  )
 							
 							
-ct ORDER BY  item ASC,rowid DESC 
-							
-							
-							
-				]]>
+ct ORDER BY  item ASC,rowid DESC]]>
 	</queryString>
 	<field name="omid" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="omid"/>
@@ -308,7 +304,7 @@ ct ORDER BY  item ASC,rowid DESC
 	<detail>
 		<band height="14" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="-15" y="0" width="109" height="14" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="39a842e0-7523-40fd-9558-2cc45f7986ee"/>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="-12" y="0" width="106" height="14" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="39a842e0-7523-40fd-9558-2cc45f7986ee"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[String.format("%1$2s x %2$-50.50s", $F{olquantity}, $F{item})]]></textFieldExpression>
 			</textField>
@@ -452,12 +448,12 @@ ct ORDER BY  item ASC,rowid DESC
 				<text><![CDATA[Order From This Customer :]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="113" y="254" width="20" height="20" uuid="9676ba81-e1ae-4926-8e53-d98ccaebae8d"/>
+				<reportElement positionType="Float" x="123" y="254" width="17" height="20" uuid="9676ba81-e1ae-4926-8e53-d98ccaebae8d"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{order_from_customer}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="123" y="274" width="21" height="20" uuid="e0f85bc7-c846-41f0-ae07-5fda9b92caa8"/>
+				<reportElement positionType="Float" x="123" y="274" width="17" height="20" uuid="e0f85bc7-c846-41f0-ae07-5fda9b92caa8"/>
 				<textFieldExpression><![CDATA[$F{customer_order}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -475,14 +471,14 @@ ct ORDER BY  item ASC,rowid DESC
 				<text><![CDATA[Order Placed at :]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="68" y="329" width="74" height="20" uuid="c2049f0a-ec00-4df7-b26d-02ae283ec63a"/>
+				<reportElement positionType="Float" x="73" y="329" width="69" height="20" uuid="c2049f0a-ec00-4df7-b26d-02ae283ec63a"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{order_place_at}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="77" y="344" width="65" height="20" uuid="6c23c63c-beb8-4354-bbb3-eb1260ae2a7e"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="73" y="344" width="69" height="20" uuid="6c23c63c-beb8-4354-bbb3-eb1260ae2a7e"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -496,7 +492,7 @@ ct ORDER BY  item ASC,rowid DESC
 				<text><![CDATA[Order Accepted at :]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="-11" y="375" width="151" height="16" uuid="3eb87081-72ce-4a09-aa20-801830bc7af7"/>
+				<reportElement positionType="Float" x="-12" y="375" width="152" height="16" uuid="3eb87081-72ce-4a09-aa20-801830bc7af7"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -510,7 +506,7 @@ ct ORDER BY  item ASC,rowid DESC
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="HH:mm">
-				<reportElement positionType="Float" x="74" y="390" width="72" height="20" uuid="873b080b-2ada-4180-bf03-fde7fe0b2ea2"/>
+				<reportElement positionType="Float" x="74" y="390" width="68" height="20" uuid="873b080b-2ada-4180-bf03-fde7fe0b2ea2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -550,7 +546,7 @@ ct ORDER BY  item ASC,rowid DESC
 				<textFieldExpression><![CDATA["  + "]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-10" y="300" width="151" height="21" isRemoveLineWhenBlank="true" uuid="18a51b23-65a5-41b3-9ee1-0f13f9e56087">
+				<reportElement positionType="Float" x="-12" y="300" width="153" height="21" isRemoveLineWhenBlank="true" uuid="18a51b23-65a5-41b3-9ee1-0f13f9e56087">
 					<printWhenExpression><![CDATA[($F{order_from_customer}==1)]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
