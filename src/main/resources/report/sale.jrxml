@@ -7,7 +7,7 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter2.xml"/>
 	<parameter name="store_i_d_pcode" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[ select * from sale, ticket_line where sale.id=ticket_line.id and sale.storeidpcode= $P{store_i_d_pcode} ]]>
+		<![CDATA[select * from sale, ticket_line where sale.id=ticket_line.id and sale.storeidpcode= $P{store_i_d_pcode}]]>
 	</queryString>
 	<field name="id" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
@@ -103,7 +103,7 @@
 				<reportElement positionType="Float" x="-19" y="140" width="169" height="1" uuid="bf3d6596-c1e6-4192-b050-b8e8eddcd18a"/>
 			</line>
 			<textField>
-				<reportElement x="-9" y="77" width="88" height="17" uuid="581910c0-ae79-4852-ad65-3f683b0b0a68"/>
+				<reportElement x="-4" y="77" width="88" height="17" uuid="581910c0-ae79-4852-ad65-3f683b0b0a68"/>
 				<textFieldExpression><![CDATA["Customer id:"]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -111,7 +111,7 @@
 				<textFieldExpression><![CDATA[$F{customer_id}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-8" y="98" width="98" height="16" uuid="21236103-b5f8-45bb-bab4-c73d6a1eb5e9"/>
+				<reportElement positionType="Float" x="-4" y="98" width="98" height="16" uuid="21236103-b5f8-45bb-bab4-c73d6a1eb5e9"/>
 				<textFieldExpression><![CDATA["Sale invoice num:"]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -124,7 +124,7 @@
 				<textFieldExpression><![CDATA[$F{jhi_date}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="-8" y="119" width="92" height="15" uuid="2761ebdc-936b-4639-9c00-e0dd954900c2"/>
+				<reportElement positionType="Float" x="-4" y="119" width="54" height="15" uuid="2761ebdc-936b-4639-9c00-e0dd954900c2"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA["Date  :"]]></textFieldExpression>
 			</textField>

@@ -227,10 +227,10 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<reportElement positionType="Float" x="-21" y="132" width="171" height="1" uuid="6dda97a4-caea-4899-9a35-fca9c263b69e"/>
 			</line>
 			<line>
-				<reportElement x="-21" y="63" width="163" height="1" uuid="068909e7-a91c-40ef-8e0a-d4625dbf081b"/>
+				<reportElement x="-21" y="63" width="171" height="1" uuid="068909e7-a91c-40ef-8e0a-d4625dbf081b"/>
 			</line>
 			<line>
-				<reportElement positionType="Float" x="-17" y="190" width="162" height="1" uuid="03f3c2ba-acb1-474c-a2bb-8eceba1ad1ed"/>
+				<reportElement positionType="Float" x="-20" y="189" width="170" height="1" uuid="03f3c2ba-acb1-474c-a2bb-8eceba1ad1ed"/>
 			</line>
 			<textField>
 				<reportElement positionType="Float" x="-15" y="68" width="159" height="18" uuid="5bdf8d4d-bfce-420c-a093-8ce382898f57"/>
@@ -268,7 +268,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA["EUR"]]></textFieldExpression>
 			</textField>
 			<image scaleImage="RealSize">
-				<reportElement positionType="Float" x="-13" y="-58" width="116" height="144" uuid="b5d9e4cc-0e3f-48bc-bf86-7427083042a4"/>
+				<reportElement positionType="Float" x="4" y="-58" width="116" height="144" uuid="b5d9e4cc-0e3f-48bc-bf86-7427083042a4"/>
 				<graphicElement fill="Solid"/>
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
@@ -372,7 +372,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<text><![CDATA[Total Due]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="-16" y="50" width="156" height="30" uuid="2ee33464-908e-47fc-96bc-49e90c41fcb3"/>
+				<reportElement positionType="Float" x="-20" y="50" width="170" height="30" uuid="2ee33464-908e-47fc-96bc-49e90c41fcb3"/>
 				<box>
 					<pen lineWidth="1.0" lineStyle="Double"/>
 					<topPen lineWidth="1.0" lineStyle="Double" lineColor="#000000"/>
