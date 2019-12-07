@@ -12,8 +12,9 @@ public interface MessageBinderConfiguration {
 	
 	String ORDER ="order";
 	
-	@Input(PAYMENT)
-	KStream<String, Payment> payment();
+	/*
+	 * @Input(PAYMENT) KStream<String, Payment> payment();
+	 */
 
 	@Input(ORDER)
 	KStream<String, Order> order();
