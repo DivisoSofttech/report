@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sale" pageWidth="164" pageHeight="842" columnWidth="124" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="c6305356-51b3-4c03-afcb-38c73ffedc9f">
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sale" pageWidth="170" pageHeight="842" columnWidth="130" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isTitleNewPage="true" isIgnorePagination="true" uuid="c6305356-51b3-4c03-afcb-38c73ffedc9f">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="289"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="706"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (44)"/>
-	<property name="com.jaspersoft.studio.unit." value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.pageWidth" value="mm"/>
-	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter2.xml"/>
 	<parameter name="store_i_d_pcode" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select * from  report.sale,  report.ticket_line where  report.sale.id =  report.ticket_line.sale_id and  report.sale.storeidpcode =  $P{store_i_d_pcode} ]]>
+		<![CDATA[ select * from sale, ticket_line where sale.id=ticket_line.id and sale.storeidpcode= $P{store_i_d_pcode} ]]>
 	</queryString>
 	<field name="id" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
@@ -78,7 +69,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="174" splitType="Stretch">
+		<band height="161" splitType="Stretch">
 			<textField>
 				<reportElement x="12" y="37" width="100" height="30" uuid="30b00a19-968e-48f5-882f-15532dba0d64"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -99,37 +90,43 @@
 				<imageExpression><![CDATA["Graeshoppelogoforreport.png"]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement positionType="Float" x="95" y="154" width="44" height="20" uuid="60c815a2-9c17-4ac4-8b57-a0072a5fd52e"/>
+				<reportElement positionType="Float" x="95" y="141" width="44" height="20" uuid="60c815a2-9c17-4ac4-8b57-a0072a5fd52e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA["EUR"]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement positionType="Float" x="-18" y="80" width="163" height="1" uuid="3b0eee5f-3d91-4d03-9fb9-c4f0e83269c7"/>
+				<reportElement positionType="Float" x="-19" y="72" width="168" height="1" uuid="3b0eee5f-3d91-4d03-9fb9-c4f0e83269c7"/>
 			</line>
 			<line>
-				<reportElement positionType="Float" x="-19" y="153" width="163" height="1" uuid="bf3d6596-c1e6-4192-b050-b8e8eddcd18a"/>
+				<reportElement positionType="Float" x="-19" y="140" width="169" height="1" uuid="bf3d6596-c1e6-4192-b050-b8e8eddcd18a"/>
 			</line>
 			<textField>
-				<reportElement x="-9" y="83" width="88" height="17" uuid="581910c0-ae79-4852-ad65-3f683b0b0a68"/>
+				<reportElement x="-9" y="77" width="88" height="17" uuid="581910c0-ae79-4852-ad65-3f683b0b0a68"/>
 				<textFieldExpression><![CDATA["Customer id:"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="111" y="83" width="30" height="17" uuid="b28b730a-7fb5-4bb9-99ef-d72f39b85966"/>
+				<reportElement positionType="Float" x="100" y="77" width="30" height="17" uuid="b28b730a-7fb5-4bb9-99ef-d72f39b85966"/>
 				<textFieldExpression><![CDATA[$F{customer_id}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-9" y="104" width="98" height="16" uuid="21236103-b5f8-45bb-bab4-c73d6a1eb5e9"/>
+				<reportElement positionType="Float" x="-8" y="98" width="98" height="16" uuid="21236103-b5f8-45bb-bab4-c73d6a1eb5e9"/>
 				<textFieldExpression><![CDATA["Sale invoice num:"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="110" y="104" width="31" height="16" uuid="e6b963c9-8b5d-4430-86e3-e9b5172a2fb6"/>
+				<reportElement x="100" y="98" width="31" height="16" uuid="e6b963c9-8b5d-4430-86e3-e9b5172a2fb6"/>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="-9" y="125" width="100" height="21" uuid="f421104d-721b-40eb-8534-b2199433d448"/>
+				<reportElement x="60" y="119" width="79" height="15" uuid="f421104d-721b-40eb-8534-b2199433d448"/>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{jhi_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="-8" y="119" width="92" height="15" uuid="2761ebdc-936b-4639-9c00-e0dd954900c2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Date  :"]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -159,34 +156,34 @@
 		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="88" splitType="Stretch">
+		<band height="69" splitType="Stretch">
 			<textField>
-				<reportElement positionType="Float" x="-11" y="46" width="151" height="16" uuid="a26ff879-1e2c-4379-b847-fed6623f5532"/>
+				<reportElement positionType="Float" x="-11" y="33" width="151" height="16" uuid="a26ff879-1e2c-4379-b847-fed6623f5532"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Powered by Graeshoppe"]]></textFieldExpression>
 			</textField>
 			<textField pattern="HH:mm">
-				<reportElement positionType="Float" x="62" y="60" width="80" height="22" uuid="978ca3ed-6a20-4654-8a4a-15c6d2b503b9"/>
+				<reportElement positionType="Float" x="62" y="47" width="80" height="22" uuid="978ca3ed-6a20-4654-8a4a-15c6d2b503b9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<textField pattern="MMMMM dd, yyyy">
-				<reportElement positionType="Float" x="9" y="60" width="83" height="22" uuid="57215ccf-5736-4357-8a9c-18344bba15fc"/>
+			<textField pattern="MMM d, yyyy">
+				<reportElement positionType="Float" x="-9" y="47" width="101" height="22" uuid="57215ccf-5736-4357-8a9c-18344bba15fc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-6" y="14" width="89" height="15" uuid="e0f0deb8-37bb-4b0a-a61a-6e133092d194"/>
+				<reportElement positionType="Float" x="-6" y="7" width="89" height="15" uuid="e0f0deb8-37bb-4b0a-a61a-6e133092d194"/>
 				<textFieldExpression><![CDATA["Grand Total:"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="103" y="14" width="29" height="15" uuid="4fbd8133-dbf5-41a5-935d-2afca37ece93"/>
+				<reportElement x="103" y="7" width="29" height="15" uuid="4fbd8133-dbf5-41a5-935d-2afca37ece93"/>
 				<textFieldExpression><![CDATA[$F{grand_total}]]></textFieldExpression>
 			</textField>
 			<line>
