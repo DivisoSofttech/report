@@ -397,7 +397,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<text><![CDATA[Customer details :]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="-18" y="71" width="160" height="30" uuid="9443dc75-ce90-4579-8296-adce3627bf65"/>
+				<reportElement positionType="Float" x="-21" y="71" width="171" height="30" uuid="9443dc75-ce90-4579-8296-adce3627bf65"/>
 				<box>
 					<pen lineWidth="1.0" lineStyle="Double"/>
 					<topPen lineWidth="1.0" lineStyle="Double" lineColor="#000000"/>
