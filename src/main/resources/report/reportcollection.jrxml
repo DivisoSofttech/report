@@ -189,28 +189,28 @@ ct ORDER BY  item ASC,rowid DESC]]>
 			<textField>
 				<reportElement x="12" y="22" width="100" height="25" uuid="2ae57082-416f-410f-a3e5-795362c11d44"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Liberation Sans Narrow" size="11"/>
+					<font fontName="SansSerif" size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{store_name}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="61" y="107" width="81" height="20" uuid="1db51cc4-b4bf-49b8-8ea3-4b94a3c0994e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Liberation Sans Narrow" size="11"/>
+					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{order_number}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="-6" y="107" width="98" height="20" uuid="ef62e937-d6d9-4d5f-a7c8-10c7885856ac"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Liberation Sans Narrow" size="11"/>
+					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Order Number :"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="-12" y="140" width="116" height="17" uuid="3b0867b3-c4a0-425f-9b43-10a62478888f"/>
 				<textElement>
-					<font fontName="Liberation Sans Narrow" size="11"/>
+					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Restaurant Notes :"]]></textFieldExpression>
 			</textField>
@@ -219,12 +219,12 @@ ct ORDER BY  item ASC,rowid DESC]]>
 					<printWhenExpression><![CDATA[!$F{notes}.equalsIgnoreCase("null")]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
-					<font fontName="Liberation Sans Narrow" size="11"/>
+					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{notes}.substring(0, 1)+$F{notes}.substring(1, $F{notes}.length()).toLowerCase()]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="-21" y="131" width="171" height="1" uuid="6dda97a4-caea-4899-9a35-fca9c263b69e"/>
+				<reportElement positionType="Float" x="-21" y="132" width="171" height="1" uuid="6dda97a4-caea-4899-9a35-fca9c263b69e"/>
 			</line>
 			<line>
 				<reportElement x="-21" y="63" width="163" height="1" uuid="068909e7-a91c-40ef-8e0a-d4625dbf081b"/>
@@ -242,52 +242,48 @@ ct ORDER BY  item ASC,rowid DESC]]>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="-12" y="167" width="70" height="17" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="023fc2af-1776-4195-b927-158e9d43dc49"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Liberation Sans Narrow" size="11"/>
+					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA["ring me on"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="52" y="168" width="81" height="16" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="41311087-967a-46ad-a77b-3c25acbb29bb"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Liberation Sans Narrow" size="11" isBold="false" isItalic="false"/>
+					<font size="11" isBold="false" isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="-6" y="42" width="132" height="17" uuid="de9153ac-19c4-4529-9b13-1c3fa8a94b3b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Liberation Sans Narrow" size="11"/>
+					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{storelocation_name}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="98" y="193" width="44" height="20" uuid="dd824e6e-ff08-4b03-9771-090cb6ad8290"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Liberation Sans Narrow" size="11"/>
+					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA["EUR"]]></textFieldExpression>
 			</textField>
 			<image scaleImage="RealSize">
-				<reportElement positionType="Float" x="3" y="-58" width="116" height="144" uuid="b5d9e4cc-0e3f-48bc-bf86-7427083042a4"/>
+				<reportElement positionType="Float" x="-13" y="-58" width="116" height="144" uuid="b5d9e4cc-0e3f-48bc-bf86-7427083042a4"/>
 				<graphicElement fill="Solid"/>
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
 			<textField isStretchWithOverflow="true" pattern="MMM d, yyyy">
-				<reportElement positionType="Float" x="-15" y="95" width="161" height="10" uuid="192bf997-c5c6-4d55-b276-547c682aca73">
+				<reportElement positionType="Float" x="-15" y="95" width="161" height="12" uuid="192bf997-c5c6-4d55-b276-547c682aca73">
 					<printWhenExpression><![CDATA[$F{pre_order_date}==null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Liberation Sans Narrow"/>
-				</textElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[String.format("Due  %1$s  At  ASAP  %2$s",$F{due_date},$F{due_time})]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="-15" y="90" width="161" height="12" uuid="74b0901a-dfae-4bfb-9484-c4ef4fe9672b">
 					<printWhenExpression><![CDATA[$F{pre_order_date}!=null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Liberation Sans Narrow"/>
-				</textElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[String.format("Requested  for %1$s  At  %2$s",$F{due_date},$F{due_time})]]></textFieldExpression>
 			</textField>
 		</band>
@@ -302,18 +298,14 @@ ct ORDER BY  item ASC,rowid DESC]]>
 		<band height="14" splitType="Prevent">
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" isPrintRepeatedValues="false" x="-15" y="0" width="109" height="14" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="409fced2-a1e5-4466-909f-54cbedbf8c40"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Liberation Sans Narrow"/>
-				</textElement>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[String.format("%1$2s x %2$-50.50s", $F{olquantity}, $F{item})]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="101" y="0" width="40" height="14" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="001e83a5-7cab-45d4-a1a2-02cd12c28632">
 					<printWhenExpression><![CDATA[$F{aux_item}.equals("[]")&&$F{combo_item}.equals("[]")]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Liberation Sans Narrow"/>
-				</textElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{oltotal}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -323,18 +315,14 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<reportElement positionType="Float" isPrintRepeatedValues="false" x="2" y="-1" width="90" height="15" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="9fbee0b0-88ef-401f-9c19-7cbff6122943">
 					<printWhenExpression><![CDATA[!$F{aux_item}.equals("[]")]]></printWhenExpression>
 				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Liberation Sans Narrow"/>
-				</textElement>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[String.format("%1$2s x %2$-20.20s", $F{auxquantity},$F{aux_item})]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" isPrintRepeatedValues="false" x="101" y="-1" width="40" height="15" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="10d6cd67-7221-4c5b-847b-1bfab3b7f199">
 					<printWhenExpression><![CDATA[!$F{aux_item}.equals("[]")]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Liberation Sans Narrow"/>
-				</textElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{auxtotal}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -343,18 +331,14 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<reportElement positionType="Float" x="18" y="0" width="55" height="11" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="c3da4206-fcc5-40ec-9b4a-4e20c658473a">
 					<printWhenExpression><![CDATA[!$F{combo_item}.equals("[]")]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Liberation Sans Narrow"/>
-				</textElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{combo_item}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="65" y="1" width="27" height="10" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="d3b2915d-ee41-43e2-9061-7a79a75345d0">
 					<printWhenExpression><![CDATA[!$F{combo_item}.equals("[]")]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Liberation Sans Narrow"/>
-				</textElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{comboquantity}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -374,7 +358,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="112" y="25" width="28" height="20" uuid="b0465655-49eb-4579-95a8-b23e09d54439"/>
+				<reportElement positionType="Float" x="107" y="25" width="33" height="20" uuid="b0465655-49eb-4579-95a8-b23e09d54439"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>

@@ -196,14 +196,14 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="63" y="106" width="81" height="20" uuid="ff5d9efc-ed1d-418f-a0ae-07db6d2880ef"/>
+				<reportElement x="63" y="109" width="81" height="20" uuid="ff5d9efc-ed1d-418f-a0ae-07db6d2880ef"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{order_number}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="-6" y="106" width="98" height="20" uuid="e761a84a-b7d6-406e-8222-7ea2052b8ec6"/>
+				<reportElement x="-6" y="109" width="98" height="20" uuid="e761a84a-b7d6-406e-8222-7ea2052b8ec6"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
@@ -270,21 +270,17 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA[$F{storelocation_name}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="MMM d, yyyy">
-				<reportElement positionType="Float" x="-15" y="95" width="161" height="10" uuid="9f07b659-de56-4e4d-b791-45499703bee0">
+				<reportElement positionType="Float" x="-15" y="93" width="161" height="14" uuid="9f07b659-de56-4e4d-b791-45499703bee0">
 					<printWhenExpression><![CDATA[$F{pre_order_date}==null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Liberation Sans Narrow"/>
-				</textElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[String.format("Due  %1$s  At  ASAP  %2$s",$F{due_date},$F{due_time})]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="-15" y="90" width="161" height="12" uuid="f6cc3c07-2539-4326-aef7-f7bfa60bf5be">
 					<printWhenExpression><![CDATA[$F{pre_order_date}!=null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Liberation Sans Narrow"/>
-				</textElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[String.format("Requested  for %1$s  At  %2$s",$F{due_date},$F{due_time})]]></textFieldExpression>
 			</textField>
 		</band>
