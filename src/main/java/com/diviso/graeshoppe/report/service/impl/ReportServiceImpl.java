@@ -58,7 +58,7 @@ public class ReportServiceImpl implements ReportService {
 
 	@Autowired
 	OrderMasterService orderMasterService;
-	
+
 	@Autowired
 	OrderMasterRepository orderMasterRepository;
 
@@ -92,7 +92,7 @@ public class ReportServiceImpl implements ReportService {
 
 	@Override
 	public byte[] getReportSummaryAsPdf(LocalDate date, String storeId) throws JRException {
-		//JasperReport jr = JasperCompileManager.compileReport("ordersummary.jrxml");
+		// JasperReport jr = JasperCompileManager.compileReport("ordersummary.jrxml");
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("date", date);
@@ -104,8 +104,9 @@ public class ReportServiceImpl implements ReportService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-		JasperPrint jp = JasperFillManager.fillReport("src/main/resources/report/reportSummary.jasper", parameters, conn);
+
+		JasperPrint jp = JasperFillManager.fillReport("src/main/resources/report/reportSummary.jasper", parameters,
+				conn);
 		return JasperExportManager.exportReportToPdf(jp);
 
 	}
@@ -129,7 +130,7 @@ public class ReportServiceImpl implements ReportService {
 		StringQuery stringQuery = new StringQuery(termQuery("idpCode", reference).toString());
 		return elasticsearchOperations.queryForObject(stringQuery, Customer.class);
 	}
-	
+
 	@Override
 	public Product findProductByProductId(Long productId) {
 		StringQuery stringQuery = new StringQuery(termQuery("id", productId).toString());
@@ -145,22 +146,8 @@ public class ReportServiceImpl implements ReportService {
 	@Override
 	public byte[] getReportWithAuxAndComboAsPdf(String orderNumber) throws JRException {
 
-		
-	  JasperReport jr = null; 
-	  OrderMasterDTO orderMasterDto =orderMasterService.findOrderMasterByOrderNumber(orderNumber);
-	 
-	  // Preparing parameters
-	  if(orderMasterDto.getMethodOfOrder().equalsIgnoreCase("delivery"))
-	  {
-		  jr=JasperCompileManager.compileReport("src/main/resources/report/reportdelivery.jrxml"); 
-	  } 
-	  else if(orderMasterDto.getMethodOfOrder().equalsIgnoreCase("collection")) {
-		   
-		  jr=JasperCompileManager.compileReport("src/main/resources/report/reportcollection.jrxml"); 
-	  }
-		 
-		//JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/reportcomboaux.jrxml");
-		
+		OrderMasterDTO orderMasterDto = orderMasterService.findOrderMasterByOrderNumber(orderNumber);
+
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("order_number", orderNumber);
 		Connection conn = null;
@@ -170,45 +157,80 @@ public class ReportServiceImpl implements ReportService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		JasperPrint jp=JasperFillManager.fillReport(jr, parameters, conn);
-		
-		/*OrderMasterDTO orderMasterDto =orderMasterService.findOrderMasterByOrderNumber(orderNumber);
-		if(orderMasterDto.getMethodOfOrder().equalsIgnoreCase("delivery"))
-		  {
-			  jp = JasperFillManager.fillReport(jr, parameters, conn);
-		  } 
-		  else if(orderMasterDto.getMethodOfOrder().equalsIgnoreCase("collection")) {
-			  jp = JasperFillManager.fillReport(jr, parameters, conn); 
-			  
-		  }*/
-	
+		JasperPrint jp = null;
+
+		if (orderMasterDto.getMethodOfOrder().equalsIgnoreCase("delivery")) {
+			jp = JasperFillManager.fillReport("src/main/resources/report/reportdelivery.jasper", parameters, conn);
+		} else if (orderMasterDto.getMethodOfOrder().equalsIgnoreCase("collection")) {
+			jp = JasperFillManager.fillReport("src/main/resources/report/reportcollection.jasper", parameters, conn);
+
+		}
+
+		/*
+		 * JasperReport jr = null;
+		 * 
+		 * 
+		 * // Preparing parameters
+		 * if(orderMasterDto.getMethodOfOrder().equalsIgnoreCase("delivery")) {
+		 * jr=JasperCompileManager.compileReport(
+		 * "src/main/resources/report/reportdelivery.jrxml"); } else
+		 * if(orderMasterDto.getMethodOfOrder().equalsIgnoreCase("collection")) {
+		 * 
+		 * jr=JasperCompileManager.compileReport(
+		 * "src/main/resources/report/reportcollection.jrxml"); }
+		 * 
+		 * //JasperReport jr = JasperCompileManager.compileReport(
+		 * "src/main/resources/report/reportcomboaux.jrxml");
+		 * 
+		 * Map<String, Object> parameters = new HashMap<String, Object>();
+		 * parameters.put("order_number", orderNumber); Connection conn = null; try {
+		 * conn = dataSource.getConnection(); } catch (SQLException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); } JasperPrint
+		 * jp=JasperFillManager.fillReport(jr, parameters, conn);
+		 * 
+		 * OrderMasterDTO orderMasterDto
+		 * =orderMasterService.findOrderMasterByOrderNumber(orderNumber);
+		 * if(orderMasterDto.getMethodOfOrder().equalsIgnoreCase("delivery")) { jp =
+		 * JasperFillManager.fillReport(jr, parameters, conn); } else
+		 * if(orderMasterDto.getMethodOfOrder().equalsIgnoreCase("collection")) { jp =
+		 * JasperFillManager.fillReport(jr, parameters, conn);
+		 * 
+		 * }
+		 */
+
 		return JasperExportManager.exportReportToPdf(jp);
 
 	}
 
-	
-
 	@Override
 	public ReportSummary createReportSummary(String expectedDelivery, String storeName) {
-		Instant dateBegin = Instant.parse(expectedDelivery.toString() + "T00:00:00Z"); 
+		Instant dateBegin = Instant.parse(expectedDelivery.toString() + "T00:00:00Z");
 		Instant dateEnd = Instant.parse(expectedDelivery.toString() + "T23:59:59Z");
 		ReportSummary reportSummary = new ReportSummary();
-	    reportSummary.setDate(LocalDate.parse(expectedDelivery)); 
-	    reportSummary.setStoreId(storeName);
-		
-		 reportSummary.setTypeAllCount(orderMasterRepository.countByExpectedDeliveryBetweenAndStoreName(dateBegin,dateEnd,storeName));
-		reportSummary.setTypeAllTotal(orderMasterRepository.sumOfTotalDue(dateBegin,dateEnd,storeName));
-		reportSummary.setTypeDeliveryCount(orderMasterRepository.countByMethodOfOrderAndStoreName(dateBegin,dateEnd,storeName,"delivery"));
-		reportSummary.setTypeCollectionCount(orderMasterRepository.countByMethodOfOrderAndStoreName(dateBegin,dateEnd,storeName,"collection"));
-		reportSummary.setTypeDeliveryTotal(orderMasterRepository.sumOfTotalByOrderType(dateBegin,dateEnd,storeName,"delivery"));
-		reportSummary.setTypeCollectionTotal(orderMasterRepository.sumOfTotalByOrderType(dateBegin,dateEnd,storeName,"collection"));
-		reportSummary.setTypeCardCount(orderMasterRepository.countByOrderStatusAndStoreName(dateBegin,dateEnd,storeName,"order paid"));
-		reportSummary.setTypeCashCount(orderMasterRepository.countByOrderStatusAndStoreName(dateBegin,dateEnd,storeName,"order not paid"));
-		reportSummary.setTypeCardTotal(orderMasterRepository.sumOftotalByOrderStatus(dateBegin,dateEnd,storeName,"order paid"));
-		reportSummary.setTypeCashTotal(orderMasterRepository.sumOftotalByOrderStatus(dateBegin,dateEnd,storeName,"order not paid"));
-		
-		
-		return reportSummary; 
+		reportSummary.setDate(LocalDate.parse(expectedDelivery));
+		reportSummary.setStoreId(storeName);
+
+		reportSummary.setTypeAllCount(
+				orderMasterRepository.countByExpectedDeliveryBetweenAndStoreName(dateBegin, dateEnd, storeName));
+		reportSummary.setTypeAllTotal(orderMasterRepository.sumOfTotalDue(dateBegin, dateEnd, storeName));
+		reportSummary.setTypeDeliveryCount(
+				orderMasterRepository.countByMethodOfOrderAndStoreName(dateBegin, dateEnd, storeName, "delivery"));
+		reportSummary.setTypeCollectionCount(
+				orderMasterRepository.countByMethodOfOrderAndStoreName(dateBegin, dateEnd, storeName, "collection"));
+		reportSummary.setTypeDeliveryTotal(
+				orderMasterRepository.sumOfTotalByOrderType(dateBegin, dateEnd, storeName, "delivery"));
+		reportSummary.setTypeCollectionTotal(
+				orderMasterRepository.sumOfTotalByOrderType(dateBegin, dateEnd, storeName, "collection"));
+		reportSummary.setTypeCardCount(
+				orderMasterRepository.countByOrderStatusAndStoreName(dateBegin, dateEnd, storeName, "order paid"));
+		reportSummary.setTypeCashCount(
+				orderMasterRepository.countByOrderStatusAndStoreName(dateBegin, dateEnd, storeName, "order not paid"));
+		reportSummary.setTypeCardTotal(
+				orderMasterRepository.sumOftotalByOrderStatus(dateBegin, dateEnd, storeName, "order paid"));
+		reportSummary.setTypeCashTotal(
+				orderMasterRepository.sumOftotalByOrderStatus(dateBegin, dateEnd, storeName, "order not paid"));
+
+		return reportSummary;
 	}
 
 	@Override
@@ -216,20 +238,16 @@ public class ReportServiceImpl implements ReportService {
 		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/sale.jrxml");
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("store_i_d_pcode", storeidpcode);
-				Connection conn = null;
+		Connection conn = null;
 		try {
 			conn = dataSource.getConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+
 		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
 		return JasperExportManager.exportReportToPdf(jp);
 	}
-		
-	
 
 }
-
-

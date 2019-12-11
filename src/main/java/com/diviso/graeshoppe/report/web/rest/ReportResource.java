@@ -161,15 +161,15 @@ public class ReportResource {
 		       //log.debug("REST request to get a pdf");
 		     
 		       byte[] pdfContents = null;
-		       System.out.println(">>>>>>>>>>>>>>>>>>>>"+orderNumber);
+		       //System.out.println(">>>>>>>>>>>>>>>>>>>>"+orderNumber);
 		     
 		    
 		      try
 		      {
 		    	  
-		    	  System.out.println("starting of try block>>>>>>>>>>>>>>>>>>>>"+orderNumber);
+		    	  //System.out.println("starting of try block>>>>>>>>>>>>>>>>>>>>"+orderNumber);
 		        pdfContents=reportService.getReportWithAuxAndComboAsPdf(orderNumber);
-		        System.out.println("ending try block>>>>>>>>>>>>>>>>>>>>"+orderNumber);
+		       // System.out.println("ending try block>>>>>>>>>>>>>>>>>>>>"+orderNumber);
 		      }
 		      catch (JRException e) {
 		           e.printStackTrace();
@@ -203,7 +203,7 @@ public class ReportResource {
 		    
 		      try
 		      {
-		        pdfContents=reportService.getSaleReportAsPdf(storeidpcode);
+		       pdfContents=reportService.getSaleReportAsPdf(storeidpcode);
 		      }
 		      catch (JRException e) {
 		           e.printStackTrace();
