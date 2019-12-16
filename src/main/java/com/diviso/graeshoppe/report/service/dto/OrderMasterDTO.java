@@ -40,6 +40,8 @@ public class OrderMasterDTO implements Serializable {
 
     private String customerId;
 
+    private String customerName;
+
     private String pincode;
 
     private String houseNoOrBuildingName;
@@ -205,6 +207,14 @@ public class OrderMasterDTO implements Serializable {
 
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public String getPincode() {
@@ -399,6 +409,7 @@ public class OrderMasterDTO implements Serializable {
             ", totalDue=" + getTotalDue() +
             ", orderStatus='" + getOrderStatus() + "'" +
             ", customerId='" + getCustomerId() + "'" +
+            ", customerName='" + getCustomerName() + "'" +
             ", pincode='" + getPincode() + "'" +
             ", houseNoOrBuildingName='" + getHouseNoOrBuildingName() + "'" +
             ", roadNameAreaOrStreet='" + getRoadNameAreaOrStreet() + "'" +

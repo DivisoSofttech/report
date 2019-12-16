@@ -96,6 +96,9 @@ public class OrderMasterResourceIntTest {
     private static final String DEFAULT_CUSTOMER_ID = "AAAAAAAAAA";
     private static final String UPDATED_CUSTOMER_ID = "BBBBBBBBBB";
 
+    private static final String DEFAULT_CUSTOMER_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_CUSTOMER_NAME = "BBBBBBBBBB";
+
     private static final String DEFAULT_PINCODE = "AAAAAAAAAA";
     private static final String UPDATED_PINCODE = "BBBBBBBBBB";
 
@@ -224,6 +227,7 @@ public class OrderMasterResourceIntTest {
             .totalDue(DEFAULT_TOTAL_DUE)
             .orderStatus(DEFAULT_ORDER_STATUS)
             .customerId(DEFAULT_CUSTOMER_ID)
+            .customerName(DEFAULT_CUSTOMER_NAME)
             .pincode(DEFAULT_PINCODE)
             .houseNoOrBuildingName(DEFAULT_HOUSE_NO_OR_BUILDING_NAME)
             .roadNameAreaOrStreet(DEFAULT_ROAD_NAME_AREA_OR_STREET)
@@ -282,6 +286,7 @@ public class OrderMasterResourceIntTest {
         assertThat(testOrderMaster.getTotalDue()).isEqualTo(DEFAULT_TOTAL_DUE);
         assertThat(testOrderMaster.getOrderStatus()).isEqualTo(DEFAULT_ORDER_STATUS);
         assertThat(testOrderMaster.getCustomerId()).isEqualTo(DEFAULT_CUSTOMER_ID);
+        assertThat(testOrderMaster.getCustomerName()).isEqualTo(DEFAULT_CUSTOMER_NAME);
         assertThat(testOrderMaster.getPincode()).isEqualTo(DEFAULT_PINCODE);
         assertThat(testOrderMaster.getHouseNoOrBuildingName()).isEqualTo(DEFAULT_HOUSE_NO_OR_BUILDING_NAME);
         assertThat(testOrderMaster.getRoadNameAreaOrStreet()).isEqualTo(DEFAULT_ROAD_NAME_AREA_OR_STREET);
@@ -355,6 +360,7 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].totalDue").value(hasItem(DEFAULT_TOTAL_DUE.doubleValue())))
             .andExpect(jsonPath("$.[*].orderStatus").value(hasItem(DEFAULT_ORDER_STATUS.toString())))
             .andExpect(jsonPath("$.[*].customerId").value(hasItem(DEFAULT_CUSTOMER_ID.toString())))
+            .andExpect(jsonPath("$.[*].customerName").value(hasItem(DEFAULT_CUSTOMER_NAME.toString())))
             .andExpect(jsonPath("$.[*].pincode").value(hasItem(DEFAULT_PINCODE.toString())))
             .andExpect(jsonPath("$.[*].houseNoOrBuildingName").value(hasItem(DEFAULT_HOUSE_NO_OR_BUILDING_NAME.toString())))
             .andExpect(jsonPath("$.[*].roadNameAreaOrStreet").value(hasItem(DEFAULT_ROAD_NAME_AREA_OR_STREET.toString())))
@@ -402,6 +408,7 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.totalDue").value(DEFAULT_TOTAL_DUE.doubleValue()))
             .andExpect(jsonPath("$.orderStatus").value(DEFAULT_ORDER_STATUS.toString()))
             .andExpect(jsonPath("$.customerId").value(DEFAULT_CUSTOMER_ID.toString()))
+            .andExpect(jsonPath("$.customerName").value(DEFAULT_CUSTOMER_NAME.toString()))
             .andExpect(jsonPath("$.pincode").value(DEFAULT_PINCODE.toString()))
             .andExpect(jsonPath("$.houseNoOrBuildingName").value(DEFAULT_HOUSE_NO_OR_BUILDING_NAME.toString()))
             .andExpect(jsonPath("$.roadNameAreaOrStreet").value(DEFAULT_ROAD_NAME_AREA_OR_STREET.toString()))
@@ -459,6 +466,7 @@ public class OrderMasterResourceIntTest {
             .totalDue(UPDATED_TOTAL_DUE)
             .orderStatus(UPDATED_ORDER_STATUS)
             .customerId(UPDATED_CUSTOMER_ID)
+            .customerName(UPDATED_CUSTOMER_NAME)
             .pincode(UPDATED_PINCODE)
             .houseNoOrBuildingName(UPDATED_HOUSE_NO_OR_BUILDING_NAME)
             .roadNameAreaOrStreet(UPDATED_ROAD_NAME_AREA_OR_STREET)
@@ -504,6 +512,7 @@ public class OrderMasterResourceIntTest {
         assertThat(testOrderMaster.getTotalDue()).isEqualTo(UPDATED_TOTAL_DUE);
         assertThat(testOrderMaster.getOrderStatus()).isEqualTo(UPDATED_ORDER_STATUS);
         assertThat(testOrderMaster.getCustomerId()).isEqualTo(UPDATED_CUSTOMER_ID);
+        assertThat(testOrderMaster.getCustomerName()).isEqualTo(UPDATED_CUSTOMER_NAME);
         assertThat(testOrderMaster.getPincode()).isEqualTo(UPDATED_PINCODE);
         assertThat(testOrderMaster.getHouseNoOrBuildingName()).isEqualTo(UPDATED_HOUSE_NO_OR_BUILDING_NAME);
         assertThat(testOrderMaster.getRoadNameAreaOrStreet()).isEqualTo(UPDATED_ROAD_NAME_AREA_OR_STREET);
@@ -598,6 +607,7 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].totalDue").value(hasItem(DEFAULT_TOTAL_DUE.doubleValue())))
             .andExpect(jsonPath("$.[*].orderStatus").value(hasItem(DEFAULT_ORDER_STATUS)))
             .andExpect(jsonPath("$.[*].customerId").value(hasItem(DEFAULT_CUSTOMER_ID)))
+            .andExpect(jsonPath("$.[*].customerName").value(hasItem(DEFAULT_CUSTOMER_NAME)))
             .andExpect(jsonPath("$.[*].pincode").value(hasItem(DEFAULT_PINCODE)))
             .andExpect(jsonPath("$.[*].houseNoOrBuildingName").value(hasItem(DEFAULT_HOUSE_NO_OR_BUILDING_NAME)))
             .andExpect(jsonPath("$.[*].roadNameAreaOrStreet").value(hasItem(DEFAULT_ROAD_NAME_AREA_OR_STREET)))

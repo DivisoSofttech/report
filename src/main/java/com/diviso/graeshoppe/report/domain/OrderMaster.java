@@ -71,6 +71,9 @@ public class OrderMaster implements Serializable {
     @Column(name = "customer_id")
     private String customerId;
 
+    @Column(name = "customer_name")
+    private String customerName;
+
     @Column(name = "pincode")
     private String pincode;
 
@@ -334,6 +337,19 @@ public class OrderMaster implements Serializable {
 
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public OrderMaster customerName(String customerName) {
+        this.customerName = customerName;
+        return this;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public String getPincode() {
@@ -673,6 +689,7 @@ public class OrderMaster implements Serializable {
             ", totalDue=" + getTotalDue() +
             ", orderStatus='" + getOrderStatus() + "'" +
             ", customerId='" + getCustomerId() + "'" +
+            ", customerName='" + getCustomerName() + "'" +
             ", pincode='" + getPincode() + "'" +
             ", houseNoOrBuildingName='" + getHouseNoOrBuildingName() + "'" +
             ", roadNameAreaOrStreet='" + getRoadNameAreaOrStreet() + "'" +

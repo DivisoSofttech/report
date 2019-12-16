@@ -62,6 +62,10 @@
             "fieldType": "String"
         },
         {
+            "fieldName": "customerName",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "pincode",
             "fieldType": "String"
         },
