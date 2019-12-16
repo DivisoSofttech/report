@@ -2,10 +2,11 @@ package com.diviso.graeshoppe.report.service;
 
 import com.diviso.graeshoppe.order.avro.Order;
 import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
-
+import com.diviso.graeshoppe.report.domain.OrderMaster;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.time.Instant;
 import java.util.Optional;
 
 /**
@@ -67,4 +68,12 @@ public interface OrderMasterService {
      * @return the entity
      */
 	OrderMasterDTO findOrderMasterByOrderNumber(String orderNumber);
+
+	Page<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(Instant from, Instant to, String storeIdpcode,Pageable pageable);
+
+	Long countByExpectedDeliveryBetweenAndOrderStatus(Instant from,Instant to, String orderStatus);
+
+	Page<OrderMaster> findByExpectedDeliveryBetween(Instant from, Instant to, Pageable pageable);
+
+	Long countByOrderStatus(String orderStatus);
 }

@@ -5,10 +5,11 @@ import com.diviso.graeshoppe.report.domain.OrderMaster;
 import java.time.Instant;
 import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
+import org.springframework.data.domain.Page;
 
 /**
  * Spring Data  repository for the OrderMaster entity.
@@ -42,7 +43,9 @@ public interface OrderMasterRepository extends JpaRepository<OrderMaster, Long> 
 	@Query(value = "SELECT COALESCE(sum(c.totalDue),0)FROM OrderMaster c  WHERE c.expectedDelivery BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName AND  c.orderStatus LIKE CONCAT('%',:orderStatus,'%')")
 	Double sumOftotalByOrderStatus(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("storeName")String storeName, @Param("orderStatus") String orderStatus);
 	
+	Page<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(Instant dateBegin, Instant dateEnd, String storeIdpcode,Pageable pageable);
 
-
-
+	public Long countByOrderStatus(String orderStatus);
+	public Long  countByExpectedDeliveryBetweenAndOrderStatus(Instant from,Instant to,String orderStatus);
+	Page<OrderMaster> findByExpectedDeliveryBetween(Instant from, Instant to, Pageable pageable);
 }
