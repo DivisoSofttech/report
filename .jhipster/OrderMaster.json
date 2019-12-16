@@ -34,6 +34,14 @@
             "fieldType": "String"
         },
         {
+            "fieldName": "subTotal",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "orderDiscountAmount",
+            "fieldType": "Double"
+        },
+        {
             "fieldName": "deliveryCharge",
             "fieldType": "Double"
         },
@@ -120,6 +128,14 @@
         {
             "fieldName": "email",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "paymentRef",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "paymentStatus",
+            "fieldType": "String"
         }
     ],
     "relationships": [
@@ -127,6 +143,12 @@
             "relationshipType": "one-to-many",
             "relationshipName": "orderLine",
             "otherEntityName": "orderLine",
+            "otherEntityRelationshipName": "orderMaster"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "offerLines",
+            "otherEntityName": "offerLine",
             "otherEntityRelationshipName": "orderMaster"
         }
     ],

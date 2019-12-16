@@ -150,6 +150,14 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="payment_ref" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="payment_status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="order_master" columnName="expected_delivery" columnDataType="datetime"/>

@@ -35,7 +35,9 @@ orderPlaceAt Instant,
 orderAcceptedAt Instant,
 allergyNote String,
 preOrderDate Instant,
-email String
+email String,
+paymentRef String,
+paymentStatus String
 
 }
 

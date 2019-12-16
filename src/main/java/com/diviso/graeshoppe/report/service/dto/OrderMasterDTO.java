@@ -74,6 +74,10 @@ public class OrderMasterDTO implements Serializable {
 
     private String email;
 
+    private String paymentRef;
+
+    private String paymentStatus;
+
 
     public Long getId() {
         return id;
@@ -339,6 +343,22 @@ public class OrderMasterDTO implements Serializable {
         this.email = email;
     }
 
+    public String getPaymentRef() {
+        return paymentRef;
+    }
+
+    public void setPaymentRef(String paymentRef) {
+        this.paymentRef = paymentRef;
+    }
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -396,6 +416,8 @@ public class OrderMasterDTO implements Serializable {
             ", allergyNote='" + getAllergyNote() + "'" +
             ", preOrderDate='" + getPreOrderDate() + "'" +
             ", email='" + getEmail() + "'" +
+            ", paymentRef='" + getPaymentRef() + "'" +
+            ", paymentStatus='" + getPaymentStatus() + "'" +
             "}";
     }
 }

@@ -147,6 +147,12 @@ public class OrderMasterResourceIntTest {
     private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
     private static final String UPDATED_EMAIL = "BBBBBBBBBB";
 
+    private static final String DEFAULT_PAYMENT_REF = "AAAAAAAAAA";
+    private static final String UPDATED_PAYMENT_REF = "BBBBBBBBBB";
+
+    private static final String DEFAULT_PAYMENT_STATUS = "AAAAAAAAAA";
+    private static final String UPDATED_PAYMENT_STATUS = "BBBBBBBBBB";
+
     @Autowired
     private OrderMasterRepository orderMasterRepository;
 
@@ -234,7 +240,9 @@ public class OrderMasterResourceIntTest {
             .orderAcceptedAt(DEFAULT_ORDER_ACCEPTED_AT)
             .allergyNote(DEFAULT_ALLERGY_NOTE)
             .preOrderDate(DEFAULT_PRE_ORDER_DATE)
-            .email(DEFAULT_EMAIL);
+            .email(DEFAULT_EMAIL)
+            .paymentRef(DEFAULT_PAYMENT_REF)
+            .paymentStatus(DEFAULT_PAYMENT_STATUS);
         return orderMaster;
     }
 
@@ -291,6 +299,8 @@ public class OrderMasterResourceIntTest {
         assertThat(testOrderMaster.getAllergyNote()).isEqualTo(DEFAULT_ALLERGY_NOTE);
         assertThat(testOrderMaster.getPreOrderDate()).isEqualTo(DEFAULT_PRE_ORDER_DATE);
         assertThat(testOrderMaster.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testOrderMaster.getPaymentRef()).isEqualTo(DEFAULT_PAYMENT_REF);
+        assertThat(testOrderMaster.getPaymentStatus()).isEqualTo(DEFAULT_PAYMENT_STATUS);
 
         // Validate the OrderMaster in Elasticsearch
         verify(mockOrderMasterSearchRepository, times(1)).save(testOrderMaster);
@@ -361,7 +371,9 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].orderAcceptedAt").value(hasItem(DEFAULT_ORDER_ACCEPTED_AT.toString())))
             .andExpect(jsonPath("$.[*].allergyNote").value(hasItem(DEFAULT_ALLERGY_NOTE.toString())))
             .andExpect(jsonPath("$.[*].preOrderDate").value(hasItem(DEFAULT_PRE_ORDER_DATE.toString())))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())));
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
+            .andExpect(jsonPath("$.[*].paymentRef").value(hasItem(DEFAULT_PAYMENT_REF.toString())))
+            .andExpect(jsonPath("$.[*].paymentStatus").value(hasItem(DEFAULT_PAYMENT_STATUS.toString())));
     }
     
     @Test
@@ -406,7 +418,9 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.orderAcceptedAt").value(DEFAULT_ORDER_ACCEPTED_AT.toString()))
             .andExpect(jsonPath("$.allergyNote").value(DEFAULT_ALLERGY_NOTE.toString()))
             .andExpect(jsonPath("$.preOrderDate").value(DEFAULT_PRE_ORDER_DATE.toString()))
-            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()));
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
+            .andExpect(jsonPath("$.paymentRef").value(DEFAULT_PAYMENT_REF.toString()))
+            .andExpect(jsonPath("$.paymentStatus").value(DEFAULT_PAYMENT_STATUS.toString()));
     }
 
     @Test
@@ -461,7 +475,9 @@ public class OrderMasterResourceIntTest {
             .orderAcceptedAt(UPDATED_ORDER_ACCEPTED_AT)
             .allergyNote(UPDATED_ALLERGY_NOTE)
             .preOrderDate(UPDATED_PRE_ORDER_DATE)
-            .email(UPDATED_EMAIL);
+            .email(UPDATED_EMAIL)
+            .paymentRef(UPDATED_PAYMENT_REF)
+            .paymentStatus(UPDATED_PAYMENT_STATUS);
         OrderMasterDTO orderMasterDTO = orderMasterMapper.toDto(updatedOrderMaster);
 
         restOrderMasterMockMvc.perform(put("/api/order-masters")
@@ -505,6 +521,8 @@ public class OrderMasterResourceIntTest {
         assertThat(testOrderMaster.getAllergyNote()).isEqualTo(UPDATED_ALLERGY_NOTE);
         assertThat(testOrderMaster.getPreOrderDate()).isEqualTo(UPDATED_PRE_ORDER_DATE);
         assertThat(testOrderMaster.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testOrderMaster.getPaymentRef()).isEqualTo(UPDATED_PAYMENT_REF);
+        assertThat(testOrderMaster.getPaymentStatus()).isEqualTo(UPDATED_PAYMENT_STATUS);
 
         // Validate the OrderMaster in Elasticsearch
         verify(mockOrderMasterSearchRepository, times(1)).save(testOrderMaster);
@@ -596,7 +614,9 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].orderAcceptedAt").value(hasItem(DEFAULT_ORDER_ACCEPTED_AT.toString())))
             .andExpect(jsonPath("$.[*].allergyNote").value(hasItem(DEFAULT_ALLERGY_NOTE)))
             .andExpect(jsonPath("$.[*].preOrderDate").value(hasItem(DEFAULT_PRE_ORDER_DATE.toString())))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)));
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
+            .andExpect(jsonPath("$.[*].paymentRef").value(hasItem(DEFAULT_PAYMENT_REF)))
+            .andExpect(jsonPath("$.[*].paymentStatus").value(hasItem(DEFAULT_PAYMENT_STATUS)));
     }
 
     @Test

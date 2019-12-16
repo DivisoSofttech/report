@@ -1,0 +1,31 @@
+{
+    "name": "OfferLine",
+    "fields": [
+        {
+            "fieldName": "offerRef",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "discountAmount",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "orderMaster",
+            "otherEntityName": "orderMaster",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191216062307",
+    "entityTableName": "offer_line",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "report",
+    "applications": "*",
+    "microserviceName": "report"
+}
