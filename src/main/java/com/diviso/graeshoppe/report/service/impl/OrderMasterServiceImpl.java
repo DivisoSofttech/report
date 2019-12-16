@@ -41,7 +41,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+import com.diviso.graeshoppe.report.domain.OrderMaster;
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
@@ -295,4 +295,33 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 		return orderMasterRepository.findByOrderNumber(orderNumber).map(orderMasterMapper::toDto);
 	}
-}
+	@Override
+	public Page<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(Instant from, Instant to, String storeIdpcode,Pageable pageable){
+		
+		
+		   
+		return findByExpectedDeliveryBetweenAndStoreIdpcode(from,to,storeIdpcode,pageable);
+		
+	}
+	@Override
+	public Long  countByExpectedDeliveryBetweenAndOrderStatus(Instant from,Instant to,String orderStatus) {
+	
+		return countByExpectedDeliveryBetweenAndOrderStatus(from, to,orderStatus);
+	}
+	
+	
+	@Override
+	public Long countByOrderStatus(String orderStatus) {
+		return countByOrderStatus(orderStatus);
+	}
+	
+	@Override
+	public Page<OrderMaster> findByExpectedDeliveryBetween(Instant from, Instant to,Pageable pageable) {
+		return findByExpectedDeliveryBetween(from, to, pageable);
+	}
+	}
+	
+	
+	
+	
+
