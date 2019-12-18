@@ -282,14 +282,14 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA[$F{order_number}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-14" y="171" width="102" height="17" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="d13d4966-ca74-4564-9781-b956632e98a9"/>
+				<reportElement positionType="Float" x="-15" y="171" width="102" height="17" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="d13d4966-ca74-4564-9781-b956632e98a9"/>
 				<textElement verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA["please ring me on"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Please ring me on"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="75" y="172" width="74" height="16" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="3aa76bb7-3072-47dc-96bb-38b61befe136"/>
+				<reportElement positionType="Float" x="78" y="172" width="74" height="16" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="3aa76bb7-3072-47dc-96bb-38b61befe136"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="11" isBold="false" isItalic="false"/>
 				</textElement>
@@ -508,17 +508,17 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[Order Placed      :]]></text>
+				<text><![CDATA[Order Placed    :]]></text>
 			</staticText>
-			<textField pattern="d/M/yy h:mm a">
-				<reportElement positionType="Float" x="65" y="400" width="84" height="20" uuid="af27fe32-1d46-44a2-9d89-88446f145199"/>
+			<textField pattern="d/M/yyyy h:mm a">
+				<reportElement positionType="Float" x="60" y="400" width="89" height="20" uuid="af27fe32-1d46-44a2-9d89-88446f145199"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{order_place_at}]]></textFieldExpression>
 			</textField>
-			<textField pattern="d/M/yy h:mm a">
-				<reportElement positionType="Float" x="65" y="422" width="84" height="20" uuid="89bf7f55-b0bc-4ee0-b759-4ddad379cd6c"/>
+			<textField pattern="d/M/yyyy h:mm a">
+				<reportElement positionType="Float" x="60" y="422" width="89" height="20" uuid="89bf7f55-b0bc-4ee0-b759-4ddad379cd6c"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -529,7 +529,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[Order Accepted  :]]></text>
+				<text><![CDATA[Order Accepted:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="-21" y="71" width="170" height="30" uuid="c1ad72b7-5502-4d60-8171-1f9e895f8c9a"/>
@@ -550,7 +550,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA["Loyalty Card Point   :"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="125" y="343" width="16" height="17" uuid="59047392-d1a0-44d7-a3d1-69b82d15569a"/>
+				<reportElement positionType="Float" x="124" y="343" width="16" height="17" uuid="59047392-d1a0-44d7-a3d1-69b82d15569a"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
@@ -583,6 +583,11 @@ ct ORDER BY  item ASC,rowid DESC]]>
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Customer's Food Exp Orders :"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="107" y="129" width="17" height="15" uuid="a2d0ee87-70d0-4e7e-9a7f-22873606aeca"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{order_from_customer}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

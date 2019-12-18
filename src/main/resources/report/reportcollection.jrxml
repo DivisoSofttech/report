@@ -259,10 +259,10 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textElement verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA["please ring me on"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Please ring me on"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="76" y="157" width="74" height="16" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="41311087-967a-46ad-a77b-3c25acbb29bb"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="77" y="157" width="73" height="16" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="41311087-967a-46ad-a77b-3c25acbb29bb"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="11" isBold="false" isItalic="false"/>
 				</textElement>
@@ -386,15 +386,15 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				</textElement>
 				<text><![CDATA[Total Due]]></text>
 			</staticText>
-			<textField pattern="d/M/yy h:mm a">
-				<reportElement positionType="Float" x="58" y="206" width="90" height="20" uuid="3485b30c-e23d-4108-ac9d-8f05b0cac203"/>
+			<textField pattern="d/M/yyyy h:mm a">
+				<reportElement positionType="Float" x="56" y="206" width="94" height="20" uuid="3485b30c-e23d-4108-ac9d-8f05b0cac203"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{order_place_at}]]></textFieldExpression>
 			</textField>
-			<textField pattern="d/M/yy h:mm a">
-				<reportElement positionType="Float" x="58" y="228" width="90" height="20" uuid="580c0a9d-137e-4878-bc35-7017d878dddf"/>
+			<textField pattern="d/M/yyyy h:mm a">
+				<reportElement positionType="Float" x="56" y="228" width="94" height="20" uuid="580c0a9d-137e-4878-bc35-7017d878dddf"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -515,6 +515,11 @@ ct ORDER BY  item ASC,rowid DESC]]>
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{payment_status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="124" y="105" width="17" height="15" uuid="7f7ae009-5816-4fc8-ad77-9c62a9ea503a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{order_from_customer}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
