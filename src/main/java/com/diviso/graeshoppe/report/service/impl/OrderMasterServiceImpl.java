@@ -34,6 +34,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
+import org.springframework.data.elasticsearch.core.query.StringQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,7 +45,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import com.diviso.graeshoppe.report.domain.OrderMaster;
 import static org.elasticsearch.index.query.QueryBuilders.*;
-
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 /**
  * Service Implementation for managing OrderMaster.
  */
@@ -55,6 +58,9 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 	private final OrderMasterRepository orderMasterRepository;
 
+	@Autowired
+	ElasticsearchOperations elasticsearchOperations;
+	
 	@Autowired
 	private OrderLineMapper orderLineMapper;
 	@Autowired
@@ -85,7 +91,25 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		this.orderMasterMapper = orderMasterMapper;
 		this.orderMasterSearchRepository = orderMasterSearchRepository;
 	}
-
+	
+	private Store findStoreByStoreId(String storeId) {
+		StringQuery stringQuery = new StringQuery(termQuery("regNo", storeId).toString());
+		return elasticsearchOperations.queryForObject(stringQuery, Store.class);
+	}
+	
+	private Customer findCustomerByReference(String reference) {
+		StringQuery stringQuery = new StringQuery(termQuery("idpCode", reference).toString());
+		return elasticsearchOperations.queryForObject(stringQuery, Customer.class);
+	}
+	
+	private Product findProductByProductId(Long productId) {
+		StringQuery stringQuery = new StringQuery(termQuery("id", productId).toString());
+		return elasticsearchOperations.queryForObject(stringQuery, Product.class);
+	}
+	private List<ComboLineItem> findCombosByProductId(Long id) {
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(termQuery("product.id", id)).build();
+		return elasticsearchOperations.queryForList(searchQuery, ComboLineItem.class);
+	}
 	/**
 	 * Save a orderMaster.
 	 *
@@ -176,8 +200,8 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 			order.getDeliveryInfo().setDeliveryNotes("**notes not provided**");
 		}
 		OrderMaster orderMaster=new OrderMaster();
-		Store store = reportService.findStoreByStoreId(order.getStoreId());
-		Customer customer=reportService.findCustomerByReference(order.getCustomerId());
+		Store store = findStoreByStoreId(order.getStoreId());
+		Customer customer=findCustomerByReference(order.getCustomerId());
 		orderMaster.setStoreName(store.getName());
 		orderMaster.setStorePhone(store.getContactNo());
 		orderMaster.setMethodOfOrder(order.getDeliveryInfo().getDeliveryType().toUpperCase());
@@ -261,14 +285,14 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 	private OrderLine toOrderLine(com.diviso.graeshoppe.order.avro.OrderLine orderLine) {
 		OrderLine line = new OrderLine();
-		Product product = reportService.findProductByProductId(orderLine.getProductId());
+		Product product = findProductByProductId(orderLine.getProductId());
 		if(product!=null) {
 		line.setItem(product.getName());
 		}								// query to get productname
 		line.setQuantity(orderLine.getQuantity());
 		line.setTotal(orderLine.getTotal());
 		line.setAuxItems(orderLine.getAuxilaryOrderLines().stream().map(this::toAuxItem).collect(Collectors.toSet()));
-		List<ComboLineItem> comboItems=reportService.findCombosByProductId(orderLine.getProductId());
+		List<ComboLineItem> comboItems=findCombosByProductId(orderLine.getProductId());
 		line.setComboItems(comboItems.stream().map(this::toComboItem).collect(Collectors.toSet()));
 		return line;
 
@@ -283,7 +307,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 	private AuxItem toAuxItem(AuxilaryOrderLine aux) {
 		AuxItem auxItem = new AuxItem();
-		Product product = reportService.findProductByProductId(aux.getProductId());
+		Product product = findProductByProductId(aux.getProductId());
 		auxItem.setAuxItem(product.getName()); // query to get aux name
 		auxItem.setQuantity(aux.getQuantity());
 		auxItem.setTotal(aux.getTotal());
@@ -295,29 +319,32 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 		return orderMasterRepository.findByOrderNumber(orderNumber).map(orderMasterMapper::toDto);
 	}
+	
+	
 	@Override
 	public Page<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(Instant from, Instant to, String storeIdpcode,Pageable pageable){
 		
 		
 		   
-		return findByExpectedDeliveryBetweenAndStoreIdpcode(from,to,storeIdpcode,pageable);
+		return orderMasterRepository.findByExpectedDeliveryBetweenAndStoreIdpcode(from,to,storeIdpcode,pageable);
 		
 	}
 	@Override
-	public Long  countByExpectedDeliveryBetweenAndOrderStatus(Instant from,Instant to,String orderStatus) {
-	
-		return countByExpectedDeliveryBetweenAndOrderStatus(from, to,orderStatus);
+	public Long  countByExpectedDeliveryAndOrderStatus(Instant date,String orderStatus) {
+		 Instant dateBegin = Instant.parse(date.toString() + "T00:00:00Z");
+		  Instant dateEnd = Instant.parse(date.toString() + "T23:59:59Z");
+		return orderMasterRepository.countByExpectedDeliveryBetweenAndOrderStatus(dateBegin, dateEnd,orderStatus);
 	}
 	
 	
 	@Override
 	public Long countByOrderStatus(String orderStatus) {
-		return countByOrderStatus(orderStatus);
+		return orderMasterRepository.countByOrderStatus(orderStatus);
 	}
 	
 	@Override
 	public Page<OrderMaster> findByExpectedDeliveryBetween(Instant from, Instant to,Pageable pageable) {
-		return findByExpectedDeliveryBetween(from, to, pageable);
+		return orderMasterRepository.findByExpectedDeliveryBetween(from, to, pageable);
 	}
 	}
 	

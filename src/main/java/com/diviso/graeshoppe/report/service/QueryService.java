@@ -8,11 +8,28 @@ import com.diviso.graeshoppe.report.domain.OrderAggregator;
 import com.diviso.graeshoppe.report.domain.OrderLine;
 import com.diviso.graeshoppe.report.domain.OrderMaster;
 import com.diviso.graeshoppe.report.domain.ReportSummary;
+
+import net.sf.jasperreports.engine.JRException;
 public interface QueryService {
 	
 	ReportSummary createReportSummary(LocalDate date,String storeId);
+	
+	byte[] getReportAsPdf(String orderNumber) throws JRException;
 
-	OrderAggregator getOrderAggregator(String orderNumber);
+	byte[] getReportSummaryAsPdf(LocalDate date,String storeId) throws JRException;
+
+	/**
+	 * @param orderNumber
+	 * @return
+	 */
+	byte[] getReportWithAuxAndComboAsPdf(String orderNumber) throws JRException;
+	
+	ReportSummary createReportSummary(String expectedDelivery, String storeName);
+
+	byte[] getSaleReportAsPdf(String storeidpcode)throws JRException;
+
+
+	/*OrderAggregator getOrderAggregator(String orderNumber);
 
 	OrderMaster findOrderMasterByOrderNumber(String orderNumber);
 
@@ -20,6 +37,8 @@ public interface QueryService {
 
 	List<ComboItem> findComboItemByOrderLine(Long orderLineId);
 
-	List<AuxItem> findAuxItemByOrderLine(Long orderLineId);
+	List<AuxItem> findAuxItemByOrderLine(Long orderLineId);*/
+	
+	
 
 }
