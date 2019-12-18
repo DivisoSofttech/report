@@ -239,20 +239,6 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{method_of_order}.toUpperCase()]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="-12" y="167" width="70" height="21" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="a9a76cde-d830-4599-8dbb-d554f4b31d1e"/>
-				<textElement verticalAlignment="Middle">
-					<font size="11"/>
-				</textElement>
-				<textFieldExpression><![CDATA["ring me on"]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="53" y="168" width="81" height="20" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="0b8ec1f7-0478-4a9c-bb71-bc975e623f68"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="11" isBold="false" isItalic="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
-			</textField>
 			<textField>
 				<reportElement positionType="Float" x="98" y="198" width="44" height="20" uuid="e9c388e2-2268-451c-9a68-4d66fa86f2f3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -272,14 +258,14 @@ ct ORDER BY  item ASC,rowid DESC]]>
 					<printWhenExpression><![CDATA[$F{pre_order_date}!=null]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[String.format("Requested  for %1$s       at / ASAP  %2$s",DATEFORMAT($F{due_date},"d/M/yyyy"),$F{due_time})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[String.format("Requested  for %1$s       at  ASAP /  %2$s",DATEFORMAT($F{due_date},"d/M/yyyy"),$F{due_time})]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="M/d/yy">
 				<reportElement positionType="Float" x="-21" y="97" width="171" height="12" uuid="8978505c-a501-44d0-9695-e2c68d3ce0c8">
 					<printWhenExpression><![CDATA[$F{pre_order_date}==null]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[String.format("Due %1$s at / ASAP %2$s",DATEFORMAT($F{due_date},"d/M/yyyy"),$F{due_time})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[String.format("Due %1$s at ASAP / %2$s",DATEFORMAT($F{due_date},"d/M/yyyy"),$F{due_time})]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="-13" y="110" width="118" height="20" uuid="d1664100-6775-4000-8ff4-a89437c804f0"/>
@@ -294,6 +280,20 @@ ct ORDER BY  item ASC,rowid DESC]]>
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{order_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="-14" y="171" width="102" height="17" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="d13d4966-ca74-4564-9781-b956632e98a9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["please ring me on"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="75" y="172" width="74" height="16" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="3aa76bb7-3072-47dc-96bb-38b61befe136"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -510,14 +510,14 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				</textElement>
 				<text><![CDATA[Order Placed      :]]></text>
 			</staticText>
-			<textField pattern="M/d/yy h:mm a">
+			<textField pattern="d/M/yy h:mm a">
 				<reportElement positionType="Float" x="65" y="400" width="84" height="20" uuid="af27fe32-1d46-44a2-9d89-88446f145199"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{order_place_at}]]></textFieldExpression>
 			</textField>
-			<textField pattern="M/d/yy h:mm a">
+			<textField pattern="d/M/yy h:mm a">
 				<reportElement positionType="Float" x="65" y="422" width="84" height="20" uuid="89bf7f55-b0bc-4ee0-b759-4ddad379cd6c"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="9"/>
