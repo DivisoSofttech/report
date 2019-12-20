@@ -406,13 +406,6 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="HH:mm">
-				<reportElement positionType="Float" x="74" y="285" width="68" height="20" uuid="a77423fc-2719-4a6f-b346-47a671f9d1b1"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="-15" y="4" width="109" height="15" uuid="16042a1f-e446-4b39-8e60-ad4f728255e6"/>
 				<textFieldExpression><![CDATA["Food Exp discount (10%) :"]]></textFieldExpression>
@@ -541,6 +534,13 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				</textElement>
 				<text><![CDATA[Order Accepted:]]></text>
 			</staticText>
+			<textField isStretchWithOverflow="true" pattern="HH:mm">
+				<reportElement positionType="Float" x="94" y="285" width="46" height="20" uuid="f87ab00f-38ea-44a4-9581-18616119570b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>
