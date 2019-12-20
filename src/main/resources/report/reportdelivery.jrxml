@@ -274,14 +274,14 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA[String.format("Due %1$s at ASAP / %2$s",DATEFORMAT($F{due_date},"d/M/yyyy"),$F{due_time})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="-13" y="110" width="118" height="20" uuid="d1664100-6775-4000-8ff4-a89437c804f0"/>
+				<reportElement positionType="Float" x="-5" y="110" width="118" height="20" uuid="d1664100-6775-4000-8ff4-a89437c804f0"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Order Number        :"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="104" y="110" width="42" height="20" uuid="b713ee55-05a6-4f06-bef1-67a16f21b572"/>
+				<reportElement positionType="Float" x="97" y="110" width="49" height="20" uuid="b713ee55-05a6-4f06-bef1-67a16f21b572"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>

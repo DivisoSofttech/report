@@ -215,14 +215,14 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA[$F{store_name}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="105" y="109" width="42" height="20" uuid="1db51cc4-b4bf-49b8-8ea3-4b94a3c0994e"/>
+				<reportElement positionType="Float" x="85" y="109" width="60" height="20" uuid="1db51cc4-b4bf-49b8-8ea3-4b94a3c0994e"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{order_number}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="-13" y="109" width="118" height="20" uuid="ef62e937-d6d9-4d5f-a7c8-10c7885856ac"/>
+				<reportElement positionType="Float" x="-17" y="109" width="118" height="20" uuid="ef62e937-d6d9-4d5f-a7c8-10c7885856ac"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
