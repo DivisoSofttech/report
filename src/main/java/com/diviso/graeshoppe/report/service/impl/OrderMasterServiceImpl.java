@@ -196,9 +196,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 	@Override
 	public void convertAndSaveOrderMaster(Order order) {
-		if(order.getDeliveryInfo().getDeliveryNotes() == null) {
-			order.getDeliveryInfo().setDeliveryNotes("**notes not provided**");
-		}
+		
 		OrderMaster orderMaster=new OrderMaster();
 		Store store = findStoreByStoreId(order.getStoreId());
 		Customer customer=findCustomerByReference(order.getCustomerId());
@@ -214,10 +212,10 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setOrderDiscountAmount(0.0);
 		if (order.getPaymentMode().equals("cod")) {
 			log.info("Order paid");
-			orderMaster.setOrderStatus("ORDER PAID");
+			orderMaster.setPaymentStatus("ORDER PAID");
 		} else {
 			log.info("Order Not paid");
-			orderMaster.setOrderStatus("ORDER NOT PAID");
+			orderMaster.setPaymentStatus("ORDER NOT PAID");
 		}
 		if (order.getDeliveryInfo().getDeliveryAddress() != null) {
 			orderMaster.setRoadNameAreaOrStreet(order.getDeliveryInfo().getDeliveryAddress().getRoadNameAreaOrStreet());
