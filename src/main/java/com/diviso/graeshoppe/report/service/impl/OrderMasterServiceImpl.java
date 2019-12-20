@@ -47,6 +47,7 @@ import com.diviso.graeshoppe.report.domain.OrderMaster;
 import static org.elasticsearch.index.query.QueryBuilders.*;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
+
 /**
  * Service Implementation for managing OrderMaster.
  */
@@ -60,15 +61,15 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 	@Autowired
 	ElasticsearchOperations elasticsearchOperations;
-	
+
 	@Autowired
 	private OrderLineMapper orderLineMapper;
 	@Autowired
 	private AuxItemMapper auxItemMapper;
-	
+
 	@Autowired
 	private ComboItemMapper comboItemMapper;
-	
+
 	@Autowired
 	private OfferLineService offerLineService;
 	@Autowired
@@ -91,25 +92,27 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		this.orderMasterMapper = orderMasterMapper;
 		this.orderMasterSearchRepository = orderMasterSearchRepository;
 	}
-	
+
 	private Store findStoreByStoreId(String storeId) {
 		StringQuery stringQuery = new StringQuery(termQuery("regNo", storeId).toString());
 		return elasticsearchOperations.queryForObject(stringQuery, Store.class);
 	}
-	
+
 	private Customer findCustomerByReference(String reference) {
 		StringQuery stringQuery = new StringQuery(termQuery("idpCode", reference).toString());
 		return elasticsearchOperations.queryForObject(stringQuery, Customer.class);
 	}
-	
+
 	private Product findProductByProductId(Long productId) {
 		StringQuery stringQuery = new StringQuery(termQuery("id", productId).toString());
 		return elasticsearchOperations.queryForObject(stringQuery, Product.class);
 	}
+
 	private List<ComboLineItem> findCombosByProductId(Long id) {
 		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(termQuery("product.id", id)).build();
 		return elasticsearchOperations.queryForList(searchQuery, ComboLineItem.class);
 	}
+
 	/**
 	 * Save a orderMaster.
 	 *
@@ -196,10 +199,10 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 	@Override
 	public void convertAndSaveOrderMaster(Order order) {
-		
-		OrderMaster orderMaster=new OrderMaster();
+
+		OrderMaster orderMaster = new OrderMaster();
 		Store store = findStoreByStoreId(order.getStoreId());
-		Customer customer=findCustomerByReference(order.getCustomerId());
+		Customer customer = findCustomerByReference(order.getCustomerId());
 		orderMaster.setStoreName(store.getName());
 		orderMaster.setStorePhone(store.getContactNo());
 		orderMaster.setMethodOfOrder(order.getDeliveryInfo().getDeliveryType().toUpperCase());
@@ -208,7 +211,14 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setPhone(order.getCustomerPhone());
 		orderMaster.setAllergyNote(order.getAllergyNote());
 		orderMaster.setSubTotal(order.getSubTotal());
-		orderMaster.setPreOrderDate(Instant.ofEpochMilli(order.getPreOrderDate()));
+		if (order.getPreOrderDate() == 0) {
+			
+			orderMaster.setPreOrderDate(null);
+			
+		} else {
+			orderMaster.setPreOrderDate(Instant.ofEpochMilli(order.getPreOrderDate()));
+
+		}
 		orderMaster.setOrderDiscountAmount(0.0);
 		if (order.getPaymentMode().equals("cod")) {
 			log.info("Order paid");
@@ -245,36 +255,34 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 			Instant acceptedDate = Instant.ofEpochMilli(order.getApprovalDetails().getAcceptedAt());
 			orderMaster.setOrderAcceptedAt(acceptedDate);
 		}
-		
+
 		log.info("The order master going to persist is ^^^^^^^^^^^^^^^^^ " + orderMaster);
 		OrderMaster updatedResult = orderMasterRepository.save(orderMaster);
-		order.getOfferLines().forEach(offer->{
-			OfferLineDTO offerLine=new OfferLineDTO();
+		order.getOfferLines().forEach(offer -> {
+			OfferLineDTO offerLine = new OfferLineDTO();
 			offerLine.setOfferRef(offer.getOfferRef());
 			offerLine.setDiscountAmount(offer.getDiscountAmount());
 			orderMaster.setOrderDiscountAmount(offer.getDiscountAmount());
 			offerLine.setOrderMasterId(updatedResult.getId());
 			offerLineService.save(offerLine);
-			
+
 		});
-		order.getOrderLines().stream().map(this::toOrderLine).collect(Collectors.toSet())
-		.forEach(orderline -> {
+		order.getOrderLines().stream().map(this::toOrderLine).collect(Collectors.toSet()).forEach(orderline -> {
 			// saving orderlines
 			OrderLineDTO lineDTO = orderLineMapper.toDto(orderline);
 			lineDTO.setOrderMasterId(updatedResult.getId());
 			OrderLineDTO resultLineDTO = orderLineService.save(lineDTO);
-			
-			//saving the combos of orderline
-			orderline.getComboItems().forEach(comboItem->{
-				ComboItemDTO comboItemDTO=comboItemMapper.toDto(comboItem);
+
+			// saving the combos of orderline
+			orderline.getComboItems().forEach(comboItem -> {
+				ComboItemDTO comboItemDTO = comboItemMapper.toDto(comboItem);
 				comboItemDTO.setOrderLineId(resultLineDTO.getId());
 				comboItemService.save(comboItemDTO);
 			});
-			
-			//saving the aux items of the particular line
-			orderline.getAuxItems()
-			.forEach(auxItem -> {
-				AuxItemDTO auxItemDTO=auxItemMapper.toDto(auxItem);
+
+			// saving the aux items of the particular line
+			orderline.getAuxItems().forEach(auxItem -> {
+				AuxItemDTO auxItemDTO = auxItemMapper.toDto(auxItem);
 				auxItemDTO.setOrderLineId(resultLineDTO.getId());
 				auxItemService.save(auxItemDTO);
 			});
@@ -284,20 +292,20 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	private OrderLine toOrderLine(com.diviso.graeshoppe.order.avro.OrderLine orderLine) {
 		OrderLine line = new OrderLine();
 		Product product = findProductByProductId(orderLine.getProductId());
-		if(product!=null) {
-		line.setItem(product.getName());
-		}								// query to get productname
+		if (product != null) {
+			line.setItem(product.getName());
+		} // query to get productname
 		line.setQuantity(orderLine.getQuantity());
 		line.setTotal(orderLine.getTotal());
 		line.setAuxItems(orderLine.getAuxilaryOrderLines().stream().map(this::toAuxItem).collect(Collectors.toSet()));
-		List<ComboLineItem> comboItems=findCombosByProductId(orderLine.getProductId());
+		List<ComboLineItem> comboItems = findCombosByProductId(orderLine.getProductId());
 		line.setComboItems(comboItems.stream().map(this::toComboItem).collect(Collectors.toSet()));
 		return line;
 
 	}
-	
+
 	private ComboItem toComboItem(ComboLineItem lineitem) {
-		ComboItem comboItem=new ComboItem();
+		ComboItem comboItem = new ComboItem();
 		comboItem.setComboItem(lineitem.getProduct().getName());
 		comboItem.setQuantity(lineitem.getQuantity());
 		return comboItem;
@@ -317,36 +325,29 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 		return orderMasterRepository.findByOrderNumber(orderNumber).map(orderMasterMapper::toDto);
 	}
-	
-	
+
 	@Override
-	public Page<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(Instant from, Instant to, String storeIdpcode,Pageable pageable){
-		
-		
-		   
-		return orderMasterRepository.findByExpectedDeliveryBetweenAndStoreIdpcode(from,to,storeIdpcode,pageable);
-		
+	public Page<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(Instant from, Instant to, String storeIdpcode,
+			Pageable pageable) {
+
+		return orderMasterRepository.findByExpectedDeliveryBetweenAndStoreIdpcode(from, to, storeIdpcode, pageable);
+
 	}
+
 	@Override
-	public Long  countByExpectedDeliveryAndOrderStatus(Instant date,String orderStatus) {
-		 Instant dateBegin = Instant.parse(date.toString() + "T00:00:00Z");
-		  Instant dateEnd = Instant.parse(date.toString() + "T23:59:59Z");
-		return orderMasterRepository.countByExpectedDeliveryBetweenAndOrderStatus(dateBegin, dateEnd,orderStatus);
+	public Long countByExpectedDeliveryAndOrderStatus(Instant date, String orderStatus) {
+		Instant dateBegin = Instant.parse(date.toString() + "T00:00:00Z");
+		Instant dateEnd = Instant.parse(date.toString() + "T23:59:59Z");
+		return orderMasterRepository.countByExpectedDeliveryBetweenAndOrderStatus(dateBegin, dateEnd, orderStatus);
 	}
-	
-	
+
 	@Override
 	public Long countByOrderStatus(String orderStatus) {
 		return orderMasterRepository.countByOrderStatus(orderStatus);
 	}
-	
+
 	@Override
-	public Page<OrderMaster> findByExpectedDeliveryBetween(Instant from, Instant to,Pageable pageable) {
+	public Page<OrderMaster> findByExpectedDeliveryBetween(Instant from, Instant to, Pageable pageable) {
 		return orderMasterRepository.findByExpectedDeliveryBetween(from, to, pageable);
 	}
-	}
-	
-	
-	
-	
-
+}
