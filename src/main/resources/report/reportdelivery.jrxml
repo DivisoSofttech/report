@@ -261,7 +261,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="M/d/yy" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="0" y="93" width="143" height="12" uuid="f6cc3c07-2539-4326-aef7-f7bfa60bf5be">
-					<printWhenExpression><![CDATA[$F{pre_order_date}!=null]]></printWhenExpression>
+					<printWhenExpression><![CDATA[$F{pre_order_date}!=null ]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[String.format(" Requested  for %1$s            at  ASAP /  %2$s",DATEFORMAT($F{pre_order_date},"d/M/yyyy"),$F{pre_order_time})]]></textFieldExpression>
@@ -331,7 +331,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[String.format("%1$2s x %2$-20.20s", $F{auxquantity},$F{aux_item})]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="#,#00.00#;#,#00.00#-">
+			<textField isStretchWithOverflow="true" pattern="#,#00.00#">
 				<reportElement positionType="Float" isPrintRepeatedValues="false" x="101" y="-1" width="40" height="15" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="80a0fb0e-13e8-4d22-91d6-3d8668ad6da1">
 					<printWhenExpression><![CDATA[!$F{aux_item}.equals("[]")]]></printWhenExpression>
 				</reportElement>
