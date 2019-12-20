@@ -406,15 +406,19 @@ ct ORDER BY  item ASC,rowid DESC]]>
 					<pen lineWidth="1.0"/>
 				</graphicElement>
 			</line>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-12" y="241" width="162" height="20" uuid="e5a459f7-3625-459b-b048-08df39840ccb"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="-12" y="241" width="162" height="20" isRemoveLineWhenBlank="true" uuid="e5a459f7-3625-459b-b048-08df39840ccb">
+					<printWhenExpression><![CDATA[!($F{house_no_or_building_name}.equalsIgnoreCase("null"))]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="13" isBold="false" isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{house_no_or_building_name}.substring(0, 1)+$F{house_no_or_building_name}.substring(1, $F{house_no_or_building_name}.length()).toLowerCase()]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-12" y="285" width="161" height="20" uuid="3f7ad432-69c2-4def-bbc9-8e613eaf76c7"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="-12" y="285" width="161" height="20" isRemoveLineWhenBlank="true" uuid="3f7ad432-69c2-4def-bbc9-8e613eaf76c7">
+					<printWhenExpression><![CDATA[!($F{city}.equalsIgnoreCase("null"))]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="13" isBold="false" isItalic="false"/>
 				</textElement>
@@ -441,15 +445,19 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-12" y="349" width="162" height="20" uuid="88b402fb-8a7f-47cb-8d50-efd754ff00fc"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="-12" y="349" width="162" height="20" isRemoveLineWhenBlank="true" uuid="88b402fb-8a7f-47cb-8d50-efd754ff00fc">
+					<printWhenExpression><![CDATA[!($F{pincode}.equalsIgnoreCase("null"))]]></printWhenExpression>
+				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font size="13" isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{pincode}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-12" y="307" width="162" height="20" uuid="e91dad65-ac5a-471c-8404-1c0d9a6b1684"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="-12" y="307" width="162" height="20" isRemoveLineWhenBlank="true" uuid="e91dad65-ac5a-471c-8404-1c0d9a6b1684">
+					<printWhenExpression><![CDATA[!($F{landmark}.equalsIgnoreCase("null"))]]></printWhenExpression>
+				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font size="13" isItalic="false"/>
 				</textElement>
@@ -508,22 +516,28 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{payment_status}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-12" y="221" width="162" height="18" uuid="e32505ed-93b3-4c96-b700-f6aa6972fd9d"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="-12" y="221" width="162" height="18" isRemoveLineWhenBlank="true" uuid="e32505ed-93b3-4c96-b700-f6aa6972fd9d">
+					<printWhenExpression><![CDATA[!($F{customer_name}.equalsIgnoreCase("null"))]]></printWhenExpression>
+				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font size="13"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{customer_name}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-13" y="263" width="163" height="20" uuid="b2c2d393-3467-4538-98cd-5ae1f85299ec"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="-13" y="263" width="163" height="20" isRemoveLineWhenBlank="true" uuid="b2c2d393-3467-4538-98cd-5ae1f85299ec">
+					<printWhenExpression><![CDATA[!($F{road_name_area_or_street}.equalsIgnoreCase("null"))]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="13"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{road_name_area_or_street}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-12" y="329" width="162" height="18" uuid="d1a12bf3-f1e2-46f3-9b43-c04e8413966b"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="-12" y="329" width="162" height="18" isRemoveLineWhenBlank="true" uuid="d1a12bf3-f1e2-46f3-9b43-c04e8413966b">
+					<printWhenExpression><![CDATA[!($F{state}.equalsIgnoreCase("null"))]]></printWhenExpression>
+				</reportElement>
 				<textElement>
 					<font size="13"/>
 				</textElement>
