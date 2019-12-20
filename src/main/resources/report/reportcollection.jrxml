@@ -451,12 +451,12 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA["Loyalty Card Point           :"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="124" y="121" width="17" height="18" uuid="6d2ac04e-f545-4ce1-8a47-c947aebbabfb"/>
+				<reportElement positionType="Float" x="124" y="121" width="25" height="18" uuid="6d2ac04e-f545-4ce1-8a47-c947aebbabfb"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{order_from_customer}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="125" y="139" width="16" height="17" uuid="367addf9-26ed-4201-a234-114f6f85c376"/>
+				<reportElement positionType="Float" x="125" y="139" width="24" height="17" uuid="367addf9-26ed-4201-a234-114f6f85c376"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
@@ -488,7 +488,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA[$F{payment_status}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="124" y="105" width="17" height="15" uuid="7f7ae009-5816-4fc8-ad77-9c62a9ea503a"/>
+				<reportElement positionType="Float" x="124" y="105" width="25" height="15" uuid="7f7ae009-5816-4fc8-ad77-9c62a9ea503a"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{order_from_customer}]]></textFieldExpression>
 			</textField>
