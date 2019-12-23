@@ -339,8 +339,8 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	public Long countByExpectedDeliveryAndOrderStatus(LocalDate date, String orderStatus) {
 	
 		
-		Instant dateBegin = Instant.parse(/*date.toString() +*/ "2019-12-23T00:00:00Z");
-		Instant dateEnd = Instant.parse(/*date.toString() +*/ "2019-12-23T23:59:59Z");
+		Instant dateBegin = Instant.parse(date.toString() + "T00:00:00Z");
+		Instant dateEnd = Instant.parse(date.toString() + "T23:59:59Z");
 		return orderMasterRepository.countByExpectedDeliveryBetweenAndOrderStatus(dateBegin, dateEnd, orderStatus);
 	}
 
