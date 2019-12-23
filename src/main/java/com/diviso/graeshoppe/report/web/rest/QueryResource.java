@@ -74,7 +74,7 @@ public class QueryResource {
 	
 	
 	 @GetMapping("/reportSummary/{date}/{storeId}")
-	 public ResponseEntity<byte[]> getReportSummaryAsPdf(@PathVariable String date,@PathVariable String storeName) {
+	 public ResponseEntity<byte[]> getReportSummaryAsPdf(@PathVariable String date,@PathVariable String storeId) {
 	       
 	       //log.debug("REST request to get a pdf");
 	     
@@ -82,7 +82,7 @@ public class QueryResource {
 	    
 	      try
 	      {
-	        pdfContents=queryService.getReportSummaryAsPdf(LocalDate.parse(date),storeName);
+	        pdfContents=queryService.getReportSummaryAsPdf(LocalDate.parse(date),storeId);
 	      }
 	      catch (JRException e) {
 	           e.printStackTrace();
