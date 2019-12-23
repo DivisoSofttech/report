@@ -336,9 +336,9 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	}
 
 	@Override
-	public Long countByExpectedDeliveryAndOrderStatus(LocalDate date, String orderStatus) {
+	public Long countByExpectedDeliveryAndOrderStatus(String date, String orderStatus) {
 	
-		
+		log.debug("<<<<<<<<<<<< countByExpectedDeliveryAndOrderStatus >>>>>>>>>>>>",date);
 		Instant dateBegin = Instant.parse(date.toString() + "T00:00:00Z");
 		Instant dateEnd = Instant.parse(date.toString() + "T23:59:59Z");
 		return orderMasterRepository.countByExpectedDeliveryBetweenAndOrderStatus(dateBegin, dateEnd, orderStatus);
