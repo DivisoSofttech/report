@@ -188,5 +188,15 @@ public class QueryResource {
 			public Page<OrderMaster> findOrderMasterByExpectedDeliveryBetween(@PathVariable Instant from,@PathVariable Instant to,Pageable pageable){
 				return  orderMasterService.findByExpectedDeliveryBetween(from,to,pageable);
 			}
+	/*
+	 * @GetMapping("/findOrderMasterCountByDeliveryBetween/{from}/{to}") public Long
+	 * findOrderMasterCountByDeliveryBetween(@PathVariable String from,@PathVariable
+	 * String to){ return orderMasterService.countByDeliveryBetween(from,to); }
+	 */
+		    @GetMapping("/findOrderMasterCountByExpectedDeliveryBetween/{from}/{to}")
+		    public Long findOrderMasterCountByExpectedDeliveryBetween(@PathVariable String from,@PathVariable String to){
+		        log.debug("<<<<<<<<<<<<findOrderMasterCountByExpectedDeliveryBetween >>>>>{}{}", from,to);
+		        return  orderMasterService.countByExpectedDeliveryBetween(from,to);
+		    }
 
 }

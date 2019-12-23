@@ -213,9 +213,9 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setSubTotal(order.getSubTotal());
 		orderMaster.setCustomerName(customer.getReference());
 		if (order.getPreOrderDate() == 0) {
-			
+
 			orderMaster.setPreOrderDate(null);
-			
+
 		} else {
 			orderMaster.setPreOrderDate(Instant.ofEpochMilli(order.getPreOrderDate()));
 
@@ -337,8 +337,8 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 	@Override
 	public Long countByExpectedDeliveryAndOrderStatus(String date, String orderStatus) {
-	
-		log.debug("<<<<<<<<<<<< countByExpectedDeliveryAndOrderStatus >>>>>>>>>>>>",date);
+
+		log.debug("<<<<<<<<<<<< countByExpectedDeliveryAndOrderStatus >>>>>>>>>>>>", date);
 		Instant dateBegin = Instant.parse(date.toString() + "T00:00:00Z");
 		Instant dateEnd = Instant.parse(date.toString() + "T23:59:59Z");
 		return orderMasterRepository.countByExpectedDeliveryBetweenAndOrderStatus(dateBegin, dateEnd, orderStatus);
@@ -353,4 +353,13 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	public Page<OrderMaster> findByExpectedDeliveryBetween(Instant from, Instant to, Pageable pageable) {
 		return orderMasterRepository.findByExpectedDeliveryBetween(from, to, pageable);
 	}
+
+	@Override
+	public Long countByExpectedDeliveryBetween(String from, String to) {
+		log.debug("<<<<<<<<<<< countByExpectedDeliveryBetween >>>>>>>>>>{}{}", from, to);
+		Instant fromDate = Instant.parse(from.toString() + "T00:00:00Z");
+		Instant toDate = Instant.parse(to.toString() + "T23:59:59Z");
+		return orderMasterRepository.countByExpectedDeliveryBetween(fromDate, toDate);
+	}
+	
 }
