@@ -73,7 +73,7 @@ public class QueryResource {
 
 	
 	
-	 @GetMapping("/reportSummary/{date}/{storeId}")
+	 @GetMapping("/reportSummary/{date}/{storeName}")
 	 public ResponseEntity<byte[]> getReportSummaryAsPdf(@PathVariable String date,@PathVariable String storeName) {
 	       
 	       //log.debug("REST request to get a pdf");
