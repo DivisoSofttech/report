@@ -39,7 +39,7 @@ import org.springframework.data.elasticsearch.core.query.StringQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
+import java.time.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -336,7 +336,9 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	}
 
 	@Override
-	public Long countByExpectedDeliveryAndOrderStatus(Instant date, String orderStatus) {
+	public Long countByExpectedDeliveryAndOrderStatus(LocalDate date, String orderStatus) {
+	
+		
 		Instant dateBegin = Instant.parse(date.toString() + "T00:00:00Z");
 		Instant dateEnd = Instant.parse(date.toString() + "T23:59:59Z");
 		return orderMasterRepository.countByExpectedDeliveryBetweenAndOrderStatus(dateBegin, dateEnd, orderStatus);

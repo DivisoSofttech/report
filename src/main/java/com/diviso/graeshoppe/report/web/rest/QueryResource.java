@@ -167,7 +167,7 @@ public class QueryResource {
 			}
 		     
 		    @GetMapping("/findOrderCountByDateAndStatusName/{date}/{statusName}")
-		    public Long findOrderCountByDateAndStatusName(@PathVariable Instant date,@PathVariable String statusName){
+		    public Long findOrderCountByDateAndStatusName(@PathVariable LocalDate date,@PathVariable String statusName){
 		    	return orderMasterService.countByExpectedDeliveryAndOrderStatus(date,statusName);
 		    }
 		    
