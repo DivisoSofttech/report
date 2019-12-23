@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="test" pageWidth="164" pageHeight="842" columnWidth="124" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="c284ac85-4f0d-4c8e-97f3-9d7543e34a76">
-	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportsummary1" pageWidth="170" pageHeight="842" columnWidth="130" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="b33fcc4a-5401-41d0-bb68-d55f5d1d4821">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter4.xml"/>
 	<property name="com.jaspersoft.studio.unit." value="mm"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="mm"/>
@@ -12,13 +11,10 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="mm"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="mm"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="mm"/>
-	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="125"/>
-	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="870"/>
-	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="596"/>
-	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="404"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="date" class="java.lang.String"/>
 	<parameter name="store_name" class="java.lang.String"/>
-	<queryString language="SQL">
+	<queryString>
 		<![CDATA[select store_name , date(expected_delivery)'date', sum(total_due)'all_V',COALESCE(sum(case when method_of_order='DELIVERY' then total_due end), 0)'delivery_v',COALESCE(sum(case when method_of_order='COLLECTION' then total_due end),0)'Collection_v',COALESCE(sum(case when order_status='ORDER PAID' then total_due end),0)'card_v',COALESCE(sum(case when order_status='ORDER NOT PAID' then total_due end),0)'cash_v', count(*)'all',count(if(method_of_order='DELIVERY',1,null))'DELIVERY' , count(if(method_of_order='COLLECTION',1,null))'COLLECTION' , count(if(order_status='ORDER PAID',1,null))'CARD', count(if(order_status='ORDER NOT PAID',1,null))'CASH'  from order_master where( date(expected_delivery)=  $P{date}  &&  store_name =  $P{store_name} ) group by date(expected_delivery);]]>
 	</queryString>
 	<field name="store_name" class="java.lang.String">
@@ -62,15 +58,15 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="141" splitType="Stretch">
+		<band height="173" splitType="Stretch">
 			<line>
-				<reportElement x="-20" y="95" width="164" height="1" uuid="d3d5ea48-aed2-4235-a2ae-c8a705a5734f"/>
+				<reportElement x="-20" y="95" width="164" height="1" uuid="7a8047eb-3f19-4b52-b7ae-d42327b2c8bb"/>
 				<graphicElement>
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement positionType="Float" x="-20" y="59" width="164" height="30" uuid="8e416395-0617-4a8c-9df5-7402029372d4"/>
+				<reportElement positionType="Float" x="-20" y="59" width="164" height="30" uuid="d9fd8ac7-3c5b-48dd-b1c7-f26f83a52271"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -83,38 +79,59 @@
 				<textFieldExpression><![CDATA["Order Summary"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-4" y="101" width="149" height="15" uuid="371a2536-30ca-4a76-ae9d-473a6e9bb345"/>
+				<reportElement positionType="Float" x="-4" y="101" width="149" height="15" uuid="8dea4e71-3218-4b10-ab20-a989efe7035e"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["End Of Day Summary -"]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement positionType="Float" x="-20" y="140" width="160" height="1" uuid="e01e7027-7f08-4099-8ca3-ac8b1ea250d1"/>
+				<reportElement positionType="Float" x="-20" y="140" width="160" height="1" uuid="9cb1a7f8-8167-4a43-b2e8-2b7e0f2a1855"/>
 				<graphicElement>
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement positionType="Float" x="11" y="26" width="100" height="25" uuid="b7957b0b-0bf3-4bc6-a10b-4c780a01b054"/>
+				<reportElement positionType="Float" x="11" y="26" width="100" height="25" uuid="6e57ce23-5548-424a-a58e-f2d08bd8528c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{store_name}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<image scaleImage="RealSize">
-				<reportElement positionType="Float" x="4" y="-59" width="116" height="144" uuid="36658e82-02bf-4213-a352-1db54d21dd0b"/>
+				<reportElement positionType="Float" x="4" y="-59" width="116" height="144" uuid="21fcbdb3-aa4e-4008-b0f5-051faf96abd5"/>
 				<graphicElement fill="Solid"/>
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
 			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
-				<reportElement positionType="Float" x="27" y="119" width="112" height="17" uuid="93a383eb-963e-4259-804e-95d60a6fdbc9">
+				<reportElement positionType="Float" x="27" y="119" width="112" height="17" uuid="63e11e44-7aba-484f-a692-6fa1b4a2b8c3">
 					<printWhenExpression><![CDATA[$F{date}!=null]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center">
 					<font size="13"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="-10" y="145" width="47" height="20" uuid="4cef9d2a-d1f5-4789-9640-f0b443496f08"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Type"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="48" y="146" width="43" height="19" uuid="ad6103af-5474-4d27-8d07-bb241be47528"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Total"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="92" y="146" width="47" height="19" uuid="40c69e25-d449-4944-a7a4-07d05619d4b7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["value"]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -125,129 +142,114 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="168" splitType="Stretch">
-			<textField>
-				<reportElement positionType="Float" x="-10" y="2" width="47" height="20" uuid="edf0ab3e-bd13-434a-9ba6-0362a635fa4e"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Type"]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="48" y="3" width="43" height="19" uuid="c38b01b1-64a6-454a-84f9-6dc02294336f"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Total"]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="92" y="3" width="47" height="19" uuid="7024fc50-b67a-4e58-884c-428faa3660ad"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA["value"]]></textFieldExpression>
-			</textField>
-			<line>
-				<reportElement x="-21" y="32" width="162" height="1" uuid="f502cd11-cd20-45e7-859c-2c406ff1aa47"/>
-				<graphicElement>
-					<pen lineStyle="Dashed"/>
-				</graphicElement>
-			</line>
+		<band height="146" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-10" y="38" width="35" height="24" uuid="be89d3f2-7c18-4631-93a7-e6f6cd4150cf"/>
+				<reportElement positionType="Float" x="-10" y="13" width="35" height="24" uuid="54a75f1a-e62c-46e7-907b-a273959310ec"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["All"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-10" y="63" width="46" height="20" uuid="85d43241-8058-4ba9-b426-c1b78a9697c4"/>
+				<reportElement positionType="Float" x="-10" y="38" width="46" height="20" uuid="d778e3bb-da26-4452-ba2d-2704c1fbeaaa"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Card"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-10" y="89" width="53" height="20" uuid="cbae0613-3d22-4658-9013-08028034733e"/>
+				<reportElement positionType="Float" x="-10" y="64" width="53" height="20" uuid="823c5986-00b2-4efb-bdac-7ec6535333c1"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Cash"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-10" y="114" width="64" height="21" uuid="f2157e0d-6265-4ca7-b915-dc2b5f80edb1"/>
+				<reportElement positionType="Float" x="-10" y="89" width="64" height="21" uuid="df7f0824-e09b-40c9-ad5b-31c81103143d"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Delivery"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-10" y="138" width="80" height="21" uuid="7c3a96ac-4700-4808-a09f-0c2d69b16059"/>
+				<reportElement positionType="Float" x="-10" y="113" width="80" height="21" uuid="56dde417-e8ee-476a-8605-8bfa2a97585e"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Collection"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="51" y="38" width="29" height="23" isRemoveLineWhenBlank="true" uuid="35650405-7bd7-4e97-a82a-b795db43c334"/>
+				<reportElement positionType="Float" x="51" y="13" width="29" height="23" isRemoveLineWhenBlank="true" uuid="ca8a3cdd-2a22-4fe9-b8dd-17e8526580ba"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{all}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="91" y="38" width="48" height="23" isRemoveLineWhenBlank="true" uuid="b6e9bda9-ebd2-4b6c-9095-208872aa47de">
+				<reportElement positionType="Float" x="91" y="13" width="48" height="23" isRemoveLineWhenBlank="true" uuid="502dded0-0c27-4f19-ba5f-631a432f7aa4">
 					<printWhenExpression><![CDATA[$F{all_V}!=null]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{all_V}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="51" y="63" width="29" height="20" uuid="8cf0dea7-adee-41ef-80a7-50d9071bcab9"/>
+				<reportElement positionType="Float" x="51" y="38" width="29" height="20" uuid="a306f3b6-c2ec-48c6-bc78-2582dc952c78"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{CARD}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="90" y="63" width="49" height="20" uuid="adec700e-409a-4520-ae4b-ecec9e0b927e">
+				<reportElement positionType="Float" x="90" y="38" width="49" height="20" uuid="47c2628c-bd18-4948-8993-c4ce8edff2ef">
 					<printWhenExpression><![CDATA[$F{card_v}!=null]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{card_v}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="51" y="90" width="29" height="19" uuid="85b6d865-008d-4171-addf-44ab91102d7c"/>
+				<reportElement positionType="Float" x="51" y="65" width="29" height="19" uuid="eb8ba7d3-19e7-4139-8bea-221691e54701"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{CASH}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="90" y="90" width="49" height="19" isRemoveLineWhenBlank="true" uuid="3f4ee087-6bde-48aa-aa98-8c8e63f4feaa">
+				<reportElement positionType="Float" x="90" y="65" width="49" height="19" isRemoveLineWhenBlank="true" uuid="b4927df0-e512-46ad-b297-20c18ec4f3e7">
 					<printWhenExpression><![CDATA[$F{cash_v}!=null]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{cash_v}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="50" y="114" width="30" height="21" uuid="245427ff-d13b-4ecb-9b48-9d1818f2c86b"/>
+				<reportElement positionType="Float" x="50" y="89" width="30" height="21" uuid="1784e7d9-f222-49c4-a6de-79727a5c4b85"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{DELIVERY}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="90" y="114" width="49" height="21" uuid="5ed479e6-3020-4d91-a49b-4d4d1e31a2a7">
+				<reportElement positionType="Float" x="90" y="89" width="49" height="21" uuid="d88fc56f-4b58-4ae0-b32a-50dca749bb45">
 					<printWhenExpression><![CDATA[$F{delivery_v}!=null]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{delivery_v}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="51" y="138" width="29" height="21" uuid="0be56160-809c-467d-8ca8-768250f84f5d"/>
+				<reportElement positionType="Float" x="51" y="113" width="29" height="21" uuid="b0e36a66-370e-40d4-ae09-cc1286008a89"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{COLLECTION}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="90" y="135" width="49" height="24" uuid="d529a80a-51fc-468f-823c-7c30039b6168">
+				<reportElement positionType="Float" x="90" y="110" width="49" height="24" uuid="7cbc6031-cd66-4967-8379-ad5aa11c69d4">
 					<printWhenExpression><![CDATA[$F{Collection_v}!=null]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{Collection_v}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="-18" y="-6" width="162" height="1" uuid="ee45bca8-12c4-4e40-822e-1f4a12c4c376"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="-18" y="140" width="162" height="1" uuid="44b84cdd-1563-42a8-b1a8-c1b8db6c413a"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>
@@ -259,25 +261,19 @@
 	<summary>
 		<band height="24" splitType="Stretch">
 			<textField pattern="MMM d, yyyy">
-				<reportElement positionType="Float" x="-10" y="4" width="80" height="20" uuid="9e6722f6-0996-4af5-af2a-30f252931e2f"/>
+				<reportElement positionType="Float" x="-10" y="4" width="80" height="20" uuid="84758006-71d8-48bc-8c33-c8bc0200f233"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="HH:mm:ss a">
-				<reportElement positionType="Float" x="60" y="4" width="79" height="20" uuid="66d9b539-45c6-4720-955f-f64574f86463"/>
+				<reportElement positionType="Float" x="60" y="4" width="79" height="20" uuid="abe853ab-e794-4529-b407-217f26fd516d"/>
 				<textElement>
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement x="-18" y="-6" width="162" height="1" uuid="7f8e0b36-59f3-4760-a22f-4a24354a8c63"/>
-				<graphicElement>
-					<pen lineStyle="Dashed"/>
-				</graphicElement>
-			</line>
 		</band>
 	</summary>
 </jasperReport>

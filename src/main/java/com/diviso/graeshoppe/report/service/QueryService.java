@@ -16,7 +16,7 @@ public interface QueryService {
 	
 	byte[] getReportAsPdf(String orderNumber) throws JRException;
 
-	byte[] getReportSummaryAsPdf(LocalDate date,String storeId) throws JRException;
+	byte[] getReportSummaryAsPdf(LocalDate date,String storeName) throws JRException;
 
 	/**
 	 * @param orderNumber
