@@ -189,7 +189,7 @@ public class QueryResource {
 				return  orderMasterService.findByExpectedDeliveryBetween(from,to,pageable);
 			}
 
-		    @GetMapping("/countOrderByDeliveryBetween/{from}/{to}")
+		    @GetMapping("/countOrderMasterByDeliveryBetween/{from}/{to}")
 		    public Long findOrderMasterCountByExpectedDeliveryBetween(@PathVariable String from,@PathVariable String to){
 		        log.debug("<<<<<<<<<<<<findOrderMasterCountByExpectedDeliveryBetween >>>>>{}{}", from,to);
 		        return  orderMasterService.countByExpectedDeliveryBetween(from,to);
