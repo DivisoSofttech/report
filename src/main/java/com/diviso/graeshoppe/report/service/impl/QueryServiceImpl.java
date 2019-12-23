@@ -268,7 +268,7 @@ public class QueryServiceImpl implements QueryService {
 			e.printStackTrace();
 		}
 
-		JasperPrint jp = JasperFillManager.fillReport("src/main/resources/report/reportsummary1.jasper", parameters,
+		JasperPrint jp = JasperFillManager.fillReport("src/main/resources/report/reportSummary.jasper", parameters,
 				conn);
 		return JasperExportManager.exportReportToPdf(jp);
 
