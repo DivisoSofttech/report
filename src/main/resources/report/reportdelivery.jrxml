@@ -364,7 +364,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="483" splitType="Stretch">
+		<band height="478" splitType="Stretch">
 			<textField isStretchWithOverflow="true" pattern="#,#00.00#">
 				<reportElement positionType="Float" x="108" y="34" width="31" height="15" uuid="cb6e1fcd-2d38-4174-910a-5bf196d3893b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -430,13 +430,6 @@ ct ORDER BY  item ASC,rowid DESC]]>
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Powered by Graeshoppe"]]></textFieldExpression>
-			</textField>
-			<textField pattern="MMMMM dd, yyyy">
-				<reportElement positionType="Float" x="-1" y="461" width="101" height="22" uuid="4485b814-f86d-41cb-92df-228559633a28"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="-12" y="321" width="162" height="20" isRemoveLineWhenBlank="true" uuid="88b402fb-8a7f-47cb-8d50-efd754ff00fc">
@@ -607,12 +600,19 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{time_order_accepted_at}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="HH:mm">
-				<reportElement positionType="Float" x="94" y="462" width="46" height="20" uuid="0ff8e1af-318f-4756-b191-1822a35b5fd3"/>
-				<textElement verticalAlignment="Middle">
+			<textField isStretchWithOverflow="true" pattern="MMMM d, yyyy">
+				<reportElement positionType="Float" x="1" y="461" width="100" height="17" uuid="018843ee-c587-441d-afd4-7a68fca28327"/>
+				<textElement>
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{date_order_accepted_at}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="h:mm a">
+				<reportElement positionType="Float" x="86" y="461" width="47" height="16" uuid="53fe9128-53f0-4f0e-b4ef-30185276130f"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{time_order_place_at}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

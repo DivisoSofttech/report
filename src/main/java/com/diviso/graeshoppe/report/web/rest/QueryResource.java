@@ -42,41 +42,11 @@ public class QueryResource {
 	@Autowired
 	private  OrderMasterService orderMasterService;
 	
-		
-	@GetMapping("/report/{date}/{storeId}")
-	public ReportSummary createReportSummary(@PathVariable LocalDate date,@PathVariable String storeId) {
-		return queryService.createReportSummary(date,storeId);
-	}
 /*	
 	@GetMapping("/orderAggregator/{orderNumber}")
 	public OrderAggregator getOrderAggregator(@PathVariable String orderNumber) {
 		return queryService.getOrderAggregator(orderNumber);
 	}*/
-	@GetMapping("/pdf/{orderNumber}")
-	public ResponseEntity<byte[]> getReportAsPdf(@PathVariable String orderNumber) {
-	       
-	       //log.debug("REST request to get a pdf");
-	     
-	       byte[] pdfContents = null;
-	    
-	      try
-	      {
-	        pdfContents=queryService.getReportAsPdf(orderNumber);
-	      }
-	      catch (JRException e) {
-	           e.printStackTrace();
-	      }
-	     
-	        HttpHeaders headers = new HttpHeaders();
-	        headers.setContentType(MediaType.parseMediaType("application/pdf"));
-	       String fileName ="report.pdf";
-	        headers.add("content-disposition", "attachment; filename=" + fileName);
-	        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(
-	     	           pdfContents, headers, HttpStatus.OK);	      
-	       return response;
-	   }
-
-	
 	
 	 @GetMapping("/reportSummary/{date}/{storeId}")
 	 public ResponseEntity<byte[]> getReportSummaryAsPdf(@PathVariable String date,@PathVariable String storeId) {

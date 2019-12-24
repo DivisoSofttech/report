@@ -371,7 +371,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="287" splitType="Stretch">
+		<band height="284" splitType="Stretch">
 			<line>
 				<reportElement positionType="Float" x="92" y="21" width="52" height="1" uuid="696f1bb5-1986-4371-9d1d-615af2c9486d"/>
 				<graphicElement>
@@ -398,13 +398,6 @@ ct ORDER BY  item ASC,rowid DESC]]>
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Powered by Graeshoppe"]]></textFieldExpression>
-			</textField>
-			<textField pattern="MMMMM dd, yyyy">
-				<reportElement positionType="Float" x="-4" y="265" width="105" height="22" uuid="19053923-3895-44eb-b217-69f65964729a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="-15" y="4" width="109" height="15" uuid="16042a1f-e446-4b39-8e60-ad4f728255e6"/>
@@ -534,12 +527,19 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				</textElement>
 				<text><![CDATA[Order Accepted:]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true" pattern="HH:mm">
-				<reportElement positionType="Float" x="94" y="266" width="46" height="20" uuid="f87ab00f-38ea-44a4-9581-18616119570b"/>
-				<textElement verticalAlignment="Middle">
+			<textField isStretchWithOverflow="true" pattern="MMMM d, yyyy">
+				<reportElement positionType="Float" x="3" y="267" width="100" height="17" uuid="38f0cf0c-2828-4a13-b919-a30df0734cf9"/>
+				<textElement>
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{date_order_accepted_at}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="h:mm a">
+				<reportElement positionType="Float" x="88" y="267" width="47" height="16" uuid="5797c420-ee5e-450e-a345-ddadabba23ed"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{time_order_place_at}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

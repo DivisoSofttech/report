@@ -62,62 +62,13 @@ public class ReportServiceImpl implements ReportService {
 	@Autowired
 	OrderMasterRepository orderMasterRepository;
 
-	private static List<ReportSummary> reportSummaryList = new ArrayList<ReportSummary>();
-
 	public ReportServiceImpl(JestClient jestClient, JestElasticsearchTemplate elasticsearchTemplate) {
 		// TODO Auto-generated constructor stub
 		this.jestClient = jestClient;
 		this.elasticsearchTemplate = elasticsearchTemplate;
 	}
 
-	@Override
-	public byte[] getReportAsPdf(String orderNumber) throws JRException {
-		JasperReport jr = JasperCompileManager.compileReport("report.jrxml");
-
-		// Preparing parameters
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("order_master_id", orderNumber);
-		Connection conn = null;
-		try {
-			conn = dataSource.getConnection();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
-
-		return JasperExportManager.exportReportToPdf(jp);
-
-	}
-
-	@Override
-	public byte[] getReportSummaryAsPdf(LocalDate date, String storeId) throws JRException {
-		// JasperReport jr = JasperCompileManager.compileReport("ordersummary.jrxml");
-
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("date", date);
-		parameters.put("store_name", storeId);
-		Connection conn = null;
-		try {
-			conn = dataSource.getConnection();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		JasperPrint jp = JasperFillManager.fillReport("src/main/resources/report/reportSummary.jasper", parameters,
-				conn);
-		return JasperExportManager.exportReportToPdf(jp);
-
-	}
-
-	public static List<ReportSummary> getReportSummaryList() {
-		return reportSummaryList;
-	}
-
-	public static void setReportSummaryList(List<ReportSummary> reportSummaryList) {
-		ReportServiceImpl.reportSummaryList = reportSummaryList;
-	}
+	/*
 
 	@Override
 	public Store findStoreByStoreId(String storeId) {
@@ -143,111 +94,7 @@ public class ReportServiceImpl implements ReportService {
 		return elasticsearchOperations.queryForList(searchQuery, ComboLineItem.class);
 	}
 
-	@Override
-	public byte[] getReportWithAuxAndComboAsPdf(String orderNumber) throws JRException {
-
-		OrderMasterDTO orderMasterDto = orderMasterService.findOrderMasterByOrderNumber(orderNumber);
-
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("order_number", orderNumber);
-		Connection conn = null;
-		try {
-			conn = dataSource.getConnection();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		JasperPrint jp = null;
-
-		if (orderMasterDto.getMethodOfOrder().equalsIgnoreCase("delivery")) {
-			jp = JasperFillManager.fillReport("src/main/resources/report/reportdelivery.jasper", parameters, conn);
-		} else if (orderMasterDto.getMethodOfOrder().equalsIgnoreCase("collection")) {
-			jp = JasperFillManager.fillReport("src/main/resources/report/reportcollection.jasper", parameters, conn);
-
-		}
-
-		/*
-		 * JasperReport jr = null;
-		 * 
-		 * 
-		 * // Preparing parameters
-		 * if(orderMasterDto.getMethodOfOrder().equalsIgnoreCase("delivery")) {
-		 * jr=JasperCompileManager.compileReport(
-		 * "src/main/resources/report/reportdelivery.jrxml"); } else
-		 * if(orderMasterDto.getMethodOfOrder().equalsIgnoreCase("collection")) {
-		 * 
-		 * jr=JasperCompileManager.compileReport(
-		 * "src/main/resources/report/reportcollection.jrxml"); }
-		 * 
-		 * //JasperReport jr = JasperCompileManager.compileReport(
-		 * "src/main/resources/report/reportcomboaux.jrxml");
-		 * 
-		 * Map<String, Object> parameters = new HashMap<String, Object>();
-		 * parameters.put("order_number", orderNumber); Connection conn = null; try {
-		 * conn = dataSource.getConnection(); } catch (SQLException e) { // TODO
-		 * Auto-generated catch block e.printStackTrace(); } JasperPrint
-		 * jp=JasperFillManager.fillReport(jr, parameters, conn);
-		 * 
-		 * OrderMasterDTO orderMasterDto
-		 * =orderMasterService.findOrderMasterByOrderNumber(orderNumber);
-		 * if(orderMasterDto.getMethodOfOrder().equalsIgnoreCase("delivery")) { jp =
-		 * JasperFillManager.fillReport(jr, parameters, conn); } else
-		 * if(orderMasterDto.getMethodOfOrder().equalsIgnoreCase("collection")) { jp =
-		 * JasperFillManager.fillReport(jr, parameters, conn);
-		 * 
-		 * }
-		 */
-
-		return JasperExportManager.exportReportToPdf(jp);
-
-	}
-/*
-	@Override
-	public ReportSummary createReportSummary(String expectedDelivery, String storeName) {
-		Instant dateBegin = Instant.parse(expectedDelivery.toString() + "T00:00:00Z");
-		Instant dateEnd = Instant.parse(expectedDelivery.toString() + "T23:59:59Z");
-		ReportSummary reportSummary = new ReportSummary();
-		reportSummary.setDate(LocalDate.parse(expectedDelivery));
-		reportSummary.setStoreId(storeName);
-
-		reportSummary.setTypeAllCount(
-				orderMasterRepository.countByExpectedDeliveryBetweenAndStoreName(dateBegin, dateEnd, storeName));
-		reportSummary.setTypeAllTotal(orderMasterRepository.sumOfTotalDue(dateBegin, dateEnd, storeName));
-		reportSummary.setTypeDeliveryCount(
-				orderMasterRepository.countByMethodOfOrderAndStoreName(dateBegin, dateEnd, storeName, "delivery"));
-		reportSummary.setTypeCollectionCount(
-				orderMasterRepository.countByMethodOfOrderAndStoreName(dateBegin, dateEnd, storeName, "collection"));
-		reportSummary.setTypeDeliveryTotal(
-				orderMasterRepository.sumOfTotalByOrderType(dateBegin, dateEnd, storeName, "delivery"));
-		reportSummary.setTypeCollectionTotal(
-				orderMasterRepository.sumOfTotalByOrderType(dateBegin, dateEnd, storeName, "collection"));
-		reportSummary.setTypeCardCount(
-				orderMasterRepository.countByOrderStatusAndStoreName(dateBegin, dateEnd, storeName, "order paid"));
-		reportSummary.setTypeCashCount(
-				orderMasterRepository.countByOrderStatusAndStoreName(dateBegin, dateEnd, storeName, "order not paid"));
-		reportSummary.setTypeCardTotal(
-				orderMasterRepository.sumOftotalByOrderStatus(dateBegin, dateEnd, storeName, "order paid"));
-		reportSummary.setTypeCashTotal(
-				orderMasterRepository.sumOftotalByOrderStatus(dateBegin, dateEnd, storeName, "order not paid"));
-
-		return reportSummary;
-	}
 */
-	@Override
-	public byte[] getSaleReportAsPdf(String storeidpcode) throws JRException {
-		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/sale.jrxml");
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("store_i_d_pcode", storeidpcode);
-		Connection conn = null;
-		try {
-			conn = dataSource.getConnection();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
-		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
-		return JasperExportManager.exportReportToPdf(jp);
-	}
-
+	
 }

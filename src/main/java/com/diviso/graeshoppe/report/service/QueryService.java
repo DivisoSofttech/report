@@ -11,10 +11,7 @@ import com.diviso.graeshoppe.report.domain.ReportSummary;
 
 import net.sf.jasperreports.engine.JRException;
 public interface QueryService {
-	
-	ReportSummary createReportSummary(LocalDate date,String storeId);
-	
-	byte[] getReportAsPdf(String orderNumber) throws JRException;
+		
 
 	byte[] getReportSummaryAsPdf(LocalDate date,String storeId) throws JRException;
 
