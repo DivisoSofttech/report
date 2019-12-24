@@ -2,6 +2,8 @@ package com.diviso.graeshoppe.report.web.rest;
 
 import java.time.LocalDate;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.diviso.graeshoppe.report.domain.OrderAggregator;
 import com.diviso.graeshoppe.report.domain.ReportSummary;
 import com.diviso.graeshoppe.report.service.QueryService;
+
 import com.diviso.graeshoppe.report.service.OrderMasterService;
 import net.sf.jasperreports.engine.JRException;
 import java.time.Instant;
@@ -30,6 +33,8 @@ import org.springframework.data.domain.Page;
 @RestController
 @RequestMapping("/api")
 public class QueryResource {
+	
+	private Logger log =LoggerFactory.getLogger(QueryResource.class);
 	
 	@Autowired
 	private  QueryService queryService;
@@ -96,6 +101,7 @@ public class QueryResource {
 	     	           pdfContents, headers, HttpStatus.OK);	      
 	       return response;
 	   }
+	
 
 	
 	 @GetMapping("/auxcombo/{orderNumber}")
@@ -162,12 +168,13 @@ public class QueryResource {
 		   }
 		 
 		   @GetMapping("/findOrderByDatebetweenAndStoreId/{from}/{to}/{storeId}")
-			public Page<OrderMaster> findOrderByDatebetweenAndStoreId(@PathVariable Instant from,@PathVariable Instant to,@PathVariable String storeId,Pageable pageable){
+			public Page<OrderMaster> findOrderByDatebetweenAndStoreId(@PathVariable String from,@PathVariable String to,@PathVariable String storeId,Pageable pageable){
 				return orderMasterService.findByExpectedDeliveryBetweenAndStoreIdpcode(from,to,storeId,pageable);
 			}
 		     
 		    @GetMapping("/findOrderCountByDateAndStatusName/{date}/{statusName}")
-		    public Long findOrderCountByDateAndStatusName(@PathVariable Instant date,@PathVariable String statusName){
+		    public Long findOrderCountByDateAndStatusName(@PathVariable String date,@PathVariable String statusName){
+		    	log.debug("<<<<<<<<<<<<<<<<<<<< findOrderCountByDateAndStatusName >>>>>>>>>>{}",date);
 		    	return orderMasterService.countByExpectedDeliveryAndOrderStatus(date,statusName);
 		    }
 		    
@@ -182,5 +189,12 @@ public class QueryResource {
 			public Page<OrderMaster> findOrderMasterByExpectedDeliveryBetween(@PathVariable Instant from,@PathVariable Instant to,Pageable pageable){
 				return  orderMasterService.findByExpectedDeliveryBetween(from,to,pageable);
 			}
+
+		    @GetMapping("/countOrderMasterByDeliveryBetween/{from}/{to}")
+		    public Long findOrderMasterCountByExpectedDeliveryBetween(@PathVariable String from,@PathVariable String to){
+		        log.debug("<<<<<<<<<<<<findOrderMasterCountByExpectedDeliveryBetween >>>>>{}{}", from,to);
+		        return  orderMasterService.countByExpectedDeliveryBetween(from,to);
+		    }
+		    
 
 }

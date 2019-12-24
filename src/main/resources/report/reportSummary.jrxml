@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="test" pageWidth="164" pageHeight="842" columnWidth="124" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="c284ac85-4f0d-4c8e-97f3-9d7543e34a76">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter2.xml"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter4.xml"/>
 	<property name="com.jaspersoft.studio.unit." value="mm"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="mm"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="mm"/>
@@ -19,7 +19,7 @@
 	<parameter name="date" class="java.lang.String"/>
 	<parameter name="store_name" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select store_name , date(expected_delivery)'date', sum(total_due)'all_V',COALESCE(sum(case when method_of_order='DELIVERY' then total_due end), 0)'delivery_v',COALESCE(sum(case when method_of_order='COLLECTION' then total_due end),0)'Collection_v',COALESCE(sum(case when order_status='ORDER PAID' then total_due end),0)'card_v',COALESCE(sum(case when order_status='ORDER NOT PAID' then total_due end),0)'cash_v', count(*)'all',count(if(method_of_order='DELIVERY',1,null))'DELIVERY' , count(if(method_of_order='COLLECTION',1,null))'COLLECTION' , count(if(order_status='ORDER PAID',1,null))'CARD', count(if(order_status='ORDER NOT PAID',1,null))'CASH'  from order_master where( date(expected_delivery)=  $P{date}  &&  store_name =  $P{store_name} ) group by date(expected_delivery);]]>
+		<![CDATA[select store_name , date(expected_delivery)'date', sum(total_due)'all_V',COALESCE(sum(case when method_of_order='DELIVERY' then total_due end), 0)'delivery_v',COALESCE(sum(case when method_of_order='COLLECTION' then total_due end),0)'Collection_v',COALESCE(sum(case when payment_status='ORDER PAID' then total_due end),0)'card_v',COALESCE(sum(case when payment_status='ORDER NOT PAID' then total_due end),0)'cash_v', count(*)'all',count(if(method_of_order='DELIVERY',1,null))'DELIVERY' , count(if(method_of_order='COLLECTION',1,null))'COLLECTION' , count(if(payment_status='ORDER PAID',1,null))'CARD', count(if(payment_status='ORDER NOT PAID',1,null))'CASH'  from order_master where( date(expected_delivery)=  $P{date}  &&  store_name =  $P{store_name} ) group by date(expected_delivery);]]>
 	</queryString>
 	<field name="store_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="store_name"/>
@@ -83,7 +83,7 @@
 				<textFieldExpression><![CDATA["Order Summary"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-10" y="101" width="149" height="15" uuid="371a2536-30ca-4a76-ae9d-473a6e9bb345"/>
+				<reportElement positionType="Float" x="-4" y="101" width="149" height="15" uuid="371a2536-30ca-4a76-ae9d-473a6e9bb345"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>

@@ -48,4 +48,11 @@ public interface OrderMasterRepository extends JpaRepository<OrderMaster, Long> 
 	public Long countByOrderStatus(String orderStatus);
 	public Long  countByExpectedDeliveryBetweenAndOrderStatus(Instant from,Instant to,String orderStatus);
 	Page<OrderMaster> findByExpectedDeliveryBetween(Instant from, Instant to, Pageable pageable);
+
+
+
+	Long countByExpectedDeliveryBetween(Instant fromDate, Instant toDate);
+
+
+
 }

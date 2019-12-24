@@ -39,7 +39,7 @@ import org.springframework.data.elasticsearch.core.query.StringQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
+import java.time.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -214,9 +214,9 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setCustomerName(customer.getReference());
 		orderMaster.setStoreIdpcode(order.getStoreId());
 		if (order.getPreOrderDate() == 0) {
-			
+
 			orderMaster.setPreOrderDate(null);
-			
+
 		} else {
 			orderMaster.setPreOrderDate(Instant.ofEpochMilli(order.getPreOrderDate()));
 
@@ -329,15 +329,19 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	}
 
 	@Override
-	public Page<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(Instant from, Instant to, String storeIdpcode,
+	public Page<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(String from, String to, String storeIdpcode,
 			Pageable pageable) {
-
-		return orderMasterRepository.findByExpectedDeliveryBetweenAndStoreIdpcode(from, to, storeIdpcode, pageable);
+		log.debug("<<<<<<<<<< findByExpectedDeliveryBetweenAndStoreIdpcode >>>>>>>>>>{}{}",from,to);
+			Instant fromDate = Instant.parse(from.toString()+"T00:00:00Z");
+			Instant toDate = Instant.parse(to.toString()+"T23:59:59Z");
+		return orderMasterRepository.findByExpectedDeliveryBetweenAndStoreIdpcode(fromDate, toDate, storeIdpcode, pageable);
 
 	}
 
 	@Override
-	public Long countByExpectedDeliveryAndOrderStatus(Instant date, String orderStatus) {
+	public Long countByExpectedDeliveryAndOrderStatus(String date, String orderStatus) {
+
+		log.debug("<<<<<<<<<<<< countByExpectedDeliveryAndOrderStatus >>>>>>>>>>>>", date);
 		Instant dateBegin = Instant.parse(date.toString() + "T00:00:00Z");
 		Instant dateEnd = Instant.parse(date.toString() + "T23:59:59Z");
 		return orderMasterRepository.countByExpectedDeliveryBetweenAndOrderStatus(dateBegin, dateEnd, orderStatus);
@@ -352,4 +356,13 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	public Page<OrderMaster> findByExpectedDeliveryBetween(Instant from, Instant to, Pageable pageable) {
 		return orderMasterRepository.findByExpectedDeliveryBetween(from, to, pageable);
 	}
+
+	@Override
+	public Long countByExpectedDeliveryBetween(String from, String to) {
+		log.debug("<<<<<<<<<<< countByExpectedDeliveryBetween >>>>>>>>>>{}{}", from, to);
+		Instant fromDate = Instant.parse(from.toString() + "T00:00:00Z");
+		Instant toDate = Instant.parse(to.toString() + "T23:59:59Z");
+		return orderMasterRepository.countByExpectedDeliveryBetween(fromDate, toDate);
+	}
+	
 }

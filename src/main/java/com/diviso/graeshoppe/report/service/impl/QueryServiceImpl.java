@@ -252,10 +252,13 @@ public class QueryServiceImpl implements QueryService {
 		return JasperExportManager.exportReportToPdf(jp);
 
 	}
+	
+	
+	
 
 	@Override
 	public byte[] getReportSummaryAsPdf(LocalDate date, String storeId) throws JRException {
-		// JasperReport jr = JasperCompileManager.compileReport("ordersummary.jrxml");
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/reportSummary.jrxml");
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("date", date);
@@ -268,8 +271,7 @@ public class QueryServiceImpl implements QueryService {
 			e.printStackTrace();
 		}
 
-		JasperPrint jp = JasperFillManager.fillReport("src/main/resources/report/reportSummary.jasper", parameters,
-				conn);
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
 		return JasperExportManager.exportReportToPdf(jp);
 
 	}
@@ -357,6 +359,7 @@ public class QueryServiceImpl implements QueryService {
 		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
 		return JasperExportManager.exportReportToPdf(jp);
 	}
+
 
 	
 

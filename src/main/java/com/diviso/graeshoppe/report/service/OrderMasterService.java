@@ -6,7 +6,7 @@ import com.diviso.graeshoppe.report.domain.OrderMaster;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.time.Instant;
+import java.time.*;
 import java.util.Optional;
 
 /**
@@ -69,11 +69,15 @@ public interface OrderMasterService {
      */
 	OrderMasterDTO findOrderMasterByOrderNumber(String orderNumber);
 
-	Page<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(Instant from, Instant to, String storeIdpcode,Pageable pageable);
+	Page<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(String from, String to, String storeIdpcode,Pageable pageable);
 
-	Long countByExpectedDeliveryAndOrderStatus(Instant date, String orderStatus);
+	Long countByExpectedDeliveryAndOrderStatus(String date, String orderStatus);
 
 	Page<OrderMaster> findByExpectedDeliveryBetween(Instant from, Instant to, Pageable pageable);
 
 	Long countByOrderStatus(String orderStatus);
+
+	Long countByExpectedDeliveryBetween(String from, String to);
+
+	
 }
