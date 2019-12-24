@@ -25,7 +25,7 @@ public interface OrderMasterRepository extends JpaRepository<OrderMaster, Long> 
 	Long countByExpectedDeliveryBetweenAndStoreName(Instant dateBegin, Instant dateEnd, String storeName);
 
 
-	@Query(value = "SELECT sum(c.totalDue) FROM OrderMaster c  WHERE c.expectedDelivery BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName ")
+	@Query(value = "SELECT COALESCE(sum(c.totalDue),0) FROM OrderMaster c  WHERE c.expectedDelivery BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName ")
 	Double sumOfTotalDue(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("storeName")String storeName);
 
 	@Query(value = "SELECT COUNT(c) FROM OrderMaster c  WHERE c.expectedDelivery BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName AND  c.methodOfOrder LIKE CONCAT('%',:deliveryType,'%')")
