@@ -439,7 +439,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="-12" y="326" width="162" height="20" isRemoveLineWhenBlank="true" uuid="88b402fb-8a7f-47cb-8d50-efd754ff00fc">
+				<reportElement positionType="Float" x="-12" y="321" width="162" height="20" isRemoveLineWhenBlank="true" uuid="88b402fb-8a7f-47cb-8d50-efd754ff00fc">
 					<printWhenExpression><![CDATA[!($F{pincode}.equalsIgnoreCase("null"))]]></printWhenExpression>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -448,7 +448,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA[$F{pincode}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="-12" y="284" width="162" height="20" isRemoveLineWhenBlank="true" uuid="e91dad65-ac5a-471c-8404-1c0d9a6b1684">
+				<reportElement positionType="Float" x="-12" y="282" width="162" height="20" isRemoveLineWhenBlank="true" uuid="e91dad65-ac5a-471c-8404-1c0d9a6b1684">
 					<printWhenExpression><![CDATA[!($F{landmark}.equalsIgnoreCase("null"))]]></printWhenExpression>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -519,7 +519,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA[$F{customer_name}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="-12" y="306" width="162" height="18" isRemoveLineWhenBlank="true" uuid="d1a12bf3-f1e2-46f3-9b43-c04e8413966b">
+				<reportElement positionType="Float" x="-12" y="303" width="162" height="18" isRemoveLineWhenBlank="true" uuid="d1a12bf3-f1e2-46f3-9b43-c04e8413966b">
 					<printWhenExpression><![CDATA[!($F{state}.equalsIgnoreCase("null"))]]></printWhenExpression>
 				</reportElement>
 				<textElement>
