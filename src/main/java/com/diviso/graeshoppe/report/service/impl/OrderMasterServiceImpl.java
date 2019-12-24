@@ -212,6 +212,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setAllergyNote(order.getAllergyNote());
 		orderMaster.setSubTotal(order.getSubTotal());
 		orderMaster.setCustomerName(customer.getReference());
+		orderMaster.setStoreIdpcode(order.getStoreId());
 		if (order.getPreOrderDate() == 0) {
 
 			orderMaster.setPreOrderDate(null);
