@@ -252,6 +252,9 @@ public class QueryServiceImpl implements QueryService {
 		return JasperExportManager.exportReportToPdf(jp);
 
 	}
+	
+	
+	
 
 	@Override
 	public byte[] getReportSummaryAsPdf(LocalDate date, String storeId) throws JRException {
@@ -356,6 +359,7 @@ public class QueryServiceImpl implements QueryService {
 		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
 		return JasperExportManager.exportReportToPdf(jp);
 	}
+
 
 	
 

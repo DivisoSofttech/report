@@ -328,10 +328,12 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	}
 
 	@Override
-	public Page<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(Instant from, Instant to, String storeIdpcode,
+	public Page<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(String from, String to, String storeIdpcode,
 			Pageable pageable) {
-
-		return orderMasterRepository.findByExpectedDeliveryBetweenAndStoreIdpcode(from, to, storeIdpcode, pageable);
+		log.debug("<<<<<<<<<< findByExpectedDeliveryBetweenAndStoreIdpcode >>>>>>>>>>{}{}",from,to);
+			Instant fromDate = Instant.parse(from.toString()+"T00:00:00Z");
+			Instant toDate = Instant.parse(to.toString()+"T23:59:59Z");
+		return orderMasterRepository.findByExpectedDeliveryBetweenAndStoreIdpcode(fromDate, toDate, storeIdpcode, pageable);
 
 	}
 

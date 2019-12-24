@@ -69,7 +69,7 @@ public interface OrderMasterService {
      */
 	OrderMasterDTO findOrderMasterByOrderNumber(String orderNumber);
 
-	Page<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(Instant from, Instant to, String storeIdpcode,Pageable pageable);
+	Page<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(String from, String to, String storeIdpcode,Pageable pageable);
 
 	Long countByExpectedDeliveryAndOrderStatus(String date, String orderStatus);
 

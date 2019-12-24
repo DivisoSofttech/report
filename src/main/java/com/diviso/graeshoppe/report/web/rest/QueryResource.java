@@ -101,6 +101,7 @@ public class QueryResource {
 	     	           pdfContents, headers, HttpStatus.OK);	      
 	       return response;
 	   }
+	
 
 	
 	 @GetMapping("/auxcombo/{orderNumber}")
@@ -167,7 +168,7 @@ public class QueryResource {
 		   }
 		 
 		   @GetMapping("/findOrderByDatebetweenAndStoreId/{from}/{to}/{storeId}")
-			public Page<OrderMaster> findOrderByDatebetweenAndStoreId(@PathVariable Instant from,@PathVariable Instant to,@PathVariable String storeId,Pageable pageable){
+			public Page<OrderMaster> findOrderByDatebetweenAndStoreId(@PathVariable String from,@PathVariable String to,@PathVariable String storeId,Pageable pageable){
 				return orderMasterService.findByExpectedDeliveryBetweenAndStoreIdpcode(from,to,storeId,pageable);
 			}
 		     
