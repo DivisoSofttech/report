@@ -211,7 +211,6 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setPhone(order.getCustomerPhone());
 		orderMaster.setAllergyNote(order.getAllergyNote());
 		orderMaster.setSubTotal(order.getSubTotal());
-		orderMaster.setCustomerName(customer.getReference());
 		orderMaster.setStoreIdpcode(order.getStoreId());
 		if (order.getPreOrderDate() == 0) {
 
@@ -242,6 +241,11 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 			orderMaster.setState(order.getDeliveryInfo().getDeliveryAddress().getState());
 			orderMaster.setAddressType(order.getDeliveryInfo().getDeliveryAddress().getAddressType());
 			orderMaster.setName(order.getDeliveryInfo().getDeliveryAddress().getName());
+			orderMaster.setCustomerName(order.getDeliveryInfo().getDeliveryAddress().getName());
+
+		} else {
+			orderMaster.setCustomerName(customer.getName());
+
 		}
 		orderMaster.setCustomerId(customer.getCustomerUniqueId());
 		orderMaster.setNotes(order.getDeliveryInfo().getDeliveryNotes());
