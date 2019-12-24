@@ -493,14 +493,14 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				</textElement>
 				<text><![CDATA[Order Accepted:]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
 				<reportElement positionType="Float" x="56" y="217" width="94" height="20" uuid="ff49e0a0-591e-41c6-823e-109215e44df5"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{order_accepted_at}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
 				<reportElement positionType="Float" x="56" y="194" width="94" height="20" uuid="36634187-281c-464d-85f8-c80801ec506a"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>

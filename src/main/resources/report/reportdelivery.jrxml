@@ -566,14 +566,14 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA["Loyalty Card Point           :"]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
 				<reportElement positionType="Float" x="56" y="387" width="94" height="20" uuid="a9b45ac6-bd98-48e5-b053-eb445b0166e2"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{order_place_at}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
 				<reportElement positionType="Float" x="56" y="410" width="94" height="20" uuid="5a6b9b12-69b6-40ea-9623-3df4b39be6aa"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
