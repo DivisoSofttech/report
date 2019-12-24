@@ -201,7 +201,7 @@ public class ReportServiceImpl implements ReportService {
 		return JasperExportManager.exportReportToPdf(jp);
 
 	}
-
+/*
 	@Override
 	public ReportSummary createReportSummary(String expectedDelivery, String storeName) {
 		Instant dateBegin = Instant.parse(expectedDelivery.toString() + "T00:00:00Z");
@@ -232,7 +232,7 @@ public class ReportServiceImpl implements ReportService {
 
 		return reportSummary;
 	}
-
+*/
 	@Override
 	public byte[] getSaleReportAsPdf(String storeidpcode) throws JRException {
 		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/sale.jrxml");

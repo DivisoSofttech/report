@@ -43,7 +43,7 @@ public interface ReportService {
 	byte[] getReportWithAuxAndComboAsPdf(String orderNumber) throws JRException;
 
 	
-	ReportSummary createReportSummary(String expectedDelivery, String storeName);
+	//ReportSummary createReportSummary(String expectedDelivery, String storeName);
 
 	byte[] getSaleReportAsPdf(String storeidpcode)throws JRException;
 

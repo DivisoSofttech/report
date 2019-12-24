@@ -36,12 +36,12 @@ public interface OrderMasterRepository extends JpaRepository<OrderMaster, Long> 
 	Double sumOfTotalByOrderType(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("storeName")String storeName, @Param("deliveryType") String deliveryType);
 
 
-	@Query(value = "SELECT COUNT(c) FROM OrderMaster c  WHERE c.expectedDelivery BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName AND  c.orderStatus LIKE CONCAT('%',:orderStatus,'%')")
-	Integer countByOrderStatusAndStoreName(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("storeName")String storeName, @Param("orderStatus") String orderStatus);
+	@Query(value = "SELECT COUNT(c) FROM OrderMaster c  WHERE c.expectedDelivery BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName AND  c.paymentStatus LIKE CONCAT('%',:paymentStatus,'%')")
+	Integer countByPaymentStatusAndStoreName(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("storeName")String storeName, @Param("paymentStatus") String paymentStatus);
 
 
-	@Query(value = "SELECT COALESCE(sum(c.totalDue),0)FROM OrderMaster c  WHERE c.expectedDelivery BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName AND  c.orderStatus LIKE CONCAT('%',:orderStatus,'%')")
-	Double sumOftotalByOrderStatus(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("storeName")String storeName, @Param("orderStatus") String orderStatus);
+	@Query(value = "SELECT COALESCE(sum(c.totalDue),0)FROM OrderMaster c  WHERE c.expectedDelivery BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName AND  c.paymentStatus LIKE CONCAT('%',:paymentStatus,'%')")
+	Double sumOftotalByPaymentStatus(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("storeName")String storeName, @Param("paymentStatus") String paymentStatus);
 	
 	Page<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(Instant dateBegin, Instant dateEnd, String storeIdpcode,Pageable pageable);
 

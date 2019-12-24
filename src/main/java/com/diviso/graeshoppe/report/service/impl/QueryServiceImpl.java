@@ -332,13 +332,13 @@ public class QueryServiceImpl implements QueryService {
 		reportSummary.setTypeCollectionTotal(
 				orderMasterRepository.sumOfTotalByOrderType(dateBegin, dateEnd, storeName, "collection"));
 		reportSummary.setTypeCardCount(
-				orderMasterRepository.countByOrderStatusAndStoreName(dateBegin, dateEnd, storeName, "order paid"));
+				orderMasterRepository.countByPaymentStatusAndStoreName(dateBegin, dateEnd, storeName, "order paid"));
 		reportSummary.setTypeCashCount(
-				orderMasterRepository.countByOrderStatusAndStoreName(dateBegin, dateEnd, storeName, "order not paid"));
+				orderMasterRepository.countByPaymentStatusAndStoreName(dateBegin, dateEnd, storeName, "order not paid"));
 		reportSummary.setTypeCardTotal(
-				orderMasterRepository.sumOftotalByOrderStatus(dateBegin, dateEnd, storeName, "order paid"));
+				orderMasterRepository.sumOftotalByPaymentStatus(dateBegin, dateEnd, storeName, "order paid"));
 		reportSummary.setTypeCashTotal(
-				orderMasterRepository.sumOftotalByOrderStatus(dateBegin, dateEnd, storeName, "order not paid"));
+				orderMasterRepository.sumOftotalByPaymentStatus(dateBegin, dateEnd, storeName, "order not paid"));
 
 		return reportSummary;
 	}
