@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
@@ -109,4 +110,10 @@ public class AuxItemServiceImpl implements AuxItemService {
         return auxItemSearchRepository.search(queryStringQuery(query), pageable)
             .map(auxItemMapper::toDto);
     }
+
+//	@Override
+//	public List<AuxItem> findByOrderLine_id(Long id) {
+//		log.debug("<<<<<<<<<findByOrderLine_id >>>>>>>{}",id);
+//		return auxItemRepository.findByOrderLine_id(id);
+//	}
 }

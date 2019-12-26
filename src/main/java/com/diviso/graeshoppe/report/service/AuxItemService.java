@@ -1,10 +1,12 @@
 package com.diviso.graeshoppe.report.service;
 
+import com.diviso.graeshoppe.report.domain.AuxItem;
 import com.diviso.graeshoppe.report.service.dto.AuxItemDTO;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -53,4 +55,6 @@ public interface AuxItemService {
      * @return the list of entities
      */
     Page<AuxItemDTO> search(String query, Pageable pageable);
+
+	//List<AuxItem> findByOrderLine_id(Long id);
 }
