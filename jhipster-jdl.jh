@@ -38,7 +38,8 @@ allergyNote String,
 preOrderDate Instant,
 email String,
 paymentRef String,
-paymentStatus String
+paymentStatus String,
+zoneId String
 
 }
 

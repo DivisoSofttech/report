@@ -162,6 +162,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="zone_id" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="order_master" columnName="expected_delivery" columnDataType="datetime"/>

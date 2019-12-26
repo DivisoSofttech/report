@@ -131,6 +131,9 @@ public class OrderMaster implements Serializable {
     @Column(name = "payment_status")
     private String paymentStatus;
 
+    @Column(name = "zone_id")
+    private String zoneId;
+
     @OneToMany(mappedBy = "orderMaster")
     private Set<OrderLine> orderLines = new HashSet<>();
     @OneToMany(mappedBy = "orderMaster")
@@ -599,6 +602,19 @@ public class OrderMaster implements Serializable {
         this.paymentStatus = paymentStatus;
     }
 
+    public String getZoneId() {
+        return zoneId;
+    }
+
+    public OrderMaster zoneId(String zoneId) {
+        this.zoneId = zoneId;
+        return this;
+    }
+
+    public void setZoneId(String zoneId) {
+        this.zoneId = zoneId;
+    }
+
     public Set<OrderLine> getOrderLines() {
         return orderLines;
     }
@@ -709,6 +725,7 @@ public class OrderMaster implements Serializable {
             ", email='" + getEmail() + "'" +
             ", paymentRef='" + getPaymentRef() + "'" +
             ", paymentStatus='" + getPaymentStatus() + "'" +
+            ", zoneId='" + getZoneId() + "'" +
             "}";
     }
 }

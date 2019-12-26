@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TimeZone" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b3143043-a16b-43db-81c4-6313b0d4922c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="START_DATE" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.util.Date()]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<title>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="150" height="20" uuid="a0353412-1861-4c12-ac26-b40a6768a88c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[America/New_York]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="0" width="150" height="20" uuid="28b938b9-d117-4447-91d2-b5bb9334bad6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Europe/Rome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="150" height="20" uuid="adceb53f-555d-4be3-bd1e-c9d55b90d90d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Asia/Calcutta]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="20" width="150" height="20" uuid="ebf48192-f394-447b-8264-e66c56289f54"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm").withZone(java.time.ZoneId.of("America/New_York")).format($P{START_DATE}.toInstant())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="20" width="150" height="20" uuid="ebf48192-f394-447b-8264-e66c56289f54"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm").withZone(java.time.ZoneId.of("Europe/Rome")).format($P{START_DATE}.toInstant())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="20" width="150" height="20" uuid="ac702c94-69e5-4439-9d32-3c944119dbe6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm").withZone(java.time.ZoneId.of("Asia/Calcutta")).format($P{START_DATE}.toInstant())]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>
