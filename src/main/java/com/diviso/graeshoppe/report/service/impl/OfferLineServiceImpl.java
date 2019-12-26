@@ -121,11 +121,15 @@ public class OfferLineServiceImpl implements OfferLineService {
 
 	@Override
 	public List<OfferLine> findOfferLinesByOrderNumber(String orderId) {
-		log.debug("<<<<<<<<<<findByOrderMaster_orderNumber impl >>>>>>>>>>{}", orderId);
-		List<OfferLine> offerLines = new ArrayList<OfferLine>();
-		Optional<OrderMaster> orderMaster=orderMasterRepository.findByOrderNumber(orderId);
+		/*
+		 * log.debug("<<<<<<<<<<findByOrderMaster_orderNumber impl >>>>>>>>>>{}",
+		 * orderId); List<OfferLine> offerLines = new ArrayList<OfferLine>();
+		 * Optional<OrderMaster>
+		 * orderMaster=orderMasterRepository.findByOrderNumber(orderId);
+		 */
+		List<OfferLine> offerLines = offerLineRepository.findByOrderMaster_OrderNumber(orderId);
 		
-		offerLines = offerLineRepository.findByOrderMasterId(orderMaster.get().getId());
+		
 		return offerLines;
 	}
 
