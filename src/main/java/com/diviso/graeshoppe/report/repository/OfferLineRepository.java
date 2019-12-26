@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OfferLineRepository extends JpaRepository<OfferLine, Long> {
 
-	List<OfferLine> findByOrderMasterId_OrderNumber(Long id);
+	List<OfferLine> findByOrderMasterId(Long id);
 
 	/*
 	 * @Query("SELECT offerLine FROM OfferLine offLine WHERE offerLine.orderMaster.orderName = :orderName"
