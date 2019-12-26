@@ -57,5 +57,5 @@ public interface OfferLineService {
      */
     Page<OfferLineDTO> search(String query, Pageable pageable);
 
-	//List<OfferLine> findByOrderMaster_orderNumber(String orderId);
+	List<OfferLine> findOfferLinesByOrderNumber(String orderId);
 }
