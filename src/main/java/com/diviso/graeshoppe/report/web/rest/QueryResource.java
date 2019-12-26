@@ -171,7 +171,7 @@ public class QueryResource {
 
 	}
 
-	@GetMapping("/findAuxItemByid/id")
+	@GetMapping("/findAuxItemByid/{id}")
 	public List<AuxItem> findAuxItemByid(@PathVariable Long id) {
 		log.debug("<<<<<<<findAuxItemByid >>>>>>{}", id);
 		return auxItemService.findAuxItemByid(id);
