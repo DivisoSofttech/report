@@ -111,9 +111,11 @@ public class AuxItemServiceImpl implements AuxItemService {
             .map(auxItemMapper::toDto);
     }
 
-//	@Override
-//	public List<AuxItem> findByOrderLine_id(Long id) {
-//		log.debug("<<<<<<<<<findByOrderLine_id >>>>>>>{}",id);
-//		return auxItemRepository.findByOrderLine_id(id);
-//	}
+	@Override
+	public List<AuxItem> findAuxItemByid(Long id) {
+		log.debug("<<<<<<<<<findByOrderLine_id >>>>>>>{}",id);
+		
+		List<AuxItem> auxItems =  auxItemRepository.findByOrderLine_id(id);
+		return auxItems;
+	}
 }

@@ -166,19 +166,18 @@ public class QueryResource {
 
 	@GetMapping("/findOfferLinesByOrderNumber/{orderId}")
 	public List<OfferLine> findOfferLinesByOrderNumber(@PathVariable String orderId) {
-		log.debug("<<<<<<<findByOrderMaster_orderNumber >>>>>>", orderId);
+		log.debug("<<<<<<<findByOfferLine_orderNumber >>>>>>{}", orderId);
 		return offerLineService.findOfferLinesByOrderNumber(orderId);
 
 	}
 
-	/*
-	 * @GetMapping("/findByOrderLine_id/id") public List<AuxItem>
-	 * findByOrderLine_id(@PathVariable Long id) {
-	 * log.debug("<<<<<<<findByOrderLine_id >>>>>>", id); return
-	 * auxItemService.findByOrderLine_id(id);
-	 * 
-	 * }
-	 */
+	@GetMapping("/findAuxItemByid/id")
+	public List<AuxItem> findAuxItemByid(@PathVariable Long id) {
+		log.debug("<<<<<<<findAuxItemByid >>>>>>{}", id);
+		return auxItemService.findAuxItemByid(id);
+
+	}
+
 	@GetMapping("/findOrderLinesByOrderNumber/{orderNumber}")
 	public List<OrderLine> findOrderLineByOrderNumber(@PathVariable String orderNumber) {
 		log.debug("<<<<<<<<<<<<findByOrderLine_OrderMaster>>>>>>>>{}", orderNumber);

@@ -56,5 +56,5 @@ public interface AuxItemService {
      */
     Page<AuxItemDTO> search(String query, Pageable pageable);
 
-	//List<AuxItem> findByOrderLine_id(Long id);
+	List<AuxItem> findAuxItemByid(Long id);
 }

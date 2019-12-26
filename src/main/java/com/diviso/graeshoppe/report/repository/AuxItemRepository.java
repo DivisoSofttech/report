@@ -17,6 +17,6 @@ import org.springframework.stereotype.Repository;
 public interface AuxItemRepository extends JpaRepository<AuxItem, Long> {
 
 //	@Query("SELECT ai FROM AuxItem ai WHERE ai.id = :id")
-//	List<AuxItem> findByOrderLine_id(@Param ("id") Long id);
+	List<AuxItem> findByOrderLine_id(Long id);
 
 }
