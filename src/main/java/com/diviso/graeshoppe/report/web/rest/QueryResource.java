@@ -167,7 +167,7 @@ public class QueryResource {
 	@GetMapping("/findOfferLinesByOrderNumber/orderId")
 	public List<OfferLine> findOfferLinesByOrderNumber(@PathVariable String orderId) {
 		log.debug("<<<<<<<findByOrderMaster_orderNumber >>>>>>", orderId);
-		return offerLineService.findByOrderMaster_orderNumber(orderId);
+		return offerLineService.findOfferLinesByOrderNumber(orderId);
 
 	}
 

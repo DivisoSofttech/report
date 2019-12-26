@@ -125,7 +125,7 @@ public class OfferLineServiceImpl implements OfferLineService {
 		List<OfferLine> offerLines = new ArrayList<OfferLine>();
 		Optional<OrderMaster> orderMaster=orderMasterRepository.findByOrderNumber(orderId);
 		
-		offerLines = offerLineRepository.findByOrderMaster_OrderNumber(orderMaster.get().getId());
+		offerLines = offerLineRepository.findByOrderMasterId_OrderNumber(orderMaster.get().getId());
 		return offerLines;
 	}
 
