@@ -130,13 +130,13 @@ public class OrderLineServiceImpl implements OrderLineService {
 
 	@Override
 	public List<OrderLine> findOrderLineByOrderNumber(String orderNumber) {
-		log.debug("<<<<<<findByOrderLine_OrderMaster >>>>>>>>", orderNumber);
+		log.debug("<<<<<<findByOrderLine_OrderMaster impl >>>>>>>>{}", orderNumber);
 		List<OrderLine> orderLines = new ArrayList<>();
 		
 		Optional<OrderMaster> orderMaster=orderMasterRepository.findByOrderNumber(orderNumber);
 		
-		
-		orderLines=orderLineRepository.findByOrderMaster(orderMaster.get().getId());
+		log.info("**********ordermaster{}",orderMaster.get().getId());
+		orderLines=orderLineRepository.findByOrderMasterId(orderMaster.get().getId());
 		
 		for(OrderLine ol:orderLines) {
 			log.info("***********{}",ol.getId());
