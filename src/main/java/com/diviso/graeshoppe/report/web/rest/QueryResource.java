@@ -164,7 +164,7 @@ public class QueryResource {
 		return orderMasterService.countByExpectedDeliveryBetween(from, to);
 	}
 
-	@GetMapping("/findOfferLinesByOrderNumber/orderId")
+	@GetMapping("/findOfferLinesByOrderNumber/{orderId}")
 	public List<OfferLine> findOfferLinesByOrderNumber(@PathVariable String orderId) {
 		log.debug("<<<<<<<findByOrderMaster_orderNumber >>>>>>", orderId);
 		return offerLineService.findOfferLinesByOrderNumber(orderId);
