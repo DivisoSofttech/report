@@ -140,6 +140,10 @@
         {
             "fieldName": "paymentStatus",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "zoneId",
+            "fieldType": "String"
         }
     ],
     "relationships": [

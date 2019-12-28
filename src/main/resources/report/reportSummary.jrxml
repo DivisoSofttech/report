@@ -14,12 +14,12 @@
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="mm"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="125"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="870"/>
-	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="596"/>
-	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="404"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="659"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="332"/>
 	<parameter name="date" class="java.lang.String"/>
 	<parameter name="store_name" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select store_name , date(expected_delivery)'date', sum(total_due)'all_V',COALESCE(sum(case when method_of_order='DELIVERY' then total_due end), 0)'delivery_v',COALESCE(sum(case when method_of_order='COLLECTION' then total_due end),0)'Collection_v',COALESCE(sum(case when payment_status='ORDER PAID' then total_due end),0)'card_v',COALESCE(sum(case when payment_status='ORDER NOT PAID' then total_due end),0)'cash_v', count(*)'all',count(if(method_of_order='DELIVERY',1,null))'DELIVERY' , count(if(method_of_order='COLLECTION',1,null))'COLLECTION' , count(if(payment_status='ORDER PAID',1,null))'CARD', count(if(payment_status='ORDER NOT PAID',1,null))'CASH'  from order_master where( date(expected_delivery)=  $P{date}  &&  store_name =  $P{store_name} ) group by date(expected_delivery);]]>
+		<![CDATA[select store_name , date(expected_delivery)'date',COALESCE( sum(total_due),0)'all_V',COALESCE(sum(case when method_of_order='DELIVERY' then total_due end), 0)'delivery_v',COALESCE(sum(case when method_of_order='COLLECTION' then total_due end),0)'Collection_v',COALESCE(sum(case when payment_status='ORDER PAID' then total_due end),0)'card_v',COALESCE(sum(case when payment_status='ORDER NOT PAID' then total_due end),0)'cash_v', COALESCE(count(*),0)'all', COALESCE(count(if(method_of_order='DELIVERY',1,null)),0)'DELIVERY' ,  COALESCE(count(if(method_of_order='COLLECTION',1,null)),0)'COLLECTION' ,  COALESCE(count(if(payment_status='ORDER PAID',1,null)),0)'CARD',  COALESCE(count(if(payment_status='ORDER NOT PAID',1,null)),0)'CASH'  from order_master where( date(expected_delivery)=  $P{date}  &&  store_name =  $P{store_name} ) group by date(expected_delivery);]]>
 	</queryString>
 	<field name="store_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="store_name"/>
@@ -257,27 +257,20 @@
 		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="24" splitType="Stretch">
-			<textField pattern="MMM d, yyyy">
-				<reportElement positionType="Float" x="-10" y="4" width="80" height="20" uuid="9e6722f6-0996-4af5-af2a-30f252931e2f"/>
-				<textElement>
-					<font size="11"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" pattern="HH:mm:ss a">
-				<reportElement positionType="Float" x="60" y="4" width="79" height="20" uuid="66d9b539-45c6-4720-955f-f64574f86463"/>
-				<textElement>
-					<font size="11"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
+		<band height="17" splitType="Stretch">
 			<line>
 				<reportElement x="-18" y="-6" width="162" height="1" uuid="7f8e0b36-59f3-4760-a22f-4a24354a8c63"/>
 				<graphicElement>
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
+			<textField isStretchWithOverflow="true" pattern="MMMM d, yyyy">
+				<reportElement positionType="Float" x="-11" y="4" width="151" height="13" uuid="f48ae344-175f-4a1a-8280-fd5a5823f49b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("MMMM d,yyyy HH:mm a").withZone(java.time.ZoneId.of("Europe/Dublin")).format(new java.util.Date().toInstant())]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>

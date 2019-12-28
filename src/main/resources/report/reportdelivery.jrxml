@@ -3,30 +3,30 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportcomboaux" pageWidth="170" pageHeight="842" columnWidth="130" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="4f9c452d-ec08-4c11-b02e-84e1e88767b7">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter4.xml"/>
-	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="372"/>
-	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="617"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="139"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="856"/>
 	<parameter name="order_number" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[select  @rowid:=@rowid+1 as rowid, ct.* from (SELECT @rowid:=0) as init, (
 
 
-(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', storelocation_name as 'storelocation_name', method_of_order as 'method_of_order', date(expected_delivery) as 'due_date', time(expected_delivery) as 'due_time', order_number as 'order_number', notes as 'notes', order_discount_amount as'order_discount_amount', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id',customer_name as 'customer_name', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street' ,city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer' ,customer_order as 'customer_order', date(order_place_at) as 'date_order_place_at',time(order_place_at) as 'time_order_place_at', date(order_accepted_at) as 'date_order_accepted_at',time(order_accepted_at) as 'time_order_accepted_at',date(pre_order_date) as 'pre_order_date',time(pre_order_date) as 'pre_order_time',payment_ref as 'payment_ref', payment_status as 'payment_status',ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id',"[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',"[]" as 'comboid', "[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id' from order_master om, order_line ol, aux_item ai where om.id = ol.order_master_id and om.order_number=$P{order_number} and ol.id NOT IN 
+(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', storelocation_name as 'storelocation_name', method_of_order as 'method_of_order', date(expected_delivery) as 'due_date', expected_delivery as 'expected_delivery', order_number as 'order_number', notes as 'notes', order_discount_amount as'order_discount_amount', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id',customer_name as 'customer_name', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street' ,city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer' ,customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at',date(pre_order_date) as 'pre_order_date',pre_order_date as 'pre_order_time',payment_ref as 'payment_ref', payment_status as 'payment_status',zone_id as 'zone_id',ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id',"[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',"[]" as 'comboid', "[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id' from order_master om, order_line ol, aux_item ai where om.id = ol.order_master_id and om.order_number=$P{order_number} and ol.id NOT IN 
 							( select ol_1.id   from order_line ol_1, aux_item ai_1, combo_item ci_1  where ol_1.id = ai_1.order_line_id OR ol_1.id = ci_1.order_line_id))
 												
 UNION
 
-(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', storelocation_name as 'storelocation_name', method_of_order as 'method_of_order', date(expected_delivery) as 'due_date', time(expected_delivery) as 'due_time', order_number as 'order_number', notes as 'notes',order_discount_amount as'order_discount_amount',  delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id',customer_name as 'customer_name', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street', city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', date(order_place_at) as 'date_order_place_at',time(order_place_at) as 'time_order_place_at', date(order_accepted_at) as 'date_order_accepted_at',time(order_accepted_at) as 'time_order_accepted_at',date(pre_order_date) as 'pre_order_date',time(pre_order_date) as 'pre_order_time',payment_ref as 'payment_ref', payment_status as 'payment_status', ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',"[]" as 'comboid',"[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id'  from order_master om, order_line ol, combo_item ci where om.id = ol.order_master_id and om.order_number=$P{order_number} and ol.id NOT IN 
+(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', storelocation_name as 'storelocation_name', method_of_order as 'method_of_order', date(expected_delivery) as 'due_date', expected_delivery as 'expected_delivery', order_number as 'order_number', notes as 'notes',order_discount_amount as'order_discount_amount',  delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id',customer_name as 'customer_name', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street', city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at',date(pre_order_date) as 'pre_order_date',pre_order_date as 'pre_order_time',payment_ref as 'payment_ref', payment_status as 'payment_status', zone_id as 'zone_id',ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',"[]" as 'comboid',"[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id'  from order_master om, order_line ol, combo_item ci where om.id = ol.order_master_id and om.order_number=$P{order_number} and ol.id NOT IN 
 							( select ol_1.id   from order_line ol_1, aux_item ai_1, combo_item ci_1  where ol_1.id = ai_1.order_line_id OR ol_1.id = ci_1.order_line_id)) 
 
 UNION
 
 
-(select om.id as 'omid',store_name as 'store_name', store_phone as 'store_phone', storelocation_name as 'storelocation_name', method_of_order as 'method_of_order',date(expected_delivery) as 'due_date', time(expected_delivery) as 'due_time',order_number as 'order_number', notes as 'notes', order_discount_amount as'order_discount_amount', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id',customer_name as 'customer_name', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street', city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', date(order_place_at) as 'date_order_place_at',time(order_place_at) as 'time_order_place_at', date(order_accepted_at) as 'date_order_accepted_at',time(order_accepted_at) as 'time_order_accepted_at',date(pre_order_date) as 'pre_order_date',time(pre_order_date) as 'pre_order_time', payment_ref as 'payment_ref', payment_status as 'payment_status', ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', ai.id as 'auxid',aux_item as 'aux_item', ai.quantity as 'auxquantity',ai.total as 'auxtotal', order_line_id as 'order_line_id',"[]" as 'comboid', "[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id' from order_master om, order_line ol, aux_item ai where om.id = ol.order_master_id and ol.id = ai.order_line_id and om.order_number= $P{order_number}
+(select om.id as 'omid',store_name as 'store_name', store_phone as 'store_phone', storelocation_name as 'storelocation_name', method_of_order as 'method_of_order',date(expected_delivery) as 'due_date', expected_delivery as 'expected_delivery',order_number as 'order_number', notes as 'notes', order_discount_amount as'order_discount_amount', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id',customer_name as 'customer_name', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street', city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at',date(pre_order_date) as 'pre_order_date',pre_order_date as 'pre_order_time', payment_ref as 'payment_ref', payment_status as 'payment_status',zone_id as 'zone_id', ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', ai.id as 'auxid',aux_item as 'aux_item', ai.quantity as 'auxquantity',ai.total as 'auxtotal', order_line_id as 'order_line_id',"[]" as 'comboid', "[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id' from order_master om, order_line ol, aux_item ai where om.id = ol.order_master_id and ol.id = ai.order_line_id and om.order_number= $P{order_number}
 
 )UNION
 
 
-(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', storelocation_name as 'storelocation_name', method_of_order as 'method_of_order', date(expected_delivery) as 'due_date', time(expected_delivery) as 'due_time', order_number as 'order_number', notes as 'notes', order_discount_amount as'order_discount_amount', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id', customer_name as 'customer_name',pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street' ,city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', date(order_place_at) as 'date_order_place_at',time(order_place_at) as 'time_order_place_at', date(order_accepted_at) as 'date_order_accepted_at',time(order_accepted_at) as 'time_order_accepted_at',date(pre_order_date) as 'pre_order_date',time(pre_order_date) as 'pre_order_time',payment_ref as 'payment_ref', payment_status as 'payment_status', ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',ci.id as 'comboid', combo_item as 'combo_item',ci.quantity as 'comboquantity', order_line_id as 'comboorder_line_id'   from order_master om, order_line ol, combo_item ci where om.id = ol.order_master_id and ol.id = ci.order_line_id and om.order_number=$P{order_number}) 
+(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', storelocation_name as 'storelocation_name', method_of_order as 'method_of_order', date(expected_delivery) as 'due_date', expected_delivery as 'expected_delivery', order_number as 'order_number', notes as 'notes', order_discount_amount as'order_discount_amount', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id', customer_name as 'customer_name',pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street' ,city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at',date(pre_order_date) as 'pre_order_date',pre_order_date as 'pre_order_time',payment_ref as 'payment_ref', payment_status as 'payment_status',zone_id as 'zone_id', ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',ci.id as 'comboid', combo_item as 'combo_item',ci.quantity as 'comboquantity', order_line_id as 'comboorder_line_id'   from order_master om, order_line ol, combo_item ci where om.id = ol.order_master_id and ol.id = ci.order_line_id and om.order_number=$P{order_number}) 
 UNION
 
 
@@ -35,7 +35,7 @@ UNION
 
 
 
-(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', storelocation_name as 'storelocation_name', method_of_order as 'method_of_order', date(expected_delivery) as 'due_date', time(expected_delivery) as 'due_time', order_number as 'order_number', notes as 'notes',order_discount_amount as'order_discount_amount',  delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id',customer_name as 'customer_name', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street', city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', date(order_place_at) as 'date_order_place_at',time(order_place_at) as 'time_order_place_at', date(order_accepted_at) as 'date_order_accepted_at',time(order_accepted_at) as 'time_order_accepted_at',date(pre_order_date) as 'pre_order_date',time(pre_order_date) as 'pre_order_time', payment_ref as 'payment_ref', payment_status as 'payment_status',ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',"[]" as 'comboid',"[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id'  from order_master om, order_line ol where om.id = ol.order_master_id and om.order_number= $P{order_number})
+(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', storelocation_name as 'storelocation_name', method_of_order as 'method_of_order', date(expected_delivery) as 'due_date', expected_delivery as 'expected_delivery', order_number as 'order_number', notes as 'notes',order_discount_amount as'order_discount_amount',  delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id',customer_name as 'customer_name', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street', city as 'city', state as 'state', landmark as 'landmark', name as 'name', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at',date(pre_order_date) as 'pre_order_date',pre_order_date as 'pre_order_time', payment_ref as 'payment_ref', payment_status as 'payment_status',zone_id as 'zone_id',ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',"[]" as 'comboid',"[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id'  from order_master om, order_line ol where om.id = ol.order_master_id and om.order_number= $P{order_number})
 
 
  )
@@ -64,8 +64,8 @@ ct ORDER BY  item ASC,rowid DESC]]>
 	<field name="due_date" class="java.sql.Date">
 		<property name="com.jaspersoft.studio.field.label" value="due_date"/>
 	</field>
-	<field name="due_time" class="java.sql.Time">
-		<property name="com.jaspersoft.studio.field.label" value="due_time"/>
+	<field name="expected_delivery" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="expected_delivery"/>
 	</field>
 	<field name="order_number" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="order_number"/>
@@ -130,22 +130,16 @@ ct ORDER BY  item ASC,rowid DESC]]>
 	<field name="customer_order" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="customer_order"/>
 	</field>
-	<field name="date_order_place_at" class="java.sql.Date">
-		<property name="com.jaspersoft.studio.field.label" value="date_order_place_at"/>
+	<field name="order_place_at" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="order_place_at"/>
 	</field>
-	<field name="time_order_place_at" class="java.sql.Time">
-		<property name="com.jaspersoft.studio.field.label" value="time_order_place_at"/>
-	</field>
-	<field name="date_order_accepted_at" class="java.sql.Date">
-		<property name="com.jaspersoft.studio.field.label" value="date_order_accepted_at"/>
-	</field>
-	<field name="time_order_accepted_at" class="java.sql.Time">
-		<property name="com.jaspersoft.studio.field.label" value="time_order_accepted_at"/>
+	<field name="order_accepted_at" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="order_accepted_at"/>
 	</field>
 	<field name="pre_order_date" class="java.sql.Date">
 		<property name="com.jaspersoft.studio.field.label" value="pre_order_date"/>
 	</field>
-	<field name="pre_order_time" class="java.sql.Time">
+	<field name="pre_order_time" class="java.sql.Timestamp">
 		<property name="com.jaspersoft.studio.field.label" value="pre_order_time"/>
 	</field>
 	<field name="payment_ref" class="java.lang.String">
@@ -153,6 +147,9 @@ ct ORDER BY  item ASC,rowid DESC]]>
 	</field>
 	<field name="payment_status" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="payment_status"/>
+	</field>
+	<field name="zone_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="zone_id"/>
 	</field>
 	<field name="olid" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="olid"/>
@@ -209,7 +206,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA[$F{store_name}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<image scaleImage="RealSize">
-				<reportElement positionType="Float" x="7" y="-58" width="116" height="144" uuid="3cba4762-53c6-475f-902e-332d4514fd69"/>
+				<reportElement positionType="Float" x="7" y="-57" width="116" height="144" uuid="3cba4762-53c6-475f-902e-332d4514fd69"/>
 				<graphicElement fill="Solid"/>
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
@@ -259,20 +256,6 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{storelocation_name}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="M/d/yy" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="0" y="93" width="143" height="12" uuid="f6cc3c07-2539-4326-aef7-f7bfa60bf5be">
-					<printWhenExpression><![CDATA[$F{pre_order_date}!=null]]></printWhenExpression>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[String.format(" Requested  for %1$s            at  ASAP /  %2$s",DATEFORMAT($F{pre_order_date},"d/M/yyyy"),$F{pre_order_time})]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" pattern="M/d/yy">
-				<reportElement positionType="Float" x="-21" y="97" width="171" height="12" uuid="8978505c-a501-44d0-9695-e2c68d3ce0c8">
-					<printWhenExpression><![CDATA[$F{pre_order_date}==null]]></printWhenExpression>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[String.format("Due %1$s at ASAP / %2$s",DATEFORMAT($F{due_date},"d/M/yyyy"),$F{due_time})]]></textFieldExpression>
-			</textField>
 			<textField>
 				<reportElement positionType="Float" x="-5" y="110" width="118" height="20" uuid="d1664100-6775-4000-8ff4-a89437c804f0"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -300,6 +283,28 @@ ct ORDER BY  item ASC,rowid DESC]]>
 					<font size="11" isBold="false" isItalic="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="M/d/yy">
+				<reportElement positionType="Float" x="-21" y="97" width="171" height="12" uuid="01ae1d10-0591-43af-a4b3-8096d0666c18">
+					<printWhenExpression><![CDATA[$F{pre_order_date}==null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[String.format("Due %1$s at ASAP / %2$s:%3$2s",DATEFORMAT($F{due_date},"d/M/yyyy"),
+	new java.util.Date(java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a").withZone(java.time.ZoneId.of($F{zone_id})).format($F{expected_delivery}.toInstant())).getHours(),
+	new java.util.Date(java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a").withZone(java.time.ZoneId.of($F{zone_id})).format($F{expected_delivery}.toInstant())).getMinutes()
+	
+	)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="M/d/yy" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="93" width="143" height="12" uuid="51618cb3-3c2a-413d-9610-eb3816fff655">
+					<printWhenExpression><![CDATA[$F{pre_order_date}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[String.format("Requested  for %1$s       at  ASAP / %2$s",DATEFORMAT($F{due_date},"d/M/yyyy"),
+	new java.util.Date(java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a").withZone(java.time.ZoneId.of($F{zone_id})).format($F{pre_order_time}.toInstant())).getHours(),
+	new java.util.Date(java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a").withZone(java.time.ZoneId.of($F{zone_id})).format($F{pre_order_time}.toInstant())).getMinutes()
+	
+)]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -364,7 +369,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="483" splitType="Stretch">
+		<band height="484" splitType="Stretch">
 			<textField isStretchWithOverflow="true" pattern="#,#00.00#">
 				<reportElement positionType="Float" x="108" y="34" width="31" height="15" uuid="cb6e1fcd-2d38-4174-910a-5bf196d3893b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -431,15 +436,8 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA["Powered by Graeshoppe"]]></textFieldExpression>
 			</textField>
-			<textField pattern="MMMMM dd, yyyy">
-				<reportElement positionType="Float" x="-1" y="461" width="101" height="22" uuid="4485b814-f86d-41cb-92df-228559633a28"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="-12" y="326" width="162" height="20" isRemoveLineWhenBlank="true" uuid="88b402fb-8a7f-47cb-8d50-efd754ff00fc">
+				<reportElement positionType="Float" x="-12" y="321" width="162" height="20" isRemoveLineWhenBlank="true" uuid="88b402fb-8a7f-47cb-8d50-efd754ff00fc">
 					<printWhenExpression><![CDATA[!($F{pincode}.equalsIgnoreCase("null"))]]></printWhenExpression>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -448,7 +446,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA[$F{pincode}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="-12" y="284" width="162" height="20" isRemoveLineWhenBlank="true" uuid="e91dad65-ac5a-471c-8404-1c0d9a6b1684">
+				<reportElement positionType="Float" x="-12" y="282" width="162" height="20" isRemoveLineWhenBlank="true" uuid="e91dad65-ac5a-471c-8404-1c0d9a6b1684">
 					<printWhenExpression><![CDATA[!($F{landmark}.equalsIgnoreCase("null"))]]></printWhenExpression>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -519,7 +517,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA[$F{customer_name}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="-12" y="306" width="162" height="18" isRemoveLineWhenBlank="true" uuid="d1a12bf3-f1e2-46f3-9b43-c04e8413966b">
+				<reportElement positionType="Float" x="-12" y="303" width="162" height="18" isRemoveLineWhenBlank="true" uuid="d1a12bf3-f1e2-46f3-9b43-c04e8413966b">
 					<printWhenExpression><![CDATA[!($F{state}.equalsIgnoreCase("null"))]]></printWhenExpression>
 				</reportElement>
 				<textElement>
@@ -542,14 +540,14 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA["Customer's Food Exp Orders:"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="125" y="166" width="25" height="17" uuid="0c7c816d-d556-45fc-a083-bfba5eed5f88"/>
+				<reportElement positionType="Float" x="119" y="166" width="31" height="17" uuid="0c7c816d-d556-45fc-a083-bfba5eed5f88"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{customer_order}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="124" y="148" width="26" height="18" uuid="74d9c6b0-23d4-40e3-943e-bd0670fcbb41"/>
+				<reportElement positionType="Float" x="119" y="148" width="31" height="18" uuid="74d9c6b0-23d4-40e3-943e-bd0670fcbb41"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{order_from_customer}]]></textFieldExpression>
 			</textField>
@@ -561,14 +559,14 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA["Customer Id                     :"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="124" y="116" width="26" height="16" uuid="fb353e41-1c4f-4a5c-8a1d-91eee72e1d92"/>
+				<reportElement positionType="Float" x="119" y="116" width="31" height="16" uuid="fb353e41-1c4f-4a5c-8a1d-91eee72e1d92"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{customer_id}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="124" y="132" width="25" height="15" uuid="34211f4c-a189-4a2c-aa7b-3285bf442ab5"/>
+				<reportElement positionType="Float" x="119" y="132" width="30" height="15" uuid="34211f4c-a189-4a2c-aa7b-3285bf442ab5"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{order_from_customer}]]></textFieldExpression>
 			</textField>
@@ -579,40 +577,26 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA["Loyalty Card Point           :"]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="d/M/yyyy">
-				<reportElement positionType="Float" x="55" y="388" width="59" height="19" uuid="b7f49927-6f7b-4a20-8a7b-327851df3805"/>
-				<textElement verticalAlignment="Middle">
+			<textField isStretchWithOverflow="true" pattern="MMMM d, yyyy">
+				<reportElement positionType="Float" x="-11" y="468" width="151" height="13" uuid="f40894f4-3895-483e-9734-4ec92f88ca49"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{date_order_place_at}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("MMMM d,yyyy HH:mm a").withZone(java.time.ZoneId.of("Europe/Dublin")).format(new java.util.Date().toInstant())]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="h:mm a">
-				<reportElement positionType="Float" x="105" y="388" width="44" height="19" uuid="e68bcbf9-eaa1-4a56-96de-4a6a00cefef0"/>
+			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
+				<reportElement positionType="Float" x="56" y="387" width="94" height="20" uuid="8e7fe84c-6c7c-4a88-b2dd-1c7cc32428d3"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{time_order_place_at}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a").withZone(java.time.ZoneId.of($F{zone_id})).format($F{order_place_at}.toInstant())]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="d/M/yyyy">
-				<reportElement positionType="Float" x="55" y="411" width="58" height="18" uuid="fc144a6a-7678-4a48-beef-40216b81c579"/>
+			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
+				<reportElement positionType="Float" x="56" y="410" width="94" height="20" uuid="c8c571dd-36c7-4d3e-9599-0bee05730b88"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{date_order_accepted_at}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" pattern="h:mm a">
-				<reportElement positionType="Float" x="105" y="411" width="45" height="17" uuid="343f3f70-e75a-45f9-8649-81ceb02eb4ff"/>
-				<textElement verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{time_order_accepted_at}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" pattern="HH:mm">
-				<reportElement positionType="Float" x="94" y="462" width="46" height="20" uuid="0ff8e1af-318f-4756-b191-1822a35b5fd3"/>
-				<textElement verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a").withZone(java.time.ZoneId.of($F{zone_id})).format($F{order_accepted_at}.toInstant())]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

@@ -80,6 +80,8 @@ public class OrderMasterDTO implements Serializable {
 
     private String paymentStatus;
 
+    private String zoneId;
+
 
     public Long getId() {
         return id;
@@ -369,6 +371,14 @@ public class OrderMasterDTO implements Serializable {
         this.paymentStatus = paymentStatus;
     }
 
+    public String getZoneId() {
+        return zoneId;
+    }
+
+    public void setZoneId(String zoneId) {
+        this.zoneId = zoneId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -429,6 +439,7 @@ public class OrderMasterDTO implements Serializable {
             ", email='" + getEmail() + "'" +
             ", paymentRef='" + getPaymentRef() + "'" +
             ", paymentStatus='" + getPaymentStatus() + "'" +
+            ", zoneId='" + getZoneId() + "'" +
             "}";
     }
 }

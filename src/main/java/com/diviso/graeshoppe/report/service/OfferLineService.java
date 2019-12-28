@@ -1,10 +1,13 @@
 package com.diviso.graeshoppe.report.service;
 
+import com.diviso.graeshoppe.report.domain.OfferLine;
 import com.diviso.graeshoppe.report.service.dto.OfferLineDTO;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -53,4 +56,6 @@ public interface OfferLineService {
      * @return the list of entities
      */
     Page<OfferLineDTO> search(String query, Pageable pageable);
+
+	List<OfferLine> findOfferLinesByOrderNumber(String orderId);
 }

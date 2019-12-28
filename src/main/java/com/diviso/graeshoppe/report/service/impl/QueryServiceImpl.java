@@ -84,83 +84,6 @@ public class QueryServiceImpl implements QueryService {
 	
 	
 
-	@Override
-	public ReportSummary createReportSummary(LocalDate date,String storeId) {
-
-		
-		 Instant dateBegin = Instant.parse(date.toString() + "T00:00:00Z");
-		  Instant dateEnd = Instant.parse(date.toString() + "T23:59:59Z");
-		 
-
-		/*Instant dateBegin = Instant.parse("2019-08-27T00:00:00Z");
-		Instant dateEnd = Instant.parse("2019-08-27T23:59:59Z");*/
-		ReportSummary reportSummary = new ReportSummary();
-		
-		reportSummary.setDate(date);
-		reportSummary.setStoreId(storeId);
-		reportSummary.setTypeAllCount(
-				ReportQueryResourceApi.countAllOrdersByDateAndStoreIdUsingGET(dateBegin, dateEnd, storeId).getBody());
-
-		List<String> allReference = ReportQueryResourceApi
-				.findAllPaymentReferenceByDateAndStoreIdUsingGET(dateBegin, dateEnd, storeId).getBody();
-
-		reportSummary.setTypeAllTotal(calculateTotal(convertStringToLong(getPaymentReference(allReference))));
-
-		List<Long> paymentIdByCard = findByPaymentType("card", getPaymentReference(allReference));
-
-		reportSummary.setTypeCardTotal(calculateTotal(paymentIdByCard));
-		reportSummary.setTypeCardCount(paymentIdByCard.size());
-
-		List<Long> paymentIdByCash = findByPaymentType("cash",getPaymentReference(allReference));
-		reportSummary.setTypeCashCount(paymentIdByCash.size());
-		reportSummary.setTypeCashTotal(calculateTotal(paymentIdByCash));
-		reportSummary.setTypeCardCount(paymentIdByCash.size());
-		reportSummary.setTypeDeliveryCount(ReportQueryResourceApi
-				.countOrdersByStoreIdAndDeliveryTypeUsingGET(dateBegin, dateEnd, storeId, "delivery").getBody());
-
-		List<String> deleveryReference = ReportQueryResourceApi
-				.findAllPaymentRefByDeliveryTypeUsingGET(dateBegin, dateEnd, "delivery", storeId).getBody();
-		reportSummary.setTypeDeliveryTotal(calculateTotal(convertStringToLong(getPaymentReference(deleveryReference))));
-		reportSummary.setTypeCollectionCount(ReportQueryResourceApi
-				.countOrdersByStoreIdAndDeliveryTypeUsingGET(dateBegin, dateEnd, storeId, "collection").getBody());
-		List<String> collectionReference = ReportQueryResourceApi
-				.findAllPaymentRefByDeliveryTypeUsingGET(dateBegin, dateEnd, "collection", storeId).getBody();
-		reportSummary
-				.setTypeCollectionTotal(calculateTotal(convertStringToLong(getPaymentReference(collectionReference))));
-		return reportSummary;
-	}
-
-	Double calculateTotal(List<Long> paymentRefList) {
-		Double amount = 0.0;
-		for (Long payRef : paymentRefList) {
-			PaymentDTO payment = paymentResourceApi.getPaymentUsingGET(payRef).getBody();
-
-			amount = amount + payment.getAmount();
-		}
-
-		return amount;
-	}
-
-	List<String> getPaymentReference(List<String> payRef) {
-		List<String> result = new ArrayList<String>();
-		for (String reference : payRef) {
-
-			if (reference != null) {
-				result.add(reference);
-			}
-
-		}
-		return result;
-	}
-
-	List<Long> convertStringToLong(List<String> list) {
-		List<Long> longList = new ArrayList<>();
-		for (String ref : list) {
-			longList.add(Long.parseLong(ref));
-		}
-
-		return longList;
-	}
 
 	List<Long> findByPaymentType(String paymentType, List<String> paymentRefList) {
 		List<Long> paymentIdList = new ArrayList<Long>();
@@ -232,28 +155,10 @@ public class QueryServiceImpl implements QueryService {
 		}
 		return orderAggregator;
 	}*/
-
-	@Override
-	public byte[] getReportAsPdf(String orderNumber) throws JRException {
-		JasperReport jr = JasperCompileManager.compileReport("report.jrxml");
-
-		// Preparing parameters
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("order_master_id", orderNumber);
-		Connection conn = null;
-		try {
-			conn = dataSource.getConnection();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
-
-		return JasperExportManager.exportReportToPdf(jp);
-
-	}
 	
-	
+	/***
+	 * @author neeraja
+	 */
 	
 
 	@Override
@@ -276,15 +181,23 @@ public class QueryServiceImpl implements QueryService {
 
 	}
 
+	/***
+	 * @author neeraja
+	 */
 	public static List<ReportSummary> getReportSummaryList() {
 		return reportSummaryList;
 	}
 
+	/***
+	 * @author neeraja
+	 */
 	public static void setReportSummaryList(List<ReportSummary> reportSummaryList) {
 		QueryServiceImpl.reportSummaryList = reportSummaryList;
 	}
 	
-	
+	/***
+	 * @author neeraja
+	 */
 	@Override
 	public byte[] getReportWithAuxAndComboAsPdf(String orderNumber) throws JRException {
 
@@ -312,6 +225,10 @@ public class QueryServiceImpl implements QueryService {
 
 	}
 
+	
+	/***
+	 * @author neeraja
+	 */
 	@Override
 	public ReportSummary createReportSummary(String expectedDelivery, String storeName) {
 		Instant dateBegin = Instant.parse(expectedDelivery.toString() + "T00:00:00Z");
@@ -332,20 +249,25 @@ public class QueryServiceImpl implements QueryService {
 		reportSummary.setTypeCollectionTotal(
 				orderMasterRepository.sumOfTotalByOrderType(dateBegin, dateEnd, storeName, "collection"));
 		reportSummary.setTypeCardCount(
-				orderMasterRepository.countByOrderStatusAndStoreName(dateBegin, dateEnd, storeName, "order paid"));
+				orderMasterRepository.countByPaymentStatusAndStoreName(dateBegin, dateEnd, storeName, "order paid"));
 		reportSummary.setTypeCashCount(
-				orderMasterRepository.countByOrderStatusAndStoreName(dateBegin, dateEnd, storeName, "order not paid"));
+				orderMasterRepository.countByPaymentStatusAndStoreName(dateBegin, dateEnd, storeName, "order not paid"));
 		reportSummary.setTypeCardTotal(
-				orderMasterRepository.sumOftotalByOrderStatus(dateBegin, dateEnd, storeName, "order paid"));
+				orderMasterRepository.sumOftotalByPaymentStatus(dateBegin, dateEnd, storeName, "order paid"));
 		reportSummary.setTypeCashTotal(
-				orderMasterRepository.sumOftotalByOrderStatus(dateBegin, dateEnd, storeName, "order not paid"));
+				orderMasterRepository.sumOftotalByPaymentStatus(dateBegin, dateEnd, storeName, "order not paid"));
 
 		return reportSummary;
 	}
 
+	
+	/***
+	 * @author neeraja
+	 */
+	
 	@Override
 	public byte[] getSaleReportAsPdf(String storeidpcode) throws JRException {
-		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/sale.jrxml");
+		
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("store_i_d_pcode", storeidpcode);
 		Connection conn = null;
@@ -356,7 +278,7 @@ public class QueryServiceImpl implements QueryService {
 			e.printStackTrace();
 		}
 
-		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		JasperPrint jp = JasperFillManager.fillReport("src/main/resources/report/sale.jasper", parameters, conn);
 		return JasperExportManager.exportReportToPdf(jp);
 	}
 

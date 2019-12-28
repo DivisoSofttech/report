@@ -36,6 +36,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.query.StringQuery;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -368,5 +369,6 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		Instant toDate = Instant.parse(to.toString() + "T23:59:59Z");
 		return orderMasterRepository.countByExpectedDeliveryBetween(fromDate, toDate);
 	}
+
 	
 }
