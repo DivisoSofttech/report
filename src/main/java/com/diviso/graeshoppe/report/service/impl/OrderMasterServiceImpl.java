@@ -224,10 +224,10 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setOrderDiscountAmount(0.0);
 		if (order.getPaymentMode().equals("cod")) {
 			log.info("Order paid");
-			orderMaster.setPaymentStatus("ORDER PAID");
+			orderMaster.setPaymentStatus("ORDER NOT PAID");
 		} else {
 			log.info("Order Not paid");
-			orderMaster.setPaymentStatus("ORDER NOT PAID");
+			orderMaster.setPaymentStatus("ORDER PAID");
 		}
 		if (order.getDeliveryInfo().getDeliveryAddress() != null) {
 			orderMaster.setRoadNameAreaOrStreet(order.getDeliveryInfo().getDeliveryAddress().getRoadNameAreaOrStreet());
