@@ -75,7 +75,7 @@ spring:
                     group: order-report-groups                               
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/reportdb?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=true&serverTimezone=UTC
+        url: jdbc:mysql://localhost:3306/reportdb?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
         password: root
         hikari:
