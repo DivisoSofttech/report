@@ -200,9 +200,30 @@ public class QueryServiceImpl implements QueryService {
 	 */
 	@Override
 	public byte[] getReportWithAuxAndComboAsPdf(String orderNumber) throws JRException {
+		
+		
+		
+		
 
 		OrderMasterDTO orderMasterDto = orderMasterService.findOrderMasterByOrderNumber(orderNumber);
-
+		
+		JasperReport jr= null;
+		
+		/*
+		 * if (orderMasterDto.getMethodOfOrder().equalsIgnoreCase("delivery")) { jr =
+		 * JasperCompileManager.compileReport(
+		 * "src/main/resources/report/reportdeliveryv1.jrxml"); } else if
+		 * (orderMasterDto.getMethodOfOrder().equalsIgnoreCase("collection")) { jr =
+		 * JasperCompileManager.compileReport(
+		 * "src/main/resources/report/reportcollection.jrxml");
+		 * 
+		 * }
+		 */
+		
+		jr = JasperCompileManager.compileReport("src/main/resources/report/reportdeliveryv1.jrxml");
+		System.out.println("********************************************************************************** an&");
+		
+		
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("order_number", orderNumber);
 		Connection conn = null;
@@ -212,14 +233,15 @@ public class QueryServiceImpl implements QueryService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		JasperPrint jp = null;
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
 
+		/*JasperPrint jp =null;
 		if (orderMasterDto.getMethodOfOrder().equalsIgnoreCase("delivery")) {
 			jp = JasperFillManager.fillReport("src/main/resources/report/reportdelivery.jasper", parameters, conn);
 		} else if (orderMasterDto.getMethodOfOrder().equalsIgnoreCase("collection")) {
 			jp = JasperFillManager.fillReport("src/main/resources/report/reportcollection.jasper", parameters, conn);
 
-		}
+		}*/
 	
 		return JasperExportManager.exportReportToPdf(jp);
 

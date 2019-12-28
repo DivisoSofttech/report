@@ -265,7 +265,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 					<printWhenExpression><![CDATA[$F{pre_order_date}!=null]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[String.format("Requested  for %1$s       at  ASAP / %2$s",DATEFORMAT($F{due_date},"d/M/yyyy"),
+				<textFieldExpression><![CDATA[String.format("Requested  for %1$s       at  ASAP / %2$s:%3$2s",DATEFORMAT($F{due_date},"d/M/yyyy"),
 	new java.util.Date(java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a").withZone(java.time.ZoneId.of($F{zone_id})).format($F{pre_order_time}.toInstant())).getHours(),
 	new java.util.Date(java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a").withZone(java.time.ZoneId.of($F{zone_id})).format($F{pre_order_time}.toInstant())).getMinutes()
 	
@@ -505,14 +505,14 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<text><![CDATA[Order Accepted:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
-				<reportElement positionType="Float" x="56" y="217" width="94" height="20" uuid="ff49e0a0-591e-41c6-823e-109215e44df5"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="52" y="218" width="99" height="20" uuid="ff49e0a0-591e-41c6-823e-109215e44df5"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a").withZone(java.time.ZoneId.of($F{zone_id})).format($F{order_accepted_at}.toInstant())]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
-				<reportElement positionType="Float" x="56" y="194" width="94" height="20" uuid="36634187-281c-464d-85f8-c80801ec506a"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="52" y="195" width="99" height="20" uuid="36634187-281c-464d-85f8-c80801ec506a"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
