@@ -76,8 +76,8 @@ spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://35.184.0.229:3306/reportdb?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=true&serverTimezone=UTC
-        username: root
-        password: root
+        username: karthi
+        password: karthi
         hikari:
             poolName: Hikari
             auto-commit: false
