@@ -277,7 +277,7 @@ public class QueryResource {
 	
 	
 	@GetMapping("/ordersbetweendates/{fromDate}/{ToDate}")
-	public ResponseEntity<byte[]> getAllOrdersBetweenDatesAsPdf(@PathVariable String fromDate, @PathVariable String toDate {
+	public ResponseEntity<byte[]> getAllOrdersBetweenDatesAsPdf(@PathVariable String fromDate, @PathVariable String toDate ){
 
 		// log.debug("REST request to get a pdf");
 
