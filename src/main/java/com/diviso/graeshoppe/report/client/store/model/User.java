@@ -2,15 +2,18 @@ package com.diviso.graeshoppe.report.client.store.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
  * User
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-09-04T22:29:27.309760+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:37:58.581+05:30[Asia/Kolkata]")
 
 public class User   {
   @JsonProperty("activated")
@@ -149,7 +152,7 @@ public class User   {
   **/
   @ApiModelProperty(value = "")
 
-@Size(min=2,max=6) 
+@Size(min=2,max=10) 
   public String getLangKey() {
     return langKey;
   }

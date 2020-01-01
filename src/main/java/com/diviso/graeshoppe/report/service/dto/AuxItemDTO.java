@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A DTO for the AuxItem entity.
+ * A DTO for the {@link com.diviso.graeshoppe.report.domain.AuxItem} entity.
  */
 public class AuxItemDTO implements Serializable {
 
@@ -86,7 +86,7 @@ public class AuxItemDTO implements Serializable {
             ", auxItem='" + getAuxItem() + "'" +
             ", quantity=" + getQuantity() +
             ", total=" + getTotal() +
-            ", orderLine=" + getOrderLineId() +
+            ", orderLineId=" + getOrderLineId() +
             "}";
     }
 }

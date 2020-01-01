@@ -1,29 +1,29 @@
 package com.diviso.graeshoppe.report.domain;
-
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
-import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Objects;
 
 /**
  * A Sale.
  */
 @Entity
 @Table(name = "sale")
-@Document(indexName = "sale")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "sale")
 public class Sale implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
     private Long id;
 
     @Column(name = "store_name")
@@ -38,14 +38,16 @@ public class Sale implements Serializable {
     @Column(name = "customer_id")
     private Long customerId;
 
-    @Column(name = "jhi_date")
+    @Column(name = "date")
     private Instant date;
 
     @Column(name = "grand_total")
     private Double grandTotal;
 
     @OneToMany(mappedBy = "sale")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TicketLine> ticketLines = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -164,19 +166,15 @@ public class Sale implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Sale)) {
             return false;
         }
-        Sale sale = (Sale) o;
-        if (sale.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), sale.getId());
+        return id != null && id.equals(((Sale) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override

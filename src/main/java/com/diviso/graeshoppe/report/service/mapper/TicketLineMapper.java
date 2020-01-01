@@ -6,7 +6,7 @@ import com.diviso.graeshoppe.report.service.dto.TicketLineDTO;
 import org.mapstruct.*;
 
 /**
- * Mapper for the entity TicketLine and its DTO TicketLineDTO.
+ * Mapper for the entity {@link TicketLine} and its DTO {@link TicketLineDTO}.
  */
 @Mapper(componentModel = "spring", uses = {SaleMapper.class})
 public interface TicketLineMapper extends EntityMapper<TicketLineDTO, TicketLine> {

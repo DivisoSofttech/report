@@ -2,15 +2,18 @@ package com.diviso.graeshoppe.report.client.store.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
  * BannerDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-09-04T22:29:27.309760+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:37:58.581+05:30[Asia/Kolkata]")
 
 public class BannerDTO   {
   @JsonProperty("file")
@@ -21,6 +24,9 @@ public class BannerDTO   {
 
   @JsonProperty("id")
   private Long id = null;
+
+  @JsonProperty("imageLink")
+  private String imageLink = null;
 
   @JsonProperty("storeId")
   private Long storeId = null;
@@ -85,6 +91,26 @@ public class BannerDTO   {
     this.id = id;
   }
 
+  public BannerDTO imageLink(String imageLink) {
+    this.imageLink = imageLink;
+    return this;
+  }
+
+  /**
+   * Get imageLink
+   * @return imageLink
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getImageLink() {
+    return imageLink;
+  }
+
+  public void setImageLink(String imageLink) {
+    this.imageLink = imageLink;
+  }
+
   public BannerDTO storeId(Long storeId) {
     this.storeId = storeId;
     return this;
@@ -118,12 +144,13 @@ public class BannerDTO   {
     return Objects.equals(this.file, bannerDTO.file) &&
         Objects.equals(this.fileContentType, bannerDTO.fileContentType) &&
         Objects.equals(this.id, bannerDTO.id) &&
+        Objects.equals(this.imageLink, bannerDTO.imageLink) &&
         Objects.equals(this.storeId, bannerDTO.storeId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(file, fileContentType, id, storeId);
+    return Objects.hash(file, fileContentType, id, imageLink, storeId);
   }
 
   @Override
@@ -134,6 +161,7 @@ public class BannerDTO   {
     sb.append("    file: ").append(toIndentedString(file)).append("\n");
     sb.append("    fileContentType: ").append(toIndentedString(fileContentType)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    imageLink: ").append(toIndentedString(imageLink)).append("\n");
     sb.append("    storeId: ").append(toIndentedString(storeId)).append("\n");
     sb.append("}");
     return sb.toString();

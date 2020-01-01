@@ -16,7 +16,7 @@ import javax.validation.constraints.*;
  * UserDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-11-13T14:04:39.267087+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:40:40.577+05:30[Asia/Kolkata]")
 
 public class UserDTO   {
   @JsonProperty("activated")
@@ -239,7 +239,7 @@ public class UserDTO   {
   **/
   @ApiModelProperty(value = "")
 
-@Size(min=2,max=6) 
+@Size(min=2,max=10) 
   public String getLangKey() {
     return langKey;
   }

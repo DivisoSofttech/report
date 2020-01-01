@@ -1,6 +1,9 @@
 package com.diviso.graeshoppe.report.repository;
 
 import com.diviso.graeshoppe.report.domain.OrderMaster;
+import org.springframework.data.jpa.repository.*;
+import org.springframework.stereotype.Repository;
+import com.diviso.graeshoppe.report.domain.OrderMaster;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -18,7 +21,7 @@ import org.springframework.data.domain.Page;
 @Repository
 public interface OrderMasterRepository extends JpaRepository<OrderMaster, Long> {
 
-	Optional<OrderMaster> findByOrderNumber(String orderNumber);
+Optional<OrderMaster> findByOrderNumber(String orderNumber);
 
 	
 
@@ -54,5 +57,7 @@ public interface OrderMasterRepository extends JpaRepository<OrderMaster, Long> 
 	Long countByExpectedDeliveryBetween(Instant fromDate, Instant toDate);
 
 
-
+	
+	
+	
 }

@@ -5,81 +5,46 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.Date;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 /**
  * CustomerDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-11-13T14:04:39.267087+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:40:40.577+05:30[Asia/Kolkata]")
 
 public class CustomerDTO   {
-  @JsonProperty("card")
-  private String card = null;
-
   @JsonProperty("contactId")
   private Long contactId = null;
-
-  @JsonProperty("curDebt")
-  private Double curDebt = null;
 
   @JsonProperty("customerUniqueId")
   private String customerUniqueId = null;
 
-  @JsonProperty("debtDate")
-  private LocalDate debtDate = null;
-
-  @JsonProperty("discount")
-  private Double discount = null;
-
   @JsonProperty("id")
   private Long id = null;
 
-  @JsonProperty("maxDebt")
-  private Double maxDebt = null;
+  @JsonProperty("idpCode")
+  private String idpCode = null;
+
+  @JsonProperty("idpSub")
+  private String idpSub = null;
+
+  @JsonProperty("image")
+  private byte[] image = null;
+
+  @JsonProperty("imageContentType")
+  private String imageContentType = null;
+
+  @JsonProperty("imageLink")
+  private String imageLink = null;
+
+  @JsonProperty("loyaltyPoint")
+  private Long loyaltyPoint = null;
 
   @JsonProperty("name")
   private String name = null;
-
-  @JsonProperty("photo")
-  private byte[] photo = null;
-
-  @JsonProperty("photoContentType")
-  private String photoContentType = null;
-
-  @JsonProperty("reference")
-  private String reference = null;
-
-  @JsonProperty("searchKey")
-  private String searchKey = null;
-
-  @JsonProperty("visible")
-  private Boolean visible = null;
-
-  public CustomerDTO card(String card) {
-    this.card = card;
-    return this;
-  }
-
-  /**
-   * Get card
-   * @return card
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getCard() {
-    return card;
-  }
-
-  public void setCard(String card) {
-    this.card = card;
-  }
 
   public CustomerDTO contactId(Long contactId) {
     this.contactId = contactId;
@@ -99,26 +64,6 @@ public class CustomerDTO   {
 
   public void setContactId(Long contactId) {
     this.contactId = contactId;
-  }
-
-  public CustomerDTO curDebt(Double curDebt) {
-    this.curDebt = curDebt;
-    return this;
-  }
-
-  /**
-   * Get curDebt
-   * @return curDebt
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Double getCurDebt() {
-    return curDebt;
-  }
-
-  public void setCurDebt(Double curDebt) {
-    this.curDebt = curDebt;
   }
 
   public CustomerDTO customerUniqueId(String customerUniqueId) {
@@ -141,47 +86,6 @@ public class CustomerDTO   {
     this.customerUniqueId = customerUniqueId;
   }
 
-  public CustomerDTO debtDate(LocalDate debtDate) {
-    this.debtDate = debtDate;
-    return this;
-  }
-
-  /**
-   * Get debtDate
-   * @return debtDate
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
-  public LocalDate getDebtDate() {
-    return debtDate;
-  }
-
-  public void setDebtDate(LocalDate debtDate) {
-    this.debtDate = debtDate;
-  }
-
-  public CustomerDTO discount(Double discount) {
-    this.discount = discount;
-    return this;
-  }
-
-  /**
-   * Get discount
-   * @return discount
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Double getDiscount() {
-    return discount;
-  }
-
-  public void setDiscount(Double discount) {
-    this.discount = discount;
-  }
-
   public CustomerDTO id(Long id) {
     this.id = id;
     return this;
@@ -202,24 +106,125 @@ public class CustomerDTO   {
     this.id = id;
   }
 
-  public CustomerDTO maxDebt(Double maxDebt) {
-    this.maxDebt = maxDebt;
+  public CustomerDTO idpCode(String idpCode) {
+    this.idpCode = idpCode;
     return this;
   }
 
   /**
-   * Get maxDebt
-   * @return maxDebt
+   * Get idpCode
+   * @return idpCode
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+
+  public String getIdpCode() {
+    return idpCode;
+  }
+
+  public void setIdpCode(String idpCode) {
+    this.idpCode = idpCode;
+  }
+
+  public CustomerDTO idpSub(String idpSub) {
+    this.idpSub = idpSub;
+    return this;
+  }
+
+  /**
+   * Get idpSub
+   * @return idpSub
   **/
   @ApiModelProperty(value = "")
 
 
-  public Double getMaxDebt() {
-    return maxDebt;
+  public String getIdpSub() {
+    return idpSub;
   }
 
-  public void setMaxDebt(Double maxDebt) {
-    this.maxDebt = maxDebt;
+  public void setIdpSub(String idpSub) {
+    this.idpSub = idpSub;
+  }
+
+  public CustomerDTO image(byte[] image) {
+    this.image = image;
+    return this;
+  }
+
+  /**
+   * Get image
+   * @return image
+  **/
+  @ApiModelProperty(value = "")
+
+@Pattern(regexp="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$") 
+  public byte[] getImage() {
+    return image;
+  }
+
+  public void setImage(byte[] image) {
+    this.image = image;
+  }
+
+  public CustomerDTO imageContentType(String imageContentType) {
+    this.imageContentType = imageContentType;
+    return this;
+  }
+
+  /**
+   * Get imageContentType
+   * @return imageContentType
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getImageContentType() {
+    return imageContentType;
+  }
+
+  public void setImageContentType(String imageContentType) {
+    this.imageContentType = imageContentType;
+  }
+
+  public CustomerDTO imageLink(String imageLink) {
+    this.imageLink = imageLink;
+    return this;
+  }
+
+  /**
+   * Get imageLink
+   * @return imageLink
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getImageLink() {
+    return imageLink;
+  }
+
+  public void setImageLink(String imageLink) {
+    this.imageLink = imageLink;
+  }
+
+  public CustomerDTO loyaltyPoint(Long loyaltyPoint) {
+    this.loyaltyPoint = loyaltyPoint;
+    return this;
+  }
+
+  /**
+   * Get loyaltyPoint
+   * @return loyaltyPoint
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Long getLoyaltyPoint() {
+    return loyaltyPoint;
+  }
+
+  public void setLoyaltyPoint(Long loyaltyPoint) {
+    this.loyaltyPoint = loyaltyPoint;
   }
 
   public CustomerDTO name(String name) {
@@ -242,106 +247,6 @@ public class CustomerDTO   {
     this.name = name;
   }
 
-  public CustomerDTO photo(byte[] photo) {
-    this.photo = photo;
-    return this;
-  }
-
-  /**
-   * Get photo
-   * @return photo
-  **/
-  @ApiModelProperty(value = "")
-
-@Pattern(regexp="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$") 
-  public byte[] getPhoto() {
-    return photo;
-  }
-
-  public void setPhoto(byte[] photo) {
-    this.photo = photo;
-  }
-
-  public CustomerDTO photoContentType(String photoContentType) {
-    this.photoContentType = photoContentType;
-    return this;
-  }
-
-  /**
-   * Get photoContentType
-   * @return photoContentType
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getPhotoContentType() {
-    return photoContentType;
-  }
-
-  public void setPhotoContentType(String photoContentType) {
-    this.photoContentType = photoContentType;
-  }
-
-  public CustomerDTO reference(String reference) {
-    this.reference = reference;
-    return this;
-  }
-
-  /**
-   * Get reference
-   * @return reference
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getReference() {
-    return reference;
-  }
-
-  public void setReference(String reference) {
-    this.reference = reference;
-  }
-
-  public CustomerDTO searchKey(String searchKey) {
-    this.searchKey = searchKey;
-    return this;
-  }
-
-  /**
-   * Get searchKey
-   * @return searchKey
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getSearchKey() {
-    return searchKey;
-  }
-
-  public void setSearchKey(String searchKey) {
-    this.searchKey = searchKey;
-  }
-
-  public CustomerDTO visible(Boolean visible) {
-    this.visible = visible;
-    return this;
-  }
-
-  /**
-   * Get visible
-   * @return visible
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Boolean isVisible() {
-    return visible;
-  }
-
-  public void setVisible(Boolean visible) {
-    this.visible = visible;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -352,25 +257,21 @@ public class CustomerDTO   {
       return false;
     }
     CustomerDTO customerDTO = (CustomerDTO) o;
-    return Objects.equals(this.card, customerDTO.card) &&
-        Objects.equals(this.contactId, customerDTO.contactId) &&
-        Objects.equals(this.curDebt, customerDTO.curDebt) &&
+    return Objects.equals(this.contactId, customerDTO.contactId) &&
         Objects.equals(this.customerUniqueId, customerDTO.customerUniqueId) &&
-        Objects.equals(this.debtDate, customerDTO.debtDate) &&
-        Objects.equals(this.discount, customerDTO.discount) &&
         Objects.equals(this.id, customerDTO.id) &&
-        Objects.equals(this.maxDebt, customerDTO.maxDebt) &&
-        Objects.equals(this.name, customerDTO.name) &&
-        Objects.equals(this.photo, customerDTO.photo) &&
-        Objects.equals(this.photoContentType, customerDTO.photoContentType) &&
-        Objects.equals(this.reference, customerDTO.reference) &&
-        Objects.equals(this.searchKey, customerDTO.searchKey) &&
-        Objects.equals(this.visible, customerDTO.visible);
+        Objects.equals(this.idpCode, customerDTO.idpCode) &&
+        Objects.equals(this.idpSub, customerDTO.idpSub) &&
+        Objects.equals(this.image, customerDTO.image) &&
+        Objects.equals(this.imageContentType, customerDTO.imageContentType) &&
+        Objects.equals(this.imageLink, customerDTO.imageLink) &&
+        Objects.equals(this.loyaltyPoint, customerDTO.loyaltyPoint) &&
+        Objects.equals(this.name, customerDTO.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(card, contactId, curDebt, customerUniqueId, debtDate, discount, id, maxDebt, name, photo, photoContentType, reference, searchKey, visible);
+    return Objects.hash(contactId, customerUniqueId, id, idpCode, idpSub, image, imageContentType, imageLink, loyaltyPoint, name);
   }
 
   @Override
@@ -378,20 +279,16 @@ public class CustomerDTO   {
     StringBuilder sb = new StringBuilder();
     sb.append("class CustomerDTO {\n");
     
-    sb.append("    card: ").append(toIndentedString(card)).append("\n");
     sb.append("    contactId: ").append(toIndentedString(contactId)).append("\n");
-    sb.append("    curDebt: ").append(toIndentedString(curDebt)).append("\n");
     sb.append("    customerUniqueId: ").append(toIndentedString(customerUniqueId)).append("\n");
-    sb.append("    debtDate: ").append(toIndentedString(debtDate)).append("\n");
-    sb.append("    discount: ").append(toIndentedString(discount)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    maxDebt: ").append(toIndentedString(maxDebt)).append("\n");
+    sb.append("    idpCode: ").append(toIndentedString(idpCode)).append("\n");
+    sb.append("    idpSub: ").append(toIndentedString(idpSub)).append("\n");
+    sb.append("    image: ").append(toIndentedString(image)).append("\n");
+    sb.append("    imageContentType: ").append(toIndentedString(imageContentType)).append("\n");
+    sb.append("    imageLink: ").append(toIndentedString(imageLink)).append("\n");
+    sb.append("    loyaltyPoint: ").append(toIndentedString(loyaltyPoint)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    photo: ").append(toIndentedString(photo)).append("\n");
-    sb.append("    photoContentType: ").append(toIndentedString(photoContentType)).append("\n");
-    sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
-    sb.append("    searchKey: ").append(toIndentedString(searchKey)).append("\n");
-    sb.append("    visible: ").append(toIndentedString(visible)).append("\n");
     sb.append("}");
     return sb.toString();
   }

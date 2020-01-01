@@ -9,15 +9,25 @@ import com.diviso.graeshoppe.report.client.product.model.Category;
 import com.diviso.graeshoppe.report.client.product.model.CategoryDTO;
 import java.util.List;
 import io.swagger.annotations.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-09-04T22:30:51.169319+05:30[Asia/Kolkata]")
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:45:03.566+05:30[Asia/Kolkata]")
 
 @Api(value = "CategoryResource", description = "the CategoryResource API")
 public interface CategoryResourceApi {
@@ -45,6 +55,18 @@ public interface CategoryResourceApi {
     @RequestMapping(value = "/api/categories/{id}",
         method = RequestMethod.DELETE)
     ResponseEntity<Void> deleteCategoryUsingDELETE(@ApiParam(value = "id",required=true) @PathVariable("id") Long id);
+
+
+    @ApiOperation(value = "exportCategoryListAsPdf", nickname = "exportCategoryListAsPdfUsingGET", notes = "", response = byte[].class, tags={ "category-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = byte[].class),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/pdf/category-report/{idpcode}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<byte[]> exportCategoryListAsPdfUsingGET(@ApiParam(value = "idpcode",required=true) @PathVariable("idpcode") String idpcode);
 
 
     @ApiOperation(value = "getAllCategories", nickname = "getAllCategoriesUsingGET", notes = "", response = CategoryDTO.class, responseContainer = "List", tags={ "category-resource", })

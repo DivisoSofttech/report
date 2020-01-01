@@ -1,36 +1,34 @@
 package com.diviso.graeshoppe.report.service;
 
 import com.diviso.graeshoppe.order.avro.Order;
-import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
-import com.diviso.graeshoppe.report.domain.OrderLine;
 import com.diviso.graeshoppe.report.domain.OrderMaster;
+import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 
-import java.time.*;
+import java.time.Instant;
 import java.util.Optional;
 
+
 /**
- * Service Interface for managing OrderMaster.
+ * Service Interface for managing {@link com.diviso.graeshoppe.report.domain.OrderMaster}.
  */
 public interface OrderMasterService {
 
     /**
      * Save a orderMaster.
      *
-     * @param orderMasterDTO the entity to save
-     * @return the persisted entity
+     * @param orderMasterDTO the entity to save.
+     * @return the persisted entity.
      */
     OrderMasterDTO save(OrderMasterDTO orderMasterDTO);
 
-    Optional<OrderMasterDTO> findByOrderNumber(String orderNumber);
-   public  void convertAndSaveOrderMaster(Order order);
     /**
      * Get all the orderMasters.
      *
-     * @param pageable the pagination information
-     * @return the list of entities
+     * @param pageable the pagination information.
+     * @return the list of entities.
      */
     Page<OrderMasterDTO> findAll(Pageable pageable);
 
@@ -38,28 +36,28 @@ public interface OrderMasterService {
     /**
      * Get the "id" orderMaster.
      *
-     * @param id the id of the entity
-     * @return the entity
+     * @param id the id of the entity.
+     * @return the entity.
      */
     Optional<OrderMasterDTO> findOne(Long id);
 
     /**
      * Delete the "id" orderMaster.
      *
-     * @param id the id of the entity
+     * @param id the id of the entity.
      */
     void delete(Long id);
 
     /**
      * Search for the orderMaster corresponding to the query.
      *
-     * @param query the query of the search
+     * @param query the query of the search.
      * 
-     * @param pageable the pagination information
-     * @return the list of entities
+     * @param pageable the pagination information.
+     * @return the list of entities.
      */
     Page<OrderMasterDTO> search(String query, Pageable pageable);
-
+    
     
     /**
      * Search for the orderMaster corresponding to the order id.
@@ -81,5 +79,8 @@ public interface OrderMasterService {
 
 	Long countByExpectedDeliveryBetween(String from, String to);
 
-	
+    Optional<OrderMasterDTO> findByOrderNumber(String orderNumber);
+  
+    public  void convertAndSaveOrderMaster(Order order);
+    
 }

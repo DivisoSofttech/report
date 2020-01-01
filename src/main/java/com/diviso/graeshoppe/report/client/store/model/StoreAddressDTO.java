@@ -2,27 +2,25 @@ package com.diviso.graeshoppe.report.client.store.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 
 /**
  * StoreAddressDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-09-04T22:29:27.309760+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:37:58.581+05:30[Asia/Kolkata]")
 
 public class StoreAddressDTO   {
   @JsonProperty("addressType")
   private String addressType = null;
 
-  @JsonProperty("alternatePhone")
-  private Long alternatePhone = null;
-
   @JsonProperty("city")
   private String city = null;
-
-  @JsonProperty("customerId")
-  private String customerId = null;
 
   @JsonProperty("houseNoOrBuildingName")
   private String houseNoOrBuildingName = null;
@@ -33,14 +31,8 @@ public class StoreAddressDTO   {
   @JsonProperty("landmark")
   private String landmark = null;
 
-  @JsonProperty("name")
-  private String name = null;
-
-  @JsonProperty("phone")
-  private Long phone = null;
-
   @JsonProperty("pincode")
-  private Long pincode = null;
+  private String pincode = null;
 
   @JsonProperty("roadNameAreaOrStreet")
   private String roadNameAreaOrStreet = null;
@@ -68,26 +60,6 @@ public class StoreAddressDTO   {
     this.addressType = addressType;
   }
 
-  public StoreAddressDTO alternatePhone(Long alternatePhone) {
-    this.alternatePhone = alternatePhone;
-    return this;
-  }
-
-  /**
-   * Get alternatePhone
-   * @return alternatePhone
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Long getAlternatePhone() {
-    return alternatePhone;
-  }
-
-  public void setAlternatePhone(Long alternatePhone) {
-    this.alternatePhone = alternatePhone;
-  }
-
   public StoreAddressDTO city(String city) {
     this.city = city;
     return this;
@@ -106,26 +78,6 @@ public class StoreAddressDTO   {
 
   public void setCity(String city) {
     this.city = city;
-  }
-
-  public StoreAddressDTO customerId(String customerId) {
-    this.customerId = customerId;
-    return this;
-  }
-
-  /**
-   * Get customerId
-   * @return customerId
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getCustomerId() {
-    return customerId;
-  }
-
-  public void setCustomerId(String customerId) {
-    this.customerId = customerId;
   }
 
   public StoreAddressDTO houseNoOrBuildingName(String houseNoOrBuildingName) {
@@ -188,47 +140,7 @@ public class StoreAddressDTO   {
     this.landmark = landmark;
   }
 
-  public StoreAddressDTO name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Get name
-   * @return name
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public StoreAddressDTO phone(Long phone) {
-    this.phone = phone;
-    return this;
-  }
-
-  /**
-   * Get phone
-   * @return phone
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Long getPhone() {
-    return phone;
-  }
-
-  public void setPhone(Long phone) {
-    this.phone = phone;
-  }
-
-  public StoreAddressDTO pincode(Long pincode) {
+  public StoreAddressDTO pincode(String pincode) {
     this.pincode = pincode;
     return this;
   }
@@ -240,11 +152,11 @@ public class StoreAddressDTO   {
   @ApiModelProperty(value = "")
 
 
-  public Long getPincode() {
+  public String getPincode() {
     return pincode;
   }
 
-  public void setPincode(Long pincode) {
+  public void setPincode(String pincode) {
     this.pincode = pincode;
   }
 
@@ -299,14 +211,10 @@ public class StoreAddressDTO   {
     }
     StoreAddressDTO storeAddressDTO = (StoreAddressDTO) o;
     return Objects.equals(this.addressType, storeAddressDTO.addressType) &&
-        Objects.equals(this.alternatePhone, storeAddressDTO.alternatePhone) &&
         Objects.equals(this.city, storeAddressDTO.city) &&
-        Objects.equals(this.customerId, storeAddressDTO.customerId) &&
         Objects.equals(this.houseNoOrBuildingName, storeAddressDTO.houseNoOrBuildingName) &&
         Objects.equals(this.id, storeAddressDTO.id) &&
         Objects.equals(this.landmark, storeAddressDTO.landmark) &&
-        Objects.equals(this.name, storeAddressDTO.name) &&
-        Objects.equals(this.phone, storeAddressDTO.phone) &&
         Objects.equals(this.pincode, storeAddressDTO.pincode) &&
         Objects.equals(this.roadNameAreaOrStreet, storeAddressDTO.roadNameAreaOrStreet) &&
         Objects.equals(this.state, storeAddressDTO.state);
@@ -314,7 +222,7 @@ public class StoreAddressDTO   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(addressType, alternatePhone, city, customerId, houseNoOrBuildingName, id, landmark, name, phone, pincode, roadNameAreaOrStreet, state);
+    return Objects.hash(addressType, city, houseNoOrBuildingName, id, landmark, pincode, roadNameAreaOrStreet, state);
   }
 
   @Override
@@ -323,14 +231,10 @@ public class StoreAddressDTO   {
     sb.append("class StoreAddressDTO {\n");
     
     sb.append("    addressType: ").append(toIndentedString(addressType)).append("\n");
-    sb.append("    alternatePhone: ").append(toIndentedString(alternatePhone)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
-    sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
     sb.append("    houseNoOrBuildingName: ").append(toIndentedString(houseNoOrBuildingName)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    landmark: ").append(toIndentedString(landmark)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("    pincode: ").append(toIndentedString(pincode)).append("\n");
     sb.append("    roadNameAreaOrStreet: ").append(toIndentedString(roadNameAreaOrStreet)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");

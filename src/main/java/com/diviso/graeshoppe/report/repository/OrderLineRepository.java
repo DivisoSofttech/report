@@ -5,8 +5,6 @@ import com.diviso.graeshoppe.report.domain.OrderLine;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.*;
-import org.springframework.data.repository.query.Param;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 
@@ -18,8 +16,8 @@ import org.springframework.stereotype.Repository;
 public interface OrderLineRepository extends JpaRepository<OrderLine, Long> {
 
 	//@Query(value="SELECT ol FROM OrderLine ol where ol.OrderMaster.orderName = :id")
-	//ResponseEntity<OrderLine> findByOrderLineOrderMaster(@Param("id") String orderId);
+		//ResponseEntity<OrderLine> findByOrderLineOrderMaster(@Param("id") String orderId);
+		
+		List<OrderLine> findByOrderMaster_OrderNumber(String id);
 	
-	List<OrderLine> findByOrderMaster_OrderNumber(String id);
-
 }

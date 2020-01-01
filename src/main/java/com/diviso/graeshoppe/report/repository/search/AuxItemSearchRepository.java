@@ -4,7 +4,7 @@ import com.diviso.graeshoppe.report.domain.AuxItem;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
 /**
- * Spring Data Elasticsearch repository for the AuxItem entity.
+ * Spring Data Elasticsearch repository for the {@link AuxItem} entity.
  */
 public interface AuxItemSearchRepository extends ElasticsearchRepository<AuxItem, Long> {
 }

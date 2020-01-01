@@ -13,11 +13,11 @@ import com.diviso.graeshoppe.report.client.product.model.Supplier;
 import com.diviso.graeshoppe.report.client.product.model.TaxCategory;
 import com.diviso.graeshoppe.report.client.product.model.UOM;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -26,9 +26,8 @@ import javax.validation.constraints.*;
  * Product
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-09-04T22:30:51.169319+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:45:03.566+05:30[Asia/Kolkata]")
 
-@Document(indexName = "product")
 public class Product   {
   @JsonProperty("auxilaryLineItems")
   @Valid
@@ -61,6 +60,9 @@ public class Product   {
 
   @JsonProperty("imageContentType")
   private String imageContentType = null;
+
+  @JsonProperty("imageLink")
+  private String imageLink = null;
 
   @JsonProperty("isActive")
   private Boolean isActive = null;
@@ -333,6 +335,26 @@ public class Product   {
 
   public void setImageContentType(String imageContentType) {
     this.imageContentType = imageContentType;
+  }
+
+  public Product imageLink(String imageLink) {
+    this.imageLink = imageLink;
+    return this;
+  }
+
+  /**
+   * Get imageLink
+   * @return imageLink
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getImageLink() {
+    return imageLink;
+  }
+
+  public void setImageLink(String imageLink) {
+    this.imageLink = imageLink;
   }
 
   public Product isActive(Boolean isActive) {
@@ -709,6 +731,7 @@ public class Product   {
         Objects.equals(this.id, product.id) &&
         Objects.equals(this.image, product.image) &&
         Objects.equals(this.imageContentType, product.imageContentType) &&
+        Objects.equals(this.imageLink, product.imageLink) &&
         Objects.equals(this.isActive, product.isActive) &&
         Objects.equals(this.isAuxilaryItem, product.isAuxilaryItem) &&
         Objects.equals(this.isServiceItem, product.isServiceItem) &&
@@ -730,7 +753,7 @@ public class Product   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(auxilaryLineItems, brand, buyPrice, category, comboLineItems, discount, iDPcode, id, image, imageContentType, isActive, isAuxilaryItem, isServiceItem, labels, location, manufacturer, maxQuantityLevel, minQuantityLevel, name, reference, sellingPrice, showInCatalogue, sku, storageCost, supplier, taxCategory, unit);
+    return Objects.hash(auxilaryLineItems, brand, buyPrice, category, comboLineItems, discount, iDPcode, id, image, imageContentType, imageLink, isActive, isAuxilaryItem, isServiceItem, labels, location, manufacturer, maxQuantityLevel, minQuantityLevel, name, reference, sellingPrice, showInCatalogue, sku, storageCost, supplier, taxCategory, unit);
   }
 
   @Override
@@ -748,6 +771,7 @@ public class Product   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    image: ").append(toIndentedString(image)).append("\n");
     sb.append("    imageContentType: ").append(toIndentedString(imageContentType)).append("\n");
+    sb.append("    imageLink: ").append(toIndentedString(imageLink)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
     sb.append("    isAuxilaryItem: ").append(toIndentedString(isAuxilaryItem)).append("\n");
     sb.append("    isServiceItem: ").append(toIndentedString(isServiceItem)).append("\n");

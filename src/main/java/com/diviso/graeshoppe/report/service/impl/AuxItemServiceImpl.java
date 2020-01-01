@@ -20,7 +20,7 @@ import java.util.Optional;
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
- * Service Implementation for managing AuxItem.
+ * Service Implementation for managing {@link AuxItem}.
  */
 @Service
 @Transactional
@@ -43,8 +43,8 @@ public class AuxItemServiceImpl implements AuxItemService {
     /**
      * Save a auxItem.
      *
-     * @param auxItemDTO the entity to save
-     * @return the persisted entity
+     * @param auxItemDTO the entity to save.
+     * @return the persisted entity.
      */
     @Override
     public AuxItemDTO save(AuxItemDTO auxItemDTO) {
@@ -59,8 +59,8 @@ public class AuxItemServiceImpl implements AuxItemService {
     /**
      * Get all the auxItems.
      *
-     * @param pageable the pagination information
-     * @return the list of entities
+     * @param pageable the pagination information.
+     * @return the list of entities.
      */
     @Override
     @Transactional(readOnly = true)
@@ -74,8 +74,8 @@ public class AuxItemServiceImpl implements AuxItemService {
     /**
      * Get one auxItem by id.
      *
-     * @param id the id of the entity
-     * @return the entity
+     * @param id the id of the entity.
+     * @return the entity.
      */
     @Override
     @Transactional(readOnly = true)
@@ -88,20 +88,21 @@ public class AuxItemServiceImpl implements AuxItemService {
     /**
      * Delete the auxItem by id.
      *
-     * @param id the id of the entity
+     * @param id the id of the entity.
      */
     @Override
     public void delete(Long id) {
-        log.debug("Request to delete AuxItem : {}", id);        auxItemRepository.deleteById(id);
+        log.debug("Request to delete AuxItem : {}", id);
+        auxItemRepository.deleteById(id);
         auxItemSearchRepository.deleteById(id);
     }
 
     /**
      * Search for the auxItem corresponding to the query.
      *
-     * @param query the query of the search
-     * @param pageable the pagination information
-     * @return the list of entities
+     * @param query the query of the search.
+     * @param pageable the pagination information.
+     * @return the list of entities.
      */
     @Override
     @Transactional(readOnly = true)
@@ -110,7 +111,7 @@ public class AuxItemServiceImpl implements AuxItemService {
         return auxItemSearchRepository.search(queryStringQuery(query), pageable)
             .map(auxItemMapper::toDto);
     }
-
+    
 	@Override
 	public List<AuxItem> findAuxItemByid(Long id) {
 		log.debug("<<<<<<<<<findByOrderLine_id >>>>>>>{}",id);

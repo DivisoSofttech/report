@@ -5,7 +5,6 @@ import com.diviso.graeshoppe.report.domain.AuxItem;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.*;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 
@@ -18,5 +17,5 @@ public interface AuxItemRepository extends JpaRepository<AuxItem, Long> {
 
 //	@Query("SELECT ai FROM AuxItem ai WHERE ai.id = :id")
 	List<AuxItem> findByOrderLine_id(Long id);
-
+	
 }
