@@ -60,7 +60,7 @@ spring:
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://localhost:3306/reportdb?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Asia/Kolkata&createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/reportdb?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
     username: root
     password: root
     hikari:
@@ -100,7 +100,7 @@ spring:
             uri: https://9a8bffb7a852435185aabd4670a7c19e.us-central1.gcp.cloud.es.io:9243
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
-    contexts: dev, faker
+    contexts: dev#, faker
   mail:
     host: localhost
     port: 25
