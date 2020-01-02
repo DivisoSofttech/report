@@ -251,14 +251,14 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA[$F{storelocation_name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="-5" y="110" width="118" height="20" uuid="d1664100-6775-4000-8ff4-a89437c804f0"/>
+				<reportElement positionType="Float" x="-12" y="110" width="99" height="20" uuid="d1664100-6775-4000-8ff4-a89437c804f0"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Order Number        :"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Order Number :"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="97" y="110" width="49" height="20" uuid="b713ee55-05a6-4f06-bef1-67a16f21b572"/>
+				<reportElement positionType="Float" x="78" y="110" width="68" height="20" uuid="b713ee55-05a6-4f06-bef1-67a16f21b572"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
@@ -582,12 +582,14 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a").withZone(java.time.ZoneId.of("Asia/Kolkata")).format($F{order_accepted_at}.toInstant())]]></textFieldExpression>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a")
+            .withZone(java.time.ZoneId.of("Asia/Kolkata"))
+            .format(java.time.Instant.parse($F{order_accepted_at}.toString().substring(0, 10)+"T"+$F{order_accepted_at}.toString().substring(11,19)+".000Z"))]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="MMMMM dd, yyyy">
 				<reportElement positionType="Float" x="-10" y="465" width="149" height="15" uuid="68eeb0da-d401-44d6-aec5-7441af2b1c2b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a").withZone(java.time.ZoneId.of("Asia/Kolkata")).format(new java.util.Date().toInstant())]]></textFieldExpression>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a").withZone(java.time.ZoneId.of("Asia/Kolkata")).format( java.time.Instant.now())]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
