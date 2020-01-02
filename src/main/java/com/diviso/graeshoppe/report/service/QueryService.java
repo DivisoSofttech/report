@@ -1,4 +1,5 @@
 package com.diviso.graeshoppe.report.service;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -25,6 +26,16 @@ public interface QueryService {
 
 	byte[] getSaleReportAsPdf(String storeidpcode)throws JRException;
 
+	byte[] getAllOrdersByMethodOfOrderAsPdf(LocalDate date, String storeId, String methodOfOrder) throws JRException;
+
+	byte[] getAllOrdersByPaymentStatusAsPdf(LocalDate date, String storeId, String paymentStatus) throws JRException;
+
+	byte[] getAllOrdersByDateAsPdf(LocalDate date) throws JRException;
+
+	byte[] getAllOrdersByDateAndStoreNameAsPdf(LocalDate date, String storeId) throws JRException;
+
+	byte[] getAllOrdersBetweenDatesAsPdf(LocalDate fromDate, LocalDate toDate) throws JRException;
+
 
 	/*OrderAggregator getOrderAggregator(String orderNumber);
 
@@ -35,7 +46,6 @@ public interface QueryService {
 	List<ComboItem> findComboItemByOrderLine(Long orderLineId);
 
 	List<AuxItem> findAuxItemByOrderLine(Long orderLineId);*/
-	
 	
 
 }

@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
  * FavouriteProduct
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-11-13T14:04:39.267087+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:40:40.577+05:30[Asia/Kolkata]")
 
 public class FavouriteProduct   {
   @JsonProperty("customer")
@@ -76,7 +76,8 @@ public class FavouriteProduct   {
    * Get productId
    * @return productId
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
 
 
   public Long getProductId() {

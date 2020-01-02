@@ -2,16 +2,19 @@ package com.diviso.graeshoppe.report.client.store.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
+import javax.validation.constraints.*;
 
 /**
  * DeliveryInfoDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-09-04T22:29:27.309760+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:37:58.581+05:30[Asia/Kolkata]")
 
 public class DeliveryInfoDTO   {
   @JsonProperty("endTime")

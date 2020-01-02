@@ -28,7 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.diviso.graeshoppe.report.client.customer.model.Customer;
-import com.diviso.graeshoppe.report.client.order.api.ReportQueryResourceApi;
+
 import com.diviso.graeshoppe.report.client.payment.api.PaymentResourceApi;
 import com.diviso.graeshoppe.report.client.payment.model.PaymentDTO;
 import com.diviso.graeshoppe.report.client.product.model.ComboLineItem;
@@ -76,8 +76,7 @@ public class QueryServiceImpl implements QueryService {
 
 	
 
-	@Autowired
-	ReportQueryResourceApi ReportQueryResourceApi;
+
 	@Autowired
 	PaymentResourceApi paymentResourceApi;
 	
@@ -200,9 +199,26 @@ public class QueryServiceImpl implements QueryService {
 	 */
 	@Override
 	public byte[] getReportWithAuxAndComboAsPdf(String orderNumber) throws JRException {
+		
+		
+		
+		
 
 		OrderMasterDTO orderMasterDto = orderMasterService.findOrderMasterByOrderNumber(orderNumber);
-
+		
+		JasperReport jr= null;
+		
+		
+		  if (orderMasterDto.getMethodOfOrder().equalsIgnoreCase("delivery")) { jr =
+		  JasperCompileManager.compileReport(
+		  "src/main/resources/report/reportdeliveryv1.jrxml"); } else if
+		  (orderMasterDto.getMethodOfOrder().equalsIgnoreCase("collection")) { jr =
+		  JasperCompileManager.compileReport(
+		  "src/main/resources/report/reportcollection.jrxml");
+		  
+		  }
+		 
+		
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("order_number", orderNumber);
 		Connection conn = null;
@@ -212,14 +228,15 @@ public class QueryServiceImpl implements QueryService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		JasperPrint jp = null;
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
 
+		/*JasperPrint jp =null;
 		if (orderMasterDto.getMethodOfOrder().equalsIgnoreCase("delivery")) {
 			jp = JasperFillManager.fillReport("src/main/resources/report/reportdelivery.jasper", parameters, conn);
 		} else if (orderMasterDto.getMethodOfOrder().equalsIgnoreCase("collection")) {
 			jp = JasperFillManager.fillReport("src/main/resources/report/reportcollection.jasper", parameters, conn);
 
-		}
+		}*/
 	
 		return JasperExportManager.exportReportToPdf(jp);
 
@@ -282,32 +299,110 @@ public class QueryServiceImpl implements QueryService {
 		return JasperExportManager.exportReportToPdf(jp);
 	}
 
+	@Override
+	public byte[] getAllOrdersByMethodOfOrderAsPdf(LocalDate date, String storeId, String methodOfOrder) throws JRException {
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/orderbymethodoforder.jrxml");
 
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("date", date);
+		parameters.put("store_name", storeId);
+		parameters.put("method_of_order", methodOfOrder);
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		return JasperExportManager.exportReportToPdf(jp);
+	
+	}
+
+	@Override
+	public byte[] getAllOrdersByPaymentStatusAsPdf(LocalDate date, String storeId, String paymentStatus) throws JRException {
+		
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersbypaymentstatus.jrxml");
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("date", date);
+		parameters.put("store_name", storeId);
+		parameters.put("payment_status", paymentStatus);
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		return JasperExportManager.exportReportToPdf(jp);
+	}
+
+	@Override
+	public byte[] getAllOrdersByDateAsPdf(LocalDate date)throws JRException {
+	
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/datespecificorders.jrxml");
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("date", date);
+		
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		return JasperExportManager.exportReportToPdf(jp);
+	}
+
+	@Override
+	public byte[] getAllOrdersByDateAndStoreNameAsPdf(LocalDate date, String storeId) throws JRException{
+		
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersbydateandstorename.jrxml");
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("date", date);
+		parameters.put("store_name", storeId);
+		
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		return JasperExportManager.exportReportToPdf(jp);
+		
+	}
+
+	@Override
+	public byte[] getAllOrdersBetweenDatesAsPdf(LocalDate fromDate, LocalDate toDate) throws JRException{
+		
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersbetweendates.jrxml");
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("from_date", fromDate);
+		parameters.put("to_date", toDate);
+		
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		return JasperExportManager.exportReportToPdf(jp);
+	}
 	
 
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

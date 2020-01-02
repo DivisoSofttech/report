@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A DTO for the OrderMaster entity.
+ * A DTO for the {@link com.diviso.graeshoppe.report.domain.OrderMaster} entity.
  */
 public class OrderMasterDTO implements Serializable {
 
@@ -54,8 +54,6 @@ public class OrderMasterDTO implements Serializable {
 
     private String landmark;
 
-    private String name;
-
     private Long phone;
 
     private Long alternatePhone;
@@ -81,6 +79,8 @@ public class OrderMasterDTO implements Serializable {
     private String paymentStatus;
 
     private String zoneId;
+
+    private Long loyaltyPoint;
 
 
     public Long getId() {
@@ -267,14 +267,6 @@ public class OrderMasterDTO implements Serializable {
         this.landmark = landmark;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Long getPhone() {
         return phone;
     }
@@ -379,6 +371,14 @@ public class OrderMasterDTO implements Serializable {
         this.zoneId = zoneId;
     }
 
+    public Long getLoyaltyPoint() {
+        return loyaltyPoint;
+    }
+
+    public void setLoyaltyPoint(Long loyaltyPoint) {
+        this.loyaltyPoint = loyaltyPoint;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -426,7 +426,6 @@ public class OrderMasterDTO implements Serializable {
             ", city='" + getCity() + "'" +
             ", state='" + getState() + "'" +
             ", landmark='" + getLandmark() + "'" +
-            ", name='" + getName() + "'" +
             ", phone=" + getPhone() +
             ", alternatePhone=" + getAlternatePhone() +
             ", addressType='" + getAddressType() + "'" +
@@ -440,6 +439,7 @@ public class OrderMasterDTO implements Serializable {
             ", paymentRef='" + getPaymentRef() + "'" +
             ", paymentStatus='" + getPaymentStatus() + "'" +
             ", zoneId='" + getZoneId() + "'" +
+            ", loyaltyPoint=" + getLoyaltyPoint() +
             "}";
     }
 }

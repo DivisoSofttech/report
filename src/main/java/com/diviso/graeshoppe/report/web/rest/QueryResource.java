@@ -1,13 +1,12 @@
 package com.diviso.graeshoppe.report.web.rest;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,22 +15,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.diviso.graeshoppe.report.domain.AuxItem;
 import com.diviso.graeshoppe.report.domain.OfferLine;
-import com.diviso.graeshoppe.report.domain.OrderAggregator;
 import com.diviso.graeshoppe.report.domain.OrderLine;
+import com.diviso.graeshoppe.report.domain.OrderMaster;
 import com.diviso.graeshoppe.report.domain.ReportSummary;
-import com.diviso.graeshoppe.report.service.QueryService;
 import com.diviso.graeshoppe.report.service.AuxItemService;
 import com.diviso.graeshoppe.report.service.OfferLineService;
 import com.diviso.graeshoppe.report.service.OrderLineService;
 import com.diviso.graeshoppe.report.service.OrderMasterService;
+import com.diviso.graeshoppe.report.service.QueryService;
+
 import net.sf.jasperreports.engine.JRException;
-import java.time.Instant;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import com.diviso.graeshoppe.report.domain.OrderMaster;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
+
 
 /**
  * REST controller for managing Reports.
@@ -184,5 +184,118 @@ public class QueryResource {
 		return orderLineService.findOrderLineByOrderNumber(orderNumber);
 
 	}
+	
 
+	@GetMapping("/orders/{storeId}/{date}/{methodOfOrder}")
+	public ResponseEntity<byte[]> getAllOrdersByMethodOfOrderAsPdf(@PathVariable String storeId, @PathVariable String date, @PathVariable String methodOfOrder) {
+
+		// log.debug("REST request to get a pdf");
+
+		byte[] pdfContents = null;
+
+
+		try {
+			pdfContents = queryService.getAllOrdersByMethodOfOrderAsPdf(LocalDate.parse(date), storeId, methodOfOrder);
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		String fileName = "orderByMethodOfOrder.pdf";
+		headers.add("content-disposition", "attachment; filename=" + fileName);
+		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
+		return response;
+	}
+	
+	@GetMapping("/ordersbypayment/{storeId}/{date}/{paymentStatus}")
+	public ResponseEntity<byte[]> getAllOrdersByPaymentStatusAsPdf(@PathVariable String storeId, @PathVariable String date, @PathVariable String paymentStatus) {
+
+		// log.debug("REST request to get a pdf");
+
+		byte[] pdfContents = null;
+
+
+		try {
+			pdfContents = queryService.getAllOrdersByPaymentStatusAsPdf(LocalDate.parse(date), storeId, paymentStatus);
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		String fileName = "orderByPaymentStatus.pdf";
+		headers.add("content-disposition", "attachment; filename=" + fileName);
+		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
+		return response;
+	}
+	
+	@GetMapping("/ordersbydate/{date}")
+	public ResponseEntity<byte[]> getAllOrdersByDateAsPdf(@PathVariable String date) {
+
+		// log.debug("REST request to get a pdf");
+
+		byte[] pdfContents = null;
+
+
+		try {
+			pdfContents = queryService.getAllOrdersByDateAsPdf(LocalDate.parse(date));
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		String fileName = "ordersByDate.pdf";
+		headers.add("content-disposition", "attachment; filename=" + fileName);
+		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
+		return response;
+	}
+	
+	
+	@GetMapping("/ordersbydateandstorename/{date}/{storeId}")
+	public ResponseEntity<byte[]> getAllOrdersByDateAndStoreNameAsPdf(@PathVariable String date, @PathVariable String storeId) {
+
+		// log.debug("REST request to get a pdf");
+
+		byte[] pdfContents = null;
+
+
+		try {
+			pdfContents = queryService.getAllOrdersByDateAndStoreNameAsPdf(LocalDate.parse(date), storeId);
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		String fileName = "ordersByDateAndStoreName.pdf";
+		headers.add("content-disposition", "attachment; filename=" + fileName);
+		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
+		return response;
+	}
+	
+	
+	@GetMapping("/ordersbetweendates/{fromDate}/{ToDate}")
+	public ResponseEntity<byte[]> getAllOrdersBetweenDatesAsPdf(@PathVariable String fromDate, @PathVariable String toDate ){
+
+		// log.debug("REST request to get a pdf");
+
+		byte[] pdfContents = null;
+
+
+		try {
+			pdfContents = queryService.getAllOrdersBetweenDatesAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate));
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		String fileName = "ordersBetweenDates.pdf";
+		headers.add("content-disposition", "attachment; filename=" + fileName);
+		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
+		return response;
+	}
+		
 }

@@ -1,16 +1,20 @@
 package com.diviso.graeshoppe.report.web.rest;
+
 import com.diviso.graeshoppe.report.service.SaleService;
 import com.diviso.graeshoppe.report.web.rest.errors.BadRequestAlertException;
-import com.diviso.graeshoppe.report.web.rest.util.HeaderUtil;
-import com.diviso.graeshoppe.report.web.rest.util.PaginationUtil;
 import com.diviso.graeshoppe.report.service.dto.SaleDTO;
+
+import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +28,7 @@ import java.util.stream.StreamSupport;
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
- * REST controller for managing Sale.
+ * REST controller for managing {@link com.diviso.graeshoppe.report.domain.Sale}.
  */
 @RestController
 @RequestMapping("/api")
@@ -34,6 +38,9 @@ public class SaleResource {
 
     private static final String ENTITY_NAME = "reportSale";
 
+    @Value("${jhipster.clientApp.name}")
+    private String applicationName;
+
     private final SaleService saleService;
 
     public SaleResource(SaleService saleService) {
@@ -41,11 +48,11 @@ public class SaleResource {
     }
 
     /**
-     * POST  /sales : Create a new sale.
+     * {@code POST  /sales} : Create a new sale.
      *
-     * @param saleDTO the saleDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new saleDTO, or with status 400 (Bad Request) if the sale has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @param saleDTO the saleDTO to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new saleDTO, or with status {@code 400 (Bad Request)} if the sale has already an ID.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/sales")
     public ResponseEntity<SaleDTO> createSale(@RequestBody SaleDTO saleDTO) throws URISyntaxException {
@@ -55,18 +62,18 @@ public class SaleResource {
         }
         SaleDTO result = saleService.save(saleDTO);
         return ResponseEntity.created(new URI("/api/sales/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
     /**
-     * PUT  /sales : Updates an existing sale.
+     * {@code PUT  /sales} : Updates an existing sale.
      *
-     * @param saleDTO the saleDTO to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated saleDTO,
-     * or with status 400 (Bad Request) if the saleDTO is not valid,
-     * or with status 500 (Internal Server Error) if the saleDTO couldn't be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @param saleDTO the saleDTO to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated saleDTO,
+     * or with status {@code 400 (Bad Request)} if the saleDTO is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the saleDTO couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/sales")
     public ResponseEntity<SaleDTO> updateSale(@RequestBody SaleDTO saleDTO) throws URISyntaxException {
@@ -76,29 +83,31 @@ public class SaleResource {
         }
         SaleDTO result = saleService.save(saleDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, saleDTO.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, saleDTO.getId().toString()))
             .body(result);
     }
 
     /**
-     * GET  /sales : get all the sales.
+     * {@code GET  /sales} : get all the sales.
      *
-     * @param pageable the pagination information
-     * @return the ResponseEntity with status 200 (OK) and the list of sales in body
+
+     * @param pageable the pagination information.
+
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of sales in body.
      */
     @GetMapping("/sales")
     public ResponseEntity<List<SaleDTO>> getAllSales(Pageable pageable) {
         log.debug("REST request to get a page of Sales");
         Page<SaleDTO> page = saleService.findAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/sales");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**
-     * GET  /sales/:id : get the "id" sale.
+     * {@code GET  /sales/:id} : get the "id" sale.
      *
-     * @param id the id of the saleDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the saleDTO, or with status 404 (Not Found)
+     * @param id the id of the saleDTO to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the saleDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/sales/{id}")
     public ResponseEntity<SaleDTO> getSale(@PathVariable Long id) {
@@ -108,32 +117,31 @@ public class SaleResource {
     }
 
     /**
-     * DELETE  /sales/:id : delete the "id" sale.
+     * {@code DELETE  /sales/:id} : delete the "id" sale.
      *
-     * @param id the id of the saleDTO to delete
-     * @return the ResponseEntity with status 200 (OK)
+     * @param id the id of the saleDTO to delete.
+     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/sales/{id}")
     public ResponseEntity<Void> deleteSale(@PathVariable Long id) {
         log.debug("REST request to delete Sale : {}", id);
         saleService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 
     /**
-     * SEARCH  /_search/sales?query=:query : search for the sale corresponding
+     * {@code SEARCH  /_search/sales?query=:query} : search for the sale corresponding
      * to the query.
      *
-     * @param query the query of the sale search
-     * @param pageable the pagination information
-     * @return the result of the search
+     * @param query the query of the sale search.
+     * @param pageable the pagination information.
+     * @return the result of the search.
      */
     @GetMapping("/_search/sales")
     public ResponseEntity<List<SaleDTO>> searchSales(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Sales for query {}", query);
         Page<SaleDTO> page = saleService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/sales");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
-
 }

@@ -1,29 +1,29 @@
 package com.diviso.graeshoppe.report.domain;
-
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
-import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Objects;
 
 /**
  * A OrderMaster.
  */
 @Entity
 @Table(name = "order_master")
-@Document(indexName = "ordermaster")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "ordermaster")
 public class OrderMaster implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
     private Long id;
 
     @Column(name = "store_idpcode")
@@ -92,9 +92,6 @@ public class OrderMaster implements Serializable {
     @Column(name = "landmark")
     private String landmark;
 
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "phone")
     private Long phone;
 
@@ -134,10 +131,17 @@ public class OrderMaster implements Serializable {
     @Column(name = "zone_id")
     private String zoneId;
 
+    @Column(name = "loyalty_point")
+    private Long loyaltyPoint;
+
     @OneToMany(mappedBy = "orderMaster")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<OrderLine> orderLines = new HashSet<>();
+
     @OneToMany(mappedBy = "orderMaster")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<OfferLine> offerLines = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -433,19 +437,6 @@ public class OrderMaster implements Serializable {
         this.landmark = landmark;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public OrderMaster name(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Long getPhone() {
         return phone;
     }
@@ -615,6 +606,19 @@ public class OrderMaster implements Serializable {
         this.zoneId = zoneId;
     }
 
+    public Long getLoyaltyPoint() {
+        return loyaltyPoint;
+    }
+
+    public OrderMaster loyaltyPoint(Long loyaltyPoint) {
+        this.loyaltyPoint = loyaltyPoint;
+        return this;
+    }
+
+    public void setLoyaltyPoint(Long loyaltyPoint) {
+        this.loyaltyPoint = loyaltyPoint;
+    }
+
     public Set<OrderLine> getOrderLines() {
         return orderLines;
     }
@@ -671,19 +675,15 @@ public class OrderMaster implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof OrderMaster)) {
             return false;
         }
-        OrderMaster orderMaster = (OrderMaster) o;
-        if (orderMaster.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), orderMaster.getId());
+        return id != null && id.equals(((OrderMaster) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override
@@ -712,7 +712,6 @@ public class OrderMaster implements Serializable {
             ", city='" + getCity() + "'" +
             ", state='" + getState() + "'" +
             ", landmark='" + getLandmark() + "'" +
-            ", name='" + getName() + "'" +
             ", phone=" + getPhone() +
             ", alternatePhone=" + getAlternatePhone() +
             ", addressType='" + getAddressType() + "'" +
@@ -726,6 +725,7 @@ public class OrderMaster implements Serializable {
             ", paymentRef='" + getPaymentRef() + "'" +
             ", paymentStatus='" + getPaymentStatus() + "'" +
             ", zoneId='" + getZoneId() + "'" +
+            ", loyaltyPoint=" + getLoyaltyPoint() +
             "}";
     }
 }

@@ -4,7 +4,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Configure a Mock version of OfferLineSearchRepository to test the
+ * Configure a Mock version of {@link OfferLineSearchRepository} to test the
  * application without starting Elasticsearch.
  */
 @Configuration

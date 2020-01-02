@@ -1,26 +1,27 @@
 package com.diviso.graeshoppe.report.domain;
-
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
-import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * A TicketLine.
  */
 @Entity
 @Table(name = "ticket_line")
-@Document(indexName = "ticketline")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "ticketline")
 public class TicketLine implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
     private Long id;
 
     @Column(name = "product_id")
@@ -135,19 +136,15 @@ public class TicketLine implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof TicketLine)) {
             return false;
         }
-        TicketLine ticketLine = (TicketLine) o;
-        if (ticketLine.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), ticketLine.getId());
+        return id != null && id.equals(((TicketLine) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override

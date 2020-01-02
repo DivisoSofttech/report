@@ -2,15 +2,18 @@ package com.diviso.graeshoppe.report.client.product.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
  * ProductDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-09-04T22:30:51.169319+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:45:03.566+05:30[Asia/Kolkata]")
 
 public class ProductDTO   {
   @JsonProperty("brandId")
@@ -36,6 +39,9 @@ public class ProductDTO   {
 
   @JsonProperty("imageContentType")
   private String imageContentType = null;
+
+  @JsonProperty("imageLink")
+  private String imageLink = null;
 
   @JsonProperty("isActive")
   private Boolean isActive = null;
@@ -243,6 +249,26 @@ public class ProductDTO   {
 
   public void setImageContentType(String imageContentType) {
     this.imageContentType = imageContentType;
+  }
+
+  public ProductDTO imageLink(String imageLink) {
+    this.imageLink = imageLink;
+    return this;
+  }
+
+  /**
+   * Get imageLink
+   * @return imageLink
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getImageLink() {
+    return imageLink;
+  }
+
+  public void setImageLink(String imageLink) {
+    this.imageLink = imageLink;
   }
 
   public ProductDTO isActive(Boolean isActive) {
@@ -583,6 +609,7 @@ public class ProductDTO   {
         Objects.equals(this.id, productDTO.id) &&
         Objects.equals(this.image, productDTO.image) &&
         Objects.equals(this.imageContentType, productDTO.imageContentType) &&
+        Objects.equals(this.imageLink, productDTO.imageLink) &&
         Objects.equals(this.isActive, productDTO.isActive) &&
         Objects.equals(this.isAuxilaryItem, productDTO.isAuxilaryItem) &&
         Objects.equals(this.isServiceItem, productDTO.isServiceItem) &&
@@ -603,7 +630,7 @@ public class ProductDTO   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(brandId, buyPrice, categoryId, discountId, iDPcode, id, image, imageContentType, isActive, isAuxilaryItem, isServiceItem, locationId, manufacturerId, maxQuantityLevel, minQuantityLevel, name, reference, sellingPrice, showInCatalogue, sku, storageCost, supplierId, taxCategoryId, unitId);
+    return Objects.hash(brandId, buyPrice, categoryId, discountId, iDPcode, id, image, imageContentType, imageLink, isActive, isAuxilaryItem, isServiceItem, locationId, manufacturerId, maxQuantityLevel, minQuantityLevel, name, reference, sellingPrice, showInCatalogue, sku, storageCost, supplierId, taxCategoryId, unitId);
   }
 
   @Override
@@ -619,6 +646,7 @@ public class ProductDTO   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    image: ").append(toIndentedString(image)).append("\n");
     sb.append("    imageContentType: ").append(toIndentedString(imageContentType)).append("\n");
+    sb.append("    imageLink: ").append(toIndentedString(imageLink)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
     sb.append("    isAuxilaryItem: ").append(toIndentedString(isAuxilaryItem)).append("\n");
     sb.append("    isServiceItem: ").append(toIndentedString(isServiceItem)).append("\n");

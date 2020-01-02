@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A DTO for the Sale entity.
+ * A DTO for the {@link com.diviso.graeshoppe.report.domain.Sale} entity.
  */
 public class SaleDTO implements Serializable {
 

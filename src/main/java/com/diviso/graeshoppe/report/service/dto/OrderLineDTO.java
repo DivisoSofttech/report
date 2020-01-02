@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A DTO for the OrderLine entity.
+ * A DTO for the {@link com.diviso.graeshoppe.report.domain.OrderLine} entity.
  */
 public class OrderLineDTO implements Serializable {
 
@@ -86,7 +86,7 @@ public class OrderLineDTO implements Serializable {
             ", item='" + getItem() + "'" +
             ", quantity=" + getQuantity() +
             ", total=" + getTotal() +
-            ", orderMaster=" + getOrderMasterId() +
+            ", orderMasterId=" + getOrderMasterId() +
             "}";
     }
 }

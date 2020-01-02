@@ -1,26 +1,27 @@
 package com.diviso.graeshoppe.report.domain;
-
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
-import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * A AuxItem.
  */
 @Entity
 @Table(name = "aux_item")
-@Document(indexName = "auxitem")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "auxitem")
 public class AuxItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
     private Long id;
 
     @Column(name = "aux_item")
@@ -103,19 +104,15 @@ public class AuxItem implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof AuxItem)) {
             return false;
         }
-        AuxItem auxItem = (AuxItem) o;
-        if (auxItem.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), auxItem.getId());
+        return id != null && id.equals(((AuxItem) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override

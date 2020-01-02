@@ -26,7 +26,6 @@ roadNameAreaOrStreet String,
 city String,
 state String,
 landmark String,
-name String,
 phone Long,
 alternatePhone Long,
 addressType String,
@@ -39,7 +38,8 @@ preOrderDate Instant,
 email String,
 paymentRef String,
 paymentStatus String,
-zoneId String
+zoneId String,
+loyaltyPoint Long
 
 }
 

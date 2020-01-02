@@ -2,18 +2,24 @@ package com.diviso.graeshoppe.report.client.order.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
+import javax.validation.constraints.*;
 
 /**
  * OrderDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-08-27T15:03:55.787+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:48:59.190+05:30[Asia/Kolkata]")
 
 public class OrderDTO   {
+  @JsonProperty("allergyNote")
+  private String allergyNote = null;
+
   @JsonProperty("approvalDetailsId")
   private Long approvalDetailsId = null;
 
@@ -38,14 +44,46 @@ public class OrderDTO   {
   @JsonProperty("orderId")
   private String orderId = null;
 
+  @JsonProperty("paymentMode")
+  private String paymentMode = null;
+
   @JsonProperty("paymentRef")
   private String paymentRef = null;
+
+  @JsonProperty("preOrderDate")
+  private OffsetDateTime preOrderDate = null;
 
   @JsonProperty("statusId")
   private Long statusId = null;
 
   @JsonProperty("storeId")
   private String storeId = null;
+
+  @JsonProperty("subTotal")
+  private Double subTotal = null;
+
+  @JsonProperty("timeZone")
+  private String timeZone = null;
+
+  public OrderDTO allergyNote(String allergyNote) {
+    this.allergyNote = allergyNote;
+    return this;
+  }
+
+  /**
+   * Get allergyNote
+   * @return allergyNote
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getAllergyNote() {
+    return allergyNote;
+  }
+
+  public void setAllergyNote(String allergyNote) {
+    this.allergyNote = allergyNote;
+  }
 
   public OrderDTO approvalDetailsId(Long approvalDetailsId) {
     this.approvalDetailsId = approvalDetailsId;
@@ -208,6 +246,26 @@ public class OrderDTO   {
     this.orderId = orderId;
   }
 
+  public OrderDTO paymentMode(String paymentMode) {
+    this.paymentMode = paymentMode;
+    return this;
+  }
+
+  /**
+   * Get paymentMode
+   * @return paymentMode
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getPaymentMode() {
+    return paymentMode;
+  }
+
+  public void setPaymentMode(String paymentMode) {
+    this.paymentMode = paymentMode;
+  }
+
   public OrderDTO paymentRef(String paymentRef) {
     this.paymentRef = paymentRef;
     return this;
@@ -226,6 +284,27 @@ public class OrderDTO   {
 
   public void setPaymentRef(String paymentRef) {
     this.paymentRef = paymentRef;
+  }
+
+  public OrderDTO preOrderDate(OffsetDateTime preOrderDate) {
+    this.preOrderDate = preOrderDate;
+    return this;
+  }
+
+  /**
+   * Get preOrderDate
+   * @return preOrderDate
+  **/
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public OffsetDateTime getPreOrderDate() {
+    return preOrderDate;
+  }
+
+  public void setPreOrderDate(OffsetDateTime preOrderDate) {
+    this.preOrderDate = preOrderDate;
   }
 
   public OrderDTO statusId(Long statusId) {
@@ -268,6 +347,46 @@ public class OrderDTO   {
     this.storeId = storeId;
   }
 
+  public OrderDTO subTotal(Double subTotal) {
+    this.subTotal = subTotal;
+    return this;
+  }
+
+  /**
+   * Get subTotal
+   * @return subTotal
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Double getSubTotal() {
+    return subTotal;
+  }
+
+  public void setSubTotal(Double subTotal) {
+    this.subTotal = subTotal;
+  }
+
+  public OrderDTO timeZone(String timeZone) {
+    this.timeZone = timeZone;
+    return this;
+  }
+
+  /**
+   * Get timeZone
+   * @return timeZone
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getTimeZone() {
+    return timeZone;
+  }
+
+  public void setTimeZone(String timeZone) {
+    this.timeZone = timeZone;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -278,7 +397,8 @@ public class OrderDTO   {
       return false;
     }
     OrderDTO orderDTO = (OrderDTO) o;
-    return Objects.equals(this.approvalDetailsId, orderDTO.approvalDetailsId) &&
+    return Objects.equals(this.allergyNote, orderDTO.allergyNote) &&
+        Objects.equals(this.approvalDetailsId, orderDTO.approvalDetailsId) &&
         Objects.equals(this.customerId, orderDTO.customerId) &&
         Objects.equals(this.date, orderDTO.date) &&
         Objects.equals(this.deliveryInfoId, orderDTO.deliveryInfoId) &&
@@ -286,14 +406,18 @@ public class OrderDTO   {
         Objects.equals(this.grandTotal, orderDTO.grandTotal) &&
         Objects.equals(this.id, orderDTO.id) &&
         Objects.equals(this.orderId, orderDTO.orderId) &&
+        Objects.equals(this.paymentMode, orderDTO.paymentMode) &&
         Objects.equals(this.paymentRef, orderDTO.paymentRef) &&
+        Objects.equals(this.preOrderDate, orderDTO.preOrderDate) &&
         Objects.equals(this.statusId, orderDTO.statusId) &&
-        Objects.equals(this.storeId, orderDTO.storeId);
+        Objects.equals(this.storeId, orderDTO.storeId) &&
+        Objects.equals(this.subTotal, orderDTO.subTotal) &&
+        Objects.equals(this.timeZone, orderDTO.timeZone);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(approvalDetailsId, customerId, date, deliveryInfoId, email, grandTotal, id, orderId, paymentRef, statusId, storeId);
+    return Objects.hash(allergyNote, approvalDetailsId, customerId, date, deliveryInfoId, email, grandTotal, id, orderId, paymentMode, paymentRef, preOrderDate, statusId, storeId, subTotal, timeZone);
   }
 
   @Override
@@ -301,6 +425,7 @@ public class OrderDTO   {
     StringBuilder sb = new StringBuilder();
     sb.append("class OrderDTO {\n");
     
+    sb.append("    allergyNote: ").append(toIndentedString(allergyNote)).append("\n");
     sb.append("    approvalDetailsId: ").append(toIndentedString(approvalDetailsId)).append("\n");
     sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
     sb.append("    date: ").append(toIndentedString(date)).append("\n");
@@ -309,9 +434,13 @@ public class OrderDTO   {
     sb.append("    grandTotal: ").append(toIndentedString(grandTotal)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
+    sb.append("    paymentMode: ").append(toIndentedString(paymentMode)).append("\n");
     sb.append("    paymentRef: ").append(toIndentedString(paymentRef)).append("\n");
+    sb.append("    preOrderDate: ").append(toIndentedString(preOrderDate)).append("\n");
     sb.append("    statusId: ").append(toIndentedString(statusId)).append("\n");
     sb.append("    storeId: ").append(toIndentedString(storeId)).append("\n");
+    sb.append("    subTotal: ").append(toIndentedString(subTotal)).append("\n");
+    sb.append("    timeZone: ").append(toIndentedString(timeZone)).append("\n");
     sb.append("}");
     return sb.toString();
   }

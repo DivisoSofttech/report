@@ -5,7 +5,6 @@ import com.diviso.graeshoppe.report.service.ComboItemService;
 import com.diviso.graeshoppe.report.service.OfferLineService;
 import com.diviso.graeshoppe.report.service.OrderLineService;
 import com.diviso.graeshoppe.report.service.OrderMasterService;
-import com.diviso.graeshoppe.report.service.ReportService;
 import com.diviso.graeshoppe.order.avro.AuxilaryOrderLine;
 import com.diviso.graeshoppe.order.avro.Order;
 import com.diviso.graeshoppe.report.client.customer.api.CustomerResourceApi;
@@ -48,9 +47,8 @@ import com.diviso.graeshoppe.report.domain.OrderMaster;
 import static org.elasticsearch.index.query.QueryBuilders.*;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
-
 /**
- * Service Implementation for managing OrderMaster.
+ * Service Implementation for managing {@link OrderMaster}.
  */
 @Service
 @Transactional
@@ -73,8 +71,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 	@Autowired
 	private OfferLineService offerLineService;
-	@Autowired
-	private ReportService reportService;
+	
 	@Autowired
 	private OrderLineService orderLineService;
 	@Autowired
@@ -87,14 +84,85 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	private CustomerResourceApi customerResourceApi;
 	private final OrderMasterSearchRepository orderMasterSearchRepository;
 
-	public OrderMasterServiceImpl(OrderMasterRepository orderMasterRepository, OrderMasterMapper orderMasterMapper,
-			OrderMasterSearchRepository orderMasterSearchRepository) {
-		this.orderMasterRepository = orderMasterRepository;
-		this.orderMasterMapper = orderMasterMapper;
-		this.orderMasterSearchRepository = orderMasterSearchRepository;
-	}
+    public OrderMasterServiceImpl(OrderMasterRepository orderMasterRepository, OrderMasterMapper orderMasterMapper, OrderMasterSearchRepository orderMasterSearchRepository) {
+        this.orderMasterRepository = orderMasterRepository;
+        this.orderMasterMapper = orderMasterMapper;
+        this.orderMasterSearchRepository = orderMasterSearchRepository;
+    }
 
-	private Store findStoreByStoreId(String storeId) {
+    /**
+     * Save a orderMaster.
+     *
+     * @param orderMasterDTO the entity to save.
+     * @return the persisted entity.
+     */
+    @Override
+    public OrderMasterDTO save(OrderMasterDTO orderMasterDTO) {
+        log.debug("Request to save OrderMaster : {}", orderMasterDTO);
+        OrderMaster orderMaster = orderMasterMapper.toEntity(orderMasterDTO);
+        orderMaster = orderMasterRepository.save(orderMaster);
+        OrderMasterDTO result = orderMasterMapper.toDto(orderMaster);
+        orderMasterSearchRepository.save(orderMaster);
+        return result;
+    }
+
+    /**
+     * Get all the orderMasters.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<OrderMasterDTO> findAll(Pageable pageable) {
+        log.debug("Request to get all OrderMasters");
+        return orderMasterRepository.findAll(pageable)
+            .map(orderMasterMapper::toDto);
+    }
+
+
+    /**
+     * Get one orderMaster by id.
+     *
+     * @param id the id of the entity.
+     * @return the entity.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<OrderMasterDTO> findOne(Long id) {
+        log.debug("Request to get OrderMaster : {}", id);
+        return orderMasterRepository.findById(id)
+            .map(orderMasterMapper::toDto);
+    }
+
+    /**
+     * Delete the orderMaster by id.
+     *
+     * @param id the id of the entity.
+     */
+    @Override
+    public void delete(Long id) {
+        log.debug("Request to delete OrderMaster : {}", id);
+        orderMasterRepository.deleteById(id);
+        orderMasterSearchRepository.deleteById(id);
+    }
+
+    /**
+     * Search for the orderMaster corresponding to the query.
+     *
+     * @param query the query of the search.
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<OrderMasterDTO> search(String query, Pageable pageable) {
+        log.debug("Request to search for a page of OrderMasters for query {}", query);
+        return orderMasterSearchRepository.search(queryStringQuery(query), pageable)
+            .map(orderMasterMapper::toDto);
+    }
+    
+    private Store findStoreByStoreId(String storeId) {
 		StringQuery stringQuery = new StringQuery(termQuery("regNo", storeId).toString());
 		return elasticsearchOperations.queryForObject(stringQuery, Store.class);
 	}
@@ -112,75 +180,6 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	private List<ComboLineItem> findCombosByProductId(Long id) {
 		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(termQuery("product.id", id)).build();
 		return elasticsearchOperations.queryForList(searchQuery, ComboLineItem.class);
-	}
-
-	/**
-	 * Save a orderMaster.
-	 *
-	 * @param orderMasterDTO the entity to save
-	 * @return the persisted entity
-	 */
-	@Override
-	public OrderMasterDTO save(OrderMasterDTO orderMasterDTO) {
-		log.debug("Request to save OrderMaster : {}", orderMasterDTO);
-
-		OrderMaster orderMaster = orderMasterMapper.toEntity(orderMasterDTO);
-		orderMaster = orderMasterRepository.save(orderMaster);
-		OrderMasterDTO result = orderMasterMapper.toDto(orderMaster);
-		orderMasterSearchRepository.save(orderMaster);
-		return result;
-	}
-
-	/**
-	 * Get all the orderMasters.
-	 *
-	 * @param pageable the pagination information
-	 * @return the list of entities
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public Page<OrderMasterDTO> findAll(Pageable pageable) {
-		log.debug("Request to get all OrderMasters");
-		return orderMasterRepository.findAll(pageable).map(orderMasterMapper::toDto);
-	}
-
-	/**
-	 * Get one orderMaster by id.
-	 *
-	 * @param id the id of the entity
-	 * @return the entity
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public Optional<OrderMasterDTO> findOne(Long id) {
-		log.debug("Request to get OrderMaster : {}", id);
-		return orderMasterRepository.findById(id).map(orderMasterMapper::toDto);
-	}
-
-	/**
-	 * Delete the orderMaster by id.
-	 *
-	 * @param id the id of the entity
-	 */
-	@Override
-	public void delete(Long id) {
-		log.debug("Request to delete OrderMaster : {}", id);
-		orderMasterRepository.deleteById(id);
-		orderMasterSearchRepository.deleteById(id);
-	}
-
-	/**
-	 * Search for the orderMaster corresponding to the query.
-	 *
-	 * @param query    the query of the search
-	 * @param pageable the pagination information
-	 * @return the list of entities
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public Page<OrderMasterDTO> search(String query, Pageable pageable) {
-		log.debug("Request to search for a page of OrderMasters for query {}", query);
-		return orderMasterSearchRepository.search(queryStringQuery(query), pageable).map(orderMasterMapper::toDto);
 	}
 
 	/**
@@ -242,7 +241,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 			orderMaster.setPincode(order.getDeliveryInfo().getDeliveryAddress().getPincode());
 			orderMaster.setState(order.getDeliveryInfo().getDeliveryAddress().getState());
 			orderMaster.setAddressType(order.getDeliveryInfo().getDeliveryAddress().getAddressType());
-			orderMaster.setName(order.getDeliveryInfo().getDeliveryAddress().getName());
+			orderMaster.setCustomerName(order.getDeliveryInfo().getDeliveryAddress().getName());
 			orderMaster.setCustomerName(order.getDeliveryInfo().getDeliveryAddress().getName());
 
 		} else {
@@ -372,4 +371,5 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	}
 
 	
+	 
 }

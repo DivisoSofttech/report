@@ -17,7 +17,7 @@ import javax.validation.constraints.*;
  * OTPResponse
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-11-13T14:04:39.267087+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:40:40.577+05:30[Asia/Kolkata]")
 
 public class OTPResponse   {
   @JsonProperty("balance")
