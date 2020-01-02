@@ -4,25 +4,27 @@
       "packageName": "com.diviso.graeshoppe.report",
       "nativeLanguage": "en"
     },
-    "jhipsterVersion": "5.8.1",
+    "jhipsterVersion": "6.6.0",
     "applicationType": "microservice",
     "baseName": "report",
     "packageName": "com.diviso.graeshoppe.report",
     "packageFolder": "com/diviso/graeshoppe/report",
-    "serverPort": "8099",
+    "serverPort": "8077",
     "authenticationType": "oauth2",
     "cacheProvider": "hazelcast",
-    "enableHibernateCache": false,
+    "enableHibernateCache": true,
     "websocket": false,
     "databaseType": "sql",
     "devDatabaseType": "mysql",
     "prodDatabaseType": "mysql",
     "searchEngine": "elasticsearch",
-    "messageBroker": false,
+    "messageBroker": "kafka",
     "serviceDiscoveryType": "eureka",
     "buildTool": "maven",
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "YjRiNDM0YTRmZTYzOGY2NmVlMzEzOTBmNDk2NDM0MDUzM2YwN2JhODYwZTBkNGUwYmE1MzAzOGRiZDIyZjU1YjA2ODFiZjA2YmE2NzQzYWRhOTM5NWQ4MjcyYjdmZTcxYzQxOWI0NTAxNzI5OTRhNjZiMGFkYmQwNjAzZTI3YTQ=",
+    "jwtSecretKey": "NTY1OThhYzAyNjljZDk5ZWU5Nzk3Y2E1ODYwZmEwYzkwZmEyMGQ2NDkwOTMyODEzOWMxNzVkZDUyMzkzNmY1NmE4NTNiYWM3MTA3MGZhOTNkN2VkMjA2MjU4NDczOGEyYzMwYjg2MzA0YzVhYmM4YjVlZWVkNGFjOWE4YmI5MGE=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1577781180045,
     "testFrameworks": [],
     "jhiPrefix": "jhi",
     "entitySuffix": "",
@@ -34,17 +36,30 @@
     "languages": [
       "en"
     ],
+    "blueprints": [],
     "skipClient": true,
     "skipUserManagement": true
   },
   "generator-jhipster-swagger-cli": {
     "promptValues": {
-      "inputSpec": "http://dev.ci1.divisosofttech.com:8084/v2/api-docs",
-      "cliName": "product"
+      "inputSpec": "http://dev.ci2.divisosofttech.com:8088/v2/api-docs",
+      "cliName": "order"
     },
     "apis": {
+      "payment": {
+        "spec": "http://dev.ci2.divisosofttech.com:9090/v2/api-docs"
+      },
+      "store": {
+        "spec": "http://dev.ci1.divisosofttech.com:8071/v2/api-docs"
+      },
+      "customer": {
+        "spec": "http://dev.ci1.divisosofttech.com:8088/v2/api-docs"
+      },
       "product": {
         "spec": "http://dev.ci1.divisosofttech.com:8084/v2/api-docs"
+      },
+      "order": {
+        "spec": "http://dev.ci2.divisosofttech.com:8088/v2/api-docs"
       }
     }
   }
