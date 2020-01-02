@@ -213,20 +213,21 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setAllergyNote(order.getAllergyNote());
 		orderMaster.setSubTotal(order.getSubTotal());
 		orderMaster.setStoreIdpcode(order.getStoreId());
+		orderMaster.setZoneId(order.getTimeZone());
 		if (order.getPreOrderDate() == 0) {
 
 			orderMaster.setPreOrderDate(null);
 
 		} else {
-			orderMaster.setPreOrderDate(Instant.ofEpochMilli(order.getPreOrderDate()));
+			orderMaster.setPreOrderDate(Instant.ofEpochMilli(order.getPreOrderDate()).atZone(ZoneId.of("")));
 
 		}
 		orderMaster.setOrderDiscountAmount(0.0);
 		if (order.getPaymentMode().equals("cod")) {
-			log.info("Order paid");
+			log.info("OrderNot paid");
 			orderMaster.setPaymentStatus("ORDER NOT PAID");
 		} else {
-			log.info("Order Not paid");
+			log.info("Order paid");
 			orderMaster.setPaymentStatus("ORDER PAID");
 		}
 		if (order.getDeliveryInfo().getDeliveryAddress() != null) {
