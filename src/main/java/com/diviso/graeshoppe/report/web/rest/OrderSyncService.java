@@ -43,22 +43,20 @@ public class OrderSyncService {
 			consumer.subscribe(Collections.singletonList(orderTopic));
 			boolean exitLoop = false;
 			while (!exitLoop) {
-				System.out.println("Loop is working");
 				try {
 					ConsumerRecords<String, Order> records = consumer.poll(Duration.ofSeconds(5));
 					records.forEach(record -> {
-						System.out.println("Order is consuming "+record);
+						log.info("Order is consuming "+record);
 						orderMasterService.convertAndSaveOrderMaster(record.value());
 					});
 
 				} catch (Exception ex) {
-					System.out.println("Exceptuion is ");
 					ex.printStackTrace();
 					log.trace("Complete with error {}", ex.getMessage(), ex);
 					exitLoop = true;
 				}
 			}
-			System.out.println("Consumer is going to close");
+			log.info("Consumer is going to close");
 			consumer.close();
 		});
 	}
