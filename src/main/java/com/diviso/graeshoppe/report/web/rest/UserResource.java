@@ -7,7 +7,6 @@ import com.diviso.graeshoppe.report.security.AuthoritiesConstants;
 import com.diviso.graeshoppe.report.service.UserService;
 import com.diviso.graeshoppe.report.service.dto.UserDTO;
 
-import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 

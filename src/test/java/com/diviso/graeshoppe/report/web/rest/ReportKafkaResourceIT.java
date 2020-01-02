@@ -56,7 +56,7 @@ class ReportKafkaResourceIT {
         consumerProps.put("client.id", "default-client");
         kafkaProperties.setConsumer(consumerProps);
 
-        ReportKafkaResource kafkaResource = new ReportKafkaResource(kafkaProperties);
+        OrderSyncService kafkaResource = new OrderSyncService(kafkaProperties);
 
         restMockMvc = MockMvcBuilders.standaloneSetup(kafkaResource).build();
     }

@@ -11,10 +11,12 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {OrderLineMapper.class})
 public interface AuxItemMapper extends EntityMapper<AuxItemDTO, AuxItem> {
 
-    @Mapping(source = "orderLine.id", target = "orderLineId")
+    @Override
+	@Mapping(source = "orderLine.id", target = "orderLineId")
     AuxItemDTO toDto(AuxItem auxItem);
 
-    @Mapping(source = "orderLineId", target = "orderLine")
+    @Override
+	@Mapping(source = "orderLineId", target = "orderLine")
     AuxItem toEntity(AuxItemDTO auxItemDTO);
 
     default AuxItem fromId(Long id) {

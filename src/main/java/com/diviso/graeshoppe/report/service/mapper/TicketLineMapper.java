@@ -11,10 +11,12 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {SaleMapper.class})
 public interface TicketLineMapper extends EntityMapper<TicketLineDTO, TicketLine> {
 
-    @Mapping(source = "sale.id", target = "saleId")
+    @Override
+	@Mapping(source = "sale.id", target = "saleId")
     TicketLineDTO toDto(TicketLine ticketLine);
 
-    @Mapping(source = "saleId", target = "sale")
+    @Override
+	@Mapping(source = "saleId", target = "sale")
     TicketLine toEntity(TicketLineDTO ticketLineDTO);
 
     default TicketLine fromId(Long id) {

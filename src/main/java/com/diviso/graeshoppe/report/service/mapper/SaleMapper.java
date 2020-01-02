@@ -12,7 +12,8 @@ import org.mapstruct.*;
 public interface SaleMapper extends EntityMapper<SaleDTO, Sale> {
 
 
-    @Mapping(target = "ticketLines", ignore = true)
+    @Override
+	@Mapping(target = "ticketLines", ignore = true)
     @Mapping(target = "removeTicketLine", ignore = true)
     Sale toEntity(SaleDTO saleDTO);
 

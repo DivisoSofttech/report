@@ -1,13 +1,9 @@
 package com.diviso.graeshoppe.report.service.impl;
 
-import static org.elasticsearch.index.query.QueryBuilders.termQuery;
-
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -19,40 +15,20 @@ import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
-import org.springframework.data.elasticsearch.core.query.SearchQuery;
-import org.springframework.data.elasticsearch.core.query.StringQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import com.diviso.graeshoppe.report.client.customer.model.Customer;
-
 import com.diviso.graeshoppe.report.client.payment.api.PaymentResourceApi;
 import com.diviso.graeshoppe.report.client.payment.model.PaymentDTO;
-import com.diviso.graeshoppe.report.client.product.model.ComboLineItem;
-import com.diviso.graeshoppe.report.client.product.model.Product;
-import com.diviso.graeshoppe.report.client.store.model.Store;
-import com.diviso.graeshoppe.report.domain.AuxItem;
-import com.diviso.graeshoppe.report.domain.ComboItem;
-import com.diviso.graeshoppe.report.domain.OrderAggregator;
-import com.diviso.graeshoppe.report.domain.OrderLine;
-import com.diviso.graeshoppe.report.domain.OrderMaster;
 import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
 import com.diviso.graeshoppe.report.domain.ReportSummary;
 import com.diviso.graeshoppe.report.repository.OrderMasterRepository;
 import com.diviso.graeshoppe.report.service.QueryService;
-import com.github.vanroy.springdata.jest.JestElasticsearchTemplate;
-
-import io.searchbox.client.JestClient;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import com.diviso.graeshoppe.report.repository.OrderMasterRepository;
 import com.diviso.graeshoppe.report.service.OrderMasterService;
 @Service
 @Transactional
