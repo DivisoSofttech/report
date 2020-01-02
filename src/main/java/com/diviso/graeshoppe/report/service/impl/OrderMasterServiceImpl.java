@@ -14,7 +14,6 @@ import com.diviso.graeshoppe.report.client.product.model.Product;
 import com.diviso.graeshoppe.report.client.store.model.Store;
 import com.diviso.graeshoppe.report.domain.AuxItem;
 import com.diviso.graeshoppe.report.domain.ComboItem;
-import com.diviso.graeshoppe.report.domain.OfferLine;
 import com.diviso.graeshoppe.report.domain.OrderLine;
 import com.diviso.graeshoppe.report.domain.OrderMaster;
 import com.diviso.graeshoppe.report.repository.OrderMasterRepository;
@@ -35,7 +34,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.query.StringQuery;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,7 +41,6 @@ import java.time.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import com.diviso.graeshoppe.report.domain.OrderMaster;
 import static org.elasticsearch.index.query.QueryBuilders.*;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
@@ -218,7 +215,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 			orderMaster.setPreOrderDate(null);
 
 		} else {
-			orderMaster.setPreOrderDate(Instant.ofEpochMilli(order.getPreOrderDate()).atZone(ZoneId.of("")));
+			orderMaster.setPreOrderDate(Instant.ofEpochMilli(order.getPreOrderDate()));
 
 		}
 		orderMaster.setOrderDiscountAmount(0.0);

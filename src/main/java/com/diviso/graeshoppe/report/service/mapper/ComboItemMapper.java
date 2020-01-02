@@ -11,10 +11,12 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {OrderLineMapper.class})
 public interface ComboItemMapper extends EntityMapper<ComboItemDTO, ComboItem> {
 
-    @Mapping(source = "orderLine.id", target = "orderLineId")
+    @Override
+	@Mapping(source = "orderLine.id", target = "orderLineId")
     ComboItemDTO toDto(ComboItem comboItem);
 
-    @Mapping(source = "orderLineId", target = "orderLine")
+    @Override
+	@Mapping(source = "orderLineId", target = "orderLine")
     ComboItem toEntity(ComboItemDTO comboItemDTO);
 
     default ComboItem fromId(Long id) {
