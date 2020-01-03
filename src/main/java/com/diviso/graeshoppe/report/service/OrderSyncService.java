@@ -36,6 +36,7 @@ public class OrderSyncService {
 	public OrderSyncService(KafkaProperties kafkaProperties) {
 		this.kafkaProperties = kafkaProperties;
 		subscribeToOrder();
+		subscribeToApprovalInfo();
 	}
 
 	public void subscribeToApprovalInfo() {
@@ -82,6 +83,7 @@ public class OrderSyncService {
 					ConsumerRecords<String, Order> records = consumer.poll(Duration.ofSeconds(5));
 					records.forEach(record -> {
 						log.info("Order is consuming " + record);
+						log.info("Order master service is "+orderMasterService+" value is "+record.value());
 						orderMasterService.convertAndSaveOrderMaster(record.value());
 					});
 
