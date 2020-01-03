@@ -225,7 +225,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		}
 		orderMaster.setOrderDiscountAmount(0.0);
 		orderMaster.setZoneId(order.getTimeZone());
-		if (order.getPaymentMode().equals("cod")) {
+		if (order.getPaymentMode().equalsIgnoreCase("cod")) {
 			log.info("OrderNot paid");
 			orderMaster.setPaymentStatus("ORDER NOT PAID");
 		} else {
