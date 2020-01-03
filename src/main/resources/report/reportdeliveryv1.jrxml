@@ -296,7 +296,7 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a")
             .withZone(java.time.ZoneId.of("Asia/Kolkata"))
             .format(java.time.Instant.parse($F{pre_order_date}.toString().substring(0, 10)+"T"+$F{pre_order_date}.toString().substring(11,19)+".000Z")).substring(0,9),java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a")
             .withZone(java.time.ZoneId.of("Asia/Kolkata"))
-            .format(java.time.Instant.parse($F{pre_order_date}.toString().substring(0, 10)+"T"+$F{pre_order_date}.toString().substring(11,19)+".000Z")).substring(9,17)
+            .format(java.time.Instant.parse($F{pre_order_date}.toString().substring(0, 10)+"T"+$F{pre_order_date}.toString().substring(11,19)+".000Z")).substring(9,16)
            
             )]]></textFieldExpression>
 			</textField>
