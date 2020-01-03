@@ -285,7 +285,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 					<printWhenExpression><![CDATA[$F{pre_order_date}!=null]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[String.format("Requested  for %1$s       at  ASAP / %2$s",java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a")
+				<textFieldExpression><![CDATA[String.format("Requested  for %1$s\nat  ASAP / %2$s",java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm")
             .withZone(java.time.ZoneId.of("Asia/Kolkata"))
             .format(java.time.Instant.parse($F{pre_order_date}.toString().substring(0, 10)+"T"+$F{pre_order_date}.toString().substring(11,19)+".000Z")).substring(0,9),java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a")
             .withZone(java.time.ZoneId.of("Asia/Kolkata"))
@@ -298,13 +298,12 @@ ct ORDER BY  item ASC,rowid DESC]]>
 					<printWhenExpression><![CDATA[$F{pre_order_date}==null]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[String.format("Due %1$s at ASAP / %2$s",java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a")
+				<textFieldExpression><![CDATA[String.format("Due %1$s at ASAP / %2$s",java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm")
             .withZone(java.time.ZoneId.of("Asia/Kolkata"))
             .format(java.time.Instant.parse($F{expected_delivery}.toString().substring(0, 10)+"T"+$F{expected_delivery}.toString().substring(11,19)+".000Z")).substring(0,9),
-java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a")
+java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
             .withZone(java.time.ZoneId.of("Asia/Kolkata"))
-            .format(java.time.Instant.parse($F{expected_delivery}.toString().substring(0, 10)+"T"+$F{expected_delivery}.toString().substring(11,19)+".000Z")).substring(9,17)
-	)]]></textFieldExpression>
+            .format(java.time.Instant.parse($F{expected_delivery}.toString().substring(0, 10)+"T"+$F{expected_delivery}.toString().substring(11,19)+".000Z")).substring(9,17))]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

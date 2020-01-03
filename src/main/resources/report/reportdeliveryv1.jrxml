@@ -275,7 +275,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="M/d/yy">
-				<reportElement positionType="Float" x="-21" y="98" width="171" height="12" uuid="01ae1d10-0591-43af-a4b3-8096d0666c18">
+				<reportElement positionType="Float" x="-21" y="96" width="171" height="12" uuid="01ae1d10-0591-43af-a4b3-8096d0666c18">
 					<printWhenExpression><![CDATA[$F{pre_order_date}==null]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
@@ -288,15 +288,15 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a")
 	)]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="M/d/yy" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="0" y="93" width="143" height="12" uuid="51618cb3-3c2a-413d-9610-eb3816fff655">
+				<reportElement positionType="Float" x="-3" y="92" width="143" height="12" uuid="e9bd3b56-d4da-4129-8310-1a1751f0e07d">
 					<printWhenExpression><![CDATA[$F{pre_order_date}!=null]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[String.format("Requested  for %1$s       at  ASAP / %2$s",java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a")
+				<textFieldExpression><![CDATA[String.format("Requested  for %1$s\nat  ASAP / %2$s",java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm")
             .withZone(java.time.ZoneId.of("Asia/Kolkata"))
             .format(java.time.Instant.parse($F{pre_order_date}.toString().substring(0, 10)+"T"+$F{pre_order_date}.toString().substring(11,19)+".000Z")).substring(0,9),java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy h:mm a")
             .withZone(java.time.ZoneId.of("Asia/Kolkata"))
-            .format(java.time.Instant.parse($F{pre_order_date}.toString().substring(0, 10)+"T"+$F{pre_order_date}.toString().substring(11,19)+".000Z")).substring(9,16)
+            .format(java.time.Instant.parse($F{pre_order_date}.toString().substring(0, 10)+"T"+$F{pre_order_date}.toString().substring(11,19)+".000Z")).substring(9,17)
            
             )]]></textFieldExpression>
 			</textField>
