@@ -275,7 +275,7 @@ public class QueryResource {
 	}
 	
 	
-	@GetMapping("/ordersbetweendates/{fromDate}/{ToDate}")
+	@GetMapping("/ordersbetweendates/{fromDate}/{toDate}")
 	public ResponseEntity<byte[]> getAllOrdersBetweenDatesAsPdf(@PathVariable String fromDate, @PathVariable String toDate ){
 
 		// log.debug("REST request to get a pdf");
@@ -296,5 +296,50 @@ public class QueryResource {
 		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
 		return response;
 	}
-		
+	
+
+	@GetMapping("/ordersummarybetweendates/{fromDate}/{toDate}/{storeId}")
+	public ResponseEntity<byte[]> getOrderSummaryBetweenDatesAsPdf(@PathVariable String fromDate, @PathVariable String toDate , @PathVariable String storeId){
+
+		// log.debug("REST request to get a pdf");
+
+		byte[] pdfContents = null;
+
+
+		try {
+			pdfContents = queryService.getOrderSummaryBetweenDatesAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate), storeId );
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		String fileName = "orderSummaryBetweenDates.pdf";
+		headers.add("content-disposition", "attachment; filename=" + fileName);
+		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
+		return response;
+	}
+	
+	@GetMapping("/ordersummarybydateandstorename/{date}/{storeId}")
+	public ResponseEntity<byte[]> getOrderSummaryByDateAndStoreNameAsPdf(@PathVariable String date, @PathVariable String storeId) {
+
+		// log.debug("REST request to get a pdf");
+
+		byte[] pdfContents = null;
+
+
+		try {
+			pdfContents = queryService.getOrderSummaryByDateAndStoreNameAsPdf(LocalDate.parse(date), storeId);
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		String fileName = "orderSummaryByDateAndStoreName.pdf";
+		headers.add("content-disposition", "attachment; filename=" + fileName);
+		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
+		return response;
+	}
+	
 }

@@ -16,31 +16,33 @@
     ],
     "relationships": [
         {
-            "relationshipName": "orderMaster",
-            "otherEntityName": "orderMaster",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        },
-        {
             "relationshipType": "one-to-many",
-            "relationshipName": "auxItem",
             "otherEntityName": "auxItem",
-            "otherEntityRelationshipName": "orderLine"
+            "otherEntityRelationshipName": "orderLine",
+            "relationshipName": "auxItem"
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "comboItem",
             "otherEntityName": "comboItem",
-            "otherEntityRelationshipName": "orderLine"
+            "otherEntityRelationshipName": "orderLine",
+            "relationshipName": "comboItem"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "orderMaster",
+            "otherEntityRelationshipName": "orderLine",
+            "relationshipName": "orderMaster",
+            "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190808044728",
+    "changelogDate": "20191231084241",
     "entityTableName": "order_line",
     "dto": "mapstruct",
     "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
+    "readOnly": false,
     "clientRootFolder": "report",
     "applications": "*",
     "microserviceName": "report"

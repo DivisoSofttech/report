@@ -16,19 +16,21 @@
     ],
     "relationships": [
         {
-            "relationshipName": "orderLine",
-            "otherEntityName": "orderLine",
             "relationshipType": "many-to-one",
+            "otherEntityName": "orderLine",
+            "otherEntityRelationshipName": "auxItem",
+            "relationshipName": "orderLine",
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190819104623",
+    "changelogDate": "20191231084239",
     "entityTableName": "aux_item",
     "dto": "mapstruct",
     "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
+    "readOnly": false,
     "clientRootFolder": "report",
     "applications": "*",
     "microserviceName": "report"

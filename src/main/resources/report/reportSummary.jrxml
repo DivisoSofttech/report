@@ -103,7 +103,7 @@
 				<textFieldExpression><![CDATA[$F{store_name}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<image scaleImage="RealSize">
-				<reportElement positionType="Float" x="4" y="-59" width="116" height="144" uuid="36658e82-02bf-4213-a352-1db54d21dd0b"/>
+				<reportElement positionType="Float" x="-9" y="-59" width="116" height="144" uuid="36658e82-02bf-4213-a352-1db54d21dd0b"/>
 				<graphicElement fill="Solid"/>
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
@@ -190,62 +190,62 @@
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="51" y="38" width="29" height="23" isRemoveLineWhenBlank="true" uuid="35650405-7bd7-4e97-a82a-b795db43c334"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{all}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="91" y="38" width="48" height="23" isRemoveLineWhenBlank="true" uuid="b6e9bda9-ebd2-4b6c-9095-208872aa47de">
 					<printWhenExpression><![CDATA[$F{all_V}!=null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{all_V}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="51" y="63" width="29" height="20" uuid="8cf0dea7-adee-41ef-80a7-50d9071bcab9"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{CARD}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="90" y="63" width="49" height="20" uuid="adec700e-409a-4520-ae4b-ecec9e0b927e">
 					<printWhenExpression><![CDATA[$F{card_v}!=null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{card_v}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="51" y="90" width="29" height="19" uuid="85b6d865-008d-4171-addf-44ab91102d7c"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{CASH}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="90" y="90" width="49" height="19" isRemoveLineWhenBlank="true" uuid="3f4ee087-6bde-48aa-aa98-8c8e63f4feaa">
 					<printWhenExpression><![CDATA[$F{cash_v}!=null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{cash_v}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="50" y="114" width="30" height="21" uuid="245427ff-d13b-4ecb-9b48-9d1818f2c86b"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{DELIVERY}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="90" y="114" width="49" height="21" uuid="5ed479e6-3020-4d91-a49b-4d4d1e31a2a7">
 					<printWhenExpression><![CDATA[$F{delivery_v}!=null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{delivery_v}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="51" y="138" width="29" height="21" uuid="0be56160-809c-467d-8ca8-768250f84f5d"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{COLLECTION}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="90" y="135" width="49" height="24" uuid="d529a80a-51fc-468f-823c-7c30039b6168">
 					<printWhenExpression><![CDATA[$F{Collection_v}!=null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{Collection_v}]]></textFieldExpression>
 			</textField>
 		</band>

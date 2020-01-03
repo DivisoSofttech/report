@@ -379,6 +379,49 @@ public class QueryServiceImpl implements QueryService {
 		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
 		return JasperExportManager.exportReportToPdf(jp);
 	}
+
+	@Override
+	public byte[] getOrderSummaryBetweenDatesAsPdf(LocalDate fromDate, LocalDate toDate, String storeId) throws JRException {
+
+
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersummarybetweendates.jrxml");
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("from_date", fromDate);
+		parameters.put("to_date", toDate);
+		parameters.put("store_name", storeId);
+		
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		return JasperExportManager.exportReportToPdf(jp);
+	}
+
+	@Override
+	public byte[] getOrderSummaryByDateAndStoreNameAsPdf(LocalDate date, String storeId) throws JRException {
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersummaryadmin.jrxml");
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("date", date);
+		parameters.put("store_name", storeId);
+		
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		return JasperExportManager.exportReportToPdf(jp);
+	}
 	
 
 }
