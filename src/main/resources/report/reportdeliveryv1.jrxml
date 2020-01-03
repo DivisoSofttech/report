@@ -280,10 +280,10 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[String.format("Due %1$s at ASAP / %2$s",java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm")
-            .withZone(java.time.ZoneId.of("Asia/Kolkata"))
+            .withZone(java.time.ZoneId.of($F{zone_id}))
             .format(java.time.Instant.parse($F{expected_delivery}.toString().substring(0, 10)+"T"+$F{expected_delivery}.toString().substring(11,19)+".000Z")).substring(0,9),
 java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm")
-            .withZone(java.time.ZoneId.of("Asia/Kolkata"))
+            .withZone(java.time.ZoneId.of($F{zone_id}))
             .format(java.time.Instant.parse($F{expected_delivery}.toString().substring(0, 10)+"T"+$F{expected_delivery}.toString().substring(11,19)+".000Z")).substring(9,15)
 	)]]></textFieldExpression>
 			</textField>
@@ -293,9 +293,9 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm")
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[String.format("Requested  for %1$s\nat  ASAP / %2$s",java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm")
-            .withZone(java.time.ZoneId.of("Asia/Kolkata"))
+            .withZone(java.time.ZoneId.of($F{zone_id}))
             .format(java.time.Instant.parse($F{pre_order_date}.toString().substring(0, 10)+"T"+$F{pre_order_date}.toString().substring(11,19)+".000Z")).substring(0,9),java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm")
-            .withZone(java.time.ZoneId.of("Asia/Kolkata"))
+            .withZone(java.time.ZoneId.of($F{zone_id}))
             .format(java.time.Instant.parse($F{pre_order_date}.toString().substring(0, 10)+"T"+$F{pre_order_date}.toString().substring(11,19)+".000Z")).substring(9,15)
            
             )]]></textFieldExpression>
@@ -363,7 +363,7 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm")
 		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="495" splitType="Stretch">
+		<band height="480" splitType="Stretch">
 			<textField isStretchWithOverflow="true" pattern="#,#00.00#">
 				<reportElement positionType="Float" x="108" y="34" width="31" height="15" uuid="cb6e1fcd-2d38-4174-910a-5bf196d3893b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -572,7 +572,7 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm")
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm")
-            .withZone(java.time.ZoneId.of("Asia/Kolkata"))
+            .withZone(java.time.ZoneId.of($F{zone_id}))
             .format(java.time.Instant.parse($F{order_place_at}.toString().substring(0, 10)+"T"+$F{order_place_at}.toString().substring(11,19)+".000Z"))]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
@@ -581,13 +581,13 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm")
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm")
-            .withZone(java.time.ZoneId.of("Asia/Kolkata"))
+            .withZone(java.time.ZoneId.of($F{zone_id}))
             .format(java.time.Instant.parse($F{order_accepted_at}.toString().substring(0, 10)+"T"+$F{order_accepted_at}.toString().substring(11,19)+".000Z"))]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="MMMMM dd, yyyy">
 				<reportElement positionType="Float" x="-10" y="465" width="149" height="15" uuid="68eeb0da-d401-44d6-aec5-7441af2b1c2b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm").withZone(java.time.ZoneId.of("Asia/Kolkata")).format( java.time.Instant.now())]]></textFieldExpression>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm").withZone(java.time.ZoneId.of($F{zone_id})).format( java.time.Instant.now())]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="113" y="132" width="37" height="16" uuid="d5effe4f-b5ac-459e-bfbe-68f13c7195af"/>
