@@ -257,19 +257,17 @@
 		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="20" splitType="Stretch">
+		<band height="21" splitType="Stretch">
 			<line>
 				<reportElement x="-18" y="-6" width="162" height="1" uuid="7f8e0b36-59f3-4760-a22f-4a24354a8c63"/>
 				<graphicElement>
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
-			<textField isStretchWithOverflow="true" pattern="MMM d, yyyy h:mm a">
-				<reportElement positionType="Float" x="-11" y="5" width="151" height="15" uuid="dd7e1c1b-eb52-4b5a-9cc3-e6e53c542db7"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			<textField isStretchWithOverflow="true" pattern="MMMMM dd, yyyy">
+				<reportElement positionType="Float" x="-10" y="6" width="149" height="15" uuid="ee3810b9-a9ae-4cfd-8ac8-aed09b5ff6fb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm").withZone(java.time.ZoneId.of($F{zone_id})).format( java.time.Instant.now())]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
