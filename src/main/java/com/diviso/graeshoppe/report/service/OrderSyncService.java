@@ -36,6 +36,7 @@ public class OrderSyncService {
 	public OrderSyncService(KafkaProperties kafkaProperties) {
 		this.kafkaProperties = kafkaProperties;
 		subscribeToOrder();
+		subscribeToApprovalInfo();
 	}
 
 	public void subscribeToApprovalInfo() {
