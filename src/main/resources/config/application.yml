@@ -225,4 +225,6 @@ kafka:
 topic:
    order:
       destination: order
+   approvalInfo:
+      destination: approvalinfo
 # application:

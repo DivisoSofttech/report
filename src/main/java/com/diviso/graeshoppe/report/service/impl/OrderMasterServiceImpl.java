@@ -205,6 +205,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setMethodOfOrder(order.getDeliveryInfo().getDeliveryType().toUpperCase());
 		orderMaster.setOrderNumber(order.getOrderId());
 		orderMaster.setDeliveryCharge(order.getDeliveryInfo().getDeliveryCharge());
+		orderMaster.setLoyaltyPoint(customer.getLoyaltyPoint());
 		if(order.getCustomerPhone()!=0) {
 			orderMaster.setPhone(order.getCustomerPhone());
 		}else {
@@ -223,6 +224,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 		}
 		orderMaster.setOrderDiscountAmount(0.0);
+		orderMaster.setZoneId(order.getTimeZone());
 		if (order.getPaymentMode().equals("cod")) {
 			log.info("OrderNot paid");
 			orderMaster.setPaymentStatus("ORDER NOT PAID");
@@ -237,7 +239,6 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 					.setHouseNoOrBuildingName(order.getDeliveryInfo().getDeliveryAddress().getHouseNoOrBuildingName());
 			orderMaster.setCity(order.getDeliveryInfo().getDeliveryAddress().getCity());
 			orderMaster.setLandmark(order.getDeliveryInfo().getDeliveryAddress().getLandmark());
-			// orderMaster.setPhone(order.getDeliveryInfo().getDeliveryAddress().getPhone());
 			orderMaster.setAlternatePhone(order.getDeliveryInfo().getDeliveryAddress().getAlternatePhone());
 			orderMaster.setPincode(order.getDeliveryInfo().getDeliveryAddress().getPincode());
 			orderMaster.setState(order.getDeliveryInfo().getDeliveryAddress().getState());
@@ -264,7 +265,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 			orderMaster.setOrderAcceptedAt(acceptedDate);
 		}
 
-		log.info("The order master going to persist is ^^^^^^^^^^^^^^^^^ " + orderMaster);
+		log.info("The order master going to persist is  " + orderMaster);
 		OrderMaster updatedResult = orderMasterRepository.save(orderMaster);
 		order.getOfferLines().forEach(offer -> {
 			OfferLineDTO offerLine = new OfferLineDTO();

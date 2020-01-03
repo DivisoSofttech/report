@@ -12,23 +12,23 @@ import org.apache.avro.message.SchemaStore;
 
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
-public class ApprovalDetails extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 7451463887840180467L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ApprovalDetails\",\"namespace\":\"com.diviso.graeshoppe.order.avro\",\"fields\":[{\"name\":\"orderId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"acceptedAt\",\"type\":\"long\",\"logicalType\":\"date\"},{\"name\":\"expectedDelivery\",\"type\":\"long\",\"logicalType\":\"date\"}]}");
+public class ApprovalInfo extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
+  private static final long serialVersionUID = 6093757732553960839L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ApprovalInfo\",\"namespace\":\"com.diviso.graeshoppe.order.avro\",\"fields\":[{\"name\":\"orderId\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}]},{\"name\":\"acceptedAt\",\"type\":\"long\",\"logicalType\":\"date\"},{\"name\":\"expectedDelivery\",\"type\":\"long\",\"logicalType\":\"date\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
 
-  private static final BinaryMessageEncoder<ApprovalDetails> ENCODER =
-      new BinaryMessageEncoder<ApprovalDetails>(MODEL$, SCHEMA$);
+  private static final BinaryMessageEncoder<ApprovalInfo> ENCODER =
+      new BinaryMessageEncoder<ApprovalInfo>(MODEL$, SCHEMA$);
 
-  private static final BinaryMessageDecoder<ApprovalDetails> DECODER =
-      new BinaryMessageDecoder<ApprovalDetails>(MODEL$, SCHEMA$);
+  private static final BinaryMessageDecoder<ApprovalInfo> DECODER =
+      new BinaryMessageDecoder<ApprovalInfo>(MODEL$, SCHEMA$);
 
   /**
    * Return the BinaryMessageDecoder instance used by this class.
    */
-  public static BinaryMessageDecoder<ApprovalDetails> getDecoder() {
+  public static BinaryMessageDecoder<ApprovalInfo> getDecoder() {
     return DECODER;
   }
 
@@ -36,17 +36,17 @@ public class ApprovalDetails extends org.apache.avro.specific.SpecificRecordBase
    * Create a new BinaryMessageDecoder instance for this class that uses the specified {@link SchemaStore}.
    * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
    */
-  public static BinaryMessageDecoder<ApprovalDetails> createDecoder(SchemaStore resolver) {
-    return new BinaryMessageDecoder<ApprovalDetails>(MODEL$, SCHEMA$, resolver);
+  public static BinaryMessageDecoder<ApprovalInfo> createDecoder(SchemaStore resolver) {
+    return new BinaryMessageDecoder<ApprovalInfo>(MODEL$, SCHEMA$, resolver);
   }
 
-  /** Serializes this ApprovalDetails to a ByteBuffer. */
+  /** Serializes this ApprovalInfo to a ByteBuffer. */
   public java.nio.ByteBuffer toByteBuffer() throws java.io.IOException {
     return ENCODER.encode(this);
   }
 
-  /** Deserializes a ApprovalDetails from a ByteBuffer. */
-  public static ApprovalDetails fromByteBuffer(
+  /** Deserializes a ApprovalInfo from a ByteBuffer. */
+  public static ApprovalInfo fromByteBuffer(
       java.nio.ByteBuffer b) throws java.io.IOException {
     return DECODER.decode(b);
   }
@@ -60,7 +60,7 @@ public class ApprovalDetails extends org.apache.avro.specific.SpecificRecordBase
    * to their default values from the schema.  If that is desired then
    * one should use <code>newBuilder()</code>.
    */
-  public ApprovalDetails() {}
+  public ApprovalInfo() {}
 
   /**
    * All-args constructor.
@@ -68,15 +68,17 @@ public class ApprovalDetails extends org.apache.avro.specific.SpecificRecordBase
    * @param acceptedAt The new value for acceptedAt
    * @param expectedDelivery The new value for expectedDelivery
    */
-  public ApprovalDetails(java.lang.String orderId, java.lang.Long acceptedAt, java.lang.Long expectedDelivery) {
+  public ApprovalInfo(java.lang.String orderId, java.lang.Long acceptedAt, java.lang.Long expectedDelivery) {
     this.orderId = orderId;
     this.acceptedAt = acceptedAt;
     this.expectedDelivery = expectedDelivery;
   }
 
-  public org.apache.avro.Schema getSchema() { return SCHEMA$; }
+  @Override
+public org.apache.avro.Schema getSchema() { return SCHEMA$; }
   // Used by DatumWriter.  Applications should not call.
-  public java.lang.Object get(int field$) {
+  @Override
+public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return orderId;
     case 1: return acceptedAt;
@@ -86,7 +88,8 @@ public class ApprovalDetails extends org.apache.avro.specific.SpecificRecordBase
   }
 
   // Used by DatumReader.  Applications should not call.
-  @SuppressWarnings(value="unchecked")
+  @Override
+@SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: orderId = (java.lang.String)value$; break;
@@ -145,36 +148,36 @@ public class ApprovalDetails extends org.apache.avro.specific.SpecificRecordBase
   }
 
   /**
-   * Creates a new ApprovalDetails RecordBuilder.
-   * @return A new ApprovalDetails RecordBuilder
+   * Creates a new ApprovalInfo RecordBuilder.
+   * @return A new ApprovalInfo RecordBuilder
    */
-  public static com.diviso.graeshoppe.order.avro.ApprovalDetails.Builder newBuilder() {
-    return new com.diviso.graeshoppe.order.avro.ApprovalDetails.Builder();
+  public static com.diviso.graeshoppe.order.avro.ApprovalInfo.Builder newBuilder() {
+    return new com.diviso.graeshoppe.order.avro.ApprovalInfo.Builder();
   }
 
   /**
-   * Creates a new ApprovalDetails RecordBuilder by copying an existing Builder.
+   * Creates a new ApprovalInfo RecordBuilder by copying an existing Builder.
    * @param other The existing builder to copy.
-   * @return A new ApprovalDetails RecordBuilder
+   * @return A new ApprovalInfo RecordBuilder
    */
-  public static com.diviso.graeshoppe.order.avro.ApprovalDetails.Builder newBuilder(com.diviso.graeshoppe.order.avro.ApprovalDetails.Builder other) {
-    return new com.diviso.graeshoppe.order.avro.ApprovalDetails.Builder(other);
+  public static com.diviso.graeshoppe.order.avro.ApprovalInfo.Builder newBuilder(com.diviso.graeshoppe.order.avro.ApprovalInfo.Builder other) {
+    return new com.diviso.graeshoppe.order.avro.ApprovalInfo.Builder(other);
   }
 
   /**
-   * Creates a new ApprovalDetails RecordBuilder by copying an existing ApprovalDetails instance.
+   * Creates a new ApprovalInfo RecordBuilder by copying an existing ApprovalInfo instance.
    * @param other The existing instance to copy.
-   * @return A new ApprovalDetails RecordBuilder
+   * @return A new ApprovalInfo RecordBuilder
    */
-  public static com.diviso.graeshoppe.order.avro.ApprovalDetails.Builder newBuilder(com.diviso.graeshoppe.order.avro.ApprovalDetails other) {
-    return new com.diviso.graeshoppe.order.avro.ApprovalDetails.Builder(other);
+  public static com.diviso.graeshoppe.order.avro.ApprovalInfo.Builder newBuilder(com.diviso.graeshoppe.order.avro.ApprovalInfo other) {
+    return new com.diviso.graeshoppe.order.avro.ApprovalInfo.Builder(other);
   }
 
   /**
-   * RecordBuilder for ApprovalDetails instances.
+   * RecordBuilder for ApprovalInfo instances.
    */
-  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<ApprovalDetails>
-    implements org.apache.avro.data.RecordBuilder<ApprovalDetails> {
+  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<ApprovalInfo>
+    implements org.apache.avro.data.RecordBuilder<ApprovalInfo> {
 
     private java.lang.String orderId;
     private long acceptedAt;
@@ -189,7 +192,7 @@ public class ApprovalDetails extends org.apache.avro.specific.SpecificRecordBase
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(com.diviso.graeshoppe.order.avro.ApprovalDetails.Builder other) {
+    private Builder(com.diviso.graeshoppe.order.avro.ApprovalInfo.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.orderId)) {
         this.orderId = data().deepCopy(fields()[0].schema(), other.orderId);
@@ -206,10 +209,10 @@ public class ApprovalDetails extends org.apache.avro.specific.SpecificRecordBase
     }
 
     /**
-     * Creates a Builder by copying an existing ApprovalDetails instance
+     * Creates a Builder by copying an existing ApprovalInfo instance
      * @param other The existing instance to copy.
      */
-    private Builder(com.diviso.graeshoppe.order.avro.ApprovalDetails other) {
+    private Builder(com.diviso.graeshoppe.order.avro.ApprovalInfo other) {
             super(SCHEMA$);
       if (isValidValue(fields()[0], other.orderId)) {
         this.orderId = data().deepCopy(fields()[0].schema(), other.orderId);
@@ -238,7 +241,7 @@ public class ApprovalDetails extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'orderId'.
       * @return This builder.
       */
-    public com.diviso.graeshoppe.order.avro.ApprovalDetails.Builder setOrderId(java.lang.String value) {
+    public com.diviso.graeshoppe.order.avro.ApprovalInfo.Builder setOrderId(java.lang.String value) {
       validate(fields()[0], value);
       this.orderId = value;
       fieldSetFlags()[0] = true;
@@ -258,7 +261,7 @@ public class ApprovalDetails extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'orderId' field.
       * @return This builder.
       */
-    public com.diviso.graeshoppe.order.avro.ApprovalDetails.Builder clearOrderId() {
+    public com.diviso.graeshoppe.order.avro.ApprovalInfo.Builder clearOrderId() {
       orderId = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -277,7 +280,7 @@ public class ApprovalDetails extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'acceptedAt'.
       * @return This builder.
       */
-    public com.diviso.graeshoppe.order.avro.ApprovalDetails.Builder setAcceptedAt(long value) {
+    public com.diviso.graeshoppe.order.avro.ApprovalInfo.Builder setAcceptedAt(long value) {
       validate(fields()[1], value);
       this.acceptedAt = value;
       fieldSetFlags()[1] = true;
@@ -297,7 +300,7 @@ public class ApprovalDetails extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'acceptedAt' field.
       * @return This builder.
       */
-    public com.diviso.graeshoppe.order.avro.ApprovalDetails.Builder clearAcceptedAt() {
+    public com.diviso.graeshoppe.order.avro.ApprovalInfo.Builder clearAcceptedAt() {
       fieldSetFlags()[1] = false;
       return this;
     }
@@ -315,7 +318,7 @@ public class ApprovalDetails extends org.apache.avro.specific.SpecificRecordBase
       * @param value The value of 'expectedDelivery'.
       * @return This builder.
       */
-    public com.diviso.graeshoppe.order.avro.ApprovalDetails.Builder setExpectedDelivery(long value) {
+    public com.diviso.graeshoppe.order.avro.ApprovalInfo.Builder setExpectedDelivery(long value) {
       validate(fields()[2], value);
       this.expectedDelivery = value;
       fieldSetFlags()[2] = true;
@@ -335,16 +338,16 @@ public class ApprovalDetails extends org.apache.avro.specific.SpecificRecordBase
       * Clears the value of the 'expectedDelivery' field.
       * @return This builder.
       */
-    public com.diviso.graeshoppe.order.avro.ApprovalDetails.Builder clearExpectedDelivery() {
+    public com.diviso.graeshoppe.order.avro.ApprovalInfo.Builder clearExpectedDelivery() {
       fieldSetFlags()[2] = false;
       return this;
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public ApprovalDetails build() {
+    public ApprovalInfo build() {
       try {
-        ApprovalDetails record = new ApprovalDetails();
+        ApprovalInfo record = new ApprovalInfo();
         record.orderId = fieldSetFlags()[0] ? this.orderId : (java.lang.String) defaultValue(fields()[0]);
         record.acceptedAt = fieldSetFlags()[1] ? this.acceptedAt : (java.lang.Long) defaultValue(fields()[1]);
         record.expectedDelivery = fieldSetFlags()[2] ? this.expectedDelivery : (java.lang.Long) defaultValue(fields()[2]);
@@ -356,8 +359,8 @@ public class ApprovalDetails extends org.apache.avro.specific.SpecificRecordBase
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<ApprovalDetails>
-    WRITER$ = (org.apache.avro.io.DatumWriter<ApprovalDetails>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter<ApprovalInfo>
+    WRITER$ = MODEL$.createDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
@@ -365,8 +368,8 @@ public class ApprovalDetails extends org.apache.avro.specific.SpecificRecordBase
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<ApprovalDetails>
-    READER$ = (org.apache.avro.io.DatumReader<ApprovalDetails>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader<ApprovalInfo>
+    READER$ = MODEL$.createDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {
