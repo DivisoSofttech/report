@@ -1,6 +1,8 @@
 package com.diviso.graeshoppe.report.web.rest;
 
 import com.diviso.graeshoppe.report.config.KafkaProperties;
+import com.diviso.graeshoppe.report.service.OrderSyncService;
+
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
