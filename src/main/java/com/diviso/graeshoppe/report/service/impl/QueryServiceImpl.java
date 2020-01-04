@@ -142,7 +142,7 @@ public class QueryServiceImpl implements QueryService {
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("date", date);
-		parameters.put("store_name", storeId);
+		parameters.put("store_idpcode", storeId);
 		Connection conn = null;
 		try {
 			conn = dataSource.getConnection();
