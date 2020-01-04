@@ -586,7 +586,9 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="MMMMM dd, yyyy">
 				<reportElement positionType="Float" x="-10" y="465" width="149" height="15" uuid="68eeb0da-d401-44d6-aec5-7441af2b1c2b"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
 				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a").withZone(java.time.ZoneId.of($F{zone_id})).format( java.time.Instant.now())]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">

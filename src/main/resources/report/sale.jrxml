@@ -156,27 +156,13 @@
 		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="69" splitType="Stretch">
+		<band height="65" splitType="Stretch">
 			<textField>
 				<reportElement positionType="Float" x="-11" y="33" width="151" height="16" uuid="a26ff879-1e2c-4379-b847-fed6623f5532"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Powered by Graeshoppe"]]></textFieldExpression>
-			</textField>
-			<textField pattern="HH:mm">
-				<reportElement positionType="Float" x="62" y="47" width="80" height="22" uuid="978ca3ed-6a20-4654-8a4a-15c6d2b503b9"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-			<textField pattern="MMM d, yyyy">
-				<reportElement positionType="Float" x="-9" y="47" width="101" height="22" uuid="57215ccf-5736-4357-8a9c-18344bba15fc"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="-6" y="7" width="89" height="15" uuid="e0f0deb8-37bb-4b0a-a61a-6e133092d194"/>
@@ -189,6 +175,13 @@
 			<line>
 				<reportElement x="90" y="4" width="48" height="1" uuid="284dbd4a-b724-4af4-9911-b131625a9a2c"/>
 			</line>
+			<textField isStretchWithOverflow="true" pattern="MMMMM dd, yyyy">
+				<reportElement positionType="Float" x="-10" y="50" width="149" height="15" uuid="d01e7a07-fdcd-450a-ba73-aada4821111a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a").withZone(java.time.ZoneId.of($F{zone_id})).format( java.time.Instant.now())]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>

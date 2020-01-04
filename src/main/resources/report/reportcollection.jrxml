@@ -497,7 +497,7 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm")
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
             .withZone(java.time.ZoneId.of($F{zone_id}))
             .format(java.time.Instant.parse($F{order_accepted_at}.toString().substring(0, 10)+"T"+$F{order_accepted_at}.toString().substring(11,19)+".000Z"))]]></textFieldExpression>
 			</textField>
@@ -512,8 +512,10 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="MMMMM dd, yyyy">
 				<reportElement positionType="Float" x="-10" y="268" width="149" height="15" uuid="1a088a1a-3b11-4a9c-9344-a9a7d3a05528"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm").withZone(java.time.ZoneId.of($F{zone_id})).format( java.time.Instant.now())]]></textFieldExpression>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a").withZone(java.time.ZoneId.of($F{zone_id})).format( java.time.Instant.now())]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="113" y="106" width="36" height="14" uuid="4b7b0c79-af87-4674-88e9-fd2c9ebd307d"/>
