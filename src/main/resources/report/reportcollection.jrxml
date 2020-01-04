@@ -493,7 +493,7 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 				<text><![CDATA[Order Accepted:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
-				<reportElement positionType="Float" x="63" y="218" width="87" height="20" uuid="0089f0d9-7a60-4494-8234-a3e2e67de274"/>
+				<reportElement positionType="Float" x="60" y="217" width="90" height="20" uuid="0089f0d9-7a60-4494-8234-a3e2e67de274"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -502,7 +502,7 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
             .format(java.time.Instant.parse($F{order_accepted_at}.toString().substring(0, 10)+"T"+$F{order_accepted_at}.toString().substring(11,19)+".000Z"))]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
-				<reportElement positionType="Float" x="63" y="195" width="87" height="20" uuid="90e576b9-8fec-40d4-beff-e6c17705e4bd"/>
+				<reportElement positionType="Float" x="60" y="194" width="90" height="20" uuid="90e576b9-8fec-40d4-beff-e6c17705e4bd"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>

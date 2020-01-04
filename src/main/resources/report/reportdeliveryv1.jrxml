@@ -363,7 +363,7 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="480" splitType="Stretch">
+		<band height="478" splitType="Stretch">
 			<textField isStretchWithOverflow="true" pattern="#,#00.00#">
 				<reportElement positionType="Float" x="108" y="34" width="31" height="15" uuid="cb6e1fcd-2d38-4174-910a-5bf196d3893b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -567,7 +567,7 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 				<textFieldExpression><![CDATA["Loyalty Card Point           :"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
-				<reportElement positionType="Float" x="65" y="387" width="85" height="20" uuid="6e013888-f631-40e8-8510-42f1d26cf240"/>
+				<reportElement positionType="Float" x="60" y="387" width="90" height="20" uuid="6e013888-f631-40e8-8510-42f1d26cf240"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -576,7 +576,7 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
             .format(java.time.Instant.parse($F{order_place_at}.toString().substring(0, 10)+"T"+$F{order_place_at}.toString().substring(11,19)+".000Z"))]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
-				<reportElement positionType="Float" x="65" y="410" width="85" height="20" uuid="de7598d0-0650-4476-acdf-34e772ffdade"/>
+				<reportElement positionType="Float" x="60" y="410" width="90" height="20" uuid="de7598d0-0650-4476-acdf-34e772ffdade"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -585,7 +585,7 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
             .format(java.time.Instant.parse($F{order_accepted_at}.toString().substring(0, 10)+"T"+$F{order_accepted_at}.toString().substring(11,19)+".000Z"))]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="MMMMM dd, yyyy">
-				<reportElement positionType="Float" x="-10" y="465" width="149" height="15" uuid="68eeb0da-d401-44d6-aec5-7441af2b1c2b"/>
+				<reportElement positionType="Float" x="-10" y="463" width="149" height="15" uuid="68eeb0da-d401-44d6-aec5-7441af2b1c2b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
