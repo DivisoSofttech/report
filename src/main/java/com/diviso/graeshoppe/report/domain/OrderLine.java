@@ -35,6 +35,9 @@ public class OrderLine implements Serializable {
     @Column(name = "total")
     private Double total;
 
+    @Column(name = "product_id")
+    private Long productId;
+
     @OneToMany(mappedBy = "orderLine")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<AuxItem> auxItems = new HashSet<>();
@@ -93,6 +96,19 @@ public class OrderLine implements Serializable {
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public OrderLine productId(Long productId) {
+        this.productId = productId;
+        return this;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public Set<AuxItem> getAuxItems() {
@@ -182,6 +198,7 @@ public class OrderLine implements Serializable {
             ", item='" + getItem() + "'" +
             ", quantity=" + getQuantity() +
             ", total=" + getTotal() +
+            ", productId=" + getProductId() +
             "}";
     }
 }

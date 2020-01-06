@@ -30,6 +30,9 @@ public class ComboItem implements Serializable {
     @Column(name = "quantity")
     private Double quantity;
 
+    @Column(name = "product_id")
+    private Long productId;
+
     @ManyToOne
     @JsonIgnoreProperties("comboItems")
     private OrderLine orderLine;
@@ -69,6 +72,19 @@ public class ComboItem implements Serializable {
         this.quantity = quantity;
     }
 
+    public Long getProductId() {
+        return productId;
+    }
+
+    public ComboItem productId(Long productId) {
+        this.productId = productId;
+        return this;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
     public OrderLine getOrderLine() {
         return orderLine;
     }
@@ -105,6 +121,7 @@ public class ComboItem implements Serializable {
             "id=" + getId() +
             ", comboItem='" + getComboItem() + "'" +
             ", quantity=" + getQuantity() +
+            ", productId=" + getProductId() +
             "}";
     }
 }

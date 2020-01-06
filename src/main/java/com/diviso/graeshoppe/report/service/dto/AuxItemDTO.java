@@ -15,6 +15,8 @@ public class AuxItemDTO implements Serializable {
 
     private Double total;
 
+    private Long productId;
+
 
     private Long orderLineId;
 
@@ -48,6 +50,14 @@ public class AuxItemDTO implements Serializable {
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public Long getOrderLineId() {
@@ -86,6 +96,7 @@ public class AuxItemDTO implements Serializable {
             ", auxItem='" + getAuxItem() + "'" +
             ", quantity=" + getQuantity() +
             ", total=" + getTotal() +
+            ", productId=" + getProductId() +
             ", orderLineId=" + getOrderLineId() +
             "}";
     }

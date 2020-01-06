@@ -12,6 +12,10 @@
         {
             "fieldName": "total",
             "fieldType": "Double"
+        },
+        {
+            "fieldName": "productId",
+            "fieldType": "Long"
         }
     ],
     "relationships": [

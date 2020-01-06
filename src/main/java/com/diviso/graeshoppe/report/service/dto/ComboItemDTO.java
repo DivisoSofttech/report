@@ -13,6 +13,8 @@ public class ComboItemDTO implements Serializable {
 
     private Double quantity;
 
+    private Long productId;
+
 
     private Long orderLineId;
 
@@ -38,6 +40,14 @@ public class ComboItemDTO implements Serializable {
 
     public void setQuantity(Double quantity) {
         this.quantity = quantity;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public Long getOrderLineId() {
@@ -75,6 +85,7 @@ public class ComboItemDTO implements Serializable {
             "id=" + getId() +
             ", comboItem='" + getComboItem() + "'" +
             ", quantity=" + getQuantity() +
+            ", productId=" + getProductId() +
             ", orderLineId=" + getOrderLineId() +
             "}";
     }

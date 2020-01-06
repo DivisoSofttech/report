@@ -427,8 +427,8 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 				</textElement>
 				<textFieldExpression><![CDATA["Customer Id                     :"]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="113" y="89" width="37" height="16" uuid="b5db3f9d-1715-4539-b903-f2b74065f9d4"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="107" y="89" width="43" height="16" uuid="b5db3f9d-1715-4539-b903-f2b74065f9d4"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
@@ -441,13 +441,13 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 				</textElement>
 				<textFieldExpression><![CDATA["Loyalty Card Point           :"]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement positionType="Float" x="113" y="121" width="36" height="18" uuid="6d2ac04e-f545-4ce1-8a47-c947aebbabfb"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="107" y="121" width="42" height="18" uuid="6d2ac04e-f545-4ce1-8a47-c947aebbabfb"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{order_from_customer}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="113" y="139" width="36" height="17" uuid="367addf9-26ed-4201-a234-114f6f85c376"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="107" y="139" width="42" height="17" uuid="367addf9-26ed-4201-a234-114f6f85c376"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
@@ -493,7 +493,7 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 				<text><![CDATA[Order Accepted:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
-				<reportElement positionType="Float" x="60" y="217" width="90" height="20" uuid="0089f0d9-7a60-4494-8234-a3e2e67de274"/>
+				<reportElement positionType="Float" x="56" y="217" width="94" height="20" uuid="0089f0d9-7a60-4494-8234-a3e2e67de274"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -502,7 +502,7 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
             .format(java.time.Instant.parse($F{order_accepted_at}.toString().substring(0, 10)+"T"+$F{order_accepted_at}.toString().substring(11,19)+".000Z"))]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
-				<reportElement positionType="Float" x="60" y="194" width="90" height="20" uuid="90e576b9-8fec-40d4-beff-e6c17705e4bd"/>
+				<reportElement positionType="Float" x="56" y="194" width="94" height="20" uuid="90e576b9-8fec-40d4-beff-e6c17705e4bd"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -517,8 +517,10 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 				</textElement>
 				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a").withZone(java.time.ZoneId.of($F{zone_id})).format( java.time.Instant.now())]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement positionType="Float" x="113" y="106" width="36" height="14" uuid="4b7b0c79-af87-4674-88e9-fd2c9ebd307d"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="107" y="106" width="42" height="14" uuid="4b7b0c79-af87-4674-88e9-fd2c9ebd307d">
+					<printWhenExpression><![CDATA[$F{loyalty_point}!=null]]></printWhenExpression>
+				</reportElement>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{loyalty_point}]]></textFieldExpression>
 			</textField>

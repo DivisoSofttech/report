@@ -49,6 +49,9 @@ public class ComboItemResourceIT {
     private static final Double DEFAULT_QUANTITY = 1D;
     private static final Double UPDATED_QUANTITY = 2D;
 
+    private static final Long DEFAULT_PRODUCT_ID = 1L;
+    private static final Long UPDATED_PRODUCT_ID = 2L;
+
     @Autowired
     private ComboItemRepository comboItemRepository;
 
@@ -106,7 +109,8 @@ public class ComboItemResourceIT {
     public static ComboItem createEntity(EntityManager em) {
         ComboItem comboItem = new ComboItem()
             .comboItem(DEFAULT_COMBO_ITEM)
-            .quantity(DEFAULT_QUANTITY);
+            .quantity(DEFAULT_QUANTITY)
+            .productId(DEFAULT_PRODUCT_ID);
         return comboItem;
     }
     /**
@@ -118,7 +122,8 @@ public class ComboItemResourceIT {
     public static ComboItem createUpdatedEntity(EntityManager em) {
         ComboItem comboItem = new ComboItem()
             .comboItem(UPDATED_COMBO_ITEM)
-            .quantity(UPDATED_QUANTITY);
+            .quantity(UPDATED_QUANTITY)
+            .productId(UPDATED_PRODUCT_ID);
         return comboItem;
     }
 
@@ -145,6 +150,7 @@ public class ComboItemResourceIT {
         ComboItem testComboItem = comboItemList.get(comboItemList.size() - 1);
         assertThat(testComboItem.getComboItem()).isEqualTo(DEFAULT_COMBO_ITEM);
         assertThat(testComboItem.getQuantity()).isEqualTo(DEFAULT_QUANTITY);
+        assertThat(testComboItem.getProductId()).isEqualTo(DEFAULT_PRODUCT_ID);
 
         // Validate the ComboItem in Elasticsearch
         verify(mockComboItemSearchRepository, times(1)).save(testComboItem);
@@ -186,7 +192,8 @@ public class ComboItemResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(comboItem.getId().intValue())))
             .andExpect(jsonPath("$.[*].comboItem").value(hasItem(DEFAULT_COMBO_ITEM)))
-            .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY.doubleValue())));
+            .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY.doubleValue())))
+            .andExpect(jsonPath("$.[*].productId").value(hasItem(DEFAULT_PRODUCT_ID.intValue())));
     }
     
     @Test
@@ -201,7 +208,8 @@ public class ComboItemResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(comboItem.getId().intValue()))
             .andExpect(jsonPath("$.comboItem").value(DEFAULT_COMBO_ITEM))
-            .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY.doubleValue()));
+            .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY.doubleValue()))
+            .andExpect(jsonPath("$.productId").value(DEFAULT_PRODUCT_ID.intValue()));
     }
 
     @Test
@@ -226,7 +234,8 @@ public class ComboItemResourceIT {
         em.detach(updatedComboItem);
         updatedComboItem
             .comboItem(UPDATED_COMBO_ITEM)
-            .quantity(UPDATED_QUANTITY);
+            .quantity(UPDATED_QUANTITY)
+            .productId(UPDATED_PRODUCT_ID);
         ComboItemDTO comboItemDTO = comboItemMapper.toDto(updatedComboItem);
 
         restComboItemMockMvc.perform(put("/api/combo-items")
@@ -240,6 +249,7 @@ public class ComboItemResourceIT {
         ComboItem testComboItem = comboItemList.get(comboItemList.size() - 1);
         assertThat(testComboItem.getComboItem()).isEqualTo(UPDATED_COMBO_ITEM);
         assertThat(testComboItem.getQuantity()).isEqualTo(UPDATED_QUANTITY);
+        assertThat(testComboItem.getProductId()).isEqualTo(UPDATED_PRODUCT_ID);
 
         // Validate the ComboItem in Elasticsearch
         verify(mockComboItemSearchRepository, times(1)).save(testComboItem);
@@ -301,6 +311,7 @@ public class ComboItemResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(comboItem.getId().intValue())))
             .andExpect(jsonPath("$.[*].comboItem").value(hasItem(DEFAULT_COMBO_ITEM)))
-            .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY.doubleValue())));
+            .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY.doubleValue())))
+            .andExpect(jsonPath("$.[*].productId").value(hasItem(DEFAULT_PRODUCT_ID.intValue())));
     }
 }

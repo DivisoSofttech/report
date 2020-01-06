@@ -533,15 +533,15 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 				</textElement>
 				<textFieldExpression><![CDATA["Customer's Food Exp Orders:"]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="113" y="166" width="37" height="17" uuid="0c7c816d-d556-45fc-a083-bfba5eed5f88"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="108" y="166" width="42" height="17" uuid="0c7c816d-d556-45fc-a083-bfba5eed5f88"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{customer_order}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement positionType="Float" x="113" y="148" width="37" height="18" uuid="74d9c6b0-23d4-40e3-943e-bd0670fcbb41"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="108" y="148" width="42" height="17" uuid="74d9c6b0-23d4-40e3-943e-bd0670fcbb41"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{order_from_customer}]]></textFieldExpression>
 			</textField>
@@ -552,8 +552,8 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 				</textElement>
 				<textFieldExpression><![CDATA["Customer Id                     :"]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="113" y="116" width="37" height="16" uuid="fb353e41-1c4f-4a5c-8a1d-91eee72e1d92"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="108" y="116" width="42" height="16" uuid="fb353e41-1c4f-4a5c-8a1d-91eee72e1d92"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
@@ -567,7 +567,7 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 				<textFieldExpression><![CDATA["Loyalty Card Point           :"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
-				<reportElement positionType="Float" x="60" y="387" width="90" height="20" uuid="6e013888-f631-40e8-8510-42f1d26cf240"/>
+				<reportElement positionType="Float" x="56" y="387" width="94" height="20" uuid="6e013888-f631-40e8-8510-42f1d26cf240"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -576,7 +576,7 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
             .format(java.time.Instant.parse($F{order_place_at}.toString().substring(0, 10)+"T"+$F{order_place_at}.toString().substring(11,19)+".000Z"))]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
-				<reportElement positionType="Float" x="60" y="410" width="90" height="20" uuid="de7598d0-0650-4476-acdf-34e772ffdade"/>
+				<reportElement positionType="Float" x="56" y="410" width="94" height="20" uuid="de7598d0-0650-4476-acdf-34e772ffdade"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -591,8 +591,10 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 				</textElement>
 				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a").withZone(java.time.ZoneId.of($F{zone_id})).format( java.time.Instant.now())]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="113" y="132" width="37" height="16" uuid="d5effe4f-b5ac-459e-bfbe-68f13c7195af"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="108" y="132" width="42" height="16" uuid="d5effe4f-b5ac-459e-bfbe-68f13c7195af">
+					<printWhenExpression><![CDATA[$F{loyalty_point}!=null]]></printWhenExpression>
+				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{loyalty_point}]]></textFieldExpression>
 			</textField>
