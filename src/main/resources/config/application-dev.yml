@@ -71,6 +71,11 @@ spring:
         prepStmtCacheSize: 250
         prepStmtCacheSqlLimit: 2048
         useServerPrepStmts: true
+      connection-timeout: 60000  #Connection idle timeout issue of hikari pool
+      idle-timeout: 600000
+      maximum-pool-size: 100
+      minimum-idle: 20
+      maxLifetime: 1800000
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     database: MYSQL

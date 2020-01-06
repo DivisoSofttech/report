@@ -196,7 +196,6 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 	@Override
 	public void convertAndSaveOrderMaster(Order order) {
-
 		OrderMaster orderMaster = new OrderMaster();
 		Store store = findStoreByStoreId(order.getStoreId());
 		Customer customer = findCustomerByReference(order.getCustomerId());
