@@ -233,8 +233,8 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA[$F{method_of_order}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="98" y="189" width="44" height="20" uuid="e9c388e2-2268-451c-9a68-4d66fa86f2f3"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement positionType="Float" x="97" y="189" width="44" height="20" uuid="e9c388e2-2268-451c-9a68-4d66fa86f2f3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA["EUR"]]></textFieldExpression>
@@ -247,14 +247,14 @@ ct ORDER BY  item ASC,rowid DESC]]>
 				<textFieldExpression><![CDATA[$F{storelocation_name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="-12" y="110" width="99" height="20" uuid="d1664100-6775-4000-8ff4-a89437c804f0"/>
+				<reportElement positionType="Float" x="-15" y="110" width="99" height="20" uuid="d1664100-6775-4000-8ff4-a89437c804f0"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Order Number :"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="78" y="110" width="68" height="20" uuid="b713ee55-05a6-4f06-bef1-67a16f21b572"/>
+				<reportElement positionType="Float" x="70" y="110" width="80" height="20" uuid="b713ee55-05a6-4f06-bef1-67a16f21b572"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
@@ -316,8 +316,8 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 				<textFieldExpression><![CDATA[String.format("%1$2s x %2$-50.50s", $F{olquantity}, $F{item})]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,#00.00#">
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="101" y="0" width="40" height="14" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="aee8c8df-628b-4e45-a6be-11aa820e4d8e"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="90" y="0" width="53" height="14" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="aee8c8df-628b-4e45-a6be-11aa820e4d8e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{oltotal}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -331,10 +331,10 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 				<textFieldExpression><![CDATA[String.format("%1$2s x %2$-20.20s", $F{auxquantity},$F{aux_item})]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,#00.00#">
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="101" y="-1" width="40" height="15" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="80a0fb0e-13e8-4d22-91d6-3d8668ad6da1">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="90" y="-1" width="53" height="15" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="80a0fb0e-13e8-4d22-91d6-3d8668ad6da1">
 					<printWhenExpression><![CDATA[!$F{aux_item}.equals("[]")]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{auxtotal}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -365,23 +365,23 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 	<summary>
 		<band height="478" splitType="Stretch">
 			<textField isStretchWithOverflow="true" pattern="#,#00.00#">
-				<reportElement positionType="Float" x="108" y="34" width="31" height="15" uuid="cb6e1fcd-2d38-4174-910a-5bf196d3893b"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement positionType="Float" x="93" y="4" width="50" height="15" uuid="cb6e1fcd-2d38-4174-910a-5bf196d3893b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{delivery_charge}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement key="" positionType="Float" x="-12" y="26" width="91" height="15" uuid="a93b4d72-bc30-4cd8-aee6-24bbbac0644a"/>
+				<reportElement key="" positionType="Float" x="-12" y="3" width="91" height="15" uuid="a93b4d72-bc30-4cd8-aee6-24bbbac0644a"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
 					<font size="10"/>
 				</textElement>
 				<text><![CDATA[Delivery Charge :]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" pattern="#,#00.00#">
-				<reportElement positionType="Float" x="108" y="51" width="33" height="20" uuid="b8e6d9d2-f216-46fa-bf0c-57b92456f2f9"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="11"/>
+				<reportElement positionType="Float" x="94" y="51" width="50" height="20" uuid="b8e6d9d2-f216-46fa-bf0c-57b92456f2f9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{total_due}]]></textFieldExpression>
 			</textField>
@@ -449,22 +449,12 @@ java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 				<textFieldExpression><![CDATA[$F{landmark}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,#00.00#">
-				<reportElement positionType="Float" x="107" y="4" width="32" height="15" uuid="daf89821-5578-4eaa-b23a-b03a0ac6e296"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<reportElement positionType="Float" x="93" y="22" width="50" height="15" uuid="daf89821-5578-4eaa-b23a-b03a0ac6e296"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{order_discount_amount}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="97" y="3" width="16" height="16" uuid="a78a5e09-b225-4f6f-baec-4b98fbeb154c"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["  - "]]></textFieldExpression>
-			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="98" y="34" width="16" height="15" uuid="55114f07-aaab-4bd0-8816-75bb4fa2ca6b"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["  + "]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-12" y="4" width="109" height="15" uuid="3c872c1b-5779-4e51-b541-7d4b711e1c4e"/>
+				<reportElement positionType="Float" x="-12" y="22" width="109" height="15" uuid="3c872c1b-5779-4e51-b541-7d4b711e1c4e"/>
 				<textFieldExpression><![CDATA["Food Exp discount (10%) :"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
