@@ -305,6 +305,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		} // query to get productname
 		line.setQuantity(orderLine.getQuantity());
 		line.setTotal(orderLine.getTotal());
+		line.setProductId(orderLine.getProductId());
 		line.setAuxItems(orderLine.getAuxilaryOrderLines().stream().map(this::toAuxItem).collect(Collectors.toSet()));
 		List<ComboLineItem> comboItems = findCombosByProductId(orderLine.getProductId());
 		line.setComboItems(comboItems.stream().map(this::toComboItem).collect(Collectors.toSet()));
@@ -316,6 +317,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		ComboItem comboItem = new ComboItem();
 		comboItem.setComboItem(lineitem.getProduct().getName());
 		comboItem.setQuantity(lineitem.getQuantity());
+		comboItem.setProductId(lineitem.getProduct().getId());
 		return comboItem;
 	}
 
@@ -324,6 +326,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		Product product = findProductByProductId(aux.getProductId());
 		auxItem.setAuxItem(product.getName()); // query to get aux name
 		auxItem.setQuantity(aux.getQuantity());
+		auxItem.setProductId(aux.getProductId());
 		auxItem.setTotal(aux.getTotal());
 		return auxItem;
 	}
