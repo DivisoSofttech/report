@@ -30,13 +30,12 @@ public class OrderSyncService {
 	private final KafkaProperties kafkaProperties;
 	private ExecutorService sseExecutorService = Executors.newCachedThreadPool();
 
-	@Autowired
-	private OrderMasterService orderMasterService;
+	
+	private final OrderMasterService orderMasterService;
 
-	public OrderSyncService(KafkaProperties kafkaProperties) {
+	public OrderSyncService(OrderMasterService orderMasterService,KafkaProperties kafkaProperties) {
 		this.kafkaProperties = kafkaProperties;
-		subscribeToOrder();
-		subscribeToApprovalInfo();
+		this.orderMasterService = orderMasterService;
 	}
 
 	public void subscribeToApprovalInfo() {
@@ -96,6 +95,11 @@ public class OrderSyncService {
 			log.info("Consumer is going to close");
 			consumer.close();
 		});
+	}
+
+	public void startConsumers() {
+		subscribeToApprovalInfo();
+		subscribeToOrder();
 	}
 
 }

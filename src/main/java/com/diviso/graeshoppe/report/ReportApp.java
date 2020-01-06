@@ -1,6 +1,7 @@
 package com.diviso.graeshoppe.report;
 
 import com.diviso.graeshoppe.report.config.ApplicationProperties;
+import com.diviso.graeshoppe.report.service.OrderSyncService;
 
 import io.github.jhipster.config.DefaultProfileUtil;
 import io.github.jhipster.config.JHipsterConstants;
@@ -15,6 +16,7 @@ import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 
@@ -67,8 +69,10 @@ public class ReportApp implements InitializingBean {
      */
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(ReportApp.class);
+        ConfigurableApplicationContext applicationContext = app.run(args);
         DefaultProfileUtil.addDefaultProfile(app);
-        Environment env = app.run(args).getEnvironment();
+        applicationContext.getBean(OrderSyncService.class).startConsumers();
+        Environment env = applicationContext.getEnvironment();
         logApplicationStartup(env);
     }
 
