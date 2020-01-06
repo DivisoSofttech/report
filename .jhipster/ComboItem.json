@@ -8,6 +8,10 @@
         {
             "fieldName": "quantity",
             "fieldType": "Double"
+        },
+        {
+            "fieldName": "productId",
+            "fieldType": "Long"
         }
     ],
     "relationships": [

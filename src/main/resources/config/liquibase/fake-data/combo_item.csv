@@ -1,11 +1,11 @@
-id;combo_item;quantity
-1;open architecture;70218
-2;cutting-edge;25631
-3;Fish;59981
-4;Pizza teal;39478
-5;Product deliver withdrawal;95225
-6;Checking Account Communications pink;46107
-7;system;46677
-8;content deposit;46681
-9;Forward complexity;42781
-10;virtual;16402
+id;combo_item;quantity;product_id
+1;open architecture;70218;9254
+2;compressing Games;71505;59981
+3;Pizza teal;39478;75012
+4;foreground Nicaragua productize;82247;61060
+5;Communications;18585;33930
+6;Handmade vortals;45113;42800
+7;deposit Prairie;90606;81443
+8;violet;3895;79787
+9;Shoes;74090;20848
+10;Auto Loan Account 1080p Soap;90529;29266

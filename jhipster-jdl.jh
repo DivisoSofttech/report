@@ -50,17 +50,20 @@ loyaltyPoint Long
 entity AuxItem{
 	auxItem String,
 	quantity Integer,
-	total Double
+	total Double,
+	productId Long
 }
 
 entity ComboItem{
 	comboItem String,
-	quantity Double
+	quantity Double,
+	productId Long
 }
 entity OrderLine{
 item String,
 quantity Integer,
-total Double
+total Double,
+productId Long
 }
 
 entity Sale{

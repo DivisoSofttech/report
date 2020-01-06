@@ -33,6 +33,9 @@ public class AuxItem implements Serializable {
     @Column(name = "total")
     private Double total;
 
+    @Column(name = "product_id")
+    private Long productId;
+
     @ManyToOne
     @JsonIgnoreProperties("auxItems")
     private OrderLine orderLine;
@@ -85,6 +88,19 @@ public class AuxItem implements Serializable {
         this.total = total;
     }
 
+    public Long getProductId() {
+        return productId;
+    }
+
+    public AuxItem productId(Long productId) {
+        this.productId = productId;
+        return this;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
     public OrderLine getOrderLine() {
         return orderLine;
     }
@@ -122,6 +138,7 @@ public class AuxItem implements Serializable {
             ", auxItem='" + getAuxItem() + "'" +
             ", quantity=" + getQuantity() +
             ", total=" + getTotal() +
+            ", productId=" + getProductId() +
             "}";
     }
 }

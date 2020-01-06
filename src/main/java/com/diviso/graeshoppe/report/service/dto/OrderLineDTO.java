@@ -15,6 +15,8 @@ public class OrderLineDTO implements Serializable {
 
     private Double total;
 
+    private Long productId;
+
 
     private Long orderMasterId;
 
@@ -48,6 +50,14 @@ public class OrderLineDTO implements Serializable {
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public Long getOrderMasterId() {
@@ -86,6 +96,7 @@ public class OrderLineDTO implements Serializable {
             ", item='" + getItem() + "'" +
             ", quantity=" + getQuantity() +
             ", total=" + getTotal() +
+            ", productId=" + getProductId() +
             ", orderMasterId=" + getOrderMasterId() +
             "}";
     }

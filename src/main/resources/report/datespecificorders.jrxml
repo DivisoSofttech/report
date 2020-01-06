@@ -174,7 +174,7 @@
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="42" splitType="Stretch">
+		<band height="38" splitType="Stretch">
 			<textField>
 				<reportElement positionType="Float" x="138" y="2" width="301" height="20" uuid="3d92efab-e6d0-499c-8542-ba0650b5450e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -182,12 +182,12 @@
 				</textElement>
 				<textFieldExpression><![CDATA["Powered by Graeshoppe"]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="MMM d, yyyy h:mm a">
-				<reportElement positionType="Float" x="138" y="23" width="301" height="19" uuid="b25a65b0-8370-4e41-9fe1-f9016728f629"/>
+			<textField isStretchWithOverflow="true" pattern="MMMMM dd, yyyy">
+				<reportElement positionType="Float" x="138" y="23" width="301" height="15" uuid="2562a23c-456b-413b-90b0-fbc34aad702c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="10"/>
+					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a").withZone(java.time.ZoneId.of($F{zone_id})).format( java.time.Instant.now())]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>

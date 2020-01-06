@@ -54,7 +54,7 @@
 	<title>
 		<band height="256" splitType="Stretch">
 			<line>
-				<reportElement positionType="Float" x="-19" y="172" width="599" height="1" uuid="bd6c9e92-30fd-42c2-8f92-c6f366b86529"/>
+				<reportElement positionType="Float" x="-20" y="172" width="599" height="1" uuid="bd6c9e92-30fd-42c2-8f92-c6f366b86529"/>
 				<graphicElement>
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
@@ -254,7 +254,7 @@
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="42" splitType="Stretch">
+		<band height="38" splitType="Stretch">
 			<textField>
 				<reportElement positionType="Float" x="138" y="2" width="301" height="20" uuid="68d92736-54d4-4116-a661-120e3df9a074"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -262,12 +262,12 @@
 				</textElement>
 				<textFieldExpression><![CDATA["Powered by Graeshoppe"]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="MMM d, yyyy h:mm a">
-				<reportElement positionType="Float" x="138" y="23" width="301" height="19" uuid="a9f9ed74-57e6-472e-bd6d-c1995cbd1973"/>
+			<textField isStretchWithOverflow="true" pattern="MMMMM dd, yyyy">
+				<reportElement positionType="Float" x="138" y="23" width="301" height="15" uuid="53ae1d83-d8ec-4918-899c-a31b3d28d2e7"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="10"/>
+					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a").withZone(java.time.ZoneId.of($F{zone_id})).format( java.time.Instant.now())]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
