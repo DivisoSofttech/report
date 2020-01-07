@@ -42,18 +42,42 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="151" splitType="Stretch">
+		<band height="182" splitType="Stretch">
 			<image>
 				<reportElement positionType="Float" x="158" y="-80" width="251" height="231" uuid="eee5cf43-27ad-40e0-9d47-0f5d81cbceba"/>
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement positionType="Float" x="68" y="98" width="432" height="53" uuid="7730f73a-7f77-4b38-b12b-b9dab5c15509"/>
+				<reportElement positionType="Float" x="68" y="117" width="432" height="53" uuid="7730f73a-7f77-4b38-b12b-b9dab5c15509"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{store_name}]]></textFieldExpression>
 			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="80" y="88" width="400" height="30" uuid="8a3b72dc-2bf3-43d0-ab8d-a3f7d47c87e1">
+					<printWhenExpression><![CDATA[$F{payment_status}.equalsIgnoreCase("order not paid")]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Order By Cash"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="84" y="93" width="400" height="30" uuid="92d5cb5b-6fff-4703-9d95-f81af8fa36a8">
+					<printWhenExpression><![CDATA[$F{payment_status}.equalsIgnoreCase("order paid")]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Order By Card"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="-19" y="172" width="599" height="1" uuid="1367db42-9b1a-45e6-bca3-f06833bc2e5d"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
 		</band>
 	</title>
 	<pageHeader>

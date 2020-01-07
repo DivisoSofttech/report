@@ -45,9 +45,9 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="160" splitType="Stretch">
+		<band height="168" splitType="Stretch">
 			<image>
-				<reportElement positionType="Float" x="158" y="-82" width="251" height="212" uuid="91417819-ee19-4e5a-8de6-600d612a1e5f"/>
+				<reportElement positionType="Float" x="166" y="-82" width="251" height="212" uuid="91417819-ee19-4e5a-8de6-600d612a1e5f"/>
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
 			<textField isStretchWithOverflow="true">
@@ -55,15 +55,21 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Orders By Date and Store Name"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[String.format("Orders On %1$S", $F{date(expected_delivery)})]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="80" y="130" width="400" height="30" uuid="54044821-37ab-4edd-bf78-58ca5d7d4d43"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="13"/>
+					<font size="18"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{store_name}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement positionType="Float" x="-19" y="167" width="599" height="1" uuid="ca763130-c7e4-4bb3-a3b0-35e2d59d5d3e"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
 		</band>
 	</title>
 	<pageHeader>

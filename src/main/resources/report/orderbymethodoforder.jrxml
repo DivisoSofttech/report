@@ -9,7 +9,7 @@
 	<parameter name="date" class="java.lang.String"/>
 	<parameter name="method_of_order" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select store_name,store_idpcode, zone_id, order_number, total_due , customer_id, payment_status, date(expected_delivery) from order_master where store_idpcode=  $P{store_idpcode} and date(expected_delivery)= $P{date} and method_of_order =$P{method_of_order} ;]]>
+		<![CDATA[select store_name,store_idpcode, zone_id, method_of_order, order_number, total_due , customer_id, payment_status, date(expected_delivery) from order_master where store_idpcode=  $P{store_idpcode} and date(expected_delivery)= $P{date} and method_of_order =$P{method_of_order} ;]]>
 	</queryString>
 	<field name="store_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="store_name"/>
@@ -21,6 +21,10 @@
 	</field>
 	<field name="zone_id" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="zone_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="method_of_order" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="method_of_order"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
 	</field>
 	<field name="order_number" class="java.lang.String">
@@ -46,18 +50,31 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="150" splitType="Stretch">
+		<band height="163" splitType="Stretch">
 			<image>
 				<reportElement positionType="Float" x="158" y="-80" width="251" height="230" uuid="e2f9c2e6-66ff-4510-9fcb-74ed9ac04ea7"/>
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement positionType="Float" x="68" y="98" width="432" height="52" uuid="b61c2600-4b00-4cbc-a694-c87ed6d746c1"/>
+				<reportElement positionType="Float" x="68" y="104" width="432" height="52" uuid="b61c2600-4b00-4cbc-a694-c87ed6d746c1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{store_name}]]></textFieldExpression>
 			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="80" y="82" width="400" height="30" uuid="830cb5f9-66eb-4fe2-8ac3-dcd54a0fa368"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[String.format("Orders By %1$s on %2$s", $F{method_of_order}.toLowerCase() ,$F{date(expected_delivery)})]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="-19" y="162" width="599" height="1" uuid="d2a1d13e-0e3c-47bd-bb99-e86329a8ac5a"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
 		</band>
 	</title>
 	<pageHeader>

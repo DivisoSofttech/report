@@ -294,7 +294,7 @@ ct ORDER BY  item ASC,rowid DESC]]>
             )]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="M/d/yy">
-				<reportElement positionType="Float" x="-11" y="93" width="159" height="12" uuid="c674f4b1-94e4-4693-b941-9a6647a0e41a">
+				<reportElement positionType="Float" x="-21" y="93" width="173" height="12" uuid="c674f4b1-94e4-4693-b941-9a6647a0e41a">
 					<printWhenExpression><![CDATA[$F{pre_order_date}==null]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>

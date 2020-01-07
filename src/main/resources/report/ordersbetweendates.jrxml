@@ -47,11 +47,11 @@
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="80" y="118" width="400" height="30" uuid="54b74ace-f67c-403f-a8f2-d2d3e1e631ba"/>
+				<reportElement positionType="Float" x="80" y="100" width="400" height="30" uuid="54b74ace-f67c-403f-a8f2-d2d3e1e631ba"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Orders Between Two Dates"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[String.format("Orders Between %1$S and %2$S", $P{from_date}, $P{to_date})]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

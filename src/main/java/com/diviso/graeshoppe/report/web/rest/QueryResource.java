@@ -17,6 +17,7 @@ import com.diviso.graeshoppe.report.domain.AuxItem;
 import com.diviso.graeshoppe.report.domain.OfferLine;
 import com.diviso.graeshoppe.report.domain.OrderLine;
 import com.diviso.graeshoppe.report.domain.OrderMaster;
+import com.diviso.graeshoppe.report.domain.ReportOrderModel;
 import com.diviso.graeshoppe.report.domain.ReportSummary;
 import com.diviso.graeshoppe.report.service.AuxItemService;
 import com.diviso.graeshoppe.report.service.OfferLineService;
@@ -363,5 +364,12 @@ public class QueryResource {
 		headers.add("content-disposition", "attachment; filename=" + fileName);
 		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
 		return response;
+	}
+	
+	
+	@GetMapping("/orderview/{storeId}/{date}/{methodOfOrder}")
+
+	public List<ReportOrderModel> getOrdersViewByMethodOfOrder(@PathVariable String storeId, @PathVariable String date, @PathVariable String methodOfOrder) {
+		return queryService.getOrdersViewByMethodOfOrder(storeId, date, methodOfOrder);
 	}
 }

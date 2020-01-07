@@ -40,11 +40,24 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="140" splitType="Stretch">
+		<band height="142" splitType="Stretch">
 			<image>
 				<reportElement positionType="Float" x="158" y="-81" width="251" height="220" uuid="5c988a25-fce3-4489-a3c9-7790f7ce39c5"/>
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="82" y="92" width="398" height="30" uuid="cb083fb3-4678-43e4-9494-df1bcc91bda0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[String.format("Orders on %1$S", $F{date(expected_delivery)})]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="-19" y="141" width="599" height="1" uuid="030a53eb-bd3a-42a9-88bc-65799385c42c"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
 		</band>
 	</title>
 	<pageHeader>

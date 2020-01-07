@@ -1,6 +1,9 @@
 package com.diviso.graeshoppe.report.service;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import com.diviso.graeshoppe.report.domain.ReportOrderModel;
 import com.diviso.graeshoppe.report.domain.ReportSummary;
 
 import net.sf.jasperreports.engine.JRException;
@@ -34,6 +37,8 @@ public interface QueryService {
 	byte[] getOrderSummaryByDateAndStoreNameAsPdf(LocalDate date, String storeId )throws JRException;
 
 	byte[] getAllOrdersBetweenDatesAndStoreIdAsPdf(LocalDate fromDate, LocalDate toDate, String storeId)throws JRException;
+
+	List<ReportOrderModel> getOrdersViewByMethodOfOrder(String storeId, String date, String methodOfOrder);
 
 
 	/*OrderAggregator getOrderAggregator(String orderNumber);

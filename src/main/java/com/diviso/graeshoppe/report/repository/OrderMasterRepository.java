@@ -1,9 +1,13 @@
 package com.diviso.graeshoppe.report.repository;
 
 import com.diviso.graeshoppe.report.domain.OrderMaster;
+import com.diviso.graeshoppe.report.domain.ReportOrderModel;
+
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Pageable;
@@ -54,6 +58,7 @@ Optional<OrderMaster> findByOrderNumber(String orderNumber);
 
 
 	
-	
-	
+	List<ReportOrderModel> findByExpectedDeliveryBetweenAndStoreIdpcodeAndMethodOfOrder(Instant dateBegin,
+			Instant dateEnd, String storeIdpcode, String methodOfOrder);
+
 }
