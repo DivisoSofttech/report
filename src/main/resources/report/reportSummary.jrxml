@@ -275,7 +275,7 @@
 			<textField isStretchWithOverflow="true" pattern="MMMMM dd, yyyy">
 				<reportElement positionType="Float" x="-10" y="1" width="149" height="15" uuid="ee3810b9-a9ae-4cfd-8ac8-aed09b5ff6fb"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm").withZone(java.time.ZoneId.of($F{zone_id})).format( java.time.Instant.now())]]></textFieldExpression>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a").withZone(java.time.ZoneId.of($F{zone_id})).format( java.time.Instant.now())]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
