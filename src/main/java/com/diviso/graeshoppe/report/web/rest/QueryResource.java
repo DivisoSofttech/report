@@ -343,7 +343,7 @@ public class QueryResource {
 	}
 	
 	
-	@GetMapping("/ordersummarybetweendates/{fromDate}/{toDate}/{storeId}")
+	@GetMapping("/allordersbetweendatesandstorename/{fromDate}/{toDate}/{storeId}")
 	public ResponseEntity<byte[]> getAllOrdersBetweenDatesAndStoreIdAsPdf(@PathVariable String fromDate, @PathVariable String toDate , @PathVariable String storeId){
 
 		// log.debug("REST request to get a pdf");
