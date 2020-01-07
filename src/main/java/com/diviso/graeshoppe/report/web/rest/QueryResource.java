@@ -342,4 +342,26 @@ public class QueryResource {
 		return response;
 	}
 	
+	
+	@GetMapping("/ordersummarybetweendates/{fromDate}/{toDate}/{storeId}")
+	public ResponseEntity<byte[]> getAllOrdersBetweenDatesAndStoreIdAsPdf(@PathVariable String fromDate, @PathVariable String toDate , @PathVariable String storeId){
+
+		// log.debug("REST request to get a pdf");
+
+		byte[] pdfContents = null;
+
+
+		try {
+			pdfContents = queryService.getAllOrdersBetweenDatesAndStoreIdAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate), storeId );
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		String fileName = "orderSummaryBetweenDates.pdf";
+		headers.add("content-disposition", "attachment; filename=" + fileName);
+		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
+		return response;
+	}
 }

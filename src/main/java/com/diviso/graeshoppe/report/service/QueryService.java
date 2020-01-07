@@ -33,6 +33,8 @@ public interface QueryService {
 
 	byte[] getOrderSummaryByDateAndStoreNameAsPdf(LocalDate date, String storeId )throws JRException;
 
+	byte[] getAllOrdersBetweenDatesAndStoreIdAsPdf(LocalDate fromDate, LocalDate toDate, String storeId)throws JRException;
+
 
 	/*OrderAggregator getOrderAggregator(String orderNumber);
 

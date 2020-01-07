@@ -8,10 +8,14 @@
 	<parameter name="store_name" class="java.lang.String"/>
 	<parameter name="date" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select store_name, order_number, total_due , customer_id, payment_status, expected_delivery from order_master where store_name=  $P{store_name} and date(expected_delivery)= $P{date} and payment_status='ORDER NOT PAID';]]>
+		<![CDATA[select store_name, zone_id,order_number, total_due , customer_id, payment_status, expected_delivery from order_master where store_name=  $P{store_name} and date(expected_delivery)= $P{date} and payment_status='ORDER NOT PAID';]]>
 	</queryString>
 	<field name="store_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="store_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="zone_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="zone_id"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
 	</field>
 	<field name="order_number" class="java.lang.String">

@@ -6,12 +6,20 @@
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="123"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="872"/>
 	<parameter name="date" class="java.lang.String"/>
-	<parameter name="store_name" class="java.lang.String"/>
+	<parameter name="store_idpcode" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select store_name, order_number, total_due , customer_id, payment_status, date(expected_delivery) from order_master where  date(expected_delivery)= $P{date}  and store_name= $P{store_name} ;]]>
+		<![CDATA[select store_name,store_idpcode,  zone_id, order_number, total_due , customer_id, payment_status, date(expected_delivery) from order_master where  date(expected_delivery)= $P{date}  and store_idpcode= $P{store_idpcode};]]>
 	</queryString>
 	<field name="store_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="store_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="store_idpcode" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="store_idpcode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="zone_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="zone_id"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
 	</field>
 	<field name="order_number" class="java.lang.String">

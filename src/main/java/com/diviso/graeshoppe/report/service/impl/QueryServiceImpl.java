@@ -281,7 +281,7 @@ public class QueryServiceImpl implements QueryService {
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("date", date);
-		parameters.put("store_name", storeId);
+		parameters.put("store_idpcode", storeId);
 		parameters.put("method_of_order", methodOfOrder);
 		Connection conn = null;
 		try {
@@ -303,7 +303,7 @@ public class QueryServiceImpl implements QueryService {
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("date", date);
-		parameters.put("store_name", storeId);
+		parameters.put("store_idpcode", storeId);
 		parameters.put("payment_status", paymentStatus);
 		Connection conn = null;
 		try {
@@ -344,7 +344,7 @@ public class QueryServiceImpl implements QueryService {
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("date", date);
-		parameters.put("store_name", storeId);
+		parameters.put("store_idpcode", storeId);
 		
 		Connection conn = null;
 		try {
@@ -389,7 +389,7 @@ public class QueryServiceImpl implements QueryService {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("from_date", fromDate);
 		parameters.put("to_date", toDate);
-		parameters.put("store_name", storeId);
+		parameters.put("store_idpcode", storeId);
 		
 		Connection conn = null;
 		try {
@@ -410,6 +410,27 @@ public class QueryServiceImpl implements QueryService {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("date", date);
 		parameters.put("store_name", storeId);
+		
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		return JasperExportManager.exportReportToPdf(jp);
+	}
+
+	@Override
+	public byte[] getAllOrdersBetweenDatesAndStoreIdAsPdf(LocalDate fromDate, LocalDate toDate, String storeId )throws JRException {
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersbetweendatesandstorename.jrxml");
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("from_date", fromDate);
+		parameters.put("to_date", toDate);
+		parameters.put("store_idpcode", storeId);
 		
 		Connection conn = null;
 		try {

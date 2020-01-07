@@ -5,14 +5,22 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter4.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="126"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="868"/>
-	<parameter name="store_name" class="java.lang.String"/>
+	<parameter name="store_idpcode" class="java.lang.String"/>
 	<parameter name="date" class="java.lang.String"/>
 	<parameter name="method_of_order" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select store_name, order_number, total_due , customer_id, payment_status, date(expected_delivery) from order_master where store_name=  $P{store_name} and date(expected_delivery)= $P{date} and method_of_order='COLLECTION';]]>
+		<![CDATA[select store_name,store_idpcode, zone_id, order_number, total_due , customer_id, payment_status, date(expected_delivery) from order_master where store_idpcode=  $P{store_idpcode} and date(expected_delivery)= $P{date} and method_of_order =$P{method_of_order} ;]]>
 	</queryString>
 	<field name="store_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="store_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="store_idpcode" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="store_idpcode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="zone_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="zone_id"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
 	</field>
 	<field name="order_number" class="java.lang.String">
