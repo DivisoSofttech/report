@@ -41,6 +41,10 @@ public interface QueryService {
 
 	List<OrderMaster> getOrdersViewByMethodOfOrder(String storeId, String date, String methodOfOrder);
 
+	List<OrderMaster> getOrdersViewByPaymentStatus(String storeId, String date, String paymentStatus);
+
+	List<OrderMaster> getOrdersViewBetweenDates(String fromDate, String toDate);
+
 
 	/*OrderAggregator getOrderAggregator(String orderNumber);
 

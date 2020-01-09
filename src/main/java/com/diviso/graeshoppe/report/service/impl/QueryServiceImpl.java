@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.diviso.graeshoppe.report.client.payment.api.PaymentResourceApi;
@@ -472,6 +473,28 @@ public class QueryServiceImpl implements QueryService {
 		setOrderMasterList(orderMasterRepository.findByExpectedDeliveryBetweenAndStoreIdpcodeAndMethodOfOrder(dateBegin, dateEnd,storeIdpcode, methodOfOrder));
 		
 		return getOrderMasterList();
+	}
+
+	@Override
+	public List<OrderMaster> getOrdersViewByPaymentStatus(String storeIdpcode, String date, String paymentStatus) {
+		
+		Instant dateBegin = Instant.parse(date.toString() + "T00:00:00Z");
+		Instant dateEnd = Instant.parse(date.toString() + "T23:59:59Z");
+		setOrderMasterList(orderMasterRepository.findByExpectedDeliveryBetweenAndStoreIdpcodeAndPaymentStatus(dateBegin, dateEnd,storeIdpcode, paymentStatus));
+		
+		return getOrderMasterList();
+	}
+
+	@Override
+	public List<OrderMaster> getOrdersViewBetweenDates(String fromDate, String toDate) {
+		Pageable pageble = null;
+	
+		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
+		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
+		setOrderMasterList(orderMasterRepository.findByExpectedDeliveryBetween(dateBegin, dateEnd,pageble).getContent());
+		
+		return getOrderMasterList();
+		
 	}
 	
 

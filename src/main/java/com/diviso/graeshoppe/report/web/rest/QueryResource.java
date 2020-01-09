@@ -367,9 +367,23 @@ public class QueryResource {
 	}
 	
 	
-	@GetMapping("/orderview/{storeId}/{date}/{methodOfOrder}")
+	@GetMapping("/orderviewbymethodoforder/{storeId}/{date}/{methodOfOrder}")
 
 	public List<OrderMaster> getOrdersViewByMethodOfOrder(@PathVariable String storeId, @PathVariable String date, @PathVariable String methodOfOrder) {
 		return queryService.getOrdersViewByMethodOfOrder(storeId, date, methodOfOrder);
+	}
+	
+	
+	@GetMapping("/orderviewbypaymentstatus/{storeId}/{date}/{paymentStatus}")
+
+	public List<OrderMaster> getOrdersViewByPaymentStatus(@PathVariable String storeId, @PathVariable String date, @PathVariable String paymentStatus) {
+		return queryService.getOrdersViewByPaymentStatus(storeId, date, paymentStatus);
+	}
+	
+	
+	@GetMapping("/orderviewbetweendates/{fromDate}/{toDate}")
+
+	public List<OrderMaster> getOrdersViewBetweenDates(@PathVariable String fromDate, @PathVariable String toDate) {
+		return queryService.getOrdersViewBetweenDates(fromDate, toDate);
 	}
 }
