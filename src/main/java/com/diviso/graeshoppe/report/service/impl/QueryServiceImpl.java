@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.diviso.graeshoppe.report.client.payment.api.PaymentResourceApi;
 import com.diviso.graeshoppe.report.client.payment.model.PaymentDTO;
 import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
+import com.diviso.graeshoppe.report.domain.OrderMaster;
 import com.diviso.graeshoppe.report.domain.ReportOrderModel;
 import com.diviso.graeshoppe.report.domain.ReportSummary;
 import com.diviso.graeshoppe.report.repository.OrderMasterRepository;
@@ -51,7 +52,7 @@ public class QueryServiceImpl implements QueryService {
 	Long count = 0L;*/
 	private final Logger log = LoggerFactory.getLogger(QueryServiceImpl.class);
 
-	private static List<ReportOrderModel> reportOrderModelList = new ArrayList<ReportOrderModel>();
+	private static List<OrderMaster> orderMasterList = new ArrayList<OrderMaster>();
 
 
 	@Autowired
@@ -451,26 +452,26 @@ public class QueryServiceImpl implements QueryService {
 	/***
 	 * @author neeraja
 	 */
-	public static List<ReportOrderModel> getReportOrderModelList() {
-		return reportOrderModelList;
+	public static List<OrderMaster> getOrderMasterList() {
+		return orderMasterList;
 	}
 
 	/***
 	 * @author neeraja
 	 */
-	public static void setReportOrderModelList(List<ReportOrderModel> reportOrderModelList) {
-		QueryServiceImpl.reportOrderModelList = reportOrderModelList;
+	public static void setOrderMasterList(List<OrderMaster> orderMasterList) {
+		QueryServiceImpl.orderMasterList = orderMasterList;
 	}
 	
 
 	@Override
-	public List<ReportOrderModel> getOrdersViewByMethodOfOrder(String storeIdpcode, String expectedDelivery, String methodOfOrder) {
+	public List<OrderMaster> getOrdersViewByMethodOfOrder(String storeIdpcode, String expectedDelivery, String methodOfOrder) {
 		
 		Instant dateBegin = Instant.parse(expectedDelivery.toString() + "T00:00:00Z");
 		Instant dateEnd = Instant.parse(expectedDelivery.toString() + "T23:59:59Z");
-		setReportOrderModelList(orderMasterRepository.findByExpectedDeliveryBetweenAndStoreIdpcodeAndMethodOfOrder(dateBegin, dateEnd,storeIdpcode, methodOfOrder));
+		setOrderMasterList(orderMasterRepository.findByExpectedDeliveryBetweenAndStoreIdpcodeAndMethodOfOrder(dateBegin, dateEnd,storeIdpcode, methodOfOrder));
 		
-		return getReportOrderModelList();
+		return getOrderMasterList();
 	}
 	
 

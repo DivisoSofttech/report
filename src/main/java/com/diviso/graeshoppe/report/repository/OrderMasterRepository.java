@@ -58,7 +58,7 @@ Optional<OrderMaster> findByOrderNumber(String orderNumber);
 
 
 	
-	List<ReportOrderModel> findByExpectedDeliveryBetweenAndStoreIdpcodeAndMethodOfOrder(Instant dateBegin,
+	List<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcodeAndMethodOfOrder(Instant dateBegin,
 			Instant dateEnd, String storeIdpcode, String methodOfOrder);
 
 }

@@ -3,6 +3,7 @@ package com.diviso.graeshoppe.report.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.diviso.graeshoppe.report.domain.OrderMaster;
 import com.diviso.graeshoppe.report.domain.ReportOrderModel;
 import com.diviso.graeshoppe.report.domain.ReportSummary;
 
@@ -38,7 +39,7 @@ public interface QueryService {
 
 	byte[] getAllOrdersBetweenDatesAndStoreIdAsPdf(LocalDate fromDate, LocalDate toDate, String storeId)throws JRException;
 
-	List<ReportOrderModel> getOrdersViewByMethodOfOrder(String storeId, String date, String methodOfOrder);
+	List<OrderMaster> getOrdersViewByMethodOfOrder(String storeId, String date, String methodOfOrder);
 
 
 	/*OrderAggregator getOrderAggregator(String orderNumber);
