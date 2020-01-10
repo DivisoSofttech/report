@@ -7,7 +7,7 @@
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="864"/>
 	<parameter name="date" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select store_name, zone_id, order_number, total_due , customer_id, payment_status, date(expected_delivery) from order_master where  date(expected_delivery)= $P{date} ;]]>
+		<![CDATA[select store_name, zone_id, order_number, total_due , customer_id, payment_status, date(order_place_at) from order_master where  date(order_place_at)= $P{date} ;]]>
 	</queryString>
 	<field name="store_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="store_name"/>
@@ -33,8 +33,8 @@
 		<property name="com.jaspersoft.studio.field.label" value="payment_status"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
 	</field>
-	<field name="date(expected_delivery)" class="java.sql.Date">
-		<property name="com.jaspersoft.studio.field.label" value="date(expected_delivery)"/>
+	<field name="date(order_place_at)" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="date(order_place_at)"/>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -50,7 +50,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18"/>
 				</textElement>
-				<textFieldExpression><![CDATA[String.format("Orders on %1$S", $F{date(expected_delivery)})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[String.format("Orders on %1$S", $F{date(order_place_at)})]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement positionType="Float" x="-19" y="141" width="599" height="1" uuid="030a53eb-bd3a-42a9-88bc-65799385c42c"/>
@@ -127,7 +127,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch">
+		<band height="31" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="133" y="2" width="69" height="18" uuid="d4c44728-1cde-4006-bafd-00d922c13ec6">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fd521d5d-8d6d-4568-9d3a-ee680b35838b"/>
@@ -171,11 +171,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_COUNT}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="d/M/yyyy">
-				<reportElement positionType="Float" x="204" y="2" width="79" height="17" uuid="d41d0f62-a678-4eb7-b7a8-d8c2edfb8a27"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{date(expected_delivery)}]]></textFieldExpression>
-			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="40" y="0" width="100" height="19" uuid="6f871a61-1bd0-4fd9-850a-c6f449f4a224">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="33cdd402-53d8-4a39-b3c5-d12bfa4e4f43"/>
@@ -184,6 +179,13 @@
 					<font size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{store_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement positionType="Float" x="206" y="1" width="78" height="19" uuid="507ce9f4-faca-4ce9-979d-5812da26a16b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f690a7ec-09c6-487c-bf75-d743ee6e5831"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{date(order_place_at)}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

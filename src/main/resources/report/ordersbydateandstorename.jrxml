@@ -8,7 +8,7 @@
 	<parameter name="date" class="java.lang.String"/>
 	<parameter name="store_idpcode" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select store_name,store_idpcode,  zone_id, order_number, total_due , customer_id, payment_status, date(expected_delivery) from order_master where  date(expected_delivery)= $P{date}  and store_idpcode= $P{store_idpcode};]]>
+		<![CDATA[select store_name,store_idpcode,  zone_id, order_number, total_due , customer_id, payment_status, date(order_place_at) from order_master where  date(order_place_at)= $P{date}  and store_idpcode= $P{store_idpcode};]]>
 	</queryString>
 	<field name="store_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="store_name"/>
@@ -38,8 +38,8 @@
 		<property name="com.jaspersoft.studio.field.label" value="payment_status"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
 	</field>
-	<field name="date(expected_delivery)" class="java.sql.Date">
-		<property name="com.jaspersoft.studio.field.label" value="date(expected_delivery)"/>
+	<field name="date(order_place_at)" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="date(order_place_at)"/>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -55,7 +55,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[String.format("Orders On %1$S", $F{date(expected_delivery)})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[String.format("Orders On %1$S", $F{date(order_place_at)})]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement positionType="Float" x="80" y="130" width="400" height="30" uuid="54044821-37ab-4edd-bf78-58ca5d7d4d43"/>
@@ -176,10 +176,12 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_COUNT}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="d/M/yyyy">
-				<reportElement positionType="Float" x="162" y="2" width="79" height="17" uuid="036a8f74-ed7b-42fd-846d-8faf258bbaf0"/>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement positionType="Float" x="160" y="1" width="78" height="19" uuid="01294e24-28b8-4791-903b-75608a3a4ffc">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f690a7ec-09c6-487c-bf75-d743ee6e5831"/>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{date(expected_delivery)}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{date(order_place_at)}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

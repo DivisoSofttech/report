@@ -19,7 +19,7 @@ public interface QueryService {
 	 */
 	byte[] getReportWithAuxAndComboAsPdf(String orderNumber) throws JRException;
 	
-	ReportSummary createReportSummary(String expectedDelivery, String storeName);
+	ReportSummary createReportSummary(String fromDate, String toDate,String storeName);
 
 	byte[] getSaleReportAsPdf(String storeidpcode)throws JRException;
 
@@ -44,6 +44,10 @@ public interface QueryService {
 	List<OrderMaster> getOrdersViewByPaymentStatus(String storeId, String date, String paymentStatus);
 
 	List<OrderMaster> getOrdersViewBetweenDates(String fromDate, String toDate);
+
+	List<OrderMaster> getOrdersViewBetweenDatesAndStoreIdpcode(String fromDate, String toDate, String storeId);
+
+	List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(String date, String storeId);
 
 
 	/*OrderAggregator getOrderAggregator(String orderNumber);

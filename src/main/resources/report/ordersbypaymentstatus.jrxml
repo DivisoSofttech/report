@@ -9,7 +9,7 @@
 	<parameter name="date" class="java.lang.String"/>
 	<parameter name="payment_status" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select store_name,store_idpcode, zone_id, order_number, total_due , customer_id, payment_status, date(expected_delivery) from order_master where store_idpcode=  $P{store_idpcode} and date(expected_delivery)= $P{date} and payment_status= $P{payment_status} ;]]>
+		<![CDATA[select store_name,store_idpcode, zone_id, order_number, total_due , customer_id, payment_status, date(order_place_at) from order_master where store_idpcode=  $P{store_idpcode} and date(order_palce_at)= $P{date} and payment_status= $P{payment_status} ;]]>
 	</queryString>
 	<field name="store_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="store_name"/>
@@ -166,10 +166,12 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_COUNT}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="d/M/yyyy">
-				<reportElement positionType="Float" x="204" y="2" width="80" height="17" uuid="aa92f5f3-ace4-445d-9563-4dcd6c614a8a"/>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement positionType="Float" x="202" y="1" width="78" height="19" uuid="73a6be11-8f00-424c-8d92-7080fb22b6ee">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f690a7ec-09c6-487c-bf75-d743ee6e5831"/>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{date(expected_delivery)}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{date(order_place_at)}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

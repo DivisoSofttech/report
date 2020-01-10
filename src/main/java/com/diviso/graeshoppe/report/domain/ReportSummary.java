@@ -4,7 +4,8 @@ import java.time.LocalDate;
 
 public class ReportSummary {
 	
-	private LocalDate date;
+	private LocalDate fromDate;
+	private LocalDate toDate;
 	private String storeId;
 	
 	private Long typeAllCount;
@@ -99,10 +100,17 @@ public class ReportSummary {
 	public void setStoreId(String storeId) {
 		this.storeId = storeId;
 	}
-	public LocalDate getDate() {
-		return date;
+	public LocalDate getFromDate() {
+		return fromDate;
 	}
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setFromDate(LocalDate fromDate) {
+		this.fromDate = fromDate;
 	}
+	public LocalDate getToDate() {
+		return toDate;
+	}
+	public void setToDate(LocalDate toDate) {
+		this.toDate = toDate;
+	}
+	
 }

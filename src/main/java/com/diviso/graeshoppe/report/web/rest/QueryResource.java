@@ -108,10 +108,10 @@ public class QueryResource {
 		return response;
 	}
 
-	@GetMapping("/reportview/{expectedDelivery}/{storeName}")
+	@GetMapping("/reportview/{fromDate}/{toDate}/{storeName}")
 
-	public ReportSummary createReportSummary(@PathVariable String expectedDelivery, @PathVariable String storeName) {
-		return queryService.createReportSummary(expectedDelivery, storeName);
+	public ReportSummary createReportSummary(@PathVariable String fromDate, @PathVariable String toDate, @PathVariable String storeName) {
+		return queryService.createReportSummary(fromDate, toDate, storeName);
 	}
 
 	@GetMapping("/salereport/{storeidpcode}")
@@ -381,9 +381,24 @@ public class QueryResource {
 	}
 	
 	
-	@GetMapping("/orderviewbetweendates/{fromDate}/{toDate}")
+	@GetMapping("/orderviewbetweendatesandstorename/{fromDate}/{toDate}/{storeId}")
+
+	public List<OrderMaster> getOrdersViewBetweenDatesAndStoreIdpcode(@PathVariable String fromDate, @PathVariable String toDate, @PathVariable String storeId) {
+		return queryService.getOrdersViewBetweenDatesAndStoreIdpcode(fromDate, toDate, storeId);
+	}
+	
+
+	@GetMapping("/orderviewbyateandstorename/{date}/{storeId}")
+
+	public List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(@PathVariable String date,@PathVariable String storeId) {
+		return queryService.getOrdersViewByDateAndStoreIdpcode(date, storeId);
+	}
+
+	@GetMapping("/orderViewBetweenDates/{fromDate}/{toDate}")
 
 	public List<OrderMaster> getOrdersViewBetweenDates(@PathVariable String fromDate, @PathVariable String toDate) {
 		return queryService.getOrdersViewBetweenDates(fromDate, toDate);
 	}
+	
+	
 }
