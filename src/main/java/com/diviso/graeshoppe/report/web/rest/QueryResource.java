@@ -367,17 +367,17 @@ public class QueryResource {
 	}
 	
 	
-	@GetMapping("/orderviewbymethodoforder/{storeId}/{date}/{methodOfOrder}")
+	@GetMapping("/orderviewbymethodoforder/{storeId}/{fromDate}/{toDate}/{methodOfOrder}")
 
-	public List<OrderMaster> getOrdersViewByMethodOfOrder(@PathVariable String storeId, @PathVariable String date, @PathVariable String methodOfOrder) {
-		return queryService.getOrdersViewByMethodOfOrder(storeId, date, methodOfOrder);
+	public List<OrderMaster> getOrdersViewByMethodOfOrder(@PathVariable String storeId, @PathVariable String fromDate,@PathVariable String toDate, @PathVariable String methodOfOrder) {
+		return queryService.getOrdersViewByMethodOfOrder(storeId, fromDate, toDate, methodOfOrder);
 	}
 	
 	
-	@GetMapping("/orderviewbypaymentstatus/{storeId}/{date}/{paymentStatus}")
+	@GetMapping("/orderviewbypaymentstatus/{storeId}/{fromDate}/{toDate}/{paymentStatus}")
 
-	public List<OrderMaster> getOrdersViewByPaymentStatus(@PathVariable String storeId, @PathVariable String date, @PathVariable String paymentStatus) {
-		return queryService.getOrdersViewByPaymentStatus(storeId, date, paymentStatus);
+	public List<OrderMaster> getOrdersViewByPaymentStatus(@PathVariable String storeId, @PathVariable String fromDate,@PathVariable String toDate, @PathVariable String paymentStatus) {
+		return queryService.getOrdersViewByPaymentStatus(storeId, fromDate, toDate, paymentStatus);
 	}
 	
 	
@@ -388,10 +388,10 @@ public class QueryResource {
 	}
 	
 
-	@GetMapping("/orderviewbyateandstorename/{date}/{storeId}")
+	@GetMapping("/orderviewbyateandstorename/{fromDate}/{toDate}/{storeId}")
 
-	public List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(@PathVariable String date,@PathVariable String storeId) {
-		return queryService.getOrdersViewByDateAndStoreIdpcode(date, storeId);
+	public List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(@PathVariable String fromDate,@PathVariable String toDate, @PathVariable String storeId) {
+		return queryService.getOrdersViewByDateAndStoreIdpcode(fromDate,toDate, storeId);
 	}
 
 	@GetMapping("/orderViewBetweenDates/{fromDate}/{toDate}")

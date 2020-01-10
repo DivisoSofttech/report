@@ -467,20 +467,20 @@ public class QueryServiceImpl implements QueryService {
 	
 
 	@Override
-	public List<OrderMaster> getOrdersViewByMethodOfOrder(String storeIdpcode, String orderPlaceAt, String methodOfOrder) {
+	public List<OrderMaster> getOrdersViewByMethodOfOrder(String storeIdpcode, String fromDate,String toDate, String methodOfOrder) {
 		
-		Instant dateBegin = Instant.parse(orderPlaceAt.toString() + "T00:00:00Z");
-		Instant dateEnd = Instant.parse(orderPlaceAt.toString() + "T23:59:59Z");
+		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
+		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
 		setOrderMasterList(orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcodeAndMethodOfOrder(dateBegin, dateEnd,storeIdpcode, methodOfOrder));
 		
 		return getOrderMasterList();
 	}
 
 	@Override
-	public List<OrderMaster> getOrdersViewByPaymentStatus(String storeIdpcode, String date, String paymentStatus) {
+	public List<OrderMaster> getOrdersViewByPaymentStatus(String storeIdpcode, String fromDate, String toDate, String paymentStatus) {
 		
-		Instant dateBegin = Instant.parse(date.toString() + "T00:00:00Z");
-		Instant dateEnd = Instant.parse(date.toString() + "T23:59:59Z");
+		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
+		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
 		setOrderMasterList(orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcodeAndPaymentStatus(dateBegin, dateEnd,storeIdpcode, paymentStatus));
 		
 		return getOrderMasterList();
@@ -509,10 +509,10 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 	@Override
-	public List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(String date, String storeId) {
+	public List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(String fromDate,String toDate, String storeId) {
 		
-		Instant dateBegin = Instant.parse(date.toString() + "T00:00:00Z");
-		Instant dateEnd = Instant.parse(date.toString() + "T23:59:59Z");
+		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
+		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
 		setOrderMasterList(orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcode(dateBegin, dateEnd,storeId));
 		
 		return getOrderMasterList();

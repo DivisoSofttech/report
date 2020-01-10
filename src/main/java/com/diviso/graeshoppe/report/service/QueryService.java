@@ -39,15 +39,15 @@ public interface QueryService {
 
 	byte[] getAllOrdersBetweenDatesAndStoreIdAsPdf(LocalDate fromDate, LocalDate toDate, String storeId)throws JRException;
 
-	List<OrderMaster> getOrdersViewByMethodOfOrder(String storeId, String date, String methodOfOrder);
+	List<OrderMaster> getOrdersViewByMethodOfOrder(String storeId, String fromDate,String toDate, String methodOfOrder);
 
-	List<OrderMaster> getOrdersViewByPaymentStatus(String storeId, String date, String paymentStatus);
+	List<OrderMaster> getOrdersViewByPaymentStatus(String storeId, String fromDate,String toDate, String paymentStatus);
 
 	List<OrderMaster> getOrdersViewBetweenDates(String fromDate, String toDate);
 
 	List<OrderMaster> getOrdersViewBetweenDatesAndStoreIdpcode(String fromDate, String toDate, String storeId);
 
-	List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(String date, String storeId);
+	List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(String fromDate,String toDate, String storeId);
 
 
 	/*OrderAggregator getOrderAggregator(String orderNumber);
