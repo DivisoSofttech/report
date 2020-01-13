@@ -548,9 +548,6 @@ public class QueryServiceImpl implements QueryService {
 		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
 		return orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcodeAndPaymentStatusAndMethodOfOrder(dateBegin, dateEnd, storeIdpcode,paymentStatus, methodOfOrder,  pageable);
 	
-		
-		
-		
 	}
 
 	@Override
@@ -599,6 +596,56 @@ public class QueryServiceImpl implements QueryService {
 
 		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
 		return JasperExportManager.exportReportToPdf(jp);
+	}
+
+	@Override
+	public byte[] getAllOrdersBetweenDatesByPaymentStatusAndMethodOfOrderAsPdf(LocalDate fromDate, LocalDate toDate,
+			String paymentStatus, String methodOfOrder) throws JRException{
+		
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersByDatePaymentAndMethod.jrxml");
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("from_date", fromDate);
+		parameters.put("to_date", toDate);
+		parameters.put("payment_status", paymentStatus);
+		parameters.put("method_of_order", methodOfOrder);
+		
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		return JasperExportManager.exportReportToPdf(jp);
+		
+	}
+
+	@Override
+	public byte[] getAllOrdersBetweenDatesByStoreIdAndPaymentStatusAndMethodOfOrderAsPdf(LocalDate fromDate,
+			LocalDate toDate, String storeId, String paymentStatus, String methodOfOrder) throws JRException {
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersByDatePaymentAndMethod.jrxml");
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("from_date", fromDate);
+		parameters.put("to_date", toDate);
+		parameters.put("store_id", storeId);
+		parameters.put("payment_status", paymentStatus);
+		parameters.put("method_of_order", methodOfOrder);
+		
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		return JasperExportManager.exportReportToPdf(jp);
+		
 	}
 
 	/*

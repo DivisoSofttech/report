@@ -416,6 +416,52 @@ public class QueryResource {
 	}
 	
 	
+	@GetMapping("/allOrdersBetweenDatesByPaymentAndMethodOfOrder/{fromDate}/{toDate}/{paymentStatus}/{methodOfOrder}")
+	public ResponseEntity<byte[]> getAllOrdersBetweenDatesByPaymentStatusAndMethodOfOrderAsPdf(@PathVariable String fromDate, @PathVariable String toDate ,@PathVariable String paymentStatus, @PathVariable String methodOfOrder){
+
+		// log.debug("REST request to get a pdf");
+
+		byte[] pdfContents = null;
+
+
+		try {
+			pdfContents = queryService.getAllOrdersBetweenDatesByPaymentStatusAndMethodOfOrderAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate),paymentStatus, methodOfOrder );
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		String fileName = "ordersBetweenDatesbyPaymentStatusAndMethodOfOrder.pdf";
+		headers.add("content-disposition", "attachment; filename=" + fileName);
+		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
+		return response;
+	}
+	
+	
+	@GetMapping("/allOrdersBetweenDatesByStoreIdAndPaymentAndMethodOfOrder/{fromDate}/{toDate}/{storeId}/{paymentStatus}/{methodOfOrder}")
+	public ResponseEntity<byte[]> getAllOrdersBetweenDatesByStoreIdstPaymentStatusAndMethodOfOrderAsPdf(@PathVariable String fromDate, @PathVariable String toDate ,@PathVariable String storeId, @PathVariable String paymentStatus,@PathVariable String methodOfOrder){
+
+		// log.debug("REST request to get a pdf");
+
+		byte[] pdfContents = null;
+
+
+		try {
+			pdfContents = queryService.getAllOrdersBetweenDatesByStoreIdAndPaymentStatusAndMethodOfOrderAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate),storeId, paymentStatus, methodOfOrder );
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		String fileName = "ordersBetweenDatesbyPaymentStatusAndMethodOfOrder.pdf";
+		headers.add("content-disposition", "attachment; filename=" + fileName);
+		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
+		return response;
+	}
+	
+	
 	@GetMapping("/orderviewbymethodoforder/{storeId}/{fromDate}/{toDate}/{methodOfOrder}")
 
 	public ResponseEntity<Page<OrderMaster>> getOrdersViewByMethodOfOrder(@PathVariable String storeId, @PathVariable String fromDate,@PathVariable String toDate, @PathVariable String methodOfOrder, Pageable pageable) {
@@ -506,7 +552,7 @@ public class QueryResource {
 	}
 	
 	
-	@GetMapping("/orderViewBetweenDatesAndPaymentStatusAndMethodOfOrder/{fromDate}/{toDate}/{storeId}/{paymentStatus}/{methodOfOrder}")
+	@GetMapping("/orderViewBetweenDatesAndStoreIdAndPaymentStatusAndMethodOfOrder/{fromDate}/{toDate}/{storeId}/{paymentStatus}/{methodOfOrder}")
 
 	public ResponseEntity<Page<OrderMaster>> getOrdersViewBetweenDatesAndStoreIdAndPaymentStatusAndMethodOfOrder(@PathVariable String fromDate, @PathVariable String toDate,@PathVariable String storeId, @PathVariable String paymentStatus,@PathVariable String methodOfOrder, Pageable pageable) {
 	//	return queryService.getOrdersViewBetweenDates(fromDpaymentStatusate, toDate);

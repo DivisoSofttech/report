@@ -66,6 +66,12 @@ public interface QueryService {
 
 	byte[] getAllOrdersBetweenDatesByMethodOfOrderAsPdf(LocalDate fromDate, LocalDate toDate, String methodOfOrder) throws JRException;
 
+	byte[] getAllOrdersBetweenDatesByPaymentStatusAndMethodOfOrderAsPdf(LocalDate fromDate, LocalDate toDate,
+			String paymentStatus, String methodOfOrder) throws JRException;
+
+	byte[] getAllOrdersBetweenDatesByStoreIdAndPaymentStatusAndMethodOfOrderAsPdf(LocalDate fromDate, LocalDate toDate,
+			String storeId, String paymentStatus, String methodOfOrder) throws JRException;
+
 	//List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(String fromDate,String toDate, String storeId);
 
 

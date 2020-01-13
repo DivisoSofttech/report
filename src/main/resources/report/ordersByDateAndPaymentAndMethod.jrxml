@@ -57,13 +57,11 @@
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="84" y="93" width="400" height="30" uuid="4e73f136-d123-4296-84fd-09ffb665fe4d">
-					<printWhenExpression><![CDATA[$F{payment_status}.equalsIgnoreCase("order paid")]]></printWhenExpression>
-				</reportElement>
+				<reportElement positionType="Float" x="81" y="96" width="400" height="30" uuid="4e73f136-d123-4296-84fd-09ffb665fe4d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[String.format("orders by %1$ and %2$",$F{payment_status},$F{method_of_order} )]]></textFieldExpression>
+				<textFieldExpression><![CDATA[String.format("Orders By %1$s and %2$s",$F{payment_status},$F{method_of_order} )]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement positionType="Float" x="-19" y="139" width="599" height="1" uuid="8c445cb7-25c9-4a66-be30-ee9aaba4241e"/>
