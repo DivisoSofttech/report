@@ -117,6 +117,12 @@ public class QueryResource {
 		return queryService.createReportSummary(fromDate, toDate, storeName);
 	}
 
+	@GetMapping("/reportview/{fromDate}/{toDate}")
+
+	public ReportSummary createReportSummaryBetweenTwoDates(@PathVariable String fromDate, @PathVariable String toDate) {
+		return queryService.createReportSummaryBetweenTwoDates(fromDate, toDate);
+	}
+
 	@GetMapping("/salereport/{storeidpcode}")
 	public ResponseEntity<byte[]> getSaleReportAsPdf(@PathVariable String storeidpcode) {
 

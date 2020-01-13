@@ -649,6 +649,40 @@ public class QueryServiceImpl implements QueryService {
 		
 	}
 
+	@Override
+	public ReportSummary createReportSummaryBetweenTwoDates(String fromDate, String toDate) {
+	
+		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
+		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
+		ReportSummary reportSummary = new ReportSummary();
+		reportSummary.setFromDate(LocalDate.parse(fromDate));
+		reportSummary.setFromDate(LocalDate.parse(toDate));
+
+		reportSummary.setTypeAllCount(
+				orderMasterRepository.countByOrderPlaceAtBetween(dateBegin, dateEnd));
+		reportSummary.setTypeAllTotal(orderMasterRepository.sumOfTotalDue(dateBegin, dateEnd));
+		reportSummary.setTypeDeliveryCount(
+				orderMasterRepository.countByMethodOfOrder(dateBegin, dateEnd, "delivery"));
+		reportSummary.setTypeCollectionCount(
+				orderMasterRepository.countByMethodOfOrder(dateBegin, dateEnd, "collection"));
+		reportSummary.setTypeDeliveryTotal(
+				orderMasterRepository.sumOfTotalByOrderType(dateBegin, dateEnd, "delivery"));
+		reportSummary.setTypeCollectionTotal(
+				orderMasterRepository.sumOfTotalByOrderType(dateBegin, dateEnd, "collection"));
+		reportSummary.setTypeCardCount(
+				orderMasterRepository.countByPaymentStatus(dateBegin, dateEnd, "order paid"));
+		reportSummary.setTypeCashCount(
+				orderMasterRepository.countByPaymentStatus(dateBegin, dateEnd, "order not paid"));
+		reportSummary.setTypeCardTotal(
+				orderMasterRepository.sumOftotalByPaymentStatus(dateBegin, dateEnd, "order paid"));
+		reportSummary.setTypeCashTotal(
+				orderMasterRepository.sumOftotalByPaymentStatus(dateBegin, dateEnd, "order not paid"));
+
+		return reportSummary;
+		
+		
+	}
+
 	/*
 	 * @Override public List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(String
 	 * fromDate,String toDate, String storeId) {

@@ -72,6 +72,8 @@ public interface QueryService {
 	byte[] getAllOrdersBetweenDatesByStoreIdAndPaymentStatusAndMethodOfOrderAsPdf(LocalDate fromDate, LocalDate toDate,
 			String storeId, String paymentStatus, String methodOfOrder) throws JRException;
 
+	ReportSummary createReportSummaryBetweenTwoDates(String fromDate, String toDate);
+
 	//List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(String fromDate,String toDate, String storeId);
 
 

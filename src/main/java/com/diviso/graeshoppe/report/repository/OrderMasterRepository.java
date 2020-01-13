@@ -103,4 +103,24 @@ Optional<OrderMaster> findByOrderNumber(String orderNumber);
 	Page<OrderMaster> findByOrderPlaceAtBetweenAndStoreIdpcodeAndPaymentStatusAndMethodOfOrder(Instant dateBegin,
 			Instant dateEnd, String storeIdpcode, String paymentStatus, String methodOfOrder, Pageable pageable);
 
+
+	@Query(value = "SELECT COALESCE(sum(c.totalDue),0) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd")
+	Double sumOfTotalDue(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd);
+
+
+	@Query(value = "SELECT COUNT(c) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd  AND  c.methodOfOrder LIKE CONCAT('%',:deliveryType,'%')")
+	Integer countByMethodOfOrder(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("deliveryType") String deliveryType);
+
+
+	@Query(value = "SELECT COALESCE(sum(c.totalDue),0) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND  c.methodOfOrder LIKE CONCAT('%',:deliveryType,'%')")
+	Double sumOfTotalByOrderType(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("deliveryType") String deliveryType);
+
+
+	@Query(value = "SELECT COUNT(c) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND  c.paymentStatus LIKE CONCAT('%',:paymentStatus,'%')")
+	Integer countByPaymentStatus(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("paymentStatus") String paymentStatus);
+
+
+	@Query(value = "SELECT COALESCE(sum(c.totalDue),0)FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND  c.paymentStatus LIKE CONCAT('%',:paymentStatus,'%')")
+	Double sumOftotalByPaymentStatus(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("paymentStatus") String paymentStatus);
+
 }
