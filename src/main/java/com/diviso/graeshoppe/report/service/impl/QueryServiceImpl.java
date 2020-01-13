@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -467,59 +468,152 @@ public class QueryServiceImpl implements QueryService {
 	
 
 	@Override
-	public List<OrderMaster> getOrdersViewByMethodOfOrder(String storeIdpcode, String fromDate,String toDate, String methodOfOrder) {
+	public Page<OrderMaster> getOrdersViewByMethodOfOrder(String storeIdpcode, String fromDate,String toDate, String methodOfOrder,Pageable pageable) {
 		
 		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
 		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
-		setOrderMasterList(orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcodeAndMethodOfOrder(dateBegin, dateEnd,storeIdpcode, methodOfOrder));
+		return orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcodeAndMethodOfOrder(dateBegin, dateEnd,storeIdpcode, methodOfOrder, pageable);
 		
-		return getOrderMasterList();
-	}
-
-	@Override
-	public List<OrderMaster> getOrdersViewByPaymentStatus(String storeIdpcode, String fromDate, String toDate, String paymentStatus) {
-		
-		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
-		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
-		setOrderMasterList(orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcodeAndPaymentStatus(dateBegin, dateEnd,storeIdpcode, paymentStatus));
-		
-		return getOrderMasterList();
-	}
-
-	@Override
-	public List<OrderMaster> getOrdersViewBetweenDates(String fromDate, String toDate) {
-		Pageable pageble = null;
-	
-		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
-		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
-		setOrderMasterList(orderMasterRepository.findByOrderPlaceAtBetween(dateBegin, dateEnd,pageble).getContent());
-		
-		return getOrderMasterList();
 		
 	}
 
 	@Override
-	public List<OrderMaster> getOrdersViewBetweenDatesAndStoreIdpcode(String fromDate, String toDate, String storeId) {
+	public Page<OrderMaster> getOrdersViewByPaymentStatus(String storeIdpcode, String fromDate, String toDate, String paymentStatus, Pageable pageable) {
 		
 		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
 		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
-		setOrderMasterList(orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcode(dateBegin, dateEnd,storeId));
+		return orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcodeAndPaymentStatus(dateBegin, dateEnd,storeIdpcode, paymentStatus, pageable);
 		
-		return getOrderMasterList();
+		
 	}
 
 	@Override
-	public List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(String fromDate,String toDate, String storeId) {
+	public Page<OrderMaster> getOrdersViewBetweenDates(String fromDate, String toDate, Pageable pageable) {
+	
+	
+		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
+		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
+		 return orderMasterRepository.findByOrderPlaceAtBetween(dateBegin, dateEnd, pageable);
+		
+
+		
+	}
+
+	@Override
+	public Page<OrderMaster> getOrdersViewBetweenDatesAndStoreIdpcode(String fromDate, String toDate, String storeId, Pageable pageable) {
 		
 		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
 		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
-		setOrderMasterList(orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcode(dateBegin, dateEnd,storeId));
+		return orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcode(dateBegin, dateEnd,storeId, pageable);
 		
-		return getOrderMasterList();
+		
+	}
+
+	@Override
+	public Page<OrderMaster> getOrdersViewBetweenDatesAndPaymentStatus(String fromDate, String toDate,
+			String paymentStatus, Pageable pageable) {
+		System.out.println("service impl>>>>>>>>>"+fromDate+">>>>>>>>>>>>>>>>"+toDate+">>>>>>>>>>>"+paymentStatus);
+		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
+		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
+		return orderMasterRepository.findByOrderPlaceAtBetweenAndPaymentStatus(dateBegin, dateEnd,paymentStatus,  pageable);
 		
 	}
 	
-	
-	
+	@Override
+	public Page<OrderMaster> getOrdersViewBetweenDatesAndMethodOfOrder(String fromDate, String toDate,
+			String methodOfOrder, Pageable pageable) {
+		
 
+		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
+		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
+		return orderMasterRepository.findByOrderPlaceAtBetweenAndMethodOfOrder(dateBegin, dateEnd,methodOfOrder,  pageable);
+		
+	}
+
+	@Override
+	public Page<OrderMaster> getOrdersViewBetweenDatesAndPaymentStatusAndMethodOfOrder(String fromDate, String toDate,
+			String paymentStatus, String methodOfOrder, Pageable pageable) {
+		
+		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
+		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
+		return orderMasterRepository.findByOrderPlaceAtBetweenAndPaymentStatusAndMethodOfOrder(dateBegin, dateEnd,paymentStatus, methodOfOrder,  pageable);
+	}
+
+	@Override
+	public Page<OrderMaster> getOrdersViewBetweenDatesAndStoreIdpcodeAndPaymentStatusAndMethodOfOrder(String fromDate,
+			String toDate, String storeIdpcode, String paymentStatus, String methodOfOrder, Pageable pageable) {
+		
+		
+		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
+		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
+		return orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcodeAndPaymentStatusAndMethodOfOrder(dateBegin, dateEnd, storeIdpcode,paymentStatus, methodOfOrder,  pageable);
+	
+		
+		
+		
+	}
+
+	@Override
+	public byte[] getAllOrdersBetweenDatesByPaymentStatusAsPdf(LocalDate fromDate, LocalDate toDate,
+			String paymentStatus) throws JRException {
+		
+
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersByDateAndPaymentStatusOnly.jrxml");
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("from_date", fromDate);
+		parameters.put("to_date", toDate);
+		parameters.put("payment_status", paymentStatus);
+		
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		return JasperExportManager.exportReportToPdf(jp);
+	}
+
+	@Override
+	public byte[] getAllOrdersBetweenDatesByMethodOfOrderAsPdf(LocalDate fromDate, LocalDate toDate,
+			String methodOfOrder) throws JRException {
+		
+
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersByDateAndMethodOfOrderOnly.jrxml");
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("from_date", fromDate);
+		parameters.put("to_date", toDate);
+		parameters.put("method_of_order", methodOfOrder);
+		
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		return JasperExportManager.exportReportToPdf(jp);
+	}
+
+	/*
+	 * @Override public List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(String
+	 * fromDate,String toDate, String storeId) {
+	 * 
+	 * Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
+	 * Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
+	 * setOrderMasterList(orderMasterRepository.
+	 * findByOrderPlaceAtBetweenAndStoreIdpcode(dateBegin, dateEnd,storeId));
+	 * 
+	 * return getOrderMasterList();
+	 * 
+	 * }
+	 */
+	
+	
 }

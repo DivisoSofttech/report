@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.diviso.graeshoppe.report.domain.AuxItem;
 import com.diviso.graeshoppe.report.domain.OfferLine;
@@ -24,7 +25,9 @@ import com.diviso.graeshoppe.report.service.OfferLineService;
 import com.diviso.graeshoppe.report.service.OrderLineService;
 import com.diviso.graeshoppe.report.service.OrderMasterService;
 import com.diviso.graeshoppe.report.service.QueryService;
+import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
 
+import io.github.jhipster.web.util.PaginationUtil;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -367,37 +370,151 @@ public class QueryResource {
 	}
 	
 	
+	@GetMapping("/allOrdersBetweenDatesByPaymentStatus/{fromDate}/{toDate}/{paymentStatus}")
+	public ResponseEntity<byte[]> getAllOrdersBetweenDatesByPaymentStatusAsPdf(@PathVariable String fromDate, @PathVariable String toDate , @PathVariable String paymentStatus){
+
+		// log.debug("REST request to get a pdf");
+
+		byte[] pdfContents = null;
+
+
+		try {
+			pdfContents = queryService.getAllOrdersBetweenDatesByPaymentStatusAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate), paymentStatus );
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		String fileName = "ordersBetweenDatesbyPaymentStatus.pdf";
+		headers.add("content-disposition", "attachment; filename=" + fileName);
+		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
+		return response;
+	}
+	
+	
+	@GetMapping("/allOrdersBetweenDatesByMethodOfOrder/{fromDate}/{toDate}/{methodOfOrder}")
+	public ResponseEntity<byte[]> getAllOrdersBetweenDatesByMethodOfOrderAsPdf(@PathVariable String fromDate, @PathVariable String toDate , @PathVariable String methodOfOrder){
+
+		// log.debug("REST request to get a pdf");
+
+		byte[] pdfContents = null;
+
+
+		try {
+			pdfContents = queryService.getAllOrdersBetweenDatesByMethodOfOrderAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate), methodOfOrder );
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		String fileName = "ordersBetweenDatesbyMethodOfOrder.pdf";
+		headers.add("content-disposition", "attachment; filename=" + fileName);
+		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
+		return response;
+	}
+	
+	
 	@GetMapping("/orderviewbymethodoforder/{storeId}/{fromDate}/{toDate}/{methodOfOrder}")
 
-	public List<OrderMaster> getOrdersViewByMethodOfOrder(@PathVariable String storeId, @PathVariable String fromDate,@PathVariable String toDate, @PathVariable String methodOfOrder) {
-		return queryService.getOrdersViewByMethodOfOrder(storeId, fromDate, toDate, methodOfOrder);
+	public ResponseEntity<Page<OrderMaster>> getOrdersViewByMethodOfOrder(@PathVariable String storeId, @PathVariable String fromDate,@PathVariable String toDate, @PathVariable String methodOfOrder, Pageable pageable) {
+	//	return queryService.getOrdersViewByMethodOfOrder(storeId, fromDate, toDate, methodOfOrder);
+	
+		 Page<OrderMaster> page = queryService.getOrdersViewByMethodOfOrder(storeId, fromDate, toDate, methodOfOrder, pageable);
+	        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+	        return ResponseEntity.ok().headers(headers).body(page);
+	
 	}
 	
 	
 	@GetMapping("/orderviewbypaymentstatus/{storeId}/{fromDate}/{toDate}/{paymentStatus}")
 
-	public List<OrderMaster> getOrdersViewByPaymentStatus(@PathVariable String storeId, @PathVariable String fromDate,@PathVariable String toDate, @PathVariable String paymentStatus) {
-		return queryService.getOrdersViewByPaymentStatus(storeId, fromDate, toDate, paymentStatus);
+	public ResponseEntity<Page<OrderMaster>> getOrdersViewByPaymentStatus(@PathVariable String storeId, @PathVariable String fromDate,@PathVariable String toDate, @PathVariable String paymentStatus, Pageable pageable) {
+	//	return queryService.getOrdersViewByPaymentStatus(storeId, fromDate, toDate, paymentStatus);
+	
+		Page<OrderMaster> page = queryService.getOrdersViewByPaymentStatus(storeId, fromDate, toDate, paymentStatus,pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page);
+	
 	}
 	
 	
 	@GetMapping("/orderviewbetweendatesandstorename/{fromDate}/{toDate}/{storeId}")
 
-	public List<OrderMaster> getOrdersViewBetweenDatesAndStoreIdpcode(@PathVariable String fromDate, @PathVariable String toDate, @PathVariable String storeId) {
-		return queryService.getOrdersViewBetweenDatesAndStoreIdpcode(fromDate, toDate, storeId);
+	public ResponseEntity<Page<OrderMaster>> getOrdersViewBetweenDatesAndStoreIdpcode(@PathVariable String fromDate, @PathVariable String toDate, @PathVariable String storeId, Pageable pageable) {
+	//	return queryService.getOrdersViewBetweenDatesAndStoreIdpcode(fromDate, toDate, storeId, pageable);
+	
+		Page<OrderMaster> page = queryService.getOrdersViewBetweenDatesAndStoreIdpcode(fromDate, toDate, storeId, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page);
 	}
 	
-
-	@GetMapping("/orderviewbyateandstorename/{fromDate}/{toDate}/{storeId}")
-
-	public List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(@PathVariable String fromDate,@PathVariable String toDate, @PathVariable String storeId) {
-		return queryService.getOrdersViewByDateAndStoreIdpcode(fromDate,toDate, storeId);
-	}
+	/*
+	 * @GetMapping("/orderviewbyateandstorename/{fromDate}/{toDate}/{storeId}")
+	 * 
+	 * public List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(@PathVariable
+	 * String fromDate,@PathVariable String toDate, @PathVariable String storeId) {
+	 * return queryService.getOrdersViewByDateAndStoreIdpcode(fromDate,toDate,
+	 * storeId); }
+	 */
 
 	@GetMapping("/orderViewBetweenDates/{fromDate}/{toDate}")
 
-	public List<OrderMaster> getOrdersViewBetweenDates(@PathVariable String fromDate, @PathVariable String toDate) {
-		return queryService.getOrdersViewBetweenDates(fromDate, toDate);
+	public ResponseEntity<Page<OrderMaster>> getOrdersViewBetweenDates(@PathVariable String fromDate, @PathVariable String toDate, Pageable pageable) {
+	//	return queryService.getOrdersViewBetweenDates(fromDate, toDate);
+		
+		Page<OrderMaster> page = queryService.getOrdersViewBetweenDates(fromDate, toDate, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page);
+		
+	}
+	
+	
+	@GetMapping("/orderViewBetweenDatesAndPaymentStatus/{fromDate}/{toDate}/{paymentStatus}")
+
+	public ResponseEntity<Page<OrderMaster>> getOrdersViewBetweenDatesAndPaymentStatus(@PathVariable String fromDate, @PathVariable String toDate, @PathVariable String paymentStatus, Pageable pageable) {
+	//	return queryService.getOrdersViewBetweenDates(fromDate, toDate);
+		System.out.println(">>>>>>>>>"+fromDate+">>>>>>>>>>>>>>>>"+toDate+">>>>>>>>>>>"+paymentStatus);
+		Page<OrderMaster> page = queryService.getOrdersViewBetweenDatesAndPaymentStatus(fromDate, toDate,paymentStatus, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page);
+		
+	}
+	
+	
+	@GetMapping("/orderViewBetweenDatesAndMethodOfOrder/{fromDate}/{toDate}/{methodOfOrder}")
+
+	public ResponseEntity<Page<OrderMaster>> getOrdersViewBetweenDatesAndMethodOfOrder(@PathVariable String fromDate, @PathVariable String toDate,@PathVariable String methodOfOrder, Pageable pageable) {
+	//	return queryService.getOrdersViewBetweenDates(fromDpaymentStatusate, toDate);
+		
+		Page<OrderMaster> page = queryService.getOrdersViewBetweenDatesAndMethodOfOrder(fromDate, toDate,methodOfOrder, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page);
+		
+	}
+	
+	@GetMapping("/orderViewBetweenDatesAndPaymentStatusAndMethodOfOrder/{fromDate}/{toDate}/{paymentStatus}/{methodOfOrder}")
+
+	public ResponseEntity<Page<OrderMaster>> getOrdersViewBetweenDatesAndPaymentStatusAndMethodOfOrder(@PathVariable String fromDate,@PathVariable String toDate,  @PathVariable String paymentStatus,@PathVariable String methodOfOrder, Pageable pageable) {
+	//	return queryService.getOrdersViewBetweenDates(fromDpaymentStatusate, toDate);
+		
+		Page<OrderMaster> page = queryService.getOrdersViewBetweenDatesAndPaymentStatusAndMethodOfOrder(fromDate, toDate,paymentStatus,methodOfOrder, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page);
+		
+	}
+	
+	
+	@GetMapping("/orderViewBetweenDatesAndPaymentStatusAndMethodOfOrder/{fromDate}/{toDate}/{storeId}/{paymentStatus}/{methodOfOrder}")
+
+	public ResponseEntity<Page<OrderMaster>> getOrdersViewBetweenDatesAndStoreIdAndPaymentStatusAndMethodOfOrder(@PathVariable String fromDate, @PathVariable String toDate,@PathVariable String storeId, @PathVariable String paymentStatus,@PathVariable String methodOfOrder, Pageable pageable) {
+	//	return queryService.getOrdersViewBetweenDates(fromDpaymentStatusate, toDate);
+		
+		Page<OrderMaster> page = queryService.getOrdersViewBetweenDatesAndStoreIdpcodeAndPaymentStatusAndMethodOfOrder(fromDate, toDate,storeId, paymentStatus,methodOfOrder, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page);
+		
 	}
 	
 	

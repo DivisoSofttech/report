@@ -64,13 +64,13 @@ Optional<OrderMaster> findByOrderNumber(String orderNumber);
 
 
 
-	List<OrderMaster> findByOrderPlaceAtBetweenAndStoreIdpcodeAndMethodOfOrder(Instant dateBegin, Instant dateEnd,
-			String storeIdpcode, String methodOfOrder);
+	Page<OrderMaster> findByOrderPlaceAtBetweenAndStoreIdpcodeAndMethodOfOrder(Instant dateBegin, Instant dateEnd,
+			String storeIdpcode, String methodOfOrder, Pageable pageable);
 
 
 
-	List<OrderMaster> findByOrderPlaceAtBetweenAndStoreIdpcodeAndPaymentStatus(Instant dateBegin, Instant dateEnd,
-			String storeIdpcode, String paymentStatus);
+	Page<OrderMaster> findByOrderPlaceAtBetweenAndStoreIdpcodeAndPaymentStatus(Instant dateBegin, Instant dateEnd,
+			String storeIdpcode, String paymentStatus, Pageable pageable);
 
 
 
@@ -78,11 +78,29 @@ Optional<OrderMaster> findByOrderNumber(String orderNumber);
 
 
 
-	List<OrderMaster> findByOrderPlaceAtBetweenAndStoreIdpcode(Instant dateBegin, Instant dateEnd, String storeId);
+	Page<OrderMaster> findByOrderPlaceAtBetweenAndStoreIdpcode(Instant dateBegin, Instant dateEnd, String storeId, Pageable pageable);
 
 
 
 	Page<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(Instant fromDate, Instant toDate,
 			String storeIdpcode, Pageable pageable);
+
+
+	Page<OrderMaster> findByOrderPlaceAtBetweenAndPaymentStatus(Instant dateBegin, Instant dateEnd,
+			String paymentStatus, Pageable pageable);
+
+
+
+	Page<OrderMaster> findByOrderPlaceAtBetweenAndMethodOfOrder(Instant dateBegin, Instant dateEnd,
+			String methodOfOrder, Pageable pageable);
+
+
+
+	Page<OrderMaster> findByOrderPlaceAtBetweenAndPaymentStatusAndMethodOfOrder(Instant dateBegin, Instant dateEnd,
+			String paymentStatus, String methodOfOrder, Pageable pageable);
+
+
+	Page<OrderMaster> findByOrderPlaceAtBetweenAndStoreIdpcodeAndPaymentStatusAndMethodOfOrder(Instant dateBegin,
+			Instant dateEnd, String storeIdpcode, String paymentStatus, String methodOfOrder, Pageable pageable);
 
 }

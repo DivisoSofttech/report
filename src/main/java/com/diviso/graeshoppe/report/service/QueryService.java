@@ -3,6 +3,9 @@ package com.diviso.graeshoppe.report.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.diviso.graeshoppe.report.domain.OrderMaster;
 import com.diviso.graeshoppe.report.domain.ReportOrderModel;
 import com.diviso.graeshoppe.report.domain.ReportSummary;
@@ -39,15 +42,31 @@ public interface QueryService {
 
 	byte[] getAllOrdersBetweenDatesAndStoreIdAsPdf(LocalDate fromDate, LocalDate toDate, String storeId)throws JRException;
 
-	List<OrderMaster> getOrdersViewByMethodOfOrder(String storeId, String fromDate,String toDate, String methodOfOrder);
+	Page<OrderMaster> getOrdersViewByMethodOfOrder(String storeId, String fromDate,String toDate, String methodOfOrder, Pageable pageable);
 
-	List<OrderMaster> getOrdersViewByPaymentStatus(String storeId, String fromDate,String toDate, String paymentStatus);
+	Page<OrderMaster> getOrdersViewByPaymentStatus(String storeId, String fromDate,String toDate, String paymentStatus, Pageable pageable);
 
-	List<OrderMaster> getOrdersViewBetweenDates(String fromDate, String toDate);
+	Page<OrderMaster> getOrdersViewBetweenDates(String fromDate, String toDate, Pageable pageable);
 
-	List<OrderMaster> getOrdersViewBetweenDatesAndStoreIdpcode(String fromDate, String toDate, String storeId);
+	Page<OrderMaster> getOrdersViewBetweenDatesAndStoreIdpcode(String fromDate, String toDate, String storeId,Pageable pageable);
 
-	List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(String fromDate,String toDate, String storeId);
+	Page<OrderMaster> getOrdersViewBetweenDatesAndPaymentStatus(String fromDate, String toDate, String paymentStatus,
+			Pageable pageable);
+
+	Page<OrderMaster> getOrdersViewBetweenDatesAndMethodOfOrder(String fromDate, String toDate, String methodOfOrder,
+			Pageable pageable);
+
+	Page<OrderMaster> getOrdersViewBetweenDatesAndPaymentStatusAndMethodOfOrder(String fromDate, String toDate,
+			String paymentStatus, String methodOfOrder, Pageable pageable);
+
+	Page<OrderMaster> getOrdersViewBetweenDatesAndStoreIdpcodeAndPaymentStatusAndMethodOfOrder(String fromDate,
+			String toDate, String storeId, String paymentStatus, String methodOfOrder, Pageable pageable);
+
+	byte[] getAllOrdersBetweenDatesByPaymentStatusAsPdf(LocalDate fromDate, LocalDate toDate,  String paymentStatus)throws JRException;
+
+	byte[] getAllOrdersBetweenDatesByMethodOfOrderAsPdf(LocalDate fromDate, LocalDate toDate, String methodOfOrder) throws JRException;
+
+	//List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(String fromDate,String toDate, String storeId);
 
 
 	/*OrderAggregator getOrderAggregator(String orderNumber);
