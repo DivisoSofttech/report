@@ -141,11 +141,12 @@ public class QueryServiceImpl implements QueryService {
 	
 
 	@Override
-	public byte[] getReportSummaryAsPdf(LocalDate date, String storeId) throws JRException {
+	public byte[] getReportSummaryAsPdf(LocalDate fromDate,LocalDate toDate, String storeId) throws JRException {
 		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/reportSummary.jrxml");
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("date", date);
+		parameters.put("from_date", fromDate);
+		parameters.put("to_date", toDate);
 		parameters.put("store_idpcode", storeId);
 		Connection conn = null;
 		try {
