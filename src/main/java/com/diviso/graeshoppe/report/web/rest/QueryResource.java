@@ -503,25 +503,47 @@ public class QueryResource {
 		
 		else if(fromDate!= null && toDate!= null && storeId!= null && methodOfOrder == null && paymentStatus == null ) {
 			
-			// to get all orders between two dates from a store
+			// to get all orders between two dates from a particular store
 			page = queryService.getOrdersViewBetweenDatesAndStoreIdpcode(fromDate, toDate, storeId, pageable);
 	        headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
 			
 		}
 		
-       else if(fromDate!= null && toDate!= null && storeId!= null && methodOfOrder == null && paymentStatus == null ) {
+       else if(fromDate!= null && toDate!= null && storeId== null && methodOfOrder != null && paymentStatus == null ) {
 			
-			// to get all orders
+			// to get all orders by giving two dates and method of order irrespective of the store
+    	   page = queryService.getOrdersViewBetweenDatesAndMethodOfOrder(fromDate, toDate,methodOfOrder, pageable);
+           headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
 			
-			page = queryService.getOrdersViewBetweenDatesAndStoreIdpcode(fromDate, toDate, storeId, pageable);
-	        headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
 			
 		}
 		
-	
+       else if(fromDate!= null && toDate!= null && storeId== null && methodOfOrder == null && paymentStatus != null ) {
+			
+			// to get all orders by giving dates and payment status irrespective of the store
+    	   page = queryService.getOrdersViewBetweenDatesAndPaymentStatus(fromDate, toDate,paymentStatus, pageable);
+           headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+			
+		}
+		
+       else if(fromDate!= null && toDate!= null && storeId!= null && methodOfOrder != null && paymentStatus != null ) {
+			//to get all orders by giving all fields
+		
+		page = queryService.getOrdersViewBetweenDatesAndStoreIdpcodeAndPaymentStatusAndMethodOfOrder(fromDate, toDate,storeId, paymentStatus,methodOfOrder, pageable);
+        headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+		
+       }
+		
+       else if(fromDate!= null && toDate!= null && storeId== null && methodOfOrder != null && paymentStatus != null ) {
+			//to get all orders without giving the store
+		
+		page = queryService.getOrdersViewBetweenDatesAndPaymentStatusAndMethodOfOrder(fromDate, toDate, paymentStatus,methodOfOrder, pageable);
+       headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+		
+      }
+		
 		return ResponseEntity.ok().headers(headers).body(page);
 		
-	
 	}
 
 	
