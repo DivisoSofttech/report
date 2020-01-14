@@ -26,28 +26,47 @@ Optional<OrderMaster> findByOrderNumber(String orderNumber);
 
 	
 
-	Long countByOrderPlaceAtBetweenAndStoreName(Instant dateBegin, Instant dateEnd, String storeName);
+	/*
+	 * Long countByOrderPlaceAtBetweenAndStoreName(Instant dateBegin, Instant
+	 * dateEnd, String storeName);
+	 * 
+	 * 
+	 * @Query(value =
+	 * "SELECT COALESCE(sum(c.totalDue),0) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName "
+	 * ) Double sumOfTotalDue(@Param("dateBegin")Instant
+	 * dateBegin, @Param("dateEnd")Instant dateEnd, @Param("storeName")String
+	 * storeName);
+	 * 
+	 * @Query(value =
+	 * "SELECT COUNT(c) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName AND  c.methodOfOrder LIKE CONCAT('%',:deliveryType,'%')"
+	 * ) Integer countByMethodOfOrderAndStoreName(@Param("dateBegin")Instant
+	 * dateBegin, @Param("dateEnd")Instant dateEnd, @Param("storeName")String
+	 * storeName, @Param("deliveryType") String deliveryType);
+	 * 
+	 * 
+	 * @Query(value =
+	 * "SELECT COALESCE(sum(c.totalDue),0) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName AND  c.methodOfOrder LIKE CONCAT('%',:deliveryType,'%')"
+	 * ) Double sumOfTotalByOrderType(@Param("dateBegin")Instant
+	 * dateBegin, @Param("dateEnd")Instant dateEnd, @Param("storeName")String
+	 * storeName, @Param("deliveryType") String deliveryType);
+	 * 
+	 * 
+	 * @Query(value =
+	 * "SELECT COUNT(c) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName AND  c.paymentStatus LIKE CONCAT('%',:paymentStatus,'%')"
+	 * ) Integer countByPaymentStatusAndStoreName(@Param("dateBegin")Instant
+	 * dateBegin, @Param("dateEnd")Instant dateEnd, @Param("storeName")String
+	 * storeName, @Param("paymentStatus") String paymentStatus);
+	 * 
+	 * 
+	 * @Query(value =
+	 * "SELECT COALESCE(sum(c.totalDue),0)FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName AND  c.paymentStatus LIKE CONCAT('%',:paymentStatus,'%')"
+	 * ) Double sumOftotalByPaymentStatus(@Param("dateBegin")Instant
+	 * dateBegin, @Param("dateEnd")Instant dateEnd, @Param("storeName")String
+	 * storeName, @Param("paymentStatus") String paymentStatus);
+	 */
 
 
-	@Query(value = "SELECT COALESCE(sum(c.totalDue),0) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName ")
-	Double sumOfTotalDue(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("storeName")String storeName);
-
-	@Query(value = "SELECT COUNT(c) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName AND  c.methodOfOrder LIKE CONCAT('%',:deliveryType,'%')")
-	Integer countByMethodOfOrderAndStoreName(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("storeName")String storeName, @Param("deliveryType") String deliveryType);
-
-
-	@Query(value = "SELECT COALESCE(sum(c.totalDue),0) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName AND  c.methodOfOrder LIKE CONCAT('%',:deliveryType,'%')")
-	Double sumOfTotalByOrderType(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("storeName")String storeName, @Param("deliveryType") String deliveryType);
-
-
-	@Query(value = "SELECT COUNT(c) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName AND  c.paymentStatus LIKE CONCAT('%',:paymentStatus,'%')")
-	Integer countByPaymentStatusAndStoreName(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("storeName")String storeName, @Param("paymentStatus") String paymentStatus);
-
-
-	@Query(value = "SELECT COALESCE(sum(c.totalDue),0)FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName AND  c.paymentStatus LIKE CONCAT('%',:paymentStatus,'%')")
-	Double sumOftotalByPaymentStatus(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("storeName")String storeName, @Param("paymentStatus") String paymentStatus);
-	
-	Page<OrderMaster> findByorderPlaceAtBetweenAndStoreIdpcode(Instant dateBegin, Instant dateEnd, String storeIdpcode,Pageable pageable);
+Page<OrderMaster> findByorderPlaceAtBetweenAndStoreIdpcode(Instant dateBegin, Instant dateEnd, String storeIdpcode,Pageable pageable);
 
 	public Long countByOrderStatus(String orderStatus);
 	public Long  countByOrderPlaceAtBetweenAndOrderStatus(Instant from,Instant to,String orderStatus);
@@ -104,23 +123,47 @@ Optional<OrderMaster> findByOrderNumber(String orderNumber);
 			Instant dateEnd, String storeIdpcode, String paymentStatus, String methodOfOrder, Pageable pageable);
 
 
-	@Query(value = "SELECT COALESCE(sum(c.totalDue),0) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd")
-	Double sumOfTotalDue(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd);
+	/*
+	 * @Query(value =
+	 * "SELECT COALESCE(sum(c.totalDue),0) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd"
+	 * ) Double sumOfTotalDue(@Param("dateBegin")Instant
+	 * dateBegin, @Param("dateEnd")Instant dateEnd);
+	 * 
+	 * 
+	 * @Query(value =
+	 * "SELECT COUNT(c) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd  AND  c.methodOfOrder LIKE CONCAT('%',:deliveryType,'%')"
+	 * ) Integer countByMethodOfOrder(@Param("dateBegin")Instant
+	 * dateBegin, @Param("dateEnd")Instant dateEnd, @Param("deliveryType") String
+	 * deliveryType);
+	 * 
+	 * 
+	 * @Query(value =
+	 * "SELECT COALESCE(sum(c.totalDue),0) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND  c.methodOfOrder LIKE CONCAT('%',:deliveryType,'%')"
+	 * ) Double sumOfTotalByOrderType(@Param("dateBegin")Instant
+	 * dateBegin, @Param("dateEnd")Instant dateEnd, @Param("deliveryType") String
+	 * deliveryType);
+	 * 
+	 * 
+	 * @Query(value =
+	 * "SELECT COUNT(c) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND  c.paymentStatus LIKE CONCAT('%',:paymentStatus,'%')"
+	 * ) Integer countByPaymentStatus(@Param("dateBegin")Instant
+	 * dateBegin, @Param("dateEnd")Instant dateEnd, @Param("paymentStatus") String
+	 * paymentStatus);
+	 * 
+	 * 
+	 * @Query(value =
+	 * "SELECT COALESCE(sum(c.totalDue),0)FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND  c.paymentStatus LIKE CONCAT('%',:paymentStatus,'%')"
+	 * ) Double sumOftotalByPaymentStatus(@Param("dateBegin")Instant
+	 * dateBegin, @Param("dateEnd")Instant dateEnd, @Param("paymentStatus") String
+	 * paymentStatus);
+	 * 
+	 * 
+	 */
+
+	List<OrderMaster> findByOrderPlaceAtBetweenAndStoreIdpcode(Instant dateBegin, Instant dateEnd, String storeName);
 
 
-	@Query(value = "SELECT COUNT(c) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd  AND  c.methodOfOrder LIKE CONCAT('%',:deliveryType,'%')")
-	Integer countByMethodOfOrder(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("deliveryType") String deliveryType);
 
-
-	@Query(value = "SELECT COALESCE(sum(c.totalDue),0) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND  c.methodOfOrder LIKE CONCAT('%',:deliveryType,'%')")
-	Double sumOfTotalByOrderType(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("deliveryType") String deliveryType);
-
-
-	@Query(value = "SELECT COUNT(c) FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND  c.paymentStatus LIKE CONCAT('%',:paymentStatus,'%')")
-	Integer countByPaymentStatus(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("paymentStatus") String paymentStatus);
-
-
-	@Query(value = "SELECT COALESCE(sum(c.totalDue),0)FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND  c.paymentStatus LIKE CONCAT('%',:paymentStatus,'%')")
-	Double sumOftotalByPaymentStatus(@Param("dateBegin")Instant dateBegin, @Param("dateEnd")Instant dateEnd, @Param("paymentStatus") String paymentStatus);
+	List<OrderMaster> findByOrderPlaceAtBetween(Instant dateBegin, Instant dateEnd);
 
 }

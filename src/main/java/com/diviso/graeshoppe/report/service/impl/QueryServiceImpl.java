@@ -424,33 +424,102 @@ public class QueryServiceImpl implements QueryService {
 		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
 		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
 		ReportSummary reportSummary = new ReportSummary();
+		List<OrderMaster> omList=null;
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+dateBegin+">>>>>>>>>"+dateEnd);
+		
 		reportSummary.setFromDate(LocalDate.parse(fromDate));
 		reportSummary.setToDate(LocalDate.parse(toDate));
 		reportSummary.setStoreId(storeName);
 
-		reportSummary.setTypeAllCount(
-				orderMasterRepository.countByOrderPlaceAtBetweenAndStoreName(dateBegin, dateEnd, storeName));
-		reportSummary.setTypeAllTotal(orderMasterRepository.sumOfTotalDue(dateBegin, dateEnd, storeName));
-		reportSummary.setTypeDeliveryCount(
-				orderMasterRepository.countByMethodOfOrderAndStoreName(dateBegin, dateEnd, storeName, "delivery"));
-		reportSummary.setTypeCollectionCount(
-				orderMasterRepository.countByMethodOfOrderAndStoreName(dateBegin, dateEnd, storeName, "collection"));
-		reportSummary.setTypeDeliveryTotal(
-				orderMasterRepository.sumOfTotalByOrderType(dateBegin, dateEnd, storeName, "delivery"));
-		reportSummary.setTypeCollectionTotal(
-				orderMasterRepository.sumOfTotalByOrderType(dateBegin, dateEnd, storeName, "collection"));
-		reportSummary.setTypeCardCount(
-				orderMasterRepository.countByPaymentStatusAndStoreName(dateBegin, dateEnd, storeName, "order paid"));
-		reportSummary.setTypeCashCount(
-				orderMasterRepository.countByPaymentStatusAndStoreName(dateBegin, dateEnd, storeName, "order not paid"));
-		reportSummary.setTypeCardTotal(
-				orderMasterRepository.sumOftotalByPaymentStatus(dateBegin, dateEnd, storeName, "order paid"));
-		reportSummary.setTypeCashTotal(
-				orderMasterRepository.sumOftotalByPaymentStatus(dateBegin, dateEnd, storeName, "order not paid"));
-
+	
+		if(fromDate!=null && toDate!=null && storeName!=null) {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> store id != null");
+			omList= orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcode(dateBegin, dateEnd, storeName);
+		
+		}
+		else if(fromDate!=null && toDate!=null && storeName==null) {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> store id == null");
+			omList=orderMasterRepository.findByOrderPlaceAtBetween(dateBegin, dateEnd);
+		}
+		Double sum=0.0;
+		Long codOrdersCount=0l;
+		Double codOrdersSum=0.0;
+		Long cardOrdersCount=0l;
+		Double cardOrdersSum=0.0;
+		Long deliveryCount= 0l;
+		Double deliveryOrdersSum=0.0;
+		Long collectionCount=0l;
+		Double collectionOrdersSum=0.0;
+		
+		
+		
+		for(OrderMaster om: omList) {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> entering for loop");
+			sum +=om.getTotalDue();
+			if(om.getPaymentStatus().equals("ORDER NOT PAID")) {
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>  order not paid");
+				codOrdersCount++;
+				codOrdersSum += om.getTotalDue();
+				
+			}else if(om.getPaymentStatus().equals("ORDER PAID")) {
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> order paid");
+				cardOrdersCount++;
+				cardOrdersSum +=  om.getTotalDue();
+			}
+			
+			
+			if(om.getMethodOfOrder().equals("DELIVERY")) {
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>  delivery");
+				deliveryCount++;
+				deliveryOrdersSum += om.getTotalDue();
+			}
+			else if(om.getMethodOfOrder().equals("COLLECTION")){
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> collection");
+				 collectionCount++;
+				 collectionOrdersSum += om.getTotalDue();
+			}
+			System.out.println(om.getMethodOfOrder()+"1");
+		}
+		reportSummary.setTypeAllCount(omList.size());
+		reportSummary.setTypeAllTotal(sum);
+		reportSummary.setTypeCardCount(cardOrdersCount);
+		reportSummary.setTypeCardTotal(cardOrdersSum);
+		reportSummary.setTypeCashCount(codOrdersCount);
+		reportSummary.setTypeCashTotal(codOrdersSum);
+		reportSummary.setTypeDeliveryCount(deliveryCount);
+		reportSummary.setTypeDeliveryTotal(deliveryOrdersSum);
+		reportSummary.setTypeCollectionCount(collectionCount);
+		reportSummary.setTypeCollectionTotal(collectionOrdersSum);
+		
 		return reportSummary;
 	}
+		/*
+		 * reportSummary.setTypeAllCount(
+		 * orderMasterRepository.countByOrderPlaceAtBetweenAndStoreName(dateBegin,
+		 * dateEnd, storeName));
+		 * reportSummary.setTypeAllTotal(orderMasterRepository.sumOfTotalDue(dateBegin,
+		 * dateEnd, storeName)); reportSummary.setTypeDeliveryCount(
+		 * orderMasterRepository.countByMethodOfOrderAndStoreName(dateBegin, dateEnd,
+		 * storeName, "delivery")); reportSummary.setTypeCollectionCount(
+		 * orderMasterRepository.countByMethodOfOrderAndStoreName(dateBegin, dateEnd,
+		 * storeName, "collection")); reportSummary.setTypeDeliveryTotal(
+		 * orderMasterRepository.sumOfTotalByOrderType(dateBegin, dateEnd, storeName,
+		 * "delivery")); reportSummary.setTypeCollectionTotal(
+		 * orderMasterRepository.sumOfTotalByOrderType(dateBegin, dateEnd, storeName,
+		 * "collection")); reportSummary.setTypeCardCount(
+		 * orderMasterRepository.countByPaymentStatusAndStoreName(dateBegin, dateEnd,
+		 * storeName, "order paid")); reportSummary.setTypeCashCount(
+		 * orderMasterRepository.countByPaymentStatusAndStoreName(dateBegin, dateEnd,
+		 * storeName, "order not paid")); reportSummary.setTypeCardTotal(
+		 * orderMasterRepository.sumOftotalByPaymentStatus(dateBegin, dateEnd,
+		 * storeName, "order paid")); reportSummary.setTypeCashTotal(
+		 * orderMasterRepository.sumOftotalByPaymentStatus(dateBegin, dateEnd,
+		 * storeName, "order not paid"));
+		 */
+		
+	
 
+	
 	
 	
 	/***
@@ -649,8 +718,8 @@ public class QueryServiceImpl implements QueryService {
 		
 	}
 
-	@Override
-	public ReportSummary createReportSummaryBetweenTwoDates(String fromDate, String toDate) {
+	
+	/*public ReportSummary createReportSummaryBetweenTwoDates(String fromDate, String toDate) {
 	
 		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
 		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
@@ -681,7 +750,7 @@ public class QueryServiceImpl implements QueryService {
 		return reportSummary;
 		
 		
-	}
+	}*/
 
 	/*
 	 * @Override public List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(String

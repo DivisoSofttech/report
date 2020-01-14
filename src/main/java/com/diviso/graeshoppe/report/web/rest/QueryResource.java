@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -113,20 +114,14 @@ public class QueryResource {
 
 	
 	
-	@GetMapping("/reportview/{fromDate}/{toDate}/{storeName}")
+	@GetMapping("/reportview/{fromDate}/{toDate}")
 
-	public ReportSummary createReportSummary(@PathVariable String fromDate, @PathVariable String toDate, @PathVariable String storeName) {
+	public ReportSummary createReportSummary(@PathVariable String fromDate, @PathVariable String toDate, @RequestParam(value="storeName", required=false) String storeName) {
 	
-		ReportSummary reportSummary = null;		
-		if(fromDate!=null && toDate!=null && storeName!=null) {
 		
-		reportSummary= queryService.createReportSummary(fromDate, toDate, storeName);
-	}
-		else if(fromDate!=null && toDate!=null && storeName == null) {
-			reportSummary=queryService.createReportSummaryBetweenTwoDates(fromDate, toDate);
-		}
+		return queryService.createReportSummary(fromDate, toDate, storeName);
+	
 		
-		return reportSummary;
 	}
 
 	/*
