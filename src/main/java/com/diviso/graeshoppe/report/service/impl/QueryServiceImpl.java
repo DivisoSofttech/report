@@ -141,9 +141,11 @@ public class QueryServiceImpl implements QueryService {
 	
 
 	@Override
-	public byte[] getReportSummaryAsPdf(LocalDate fromDate,LocalDate toDate, String storeId) throws JRException {
-		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/reportSummary.jrxml");
+	public byte[] getReportSummaryAsPdf(String fromDate,String toDate, String storeId) throws JRException {
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>> query service impl");
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/reportSummaryV1.jrxml");
 
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>> "+ fromDate+">>>>>>>>"+toDate+">>>>>>>>>>>>>>"+storeId);
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("from_date", fromDate);
 		parameters.put("to_date", toDate);
@@ -157,6 +159,7 @@ public class QueryServiceImpl implements QueryService {
 		}
 
 		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>> exiting getReportSummaryAsPdf");
 		return JasperExportManager.exportReportToPdf(jp);
 
 	}
@@ -247,7 +250,7 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 	@Override
-	public byte[] getAllOrdersByMethodOfOrderAsPdf(LocalDate date, String storeId, String methodOfOrder) throws JRException {
+	public byte[] getAllOrdersByMethodOfOrderAsPdf(String date, String storeId, String methodOfOrder) throws JRException {
 		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/orderbymethodoforder.jrxml");
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
@@ -268,12 +271,13 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 	@Override
-	public byte[] getAllOrdersByPaymentStatusAsPdf(LocalDate date, String storeId, String paymentStatus) throws JRException {
+	public byte[] getAllOrdersByPaymentStatusAsPdf(String fromDate, String toDate, String storeId, String paymentStatus) throws JRException {
 		
 		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersbypaymentstatus.jrxml");
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("date", date);
+		parameters.put("from_date", fromDate);
+		parameters.put("to_date", toDate);
 		parameters.put("store_idpcode", storeId);
 		parameters.put("payment_status", paymentStatus);
 		Connection conn = null;
@@ -289,7 +293,7 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 	@Override
-	public byte[] getAllOrdersByDateAsPdf(LocalDate date)throws JRException {
+	public byte[] getAllOrdersByDateAsPdf(String date)throws JRException {
 	
 		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/datespecificorders.jrxml");
 
@@ -309,7 +313,7 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 	@Override
-	public byte[] getAllOrdersByDateAndStoreNameAsPdf(LocalDate date, String storeId) throws JRException{
+	public byte[] getAllOrdersByDateAndStoreNameAsPdf(String date, String storeId) throws JRException{
 		
 		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersbydateandstorename.jrxml");
 
@@ -331,7 +335,7 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 	@Override
-	public byte[] getAllOrdersBetweenDatesAsPdf(LocalDate fromDate, LocalDate toDate) throws JRException{
+	public byte[] getAllOrdersBetweenDatesAsPdf(String fromDate, String toDate) throws JRException{
 		
 		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersbetweendates.jrxml");
 
@@ -352,7 +356,7 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 	@Override
-	public byte[] getOrderSummaryBetweenDatesAsPdf(LocalDate fromDate, LocalDate toDate, String storeId) throws JRException {
+	public byte[] getOrderSummaryBetweenDatesAsPdf(String fromDate, String toDate, String storeId) throws JRException {
 
 
 		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersummarybetweendates.jrxml");
@@ -375,12 +379,12 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 	@Override
-	public byte[] getOrderSummaryByDateAndStoreNameAsPdf(LocalDate date, String storeId) throws JRException {
+	public byte[] getOrderSummaryByDateAndStoreNameAsPdf(String date, String storeId) throws JRException {
 		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersummaryadmin.jrxml");
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("date", date);
-		parameters.put("store_name", storeId);
+		parameters.put("store_idpcode", storeId);
 		
 		Connection conn = null;
 		try {
@@ -395,7 +399,7 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 	@Override
-	public byte[] getAllOrdersBetweenDatesAndStoreIdAsPdf(LocalDate fromDate, LocalDate toDate, String storeId )throws JRException {
+	public byte[] getAllOrdersBetweenDatesAndStoreIdAsPdf(String fromDate, String toDate, String storeId )throws JRException {
 		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersbetweendatesandstorename.jrxml");
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
@@ -621,7 +625,7 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 	@Override
-	public byte[] getAllOrdersBetweenDatesByPaymentStatusAsPdf(LocalDate fromDate, LocalDate toDate,
+	public byte[] getAllOrdersBetweenDatesByPaymentStatusAsPdf(String fromDate, String toDate,
 			String paymentStatus) throws JRException {
 		
 
@@ -645,11 +649,11 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 	@Override
-	public byte[] getAllOrdersBetweenDatesByMethodOfOrderAsPdf(LocalDate fromDate, LocalDate toDate,
+	public byte[] getAllOrdersBetweenDatesByMethodOfOrderAsPdf(String fromDate, String toDate,
 			String methodOfOrder) throws JRException {
 		
 
-		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersByDateAndMethodOfOrderOnly.jrxml");
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/OrdersByDateAndMethodOfOrderOnly.jrxml");
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("from_date", fromDate);
@@ -669,10 +673,10 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 	@Override
-	public byte[] getAllOrdersBetweenDatesByPaymentStatusAndMethodOfOrderAsPdf(LocalDate fromDate, LocalDate toDate,
+	public byte[] getAllOrdersBetweenDatesByPaymentStatusAndMethodOfOrderAsPdf(String fromDate, String toDate,
 			String paymentStatus, String methodOfOrder) throws JRException{
 		
-		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersByDatePaymentAndMethod.jrxml");
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersByDateAndPaymentAndMethod.jrxml");
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("from_date", fromDate);
@@ -694,9 +698,9 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 	@Override
-	public byte[] getAllOrdersBetweenDatesByStoreIdAndPaymentStatusAndMethodOfOrderAsPdf(LocalDate fromDate,
-			LocalDate toDate, String storeId, String paymentStatus, String methodOfOrder) throws JRException {
-		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersByDatePaymentAndMethod.jrxml");
+	public byte[] getAllOrdersBetweenDatesByStoreIdAndPaymentStatusAndMethodOfOrderAsPdf(String fromDate,
+			String toDate, String storeId, String paymentStatus, String methodOfOrder) throws JRException {
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersByDateAndStoreIdAndPaymentAndMethod.jrxml");
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("from_date", fromDate);
@@ -719,7 +723,7 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 	@Override
-	public byte[] getReportSummaryBetweenDatesAsPdf(LocalDate fromDate, LocalDate toDate) throws JRException {
+	public byte[] getReportSummaryBetweenDatesAsPdf(String fromDate, String toDate) throws JRException {
 		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/reportSummaryBetweenDatesOnly.jrxml");
 
 		Map<String, Object> parameters = new HashMap<String, Object>();

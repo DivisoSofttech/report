@@ -130,12 +130,12 @@
 				<reportElement positionType="Float" x="158" y="-81" width="251" height="220" uuid="de7c4332-de60-4a42-92f3-b79696caef40"/>
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
-			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
-				<reportElement positionType="Float" x="195" y="186" width="178" height="19" uuid="ffbf3005-94bc-4cf8-b4e7-9cbc855e5ee7">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f690a7ec-09c6-487c-bf75-d743ee6e5831"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{date(order_place_at)}]]></textFieldExpression>
+			<textField isStretchWithOverflow="true" pattern="MMMM d, yyyy">
+				<reportElement positionType="Float" x="184" y="183" width="225" height="20" uuid="e58ae728-471b-4499-9d87-87da1bbc0d15"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

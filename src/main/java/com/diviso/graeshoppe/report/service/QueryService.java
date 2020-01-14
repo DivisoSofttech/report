@@ -14,7 +14,7 @@ import net.sf.jasperreports.engine.JRException;
 public interface QueryService {
 		
 
-	byte[] getReportSummaryAsPdf(LocalDate fromDate,LocalDate toDate,String storeId) throws JRException;
+	byte[] getReportSummaryAsPdf(String fromDate,String toDate,String storeId) throws JRException;
 
 	/**
 	 * @param orderNumber
@@ -26,21 +26,21 @@ public interface QueryService {
 
 	byte[] getSaleReportAsPdf(String storeidpcode)throws JRException;
 
-	byte[] getAllOrdersByMethodOfOrderAsPdf(LocalDate date, String storeId, String methodOfOrder) throws JRException;
+	byte[] getAllOrdersByMethodOfOrderAsPdf(String date, String storeId, String methodOfOrder) throws JRException;
 
-	byte[] getAllOrdersByPaymentStatusAsPdf(LocalDate date, String storeId, String paymentStatus) throws JRException;
+	byte[] getAllOrdersByPaymentStatusAsPdf(String fromDate,String toDate, String storeId, String paymentStatus) throws JRException;
 
-	byte[] getAllOrdersByDateAsPdf(LocalDate date) throws JRException;
+	byte[] getAllOrdersByDateAsPdf(String date) throws JRException;
 
-	byte[] getAllOrdersByDateAndStoreNameAsPdf(LocalDate date, String storeId) throws JRException;
+	byte[] getAllOrdersByDateAndStoreNameAsPdf(String date, String storeId) throws JRException;
 
-	byte[] getAllOrdersBetweenDatesAsPdf(LocalDate fromDate, LocalDate toDate) throws JRException;
+	byte[] getAllOrdersBetweenDatesAsPdf(String fromDate, String toDate) throws JRException;
 
-	byte[] getOrderSummaryBetweenDatesAsPdf(LocalDate fromDate, LocalDate toDate , String storeId) throws JRException;
+	byte[] getOrderSummaryBetweenDatesAsPdf(String fromDate, String toDate , String storeId) throws JRException;
 
-	byte[] getOrderSummaryByDateAndStoreNameAsPdf(LocalDate date, String storeId )throws JRException;
+	byte[] getOrderSummaryByDateAndStoreNameAsPdf(String date, String storeId )throws JRException;
 
-	byte[] getAllOrdersBetweenDatesAndStoreIdAsPdf(LocalDate fromDate, LocalDate toDate, String storeId)throws JRException;
+	byte[] getAllOrdersBetweenDatesAndStoreIdAsPdf(String fromDate, String toDate, String storeId)throws JRException;
 
 	Page<OrderMaster> getOrdersViewByMethodOfOrder(String storeId, String fromDate,String toDate, String methodOfOrder, Pageable pageable);
 
@@ -62,17 +62,17 @@ public interface QueryService {
 	Page<OrderMaster> getOrdersViewBetweenDatesAndStoreIdpcodeAndPaymentStatusAndMethodOfOrder(String fromDate,
 			String toDate, String storeId, String paymentStatus, String methodOfOrder, Pageable pageable);
 
-	byte[] getAllOrdersBetweenDatesByPaymentStatusAsPdf(LocalDate fromDate, LocalDate toDate,  String paymentStatus)throws JRException;
+	byte[] getAllOrdersBetweenDatesByPaymentStatusAsPdf(String fromDate, String toDate,  String paymentStatus)throws JRException;
 
-	byte[] getAllOrdersBetweenDatesByMethodOfOrderAsPdf(LocalDate fromDate, LocalDate toDate, String methodOfOrder) throws JRException;
+	byte[] getAllOrdersBetweenDatesByMethodOfOrderAsPdf(String fromDate, String toDate, String methodOfOrder) throws JRException;
 
-	byte[] getAllOrdersBetweenDatesByPaymentStatusAndMethodOfOrderAsPdf(LocalDate fromDate, LocalDate toDate,
+	byte[] getAllOrdersBetweenDatesByPaymentStatusAndMethodOfOrderAsPdf(String fromDate, String toDate,
 			String paymentStatus, String methodOfOrder) throws JRException;
 
-	byte[] getAllOrdersBetweenDatesByStoreIdAndPaymentStatusAndMethodOfOrderAsPdf(LocalDate fromDate, LocalDate toDate,
+	byte[] getAllOrdersBetweenDatesByStoreIdAndPaymentStatusAndMethodOfOrderAsPdf(String fromDate, String toDate,
 			String storeId, String paymentStatus, String methodOfOrder) throws JRException;
 
-	byte[] getReportSummaryBetweenDatesAsPdf(LocalDate fromDate, LocalDate toDate) throws JRException;
+	byte[] getReportSummaryBetweenDatesAsPdf(String fromDate, String toDate) throws JRException;
 
 	//ReportSummary createReportSummaryBetweenTwoDates(String fromDate, String toDate);
 

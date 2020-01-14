@@ -11,8 +11,43 @@
 	<parameter name="payment_status" class="java.lang.String"/>
 	<parameter name="method_of_order" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select store_name,store_idpcode, zone_id, order_number, total_due , customer_id, payment_status, method_of_order, date(order_place_at) from order_master where date(order_place_at) between $P{from_date} and  $P{to_date} and  payment_status= $P{payment_status} and method_of_order =  $P{method_of_order}   ;]]>
+		<![CDATA[select store_name,store_idpcode, zone_id, order_number, total_due , customer_id, payment_status, method_of_order, date(order_place_at) from order_master where date(order_place_at) between $P{from_date} and  $P{to_date} and store_idpcode= $P{store_id}  and payment_status= $P{payment_status} and method_of_order =  $P{method_of_order}   ;]]>
 	</queryString>
+	<field name="store_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="store_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="store_idpcode" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="store_idpcode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="zone_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="zone_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="order_number" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="order_number"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="total_due" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="total_due"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="customer_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="customer_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="payment_status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="payment_status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="method_of_order" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="method_of_order"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="date(order_place_at)" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="date(order_place_at)"/>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -23,7 +58,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[String.format("Orders By %1$s and %2$s",$F{payment_status},$F{method_of_order} )]]></textFieldExpression>
+				<textFieldExpression><![CDATA[String.format("Orders By %1$s and %2$s of %3$s",$F{payment_status},$F{method_of_order},$F{store_name}  )]]></textFieldExpression>
 			</textField>
 			<image>
 				<reportElement positionType="Float" x="158" y="-80" width="251" height="203" uuid="73be00b0-d415-42f4-8b5a-a36197f9895c"/>

@@ -74,17 +74,19 @@ public class QueryResource {
 		byte[] pdfContents = null;
 		
 		if(fromDate!=null && toDate!=null && storeName!=null) {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>> + storeName!=null");
 
 			try {
-				pdfContents = queryService.getReportSummaryAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate),storeName);
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>> inside try block");
+				pdfContents = queryService.getReportSummaryAsPdf(fromDate, toDate,storeName);
 			} catch (JRException e) {
 				e.printStackTrace();
 			}
 		}
-		else if(fromDate != null && toDate != null && storeName== null ) {
-			
+		else if(fromDate != null && toDate != null && storeName == null ) {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>> + storeName==null");
 			try {
-				pdfContents = queryService.getReportSummaryBetweenDatesAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate));
+				pdfContents = queryService.getReportSummaryBetweenDatesAsPdf(fromDate, toDate);
 			} catch (JRException e) {
 				e.printStackTrace();
 			}
@@ -224,7 +226,7 @@ public class QueryResource {
 
 
 		try {
-			pdfContents = queryService.getAllOrdersByMethodOfOrderAsPdf(LocalDate.parse(date), storeId, methodOfOrder);
+			pdfContents = queryService.getAllOrdersByMethodOfOrderAsPdf(date, storeId, methodOfOrder);
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -237,8 +239,8 @@ public class QueryResource {
 		return response;
 	}
 	
-	@GetMapping("/ordersbypayment/{storeId}/{date}/{paymentStatus}")
-	public ResponseEntity<byte[]> getAllOrdersByPaymentStatusAsPdf(@PathVariable String storeId, @PathVariable String date, @PathVariable String paymentStatus) {
+	@GetMapping("/ordersbypayment/{storeId}/{fromDate}/{toDate}/{paymentStatus}")
+	public ResponseEntity<byte[]> getAllOrdersByPaymentStatusAsPdf(@PathVariable String storeId, @PathVariable String fromDate,@PathVariable String toDate, @PathVariable String paymentStatus) {
 
 		// log.debug("REST request to get a pdf");
 
@@ -246,7 +248,7 @@ public class QueryResource {
 
 
 		try {
-			pdfContents = queryService.getAllOrdersByPaymentStatusAsPdf(LocalDate.parse(date), storeId, paymentStatus);
+			pdfContents = queryService.getAllOrdersByPaymentStatusAsPdf(fromDate, toDate, storeId, paymentStatus);
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -268,7 +270,7 @@ public class QueryResource {
 
 
 		try {
-			pdfContents = queryService.getAllOrdersByDateAsPdf(LocalDate.parse(date));
+			pdfContents = queryService.getAllOrdersByDateAsPdf(date);
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -291,7 +293,7 @@ public class QueryResource {
 
 
 		try {
-			pdfContents = queryService.getAllOrdersByDateAndStoreNameAsPdf(LocalDate.parse(date), storeId);
+			pdfContents = queryService.getAllOrdersByDateAndStoreNameAsPdf(date, storeId);
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -314,7 +316,7 @@ public class QueryResource {
 
 
 		try {
-			pdfContents = queryService.getAllOrdersBetweenDatesAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate));
+			pdfContents = queryService.getAllOrdersBetweenDatesAsPdf(fromDate, toDate);
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -328,7 +330,7 @@ public class QueryResource {
 	}
 	
 
-	@GetMapping("/ordersummarybetweendates/{fromDate}/{toDate}/{storeId}")
+	@GetMapping("/orderSummaryBetweenDatesAndStoreId/{fromDate}/{toDate}/{storeId}")
 	public ResponseEntity<byte[]> getOrderSummaryBetweenDatesAsPdf(@PathVariable String fromDate, @PathVariable String toDate , @PathVariable String storeId){
 
 		// log.debug("REST request to get a pdf");
@@ -337,7 +339,7 @@ public class QueryResource {
 
 
 		try {
-			pdfContents = queryService.getOrderSummaryBetweenDatesAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate), storeId );
+			pdfContents = queryService.getOrderSummaryBetweenDatesAsPdf(fromDate, toDate, storeId );
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -359,7 +361,7 @@ public class QueryResource {
 
 
 		try {
-			pdfContents = queryService.getOrderSummaryByDateAndStoreNameAsPdf(LocalDate.parse(date), storeId);
+			pdfContents = queryService.getOrderSummaryByDateAndStoreNameAsPdf(date, storeId);
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -382,7 +384,7 @@ public class QueryResource {
 
 
 		try {
-			pdfContents = queryService.getAllOrdersBetweenDatesAndStoreIdAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate), storeId );
+			pdfContents = queryService.getAllOrdersBetweenDatesAndStoreIdAsPdf(fromDate, toDate, storeId );
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -405,7 +407,7 @@ public class QueryResource {
 
 
 		try {
-			pdfContents = queryService.getAllOrdersBetweenDatesByPaymentStatusAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate), paymentStatus );
+			pdfContents = queryService.getAllOrdersBetweenDatesByPaymentStatusAsPdf(fromDate, toDate, paymentStatus );
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -428,7 +430,7 @@ public class QueryResource {
 
 
 		try {
-			pdfContents = queryService.getAllOrdersBetweenDatesByMethodOfOrderAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate), methodOfOrder );
+			pdfContents = queryService.getAllOrdersBetweenDatesByMethodOfOrderAsPdf(fromDate, toDate, methodOfOrder );
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -451,7 +453,7 @@ public class QueryResource {
 
 
 		try {
-			pdfContents = queryService.getAllOrdersBetweenDatesByPaymentStatusAndMethodOfOrderAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate),paymentStatus, methodOfOrder );
+			pdfContents = queryService.getAllOrdersBetweenDatesByPaymentStatusAndMethodOfOrderAsPdf(fromDate, toDate,paymentStatus, methodOfOrder );
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -474,14 +476,14 @@ public class QueryResource {
 
 
 		try {
-			pdfContents = queryService.getAllOrdersBetweenDatesByStoreIdAndPaymentStatusAndMethodOfOrderAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate),storeId, paymentStatus, methodOfOrder );
+			pdfContents = queryService.getAllOrdersBetweenDatesByStoreIdAndPaymentStatusAndMethodOfOrderAsPdf(fromDate, toDate,storeId, paymentStatus, methodOfOrder );
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.parseMediaType("application/pdf"));
-		String fileName = "ordersBetweenDatesbyPaymentStatusAndMethodOfOrder.pdf";
+		String fileName = "ordersBetweenDatesbystoreIdAndPaymentStatusAndMethodOfOrder.pdf";
 		headers.add("content-disposition", "attachment; filename=" + fileName);
 		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
 		return response;
