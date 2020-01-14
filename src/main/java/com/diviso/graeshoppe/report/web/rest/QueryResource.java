@@ -66,17 +66,28 @@ public class QueryResource {
 	 * queryService.getOrderAggregator(orderNumber); }
 	 */
 
-	@GetMapping("/reportSummary/{fromDate}/{toDate}/{storeId}")
-	public ResponseEntity<byte[]> getReportSummaryAsPdf(@PathVariable String fromDate, @PathVariable String toDate, @PathVariable String storeId) {
+	@GetMapping("/reportSummary/{fromDate}/{toDate}")
+	public ResponseEntity<byte[]> getReportSummaryAsPdf(@PathVariable String fromDate, @PathVariable String toDate, @RequestParam(value="storeName", required=false) String storeName) {
 
 		// log.debug("REST request to get a pdf");
 
 		byte[] pdfContents = null;
+		
+		if(fromDate!=null && toDate!=null && storeName!=null) {
 
-		try {
-			pdfContents = queryService.getReportSummaryAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate),storeId);
-		} catch (JRException e) {
-			e.printStackTrace();
+			try {
+				pdfContents = queryService.getReportSummaryAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate),storeName);
+			} catch (JRException e) {
+				e.printStackTrace();
+			}
+		}
+		else if(fromDate != null && toDate != null && storeName== null ) {
+			
+			try {
+				pdfContents = queryService.getReportSummaryBetweenDatesAsPdf(LocalDate.parse(fromDate), LocalDate.parse(toDate));
+			} catch (JRException e) {
+				e.printStackTrace();
+			}
 		}
 
 		HttpHeaders headers = new HttpHeaders();

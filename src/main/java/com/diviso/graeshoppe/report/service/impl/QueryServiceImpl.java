@@ -718,6 +718,27 @@ public class QueryServiceImpl implements QueryService {
 		
 	}
 
+	@Override
+	public byte[] getReportSummaryBetweenDatesAsPdf(LocalDate fromDate, LocalDate toDate) throws JRException {
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/reportSummaryBetweenDatesOnly.jrxml");
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("from_date", fromDate);
+		parameters.put("to_date", toDate);
+		
+		
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		return JasperExportManager.exportReportToPdf(jp);
+	}
+
 	
 	/*public ReportSummary createReportSummaryBetweenTwoDates(String fromDate, String toDate) {
 	
