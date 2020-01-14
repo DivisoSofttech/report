@@ -111,17 +111,31 @@ public class QueryResource {
 		return response;
 	}
 
+	
+	
 	@GetMapping("/reportview/{fromDate}/{toDate}/{storeName}")
 
 	public ReportSummary createReportSummary(@PathVariable String fromDate, @PathVariable String toDate, @PathVariable String storeName) {
-		return queryService.createReportSummary(fromDate, toDate, storeName);
+	
+		ReportSummary reportSummary = null;		
+		if(fromDate!=null && toDate!=null && storeName!=null) {
+		
+		reportSummary= queryService.createReportSummary(fromDate, toDate, storeName);
+	}
+		else if(fromDate!=null && toDate!=null && storeName == null) {
+			reportSummary=queryService.createReportSummaryBetweenTwoDates(fromDate, toDate);
+		}
+		
+		return reportSummary;
 	}
 
-	@GetMapping("/reportview/{fromDate}/{toDate}")
-
-	public ReportSummary createReportSummaryBetweenTwoDates(@PathVariable String fromDate, @PathVariable String toDate) {
-		return queryService.createReportSummaryBetweenTwoDates(fromDate, toDate);
-	}
+	/*
+	 * @GetMapping("/reportview/{fromDate}/{toDate}")
+	 * 
+	 * public ReportSummary createReportSummaryBetweenTwoDates(@PathVariable String
+	 * fromDate, @PathVariable String toDate) { return
+	 * queryService.createReportSummaryBetweenTwoDates(fromDate, toDate); }
+	 */
 
 	@GetMapping("/salereport/{storeidpcode}")
 	public ResponseEntity<byte[]> getSaleReportAsPdf(@PathVariable String storeidpcode) {

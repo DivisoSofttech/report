@@ -425,7 +425,7 @@ public class QueryServiceImpl implements QueryService {
 		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
 		ReportSummary reportSummary = new ReportSummary();
 		reportSummary.setFromDate(LocalDate.parse(fromDate));
-		reportSummary.setFromDate(LocalDate.parse(toDate));
+		reportSummary.setToDate(LocalDate.parse(toDate));
 		reportSummary.setStoreId(storeName);
 
 		reportSummary.setTypeAllCount(
@@ -656,7 +656,7 @@ public class QueryServiceImpl implements QueryService {
 		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
 		ReportSummary reportSummary = new ReportSummary();
 		reportSummary.setFromDate(LocalDate.parse(fromDate));
-		reportSummary.setFromDate(LocalDate.parse(toDate));
+		reportSummary.setToDate(LocalDate.parse(toDate));
 
 		reportSummary.setTypeAllCount(
 				orderMasterRepository.countByOrderPlaceAtBetween(dateBegin, dateEnd));
