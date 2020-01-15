@@ -6,10 +6,11 @@
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="126"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="868"/>
 	<parameter name="store_idpcode" class="java.lang.String"/>
-	<parameter name="date" class="java.lang.String"/>
+	<parameter name="from_date" class="java.lang.String"/>
 	<parameter name="method_of_order" class="java.lang.String"/>
+	<parameter name="to_date" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select store_name,store_idpcode, zone_id, method_of_order, order_number, total_due , customer_id, payment_status, date(order_place_at) from order_master where store_idpcode=  $P{store_idpcode} and date(order_place_at)= $P{date} and method_of_order =$P{method_of_order} ;]]>
+		<![CDATA[select store_name,store_idpcode, zone_id, method_of_order, order_number, total_due , customer_id, payment_status, date(order_place_at) from order_master where store_idpcode=  $P{store_idpcode} and date(order_place_at)between  $P{from_date} and  $P{to_date}  and method_of_order =$P{method_of_order} ;]]>
 	</queryString>
 	<field name="store_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="store_name"/>

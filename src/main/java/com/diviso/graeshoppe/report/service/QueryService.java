@@ -26,7 +26,7 @@ public interface QueryService {
 
 	byte[] getSaleReportAsPdf(String storeidpcode)throws JRException;
 
-	byte[] getAllOrdersByMethodOfOrderAsPdf(String date, String storeId, String methodOfOrder) throws JRException;
+	byte[] getAllOrdersByMethodOfOrderAsPdf(String fromDate, String toDate, String storeId, String methodOfOrder) throws JRException;
 
 	byte[] getAllOrdersByPaymentStatusAsPdf(String fromDate,String toDate, String storeId, String paymentStatus) throws JRException;
 

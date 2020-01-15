@@ -250,11 +250,12 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 	@Override
-	public byte[] getAllOrdersByMethodOfOrderAsPdf(String date, String storeId, String methodOfOrder) throws JRException {
+	public byte[] getAllOrdersByMethodOfOrderAsPdf(String fromDate, String toDate, String storeId, String methodOfOrder) throws JRException {
 		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/orderbymethodoforder.jrxml");
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("date", date);
+		parameters.put("from_date", fromDate);
+		parameters.put("to_date", toDate);
 		parameters.put("store_idpcode", storeId);
 		parameters.put("method_of_order", methodOfOrder);
 		Connection conn = null;
