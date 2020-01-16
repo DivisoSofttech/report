@@ -14,7 +14,7 @@ import net.sf.jasperreports.engine.JRException;
 public interface QueryService {
 		
 
-	byte[] getReportSummaryAsPdf(String fromDate,String toDate,String storeId) throws JRException;
+	byte[] getReportSummaryAsPdf(String date,String storeId) throws JRException;
 
 	/**
 	 * @param orderNumber
@@ -70,7 +70,8 @@ public interface QueryService {
 	byte[] getAllOrdersBetweenDatesByStoreIdAndPaymentStatusAndMethodOfOrderAsPdf(String fromDate, String toDate,
 			String storeId, String paymentStatus, String methodOfOrder) throws JRException;
 
-	byte[] getReportSummaryBetweenDatesAsPdf(String fromDate, String toDate) throws JRException;
+	
+	byte[] getReportSummaryByDateOnlyAsPdf(String date) throws JRException;
 
 	//ReportSummary createReportSummaryBetweenTwoDates(String fromDate, String toDate);
 

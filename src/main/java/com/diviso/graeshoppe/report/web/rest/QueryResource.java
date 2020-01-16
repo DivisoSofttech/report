@@ -66,27 +66,27 @@ public class QueryResource {
 	 * queryService.getOrderAggregator(orderNumber); }
 	 */
 
-	@GetMapping("/reportSummary/{fromDate}/{toDate}")
-	public ResponseEntity<byte[]> getReportSummaryAsPdf(@PathVariable String fromDate, @PathVariable String toDate, @RequestParam(value="storeName", required=false) String storeName) {
+	@GetMapping("/reportSummary/{date}")
+	public ResponseEntity<byte[]> getReportSummaryAsPdf(@PathVariable String date, @RequestParam(value="storeName", required=false) String storeName) {
 
 		// log.debug("REST request to get a pdf");
 
 		byte[] pdfContents = null;
 		
-		if(fromDate!=null && toDate!=null && storeName!=null) {
+		if(date!=null && storeName!=null) {
 			System.out.println(">>>>>>>>>>>>>>>>>>>>>>> + storeName!=null");
 
 			try {
 				System.out.println(">>>>>>>>>>>>>>>>>>>>>>> inside try block");
-				pdfContents = queryService.getReportSummaryAsPdf(fromDate, toDate,storeName);
+				pdfContents = queryService.getReportSummaryAsPdf(date,storeName);
 			} catch (JRException e) {
 				e.printStackTrace();
 			}
 		}
-		else if(fromDate != null && toDate != null && storeName == null ) {
+		else if(date != null && storeName == null ) {
 			System.out.println(">>>>>>>>>>>>>>>>>>>>>>> + storeName==null");
 			try {
-				pdfContents = queryService.getReportSummaryBetweenDatesAsPdf(fromDate, toDate);
+				pdfContents = queryService.getReportSummaryByDateOnlyAsPdf(date);
 			} catch (JRException e) {
 				e.printStackTrace();
 			}

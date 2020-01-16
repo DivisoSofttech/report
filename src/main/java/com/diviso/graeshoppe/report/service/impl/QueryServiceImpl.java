@@ -141,14 +141,13 @@ public class QueryServiceImpl implements QueryService {
 	
 
 	@Override
-	public byte[] getReportSummaryAsPdf(String fromDate,String toDate, String storeId) throws JRException {
+	public byte[] getReportSummaryAsPdf(String date, String storeId) throws JRException {
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>> query service impl");
 		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/reportSummaryV1.jrxml");
 
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>> "+ fromDate+">>>>>>>>"+toDate+">>>>>>>>>>>>>>"+storeId);
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>> "+ date+">>>>>>>>>>>>>>"+storeId);
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("from_date", fromDate);
-		parameters.put("to_date", toDate);
+		parameters.put("date", date);
 		parameters.put("store_idpcode", storeId);
 		Connection conn = null;
 		try {
@@ -706,12 +705,11 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 	@Override
-	public byte[] getReportSummaryBetweenDatesAsPdf(String fromDate, String toDate) throws JRException {
-		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/reportSummaryBetweenDatesOnly.jrxml");
+	public byte[] getReportSummaryByDateOnlyAsPdf(String date) throws JRException {
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/reportSummaryByDateOnly.jrxml");
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("from_date", fromDate);
-		parameters.put("to_date", toDate);
+		parameters.put("date", date);
 		
 		
 		Connection conn = null;
