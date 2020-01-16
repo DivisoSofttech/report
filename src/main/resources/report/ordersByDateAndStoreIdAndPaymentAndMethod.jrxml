@@ -58,7 +58,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[String.format("Orders By %1$s and %2$s of %3$s",$F{payment_status},$F{method_of_order},$F{store_name}  )]]></textFieldExpression>
+				<textFieldExpression><![CDATA[String.format("Orders Between %1$s And %2$s \nBy %3$s and %4$s", $P{from_date},$P{to_date},($F{payment_status}.toLowerCase()),($F{method_of_order}.toLowerCase()))]]></textFieldExpression>
 			</textField>
 			<image>
 				<reportElement positionType="Float" x="158" y="-80" width="251" height="203" uuid="73be00b0-d415-42f4-8b5a-a36197f9895c"/>
@@ -70,6 +70,13 @@
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="140" y="60" width="296" height="30" uuid="1063e7f2-9db7-4b93-a619-5567130f66e8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{store_name}.toUpperCase()]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>

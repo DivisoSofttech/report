@@ -52,18 +52,18 @@
 	<title>
 		<band height="169" splitType="Stretch">
 			<textField>
-				<reportElement positionType="Float" x="68" y="104" width="432" height="52" uuid="634d6b85-4997-4930-a915-7d2c764d0971"/>
+				<reportElement positionType="Float" x="68" y="87" width="432" height="35" uuid="634d6b85-4997-4930-a915-7d2c764d0971"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{store_name}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="80" y="82" width="400" height="30" uuid="253ee792-7e0c-4702-96e4-ef3c1f9a88d5"/>
+				<reportElement positionType="Float" x="80" y="127" width="400" height="30" uuid="253ee792-7e0c-4702-96e4-ef3c1f9a88d5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="15"/>
 				</textElement>
-				<textFieldExpression><![CDATA[String.format("Orders By %1$s on %2$s", $F{method_of_order}.toLowerCase() ,$F{date(order_place_at)})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[String.format("Orders Between  %1$s and %2$s using", $P{from_date}, $P{to_date},$F{method_of_order}.toLowerCase() )]]></textFieldExpression>
 			</textField>
 			<image>
 				<reportElement positionType="Float" x="158" y="-80" width="251" height="230" uuid="7686c102-3a46-46cc-a65e-5f4d10f75c11"/>

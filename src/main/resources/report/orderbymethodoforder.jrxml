@@ -57,18 +57,18 @@
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement positionType="Float" x="68" y="104" width="432" height="52" uuid="b61c2600-4b00-4cbc-a694-c87ed6d746c1"/>
+				<reportElement positionType="Float" x="68" y="77" width="432" height="52" uuid="b61c2600-4b00-4cbc-a694-c87ed6d746c1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{store_name}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="80" y="82" width="400" height="30" uuid="830cb5f9-66eb-4fe2-8ac3-dcd54a0fa368"/>
+				<reportElement positionType="Float" x="10" y="128" width="544" height="30" uuid="830cb5f9-66eb-4fe2-8ac3-dcd54a0fa368"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="15"/>
 				</textElement>
-				<textFieldExpression><![CDATA[String.format("Orders By %1$s on %2$s", $F{method_of_order}.toLowerCase() ,$F{date(order_place_at)})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[String.format("Orders Between %1$s and %2$s Using %3$s", $P{from_date}, $P{to_date}, $F{method_of_order}.toLowerCase() )]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement positionType="Float" x="-19" y="162" width="599" height="1" uuid="d2a1d13e-0e3c-47bd-bb99-e86329a8ac5a"/>

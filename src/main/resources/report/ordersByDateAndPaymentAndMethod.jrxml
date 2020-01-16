@@ -61,7 +61,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[String.format("Orders By %1$s and %2$s",$F{payment_status},$F{method_of_order} )]]></textFieldExpression>
+				<textFieldExpression><![CDATA[String.format("Orders Between %1$s and %2$s \n By %3$s And %4$s",$P{from_date},$P{to_date},($F{payment_status}.toLowerCase()),($F{method_of_order}.toLowerCase()) )]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement positionType="Float" x="-19" y="139" width="599" height="1" uuid="8c445cb7-25c9-4a66-be30-ee9aaba4241e"/>

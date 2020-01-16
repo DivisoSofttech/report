@@ -293,25 +293,7 @@ public class QueryServiceImpl implements QueryService {
 		return JasperExportManager.exportReportToPdf(jp);
 	}
 
-	@Override
-	public byte[] getAllOrdersByDateAsPdf(String date)throws JRException {
 	
-		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/datespecificorders.jrxml");
-
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("date", date);
-		
-		Connection conn = null;
-		try {
-			conn = dataSource.getConnection();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
-		return JasperExportManager.exportReportToPdf(jp);
-	}
 
 	@Override
 	public byte[] getAllOrdersByDateAndStoreNameAsPdf(String date, String storeId) throws JRException{
@@ -425,24 +407,24 @@ public class QueryServiceImpl implements QueryService {
 	 * @author neeraja
 	 */
 	@Override
-	public ReportSummary createReportSummary(String fromDate,String toDate, String storeName) {
-		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
-		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
+	public ReportSummary createReportSummary(String date, String storeName) {
+		Instant dateBegin = Instant.parse(date.toString() + "T00:00:00Z");
+		Instant dateEnd = Instant.parse(date.toString() + "T23:59:59Z");
 		ReportSummary reportSummary = new ReportSummary();
 		List<OrderMaster> omList=null;
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+dateBegin+">>>>>>>>>"+dateEnd);
 		
-		reportSummary.setFromDate(LocalDate.parse(fromDate));
-		reportSummary.setToDate(LocalDate.parse(toDate));
+		reportSummary.setDate(LocalDate.parse(date));
+		
 		reportSummary.setStoreId(storeName);
 
 	
-		if(fromDate!=null && toDate!=null && storeName!=null) {
+		if(date!=null && storeName!=null) {
 			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> store id != null");
 			omList= orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcode(dateBegin, dateEnd, storeName);
 		
 		}
-		else if(fromDate!=null && toDate!=null && storeName==null) {
+		else if(date!=null && storeName==null) {
 			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> store id == null");
 			omList=orderMasterRepository.findByOrderPlaceAtBetween(dateBegin, dateEnd);
 		}

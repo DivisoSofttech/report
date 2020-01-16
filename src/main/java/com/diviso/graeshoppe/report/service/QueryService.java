@@ -22,15 +22,13 @@ public interface QueryService {
 	 */
 	byte[] getReportWithAuxAndComboAsPdf(String orderNumber) throws JRException;
 	
-	ReportSummary createReportSummary(String fromDate, String toDate,String storeName);
+	ReportSummary createReportSummary(String date,String storeName);
 
 	byte[] getSaleReportAsPdf(String storeidpcode)throws JRException;
 
 	byte[] getAllOrdersByMethodOfOrderAsPdf(String fromDate, String toDate, String storeId, String methodOfOrder) throws JRException;
 
 	byte[] getAllOrdersByPaymentStatusAsPdf(String fromDate,String toDate, String storeId, String paymentStatus) throws JRException;
-
-	byte[] getAllOrdersByDateAsPdf(String date) throws JRException;
 
 	byte[] getAllOrdersByDateAndStoreNameAsPdf(String date, String storeId) throws JRException;
 

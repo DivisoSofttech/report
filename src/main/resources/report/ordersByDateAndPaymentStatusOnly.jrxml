@@ -46,9 +46,9 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="173" splitType="Stretch">
+		<band height="135" splitType="Stretch">
 			<line>
-				<reportElement positionType="Float" x="-19" y="172" width="599" height="1" uuid="5bb032ba-5015-4679-88c8-36c95b40549f"/>
+				<reportElement positionType="Float" x="-19" y="134" width="599" height="1" uuid="5bb032ba-5015-4679-88c8-36c95b40549f"/>
 				<graphicElement>
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
@@ -60,19 +60,19 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Order By Cash"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[String.format("Orders Between %1$s and %2$s By Cash", $P{from_date}, $P{to_date})]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="84" y="93" width="400" height="30" uuid="804f6364-5933-4b91-9bcf-4a1c15232d27">
+				<reportElement positionType="Float" x="84" y="96" width="400" height="30" uuid="804f6364-5933-4b91-9bcf-4a1c15232d27">
 					<printWhenExpression><![CDATA[$F{payment_status}.equalsIgnoreCase("order paid")]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Order By Card"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[String.format("Orders Between %1$s and %2$s By Card", $P{from_date}, $P{to_date})]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement positionType="Float" x="158" y="-80" width="251" height="231" uuid="1247959d-9f21-4cf1-aec2-c52ccac67540"/>
+				<reportElement positionType="Float" x="158" y="-80" width="251" height="206" uuid="1247959d-9f21-4cf1-aec2-c52ccac67540"/>
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
 		</band>
