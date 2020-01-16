@@ -129,7 +129,7 @@ public class QueryResource {
 	
 	@GetMapping("/reportview/{date}")
 
-	public ReportSummary createReportSummary(@PathVariable String Date, @RequestParam(value="storeName", required=false) String storeName) {
+	public ReportSummary createReportSummary(@PathVariable String date, @RequestParam(value="storeName", required=false) String storeName) {
 	
 		
 		return queryService.createReportSummary(date, storeName);
