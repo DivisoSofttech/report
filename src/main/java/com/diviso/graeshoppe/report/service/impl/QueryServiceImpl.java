@@ -273,6 +273,9 @@ public class QueryServiceImpl implements QueryService {
 	@Override
 	public byte[] getAllOrdersByPaymentStatusAsPdf(String fromDate, String toDate, String storeId, String paymentStatus) throws JRException {
 		
+		
+		System.out.println("********************************entering getAllOrdersByPaymentStatusAsPdf method qsimpl");
+
 		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersbypaymentstatus.jrxml");
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
@@ -633,9 +636,7 @@ public class QueryServiceImpl implements QueryService {
 	@Override
 	public byte[] getAllOrdersBetweenDatesByMethodOfOrderAsPdf(String fromDate, String toDate,
 			String methodOfOrder) throws JRException {
-		
-
-		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/OrdersByDateAndMethodOfOrderOnly.jrxml");
+				JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/OrdersByDateAndMethodOfOrderOnly.jrxml");
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("from_date", fromDate);
@@ -657,6 +658,9 @@ public class QueryServiceImpl implements QueryService {
 	@Override
 	public byte[] getAllOrdersBetweenDatesByPaymentStatusAndMethodOfOrderAsPdf(String fromDate, String toDate,
 			String paymentStatus, String methodOfOrder) throws JRException{
+		
+		System.out.println("entering getAllOrdersBetweenDatesByPaymentStatusAndMethodOfOrderAsPdf method");
+		
 		
 		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersByDateAndPaymentAndMethod.jrxml");
 
@@ -682,6 +686,9 @@ public class QueryServiceImpl implements QueryService {
 	@Override
 	public byte[] getAllOrdersBetweenDatesByStoreIdAndPaymentStatusAndMethodOfOrderAsPdf(String fromDate,
 			String toDate, String storeId, String paymentStatus, String methodOfOrder) throws JRException {
+		
+		System.out.println("/////////////////////////////////// entering getAllOrdersBetweenDatesByStoreIdAndPaymentStatusAndMethodOfOrderAsPdf  qsimpl");
+		
 		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/ordersByDateAndStoreIdAndPaymentAndMethod.jrxml");
 
 		Map<String, Object> parameters = new HashMap<String, Object>();

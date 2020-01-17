@@ -268,7 +268,7 @@ public class QueryResource {
 	
 	
 	@GetMapping("/allOrdersByFiltering/{fromDate}/{toDate}")
-	public ResponseEntity<Page<OrderMaster>> getOrdersByFilter(@PathVariable String fromDate,@PathVariable String toDate,@RequestParam(value="storeId", required=false) String storeId,@RequestParam(value="methodOFOrder", required=false) String methodOfOrder,
+	public ResponseEntity<Page<OrderMaster>> getOrdersByFilter(@PathVariable String fromDate,@PathVariable String toDate,@RequestParam(value="storeId", required=false) String storeId,@RequestParam(value="methodOfOrder", required=false) String methodOfOrder,
 			@RequestParam(value="paymentStatus", required=false) String paymentStatus, Pageable pageable) {
 		
 		Page<OrderMaster> page = null;
@@ -352,7 +352,7 @@ public class QueryResource {
 	
 	
 	@GetMapping("/allOrdersPdfByFiltering/{fromDate}/{toDate}")
-	public ResponseEntity<byte[]> getOrdersPdfByFilter(@PathVariable String fromDate,@PathVariable String toDate,@RequestParam(value="storeId", required=false) String storeId,@RequestParam(value="methodOFOrder", required=false) String methodOfOrder,
+	public ResponseEntity<byte[]> getOrdersPdfByFilter(@PathVariable String fromDate,@PathVariable String toDate,@RequestParam(value="storeId", required=false) String storeId,@RequestParam(value="methodOfOrder", required=false) String methodOfOrder,
 			@RequestParam(value="paymentStatus", required=false) String paymentStatus) {
 		
 		byte[] pdfContents = null;
@@ -375,7 +375,7 @@ public class QueryResource {
 		else if(fromDate!=null && toDate!=null && storeId!=null && methodOfOrder==null && paymentStatus !=null) {
 			// to get the orders according to payment status from a particular store
 			
-
+System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf resource");
 			try {
 				pdfContents = queryService.getAllOrdersByPaymentStatusAsPdf(fromDate, toDate, storeId, paymentStatus);
 			} catch (JRException e) {
@@ -429,7 +429,7 @@ public class QueryResource {
 		
        else if(fromDate!= null && toDate!= null && storeId!= null && methodOfOrder != null && paymentStatus != null ) {
 			//to get all orders by giving all fields
-		
+    	 System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>entering all fields resource");
     	   try {
    			pdfContents = queryService.getAllOrdersBetweenDatesByStoreIdAndPaymentStatusAndMethodOfOrderAsPdf(fromDate, toDate,storeId, paymentStatus, methodOfOrder );
    		} catch (JRException e) {
