@@ -1,7 +1,7 @@
 package com.diviso.graeshoppe.report.web.rest;
 
 import com.diviso.graeshoppe.report.config.KafkaProperties;
-import com.diviso.graeshoppe.report.service.OrderSyncService;
+import com.diviso.graeshoppe.report.service.OrderSyncService;import com.diviso.graeshoppe.report.service.impl.OrderMasterServiceImpl;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -58,7 +58,7 @@ class ReportKafkaResourceIT {
         consumerProps.put("client.id", "default-client");
         kafkaProperties.setConsumer(consumerProps);
 
-        OrderSyncService kafkaResource = new OrderSyncService(kafkaProperties);
+        OrderSyncService kafkaResource = new OrderSyncService( kafkaProperties);
 
         restMockMvc = MockMvcBuilders.standaloneSetup(kafkaResource).build();
     }

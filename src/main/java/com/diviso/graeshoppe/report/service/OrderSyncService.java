@@ -30,12 +30,11 @@ public class OrderSyncService {
 	private final KafkaProperties kafkaProperties;
 	private ExecutorService sseExecutorService = Executors.newCachedThreadPool();
 
-	
-	private final OrderMasterService orderMasterService;
+	@Autowired
+	private  OrderMasterService orderMasterService;
 
-	public OrderSyncService(OrderMasterService orderMasterService,KafkaProperties kafkaProperties) {
+	public OrderSyncService(KafkaProperties kafkaProperties) {
 		this.kafkaProperties = kafkaProperties;
-		this.orderMasterService = orderMasterService;
 	}
 
 	public void subscribeToApprovalInfo() {
