@@ -71,9 +71,10 @@ public class ReportApp implements InitializingBean {
         SpringApplication app = new SpringApplication(ReportApp.class);
         ConfigurableApplicationContext applicationContext = app.run(args);
         DefaultProfileUtil.addDefaultProfile(app);
-        applicationContext.getBean(OrderSyncService.class).startConsumers();
         Environment env = applicationContext.getEnvironment();
         logApplicationStartup(env);
+        applicationContext.getBean(OrderSyncService.class).startConsumers();
+
     }
 
     private static void logApplicationStartup(Environment env) {
