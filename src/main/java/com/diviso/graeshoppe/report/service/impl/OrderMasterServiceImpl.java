@@ -353,7 +353,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		log.debug("<<<<<<<<<<<< countByExpectedDeliveryAndOrderStatus >>>>>>>>>>>>", date);
 		Instant dateBegin = Instant.parse(date.toString() + "T00:00:00Z");
 		Instant dateEnd = Instant.parse(date.toString() + "T23:59:59Z");
-		return orderMasterRepository.countByExpectedDeliveryBetweenAndOrderStatus(dateBegin, dateEnd, orderStatus);
+		return orderMasterRepository.countByOrderPlaceAtBetweenAndOrderStatus(dateBegin, dateEnd, orderStatus);
 	}
 
 	@Override
@@ -371,7 +371,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		log.debug("<<<<<<<<<<< countByExpectedDeliveryBetween >>>>>>>>>>{}{}", from, to);
 		Instant fromDate = Instant.parse(from.toString() + "T00:00:00Z");
 		Instant toDate = Instant.parse(to.toString() + "T23:59:59Z");
-		return orderMasterRepository.countByExpectedDeliveryBetween(fromDate, toDate);
+		return orderMasterRepository.countByOrderPlaceAtBetween(fromDate, toDate);
 	}
 
 	

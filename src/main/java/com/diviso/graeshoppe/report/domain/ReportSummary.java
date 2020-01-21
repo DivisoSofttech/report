@@ -5,29 +5,30 @@ import java.time.LocalDate;
 public class ReportSummary {
 	
 	private LocalDate date;
+	
 	private String storeId;
 	
-	private Long typeAllCount;
+	private Integer typeAllCount;
 	private Double typeAllTotal;
 
  
-	private Integer typeDeliveryCount;
+	private Long typeDeliveryCount;
 	private Double typeDeliveryTotal;
 
-	private Integer typeCollectionCount;
+	private Long typeCollectionCount;
 	private Double typeCollectionTotal;
 
 	
-	private Integer typeCashCount;
+	private Long typeCashCount;
 	private Double typeCashTotal;
 
-	private Integer typeCardCount;
+	private Long typeCardCount;
 	private Double typeCardTotal;
 	
-	public Long getTypeAllCount() {
+	public Integer getTypeAllCount() {
 		return typeAllCount;
 	}
-	public void setTypeAllCount(Long typeAllCount) {
+	public void setTypeAllCount(Integer typeAllCount) {
 		this.typeAllCount = typeAllCount;
 	}
 	public Double getTypeAllTotal() {
@@ -36,10 +37,10 @@ public class ReportSummary {
 	public void setTypeAllTotal(Double typeAllTotal) {
 		this.typeAllTotal = typeAllTotal;
 	}
-	public Integer getTypeDeliveryCount() {
+	public Long getTypeDeliveryCount() {
 		return typeDeliveryCount;
 	}
-	public void setTypeDeliveryCount(Integer typeDeliveryCount) {
+	public void setTypeDeliveryCount(Long typeDeliveryCount) {
 		this.typeDeliveryCount = typeDeliveryCount;
 	}
 	public Double getTypeDeliveryTotal() {
@@ -48,10 +49,10 @@ public class ReportSummary {
 	public void setTypeDeliveryTotal(Double typeDeliveryTotal) {
 		this.typeDeliveryTotal = typeDeliveryTotal;
 	}
-	public Integer getTypeCollectionCount() {
+	public Long getTypeCollectionCount() {
 		return typeCollectionCount;
 	}
-	public void setTypeCollectionCount(Integer typeCollectionCount) {
+	public void setTypeCollectionCount(Long typeCollectionCount) {
 		this.typeCollectionCount = typeCollectionCount;
 	}
 	public Double getTypeCollectionTotal() {
@@ -60,10 +61,10 @@ public class ReportSummary {
 	public void setTypeCollectionTotal(Double typeCollectionTotal) {
 		this.typeCollectionTotal = typeCollectionTotal;
 	}
-	public Integer getTypeCashCount() {
+	public Long getTypeCashCount() {
 		return typeCashCount;
 	}
-	public void setTypeCashCount(Integer typeCashCount) {
+	public void setTypeCashCount(Long typeCashCount) {
 		this.typeCashCount = typeCashCount;
 	}
 	public Double getTypeCashTotal() {
@@ -72,10 +73,10 @@ public class ReportSummary {
 	public void setTypeCashTotal(Double typeCashTotal) {
 		this.typeCashTotal = typeCashTotal;
 	}
-	public Integer getTypeCardCount() {
+	public Long getTypeCardCount() {
 		return typeCardCount;
 	}
-	public void setTypeCardCount(Integer typeCardCount) {
+	public void setTypeCardCount(Long typeCardCount) {
 		this.typeCardCount = typeCardCount;
 	}
 	public Double getTypeCardTotal() {
@@ -99,10 +100,12 @@ public class ReportSummary {
 	public void setStoreId(String storeId) {
 		this.storeId = storeId;
 	}
+	
 	public LocalDate getDate() {
 		return date;
 	}
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
+	
 }

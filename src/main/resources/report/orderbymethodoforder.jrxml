@@ -5,14 +5,27 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter4.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="126"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="868"/>
-	<parameter name="store_name" class="java.lang.String"/>
-	<parameter name="date" class="java.lang.String"/>
+	<parameter name="store_idpcode" class="java.lang.String"/>
+	<parameter name="from_date" class="java.lang.String"/>
 	<parameter name="method_of_order" class="java.lang.String"/>
+	<parameter name="to_date" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select store_name, order_number, total_due , customer_id, payment_status, date(expected_delivery) from order_master where store_name=  $P{store_name} and date(expected_delivery)= $P{date} and method_of_order='COLLECTION';]]>
+		<![CDATA[select store_name,store_idpcode, zone_id, method_of_order, order_number, total_due , customer_id, payment_status, date(order_place_at) from order_master where store_idpcode=  $P{store_idpcode} and date(order_place_at)between  $P{from_date} and  $P{to_date}  and method_of_order =$P{method_of_order} ;]]>
 	</queryString>
 	<field name="store_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="store_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="store_idpcode" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="store_idpcode"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="zone_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="zone_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="method_of_order" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="method_of_order"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
 	</field>
 	<field name="order_number" class="java.lang.String">
@@ -31,25 +44,38 @@
 		<property name="com.jaspersoft.studio.field.label" value="payment_status"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
 	</field>
-	<field name="date(expected_delivery)" class="java.sql.Date">
-		<property name="com.jaspersoft.studio.field.label" value="date(expected_delivery)"/>
+	<field name="date(order_place_at)" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="date(order_place_at)"/>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="150" splitType="Stretch">
+		<band height="163" splitType="Stretch">
 			<image>
 				<reportElement positionType="Float" x="158" y="-80" width="251" height="230" uuid="e2f9c2e6-66ff-4510-9fcb-74ed9ac04ea7"/>
 				<imageExpression><![CDATA["logo.png"]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement positionType="Float" x="68" y="98" width="432" height="52" uuid="b61c2600-4b00-4cbc-a694-c87ed6d746c1"/>
+				<reportElement positionType="Float" x="68" y="77" width="432" height="52" uuid="b61c2600-4b00-4cbc-a694-c87ed6d746c1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{store_name}]]></textFieldExpression>
 			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="10" y="128" width="544" height="30" uuid="830cb5f9-66eb-4fe2-8ac3-dcd54a0fa368"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[String.format("Orders Between %1$s and %2$s Using %3$s", $P{from_date}, $P{to_date}, $F{method_of_order}.toLowerCase() )]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="-19" y="162" width="599" height="1" uuid="d2a1d13e-0e3c-47bd-bb99-e86329a8ac5a"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
 		</band>
 	</title>
 	<pageHeader>
@@ -154,10 +180,12 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_COUNT}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="d/M/yyyy">
-				<reportElement positionType="Float" x="150" y="2" width="80" height="17" uuid="2e643343-55fd-4d42-90e7-5bf8eba945e5"/>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement positionType="Float" x="151" y="1" width="78" height="19" uuid="ad876bf3-2a4d-4f13-a30d-f9e5182c0e66">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f690a7ec-09c6-487c-bf75-d743ee6e5831"/>
+				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{date(expected_delivery)}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{date(order_place_at)}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
