@@ -73,6 +73,8 @@ public interface QueryService {
 	
 	byte[] getReportSummaryByDateOnlyAsPdf(String date) throws JRException;
 
+	byte[] getDetailedOrderSummaryAsPdf(String date, String storeName) throws JRException;
+
 	//ReportSummary createReportSummaryBetweenTwoDates(String fromDate, String toDate);
 
 	//List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(String fromDate,String toDate, String storeId);

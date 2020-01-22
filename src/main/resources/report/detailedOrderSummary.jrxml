@@ -17,25 +17,10 @@
 	<parameter name="date" class="java.lang.String"/>
 	<parameter name="store_idpcode" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select store_name, order_number, payment_status,time(order_place_at),total_due, zone_id, round(COALESCE( sum(total_due),0),2)'all_V',round(COALESCE(sum(case when method_of_order='DELIVERY' then total_due end), 0),2)'delivery_v',round(COALESCE(sum(case when method_of_order='COLLECTION' then total_due end),0),2)'Collection_v',round(COALESCE(sum(case when payment_status='ORDER PAID' then total_due end),0),2)'card_v',round(COALESCE(sum(case when payment_status='ORDER NOT PAID' then total_due end),0),2)'cash_v', COALESCE(count(*),0)'all', COALESCE(count(if(method_of_order='DELIVERY',1,null)),0)'DELIVERY' ,  COALESCE(count(if(method_of_order='COLLECTION',1,null)),0)'COLLECTION' ,  COALESCE(count(if(payment_status='ORDER PAID',1,null)),0)'CARD',  COALESCE(count(if(payment_status='ORDER NOT PAID',1,null)),0)'CASH'  from order_master where( date(order_place_at) =  $P{date} and store_idpcode =$P{store_idpcode} )group by store_name, order_number, time(order_place_at),payment_status,total_due,zone_id;]]>
+		<![CDATA[select store_name, zone_id, round(COALESCE( sum(total_due),0),2)'all_V',round(COALESCE(sum(case when method_of_order='DELIVERY' then total_due end), 0),2)'delivery_v',round(COALESCE(sum(case when method_of_order='COLLECTION' then total_due end),0),2)'Collection_v',round(COALESCE(sum(case when payment_status='ORDER PAID' then total_due end),0),2)'card_v',round(COALESCE(sum(case when payment_status='ORDER NOT PAID' then total_due end),0),2)'cash_v', COALESCE(count(*),0)'all', COALESCE(count(if(method_of_order='DELIVERY',1,null)),0)'DELIVERY' ,  COALESCE(count(if(method_of_order='COLLECTION',1,null)),0)'COLLECTION' ,  COALESCE(count(if(payment_status='ORDER PAID',1,null)),0)'CARD',  COALESCE(count(if(payment_status='ORDER NOT PAID',1,null)),0)'CASH'  from order_master where( date(order_place_at) =  $P{date} and store_idpcode =$P{store_idpcode} )group by store_name,zone_id;]]>
 	</queryString>
 	<field name="store_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="store_name"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
-	</field>
-	<field name="order_number" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="order_number"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
-	</field>
-	<field name="payment_status" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="payment_status"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
-	</field>
-	<field name="time(order_place_at)" class="java.sql.Time">
-		<property name="com.jaspersoft.studio.field.label" value="time(order_place_at)"/>
-	</field>
-	<field name="total_due" class="java.lang.Double">
-		<property name="com.jaspersoft.studio.field.label" value="total_due"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
 	</field>
 	<field name="zone_id" class="java.lang.String">
@@ -134,7 +119,7 @@
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="245" splitType="Stretch">
+		<band height="190" splitType="Stretch">
 			<textField>
 				<reportElement positionType="Float" x="-10" y="2" width="47" height="20" uuid="a8d9c3c0-2323-4797-8a21-e9e5a030aaec"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -258,7 +243,7 @@
 				<textFieldExpression><![CDATA[$F{Collection_v}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-13" y="177" width="151" height="23" uuid="7e20f1a1-7dc9-4ae8-9ffe-327da0732b1b"/>
+				<reportElement positionType="Float" x="-13" y="174" width="151" height="16" uuid="7e20f1a1-7dc9-4ae8-9ffe-327da0732b1b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
@@ -267,35 +252,29 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch">
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-16" y="-27" width="100" height="21" uuid="fedbae5f-7166-4419-af42-f23d4ebbccb7"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="11"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Delivery-Card"]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement positionType="Float" x="-21" y="5" width="58" height="15" uuid="3b8c238b-b6ff-404b-8da0-c51cf19ce8b9">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bf7f928f-58e3-4915-ab8c-0ed13452fad8"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{order_number}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" pattern="HH:mm ">
-				<reportElement positionType="Float" x="37" y="5" width="55" height="15" uuid="38541d2f-bd00-4c01-8536-2726cf756556">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="65fc2fe1-7707-4783-b669-51ba2ad6959b"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{time(order_place_at)}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" pattern="¤#,##0.00#;¤(#,##0.00#-)">
-				<reportElement positionType="Float" x="92" y="5" width="48" height="15" uuid="c0d0362c-2891-4211-b124-a86d5a61dd41">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="70759bd0-2ce4-47a3-8bfc-fc5b83ee5d0e"/>
-				</reportElement>
-				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA[$F{total_due}]]></textFieldExpression>
-			</textField>
+		<band height="33" splitType="Stretch">
+			<subreport>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="-15" y="15" width="153" height="14" isPrintInFirstWholeBand="true" uuid="d682a29b-e9cd-497b-8ce8-27d4fbecc53d"/>
+				<subreportParameter name="date">
+					<subreportParameterExpression><![CDATA[$P{date}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="store_idpcode">
+					<subreportParameterExpression><![CDATA[$P{store_idpcode}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["subreportCash.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="-15" y="3" width="153" height="12" isPrintInFirstWholeBand="true" uuid="2a77e6e1-439e-4cfe-a808-b81bd99f831c"/>
+				<subreportParameter name="date">
+					<subreportParameterExpression><![CDATA[$P{date}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="store_idpcode">
+					<subreportParameterExpression><![CDATA[$P{store_idpcode}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["subreportCard.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 		<band/>
 	</detail>
