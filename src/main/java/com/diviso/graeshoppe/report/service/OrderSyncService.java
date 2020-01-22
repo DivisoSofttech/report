@@ -31,12 +31,10 @@ public class OrderSyncService {
 	private ExecutorService sseExecutorService = Executors.newCachedThreadPool();
 
 	@Autowired
-	private OrderMasterService orderMasterService;
+	private  OrderMasterService orderMasterService;
 
 	public OrderSyncService(KafkaProperties kafkaProperties) {
 		this.kafkaProperties = kafkaProperties;
-		subscribeToOrder();
-		subscribeToApprovalInfo();
 	}
 
 	public void subscribeToApprovalInfo() {
@@ -96,6 +94,11 @@ public class OrderSyncService {
 			log.info("Consumer is going to close");
 			consumer.close();
 		});
+	}
+
+	public void startConsumers() {
+		subscribeToApprovalInfo();
+		subscribeToOrder();
 	}
 
 }
