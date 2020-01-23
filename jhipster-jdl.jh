@@ -39,7 +39,10 @@ email String,
 paymentRef String,
 paymentStatus String,
 zoneId String,
-loyaltyPoint Long
+loyaltyPoint Long,
+refundedAmount Double,
+cancellationRef Long
+
 
 }
 

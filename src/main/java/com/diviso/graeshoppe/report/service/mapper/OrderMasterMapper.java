@@ -6,17 +6,14 @@ import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
 import org.mapstruct.*;
 
 /**
- * Mapper for the entity {@link OrderMaster} and its DTO {@link OrderMasterDTO}.
+ * Mapper for the entity OrderMaster and its DTO OrderMasterDTO.
  */
 @Mapper(componentModel = "spring", uses = {})
 public interface OrderMasterMapper extends EntityMapper<OrderMasterDTO, OrderMaster> {
 
 
-    @Override
-	@Mapping(target = "orderLines", ignore = true)
-    @Mapping(target = "removeOrderLine", ignore = true)
+    @Mapping(target = "orderLines", ignore = true)
     @Mapping(target = "offerLines", ignore = true)
-    @Mapping(target = "removeOfferLines", ignore = true)
     OrderMaster toEntity(OrderMasterDTO orderMasterDTO);
 
     default OrderMaster fromId(Long id) {
