@@ -482,6 +482,11 @@ System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf re
 		
 		
 	}
+	@GetMapping("/findWeakOrderCount/{date}/{statusName}")
+	public Long findWeakOrderCount(@PathVariable String date, @PathVariable String statusName) {
+		log.debug("<<<<<<<<<<<<<<<<<<<< findOrderCountByDateAndStatusName >>>>>>>>>>{}", date);
+		return orderMasterService.weakOrderCount(date, statusName);
+	}
 	
 	
 
