@@ -16,6 +16,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -52,13 +53,18 @@ public class OrderSyncService {
 					ConsumerRecords<String, CancellationRequest> records = consumer.poll(Duration.ofSeconds(5));
 					records.forEach(record -> {
 						log.info("CancellationRequest  is consuming " + record);
-						OrderMasterDTO orderMaster = orderMasterService.findByOrderNumber(record.value().getOrderId())
-								.get();
-						orderMaster.setOrderStatus("cancellation-requested");
-						orderMaster.setRefundedAmount(record.value().getAmount());
-						orderMaster.setTotalDue(orderMaster.getTotalDue() - record.value().getAmount());
-						orderMaster.setCancellationRef(record.value().getId());
-						orderMasterService.save(orderMaster);
+						Optional<OrderMasterDTO> orderMaster = orderMasterService
+								.findByOrderNumber(record.value().getOrderId());
+						if (orderMaster.isPresent()) {
+							orderMaster.get().setOrderStatus("cancellation-requested");
+							orderMaster.get().setRefundedAmount(record.value().getAmount());
+							orderMaster.get().setTotalDue(orderMaster.get().getTotalDue() - record.value().getAmount());
+							orderMaster.get().setCancellationRef(record.value().getId());
+							orderMasterService.save(orderMaster.get());
+						} else {
+							log.info("The order doesn't found with ref " + record.value().getOrderId());
+						}
+
 					});
 
 				} catch (Exception ex) {
