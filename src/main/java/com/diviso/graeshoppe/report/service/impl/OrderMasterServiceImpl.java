@@ -44,6 +44,7 @@ import java.util.stream.Collectors;
 import static org.elasticsearch.index.query.QueryBuilders.*;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
+
 /**
  * Service Implementation for managing {@link OrderMaster}.
  */
@@ -68,7 +69,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 	@Autowired
 	private OfferLineService offerLineService;
-	
+
 	@Autowired
 	private OrderLineService orderLineService;
 	@Autowired
@@ -81,85 +82,82 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	private CustomerResourceApi customerResourceApi;
 	private final OrderMasterSearchRepository orderMasterSearchRepository;
 
-    public OrderMasterServiceImpl(OrderMasterRepository orderMasterRepository, OrderMasterMapper orderMasterMapper, OrderMasterSearchRepository orderMasterSearchRepository) {
-        this.orderMasterRepository = orderMasterRepository;
-        this.orderMasterMapper = orderMasterMapper;
-        this.orderMasterSearchRepository = orderMasterSearchRepository;
-    }
+	public OrderMasterServiceImpl(OrderMasterRepository orderMasterRepository, OrderMasterMapper orderMasterMapper,
+			OrderMasterSearchRepository orderMasterSearchRepository) {
+		this.orderMasterRepository = orderMasterRepository;
+		this.orderMasterMapper = orderMasterMapper;
+		this.orderMasterSearchRepository = orderMasterSearchRepository;
+	}
 
-    /**
-     * Save a orderMaster.
-     *
-     * @param orderMasterDTO the entity to save.
-     * @return the persisted entity.
-     */
-    @Override
-    public OrderMasterDTO save(OrderMasterDTO orderMasterDTO) {
-        log.debug("Request to save OrderMaster : {}", orderMasterDTO);
-        OrderMaster orderMaster = orderMasterMapper.toEntity(orderMasterDTO);
-        orderMaster = orderMasterRepository.save(orderMaster);
-        OrderMasterDTO result = orderMasterMapper.toDto(orderMaster);
-        orderMasterSearchRepository.save(orderMaster);
-        return result;
-    }
+	/**
+	 * Save a orderMaster.
+	 *
+	 * @param orderMasterDTO the entity to save.
+	 * @return the persisted entity.
+	 */
+	@Override
+	public OrderMasterDTO save(OrderMasterDTO orderMasterDTO) {
+		log.debug("Request to save OrderMaster : {}", orderMasterDTO);
+		OrderMaster orderMaster = orderMasterMapper.toEntity(orderMasterDTO);
+		orderMaster = orderMasterRepository.save(orderMaster);
+		OrderMasterDTO result = orderMasterMapper.toDto(orderMaster);
+		orderMasterSearchRepository.save(orderMaster);
+		return result;
+	}
 
-    /**
-     * Get all the orderMasters.
-     *
-     * @param pageable the pagination information.
-     * @return the list of entities.
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public Page<OrderMasterDTO> findAll(Pageable pageable) {
-        log.debug("Request to get all OrderMasters");
-        return orderMasterRepository.findAll(pageable)
-            .map(orderMasterMapper::toDto);
-    }
+	/**
+	 * Get all the orderMasters.
+	 *
+	 * @param pageable the pagination information.
+	 * @return the list of entities.
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public Page<OrderMasterDTO> findAll(Pageable pageable) {
+		log.debug("Request to get all OrderMasters");
+		return orderMasterRepository.findAll(pageable).map(orderMasterMapper::toDto);
+	}
 
+	/**
+	 * Get one orderMaster by id.
+	 *
+	 * @param id the id of the entity.
+	 * @return the entity.
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public Optional<OrderMasterDTO> findOne(Long id) {
+		log.debug("Request to get OrderMaster : {}", id);
+		return orderMasterRepository.findById(id).map(orderMasterMapper::toDto);
+	}
 
-    /**
-     * Get one orderMaster by id.
-     *
-     * @param id the id of the entity.
-     * @return the entity.
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public Optional<OrderMasterDTO> findOne(Long id) {
-        log.debug("Request to get OrderMaster : {}", id);
-        return orderMasterRepository.findById(id)
-            .map(orderMasterMapper::toDto);
-    }
+	/**
+	 * Delete the orderMaster by id.
+	 *
+	 * @param id the id of the entity.
+	 */
+	@Override
+	public void delete(Long id) {
+		log.debug("Request to delete OrderMaster : {}", id);
+		orderMasterRepository.deleteById(id);
+		orderMasterSearchRepository.deleteById(id);
+	}
 
-    /**
-     * Delete the orderMaster by id.
-     *
-     * @param id the id of the entity.
-     */
-    @Override
-    public void delete(Long id) {
-        log.debug("Request to delete OrderMaster : {}", id);
-        orderMasterRepository.deleteById(id);
-        orderMasterSearchRepository.deleteById(id);
-    }
+	/**
+	 * Search for the orderMaster corresponding to the query.
+	 *
+	 * @param query    the query of the search.
+	 * @param pageable the pagination information.
+	 * @return the list of entities.
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public Page<OrderMasterDTO> search(String query, Pageable pageable) {
+		log.debug("Request to search for a page of OrderMasters for query {}", query);
+		return orderMasterSearchRepository.search(queryStringQuery(query), pageable).map(orderMasterMapper::toDto);
+	}
 
-    /**
-     * Search for the orderMaster corresponding to the query.
-     *
-     * @param query the query of the search.
-     * @param pageable the pagination information.
-     * @return the list of entities.
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public Page<OrderMasterDTO> search(String query, Pageable pageable) {
-        log.debug("Request to search for a page of OrderMasters for query {}", query);
-        return orderMasterSearchRepository.search(queryStringQuery(query), pageable)
-            .map(orderMasterMapper::toDto);
-    }
-    
-    private Store findStoreByStoreId(String storeId) {
+	private Store findStoreByStoreId(String storeId) {
 		StringQuery stringQuery = new StringQuery(termQuery("regNo", storeId).toString());
 		return elasticsearchOperations.queryForObject(stringQuery, Store.class);
 	}
@@ -205,9 +203,9 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setOrderNumber(order.getOrderId());
 		orderMaster.setDeliveryCharge(order.getDeliveryInfo().getDeliveryCharge());
 		orderMaster.setLoyaltyPoint(customer.getLoyaltyPoint());
-		if(order.getCustomerPhone()!=0) {
+		if (order.getCustomerPhone() != 0) {
 			orderMaster.setPhone(order.getCustomerPhone());
-		}else {
+		} else {
 			orderMaster.setPhone(customer.getContact().getMobileNumber());
 		}
 		orderMaster.setAllergyNote(order.getAllergyNote());
@@ -341,10 +339,11 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	@Override
 	public Page<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(String from, String to, String storeIdpcode,
 			Pageable pageable) {
-		log.debug("<<<<<<<<<< findByExpectedDeliveryBetweenAndStoreIdpcode >>>>>>>>>>{}{}",from,to);
-			Instant fromDate = Instant.parse(from.toString()+"T00:00:00Z");
-			Instant toDate = Instant.parse(to.toString()+"T23:59:59Z");
-		return orderMasterRepository.findByExpectedDeliveryBetweenAndStoreIdpcode(fromDate, toDate, storeIdpcode, pageable);
+		log.debug("<<<<<<<<<< findByExpectedDeliveryBetweenAndStoreIdpcode >>>>>>>>>>{}{}", from, to);
+		Instant fromDate = Instant.parse(from.toString() + "T00:00:00Z");
+		Instant toDate = Instant.parse(to.toString() + "T23:59:59Z");
+		return orderMasterRepository.findByExpectedDeliveryBetweenAndStoreIdpcode(fromDate, toDate, storeIdpcode,
+				pageable);
 
 	}
 
@@ -375,6 +374,14 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		return orderMasterRepository.countByOrderPlaceAtBetween(fromDate, toDate);
 	}
 
+	public Long weakOrderCount(String date, String orderStatus) {
+		LocalDate to=LocalDate.parse(date).minusDays(7l);
 	
-	 
+		Instant fromDate = Instant.parse(date.toString() + "T00:00:00Z");
+		Instant toDate = Instant.parse(to.toString() + "T23:59:59Z");
+
+		return orderMasterRepository.countByOrderPlaceAtBetweenAndOrderStatus(fromDate, toDate, orderStatus);
+
+	}
+
 }

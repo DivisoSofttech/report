@@ -1,6 +1,8 @@
 package com.diviso.graeshoppe.report.domain;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
 
 public class ReportSummary {
 	
@@ -24,6 +26,7 @@ public class ReportSummary {
 
 	private Long typeCardCount;
 	private Double typeCardTotal;
+	
 	
 	public Integer getTypeAllCount() {
 		return typeAllCount;
@@ -107,5 +110,6 @@ public class ReportSummary {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
+	
 	
 }

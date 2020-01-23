@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Optional;
 
 
@@ -82,5 +83,6 @@ public interface OrderMasterService {
     Optional<OrderMasterDTO> findByOrderNumber(String orderNumber);
   
     public  void convertAndSaveOrderMaster(Order order);
+    public Long	weakOrderCount(String date,String orderStatus);
     
 }

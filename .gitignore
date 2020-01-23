@@ -144,3 +144,6 @@ Desktop.ini
 # ESLint
 ######################
 .eslintcache
+/subreportCard.jasper
+/subreportCash.jasper
+/subreprtCash11.jasper

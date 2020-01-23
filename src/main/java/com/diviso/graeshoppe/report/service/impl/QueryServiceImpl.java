@@ -731,6 +731,27 @@ public class QueryServiceImpl implements QueryService {
 		return JasperExportManager.exportReportToPdf(jp);
 	}
 
+	@Override
+	public byte[] getDetailedOrderSummaryAsPdf(String date, String storeName) throws JRException {
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/detailedOrderSummary1.jrxml");
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("date", date);
+		parameters.put("store_idpcode", storeName);
+		
+		
+		Connection conn = null;
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
+		return JasperExportManager.exportReportToPdf(jp);
+	}
+
 	
 	/*public ReportSummary createReportSummaryBetweenTwoDates(String fromDate, String toDate) {
 	

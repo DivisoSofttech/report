@@ -100,6 +100,34 @@ public class QueryResource {
 		return response;
 	}
 
+	// Detailed Report Summary Docket
+	@GetMapping("/detailedOrderSummary/{date}")
+	public ResponseEntity<byte[]> getDetailedOrderSummaryAsPdf(@PathVariable String date, @RequestParam(value="storeName", required=false) String storeName) {
+
+		// log.debug("REST request to get a pdf");
+
+		byte[] pdfContents = null;
+		// System.out.println(">>>>>>>>>>>>>>>>>>>>"+orderNumber);
+
+		try {
+
+			// System.out.println("starting of try block>>>>>>>>>>>>>>>>>>>>"+orderNumber);
+			pdfContents = queryService.getDetailedOrderSummaryAsPdf(date, storeName);
+			// System.out.println("ending try block>>>>>>>>>>>>>>>>>>>>"+orderNumber);
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		String fileName = "DetailedOrderSummary.pdf";
+		headers.add("content-disposition", "attachment; filename=" + fileName);
+		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
+		return response;
+	}
+
+	
+	
 	@GetMapping("/auxcombo/{orderNumber}")
 	public ResponseEntity<byte[]> getReportWithAuxAndComboAsPdf(@PathVariable String orderNumber) {
 
@@ -178,7 +206,7 @@ public class QueryResource {
 		return orderMasterService.countByExpectedDeliveryAndOrderStatus(date, statusName);
 	}
 
-	@GetMapping("/indOrderCountByStatusName/{statusName}")
+	@GetMapping("/findOrderCountByStatusName/{statusName}")
 	public Long findOrderCountByStatusName(@PathVariable String statusName) {
 		return orderMasterService.countByOrderStatus(statusName);
 	}
@@ -264,7 +292,6 @@ public class QueryResource {
 		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
 		return response;
 	}
-
 	
 	
 	@GetMapping("/allOrdersByFiltering/{fromDate}/{toDate}")
@@ -455,6 +482,13 @@ System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf re
 		
 		
 	}
+	@GetMapping("/findWeakOrderCount/{date}/{statusName}")
+	public Long findWeakOrderCount(@PathVariable String date, @PathVariable String statusName) {
+		log.debug("<<<<<<<<<<<<<<<<<<<< findOrderCountByDateAndStatusName >>>>>>>>>>{}", date);
+		return orderMasterService.weakOrderCount(date, statusName);
+	}
 	
+	
+
 	
 }

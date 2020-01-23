@@ -16,11 +16,14 @@
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="896"/>
 	<parameter name="date" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select zone_id, round(COALESCE( sum(total_due),0),2)'all_V',round(COALESCE(sum(case when method_of_order='DELIVERY' then total_due end), 0),2)'delivery_v',round(COALESCE(sum(case when method_of_order='COLLECTION' then total_due end),0),2)'Collection_v',round(COALESCE(sum(case when payment_status='ORDER PAID' then total_due end),0),2)'card_v',round(COALESCE(sum(case when payment_status='ORDER NOT PAID' then total_due end),0),2)'cash_v', COALESCE(count(*),0)'all', COALESCE(count(if(method_of_order='DELIVERY',1,null)),0)'DELIVERY' ,  COALESCE(count(if(method_of_order='COLLECTION',1,null)),0)'COLLECTION' ,  COALESCE(count(if(payment_status='ORDER PAID',1,null)),0)'CARD',  COALESCE(count(if(payment_status='ORDER NOT PAID',1,null)),0)'CASH'  from order_master where( date(order_place_at)) = $P{date}   group by zone_id;]]>
+		<![CDATA[select zone_id,date(order_place_at), round(COALESCE( sum(total_due),0),2)'all_V',round(COALESCE(sum(case when method_of_order='DELIVERY' then total_due end), 0),2)'delivery_v',round(COALESCE(sum(case when method_of_order='COLLECTION' then total_due end),0),2)'Collection_v',round(COALESCE(sum(case when payment_status='ORDER PAID' then total_due end),0),2)'card_v',round(COALESCE(sum(case when payment_status='ORDER NOT PAID' then total_due end),0),2)'cash_v', COALESCE(count(*),0)'all', COALESCE(count(if(method_of_order='DELIVERY',1,null)),0)'DELIVERY' ,  COALESCE(count(if(method_of_order='COLLECTION',1,null)),0)'COLLECTION' ,  COALESCE(count(if(payment_status='ORDER PAID',1,null)),0)'CARD',  COALESCE(count(if(payment_status='ORDER NOT PAID',1,null)),0)'CASH'  from order_master where( date(order_place_at)) = $P{date}   group by date(order_place_at),zone_id;]]>
 	</queryString>
 	<field name="zone_id" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="zone_id"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="date(order_place_at)" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="date(order_place_at)"/>
 	</field>
 	<field name="all_V" class="java.lang.Double">
 		<property name="com.jaspersoft.studio.field.label" value="all_V"/>
@@ -56,7 +59,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="140" splitType="Stretch">
+		<band height="141" splitType="Stretch">
 			<line>
 				<reportElement x="-20" y="95" width="164" height="1" uuid="7ef79138-c763-4986-8a8a-f510cfd4afde"/>
 				<graphicElement>
@@ -88,18 +91,18 @@
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-18" y="98" width="149" height="19" uuid="c1420ab6-c3e1-48a7-aa28-4b55f9e2bd87"/>
+				<reportElement positionType="Float" x="-30" y="98" width="174" height="19" uuid="c1420ab6-c3e1-48a7-aa28-4b55f9e2bd87"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA["End Of The Day Summary,-"]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="d/M/yyyy">
-				<reportElement positionType="Float" x="2" y="117" width="137" height="21" uuid="6b4bd865-2256-4ab7-9a46-d563ccd6da78"/>
+			<textField isStretchWithOverflow="true" pattern="dd/M/yyyy">
+				<reportElement positionType="Float" x="4" y="117" width="136" height="24" uuid="8a9f1866-d816-47f4-bc1d-9b4cca27c705"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{date}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{date(order_place_at)}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -176,62 +179,62 @@
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="54" y="13" width="29" height="23" isRemoveLineWhenBlank="true" uuid="dfe8180a-3e46-4e96-871b-a491abaecfc2"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{all}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0.###;(#,##0.###-)">
 				<reportElement positionType="Float" x="93" y="13" width="48" height="23" isRemoveLineWhenBlank="true" uuid="e762c850-8635-4aed-822e-fd6ce93d7467">
 					<printWhenExpression><![CDATA[$F{all_V}!=null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{all_V}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="54" y="38" width="29" height="20" uuid="df382859-ac0f-4df3-af06-b6e631207169"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{CARD}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="92" y="38" width="49" height="20" uuid="21f9ccee-ff94-4869-801e-a6d63ac3ea7c">
 					<printWhenExpression><![CDATA[$F{card_v}!=null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{card_v}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="54" y="65" width="29" height="19" uuid="f3c236bb-c834-4e4a-9918-0fecf5daff93"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{CASH}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="92" y="65" width="49" height="19" isRemoveLineWhenBlank="true" uuid="7d71ab6f-0165-4763-9630-a1cc6c78b9b9">
 					<printWhenExpression><![CDATA[$F{cash_v}!=null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{cash_v}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="53" y="89" width="30" height="21" uuid="5fb98586-6fda-4c3e-91f1-89a6e1a0d44d"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{DELIVERY}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="92" y="89" width="49" height="21" uuid="7584bbac-3746-48ab-9aed-99d3837448b1">
 					<printWhenExpression><![CDATA[$F{delivery_v}!=null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{delivery_v}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="54" y="113" width="29" height="21" uuid="eaf37737-6c14-4243-ac72-fd053ba50a38"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{COLLECTION}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="92" y="110" width="49" height="24" uuid="fbeee905-e200-4581-977f-8239841d3de7">
 					<printWhenExpression><![CDATA[$F{Collection_v}!=null]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{Collection_v}]]></textFieldExpression>
 			</textField>
 			<line>
