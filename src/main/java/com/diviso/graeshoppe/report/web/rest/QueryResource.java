@@ -206,7 +206,7 @@ public class QueryResource {
 		return orderMasterService.countByExpectedDeliveryAndOrderStatus(date, statusName);
 	}
 
-	@GetMapping("/indOrderCountByStatusName/{statusName}")
+	@GetMapping("/findOrderCountByStatusName/{statusName}")
 	public Long findOrderCountByStatusName(@PathVariable String statusName) {
 		return orderMasterService.countByOrderStatus(statusName);
 	}
@@ -483,5 +483,7 @@ System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf re
 		
 	}
 	
+	
+
 	
 }

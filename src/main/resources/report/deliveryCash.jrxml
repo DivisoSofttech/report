@@ -60,7 +60,7 @@
 				<textFieldExpression><![CDATA[$F{order_number}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="HH:mm">
-				<reportElement positionType="Float" x="46" y="1" width="58" height="14" uuid="6c5ae01d-1c61-4fde-862d-fcd337c5f019">
+				<reportElement positionType="Float" x="51" y="1" width="58" height="14" uuid="6c5ae01d-1c61-4fde-862d-fcd337c5f019">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="058605d1-2549-4227-8ae8-59a3e70d40a8"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle"/>
