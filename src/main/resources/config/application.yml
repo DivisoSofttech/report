@@ -228,5 +228,5 @@ topic:
    approvalInfo:
       destination: approvalinfo
    cancellation:
-      destination: cancellatonrequest
+      destination: cancellationrequest
 # application:
