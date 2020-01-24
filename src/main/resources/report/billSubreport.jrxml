@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="billSubreport" pageWidth="164" pageHeight="842" columnWidth="124" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="31083d39-3219-4634-87b0-b6e5169230db">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter4.xml"/>
+	<property name="com.jaspersoft.studio.unit." value="mm"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="mm"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="118"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="877"/>
+	<parameter name="order_number" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select  @rowid:=@rowid+1 as rowid, ct.* from (SELECT @rowid:=0) as init, (
+
+
+(select om.id as 'omid', order_number as 'order_number', ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id',"[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',"[]" as 'comboid', "[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id' from order_master om, order_line ol, aux_item ai where om.id = ol.order_master_id and om.order_number=$P{order_number} and ol.id NOT IN 
+							( select ol_1.id   from order_line ol_1, aux_item ai_1, combo_item ci_1  where ol_1.id = ai_1.order_line_id OR ol_1.id = ci_1.order_line_id))
+												
+UNION
+(select om.id as 'omid', order_number as 'order_number', ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',"[]" as 'comboid',"[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id'  from order_master om, order_line ol, combo_item ci where om.id = ol.order_master_id and om.order_number=$P{order_number} and ol.id NOT IN 
+							( select ol_1.id   from order_line ol_1, aux_item ai_1, combo_item ci_1  where ol_1.id = ai_1.order_line_id OR ol_1.id = ci_1.order_line_id)) 
+
+UNION
+(select om.id as 'omid', order_number as 'order_number',ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', ai.id as 'auxid',aux_item as 'aux_item', ai.quantity as 'auxquantity',ai.total as 'auxtotal', order_line_id as 'order_line_id',"[]" as 'comboid', "[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id' from order_master om, order_line ol, aux_item ai where om.id = ol.order_master_id and ol.id = ai.order_line_id and om.order_number= $P{order_number})
+
+UNION
+
+(select om.id as 'omid', order_number as 'order_number',ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',ci.id as 'comboid', combo_item as 'combo_item',ci.quantity as 'comboquantity', order_line_id as 'comboorder_line_id'   from order_master om, order_line ol, combo_item ci where om.id = ol.order_master_id and ol.id = ci.order_line_id and om.order_number=$P{order_number}) 
+
+UNION
+
+(select om.id as 'omid', order_number as 'order_number',ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',"[]" as 'comboid',"[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id'  from order_master om, order_line ol where om.id = ol.order_master_id and om.order_number= $P{order_number})
+
+
+ )
+						
+ct ORDER BY  item ASC,rowid DESC]]>
+	</queryString>
+	<field name="rowid" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="rowid"/>
+	</field>
+	<field name="omid" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="omid"/>
+	</field>
+	<field name="order_number" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="order_number"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="olid" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="olid"/>
+	</field>
+	<field name="item" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="item"/>
+	</field>
+	<field name="olquantity" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="olquantity"/>
+	</field>
+	<field name="oltotal" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="oltotal"/>
+	</field>
+	<field name="order_master-id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="order_master-id"/>
+	</field>
+	<field name="auxid" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="auxid"/>
+	</field>
+	<field name="aux_item" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="aux_item"/>
+	</field>
+	<field name="auxquantity" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="auxquantity"/>
+	</field>
+	<field name="auxtotal" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="auxtotal"/>
+	</field>
+	<field name="order_line_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="order_line_id"/>
+	</field>
+	<field name="comboid" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="comboid"/>
+	</field>
+	<field name="combo_item" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="combo_item"/>
+	</field>
+	<field name="comboquantity" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="comboquantity"/>
+	</field>
+	<field name="comboorder_line_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="comboorder_line_id"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="#,#00.00#">
+				<reportElement positionType="Float" x="90" y="0" width="53" height="14" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="060e2462-aa11-4905-b694-2d5e562619f9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{oltotal}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="-12" y="0" width="106" height="14" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="b74ad1f9-9e0d-46e1-9a1e-3fd879497a82"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[String.format("%1$2s x %2$-50.50s", $F{olquantity}, $F{item})]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="14">
+			<printWhenExpression><![CDATA[!$F{aux_item}.equals("[]")]]></printWhenExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="2" y="-1" width="90" height="15" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="1149691f-d9bb-4297-8029-b8250f2ef6e6">
+					<printWhenExpression><![CDATA[!$F{aux_item}.equals("[]")]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[String.format("%1$2s x %2$-20.20s", $F{auxquantity},$F{aux_item})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,#00.00#">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="90" y="-1" width="53" height="15" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="6d3b248e-16b6-4ecd-b49f-f26fec9ef118">
+					<printWhenExpression><![CDATA[!$F{aux_item}.equals("[]")]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{auxtotal}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="11">
+			<printWhenExpression><![CDATA[!$F{combo_item}.equals("[]")]]></printWhenExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="18" y="0" width="55" height="11" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="8e84f210-0593-423e-8679-b94dd2e53098">
+					<printWhenExpression><![CDATA[!$F{combo_item}.equals("[]")]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{combo_item}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="65" y="1" width="27" height="10" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="3813f685-4744-4d33-9105-3531de4f6938">
+					<printWhenExpression><![CDATA[!$F{combo_item}.equals("[]")]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{comboquantity}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
