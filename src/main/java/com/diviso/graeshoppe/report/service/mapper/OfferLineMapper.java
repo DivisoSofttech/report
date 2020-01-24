@@ -6,15 +6,17 @@ import com.diviso.graeshoppe.report.service.dto.OfferLineDTO;
 import org.mapstruct.*;
 
 /**
- * Mapper for the entity OfferLine and its DTO OfferLineDTO.
+ * Mapper for the entity {@link OfferLine} and its DTO {@link OfferLineDTO}.
  */
 @Mapper(componentModel = "spring", uses = {OrderMasterMapper.class})
 public interface OfferLineMapper extends EntityMapper<OfferLineDTO, OfferLine> {
 
-    @Mapping(source = "orderMaster.id", target = "orderMasterId")
+    @Override
+	@Mapping(source = "orderMaster.id", target = "orderMasterId")
     OfferLineDTO toDto(OfferLine offerLine);
 
-    @Mapping(source = "orderMasterId", target = "orderMaster")
+    @Override
+	@Mapping(source = "orderMasterId", target = "orderMaster")
     OfferLine toEntity(OfferLineDTO offerLineDTO);
 
     default OfferLine fromId(Long id) {

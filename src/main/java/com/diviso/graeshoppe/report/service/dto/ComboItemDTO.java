@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A DTO for the ComboItem entity.
+ * A DTO for the {@link com.diviso.graeshoppe.report.domain.ComboItem} entity.
  */
 public class ComboItemDTO implements Serializable {
 
@@ -12,6 +12,8 @@ public class ComboItemDTO implements Serializable {
     private String comboItem;
 
     private Double quantity;
+
+    private Long productId;
 
 
     private Long orderLineId;
@@ -38,6 +40,14 @@ public class ComboItemDTO implements Serializable {
 
     public void setQuantity(Double quantity) {
         this.quantity = quantity;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public Long getOrderLineId() {
@@ -75,7 +85,8 @@ public class ComboItemDTO implements Serializable {
             "id=" + getId() +
             ", comboItem='" + getComboItem() + "'" +
             ", quantity=" + getQuantity() +
-            ", orderLine=" + getOrderLineId() +
+            ", productId=" + getProductId() +
+            ", orderLineId=" + getOrderLineId() +
             "}";
     }
 }

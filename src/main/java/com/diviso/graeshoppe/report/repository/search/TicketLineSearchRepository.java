@@ -4,7 +4,7 @@ import com.diviso.graeshoppe.report.domain.TicketLine;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
 /**
- * Spring Data Elasticsearch repository for the TicketLine entity.
+ * Spring Data Elasticsearch repository for the {@link TicketLine} entity.
  */
 public interface TicketLineSearchRepository extends ElasticsearchRepository<TicketLine, Long> {
 }

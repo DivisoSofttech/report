@@ -1,28 +1,29 @@
 package com.diviso.graeshoppe.report.domain;
-
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
-import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Objects;
 
 /**
  * A OrderLine.
  */
 @Entity
 @Table(name = "order_line")
-@Document(indexName = "reportorderline")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "orderline")
 public class OrderLine implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
     private Long id;
 
     @Column(name = "item")
@@ -34,14 +35,21 @@ public class OrderLine implements Serializable {
     @Column(name = "total")
     private Double total;
 
+    @Column(name = "product_id")
+    private Long productId;
+
+    @OneToMany(mappedBy = "orderLine")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<AuxItem> auxItems = new HashSet<>();
+
+    @OneToMany(mappedBy = "orderLine")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<ComboItem> comboItems = new HashSet<>();
+
     @ManyToOne
     @JsonIgnoreProperties("orderLines")
     private OrderMaster orderMaster;
 
-    @OneToMany(mappedBy = "orderLine")
-    private Set<AuxItem> auxItems = new HashSet<>();
-    @OneToMany(mappedBy = "orderLine")
-    private Set<ComboItem> comboItems = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -90,17 +98,17 @@ public class OrderLine implements Serializable {
         this.total = total;
     }
 
-    public OrderMaster getOrderMaster() {
-        return orderMaster;
+    public Long getProductId() {
+        return productId;
     }
 
-    public OrderLine orderMaster(OrderMaster orderMaster) {
-        this.orderMaster = orderMaster;
+    public OrderLine productId(Long productId) {
+        this.productId = productId;
         return this;
     }
 
-    public void setOrderMaster(OrderMaster orderMaster) {
-        this.orderMaster = orderMaster;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public Set<AuxItem> getAuxItems() {
@@ -152,6 +160,19 @@ public class OrderLine implements Serializable {
     public void setComboItems(Set<ComboItem> comboItems) {
         this.comboItems = comboItems;
     }
+
+    public OrderMaster getOrderMaster() {
+        return orderMaster;
+    }
+
+    public OrderLine orderMaster(OrderMaster orderMaster) {
+        this.orderMaster = orderMaster;
+        return this;
+    }
+
+    public void setOrderMaster(OrderMaster orderMaster) {
+        this.orderMaster = orderMaster;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -159,19 +180,15 @@ public class OrderLine implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof OrderLine)) {
             return false;
         }
-        OrderLine orderLine = (OrderLine) o;
-        if (orderLine.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), orderLine.getId());
+        return id != null && id.equals(((OrderLine) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override
@@ -181,6 +198,7 @@ public class OrderLine implements Serializable {
             ", item='" + getItem() + "'" +
             ", quantity=" + getQuantity() +
             ", total=" + getTotal() +
+            ", productId=" + getProductId() +
             "}";
     }
 }

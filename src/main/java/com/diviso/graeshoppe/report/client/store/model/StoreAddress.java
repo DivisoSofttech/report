@@ -9,20 +9,14 @@ import org.springframework.validation.annotation.Validated;
  * StoreAddress
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-09-04T22:29:27.309760+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:37:58.581+05:30[Asia/Kolkata]")
 
 public class StoreAddress   {
   @JsonProperty("addressType")
   private String addressType = null;
 
-  @JsonProperty("alternatePhone")
-  private Long alternatePhone = null;
-
   @JsonProperty("city")
   private String city = null;
-
-  @JsonProperty("customerId")
-  private String customerId = null;
 
   @JsonProperty("houseNoOrBuildingName")
   private String houseNoOrBuildingName = null;
@@ -33,14 +27,8 @@ public class StoreAddress   {
   @JsonProperty("landmark")
   private String landmark = null;
 
-  @JsonProperty("name")
-  private String name = null;
-
-  @JsonProperty("phone")
-  private Long phone = null;
-
   @JsonProperty("pincode")
-  private Long pincode = null;
+  private String pincode = null;
 
   @JsonProperty("roadNameAreaOrStreet")
   private String roadNameAreaOrStreet = null;
@@ -68,26 +56,6 @@ public class StoreAddress   {
     this.addressType = addressType;
   }
 
-  public StoreAddress alternatePhone(Long alternatePhone) {
-    this.alternatePhone = alternatePhone;
-    return this;
-  }
-
-  /**
-   * Get alternatePhone
-   * @return alternatePhone
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Long getAlternatePhone() {
-    return alternatePhone;
-  }
-
-  public void setAlternatePhone(Long alternatePhone) {
-    this.alternatePhone = alternatePhone;
-  }
-
   public StoreAddress city(String city) {
     this.city = city;
     return this;
@@ -106,26 +74,6 @@ public class StoreAddress   {
 
   public void setCity(String city) {
     this.city = city;
-  }
-
-  public StoreAddress customerId(String customerId) {
-    this.customerId = customerId;
-    return this;
-  }
-
-  /**
-   * Get customerId
-   * @return customerId
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getCustomerId() {
-    return customerId;
-  }
-
-  public void setCustomerId(String customerId) {
-    this.customerId = customerId;
   }
 
   public StoreAddress houseNoOrBuildingName(String houseNoOrBuildingName) {
@@ -188,47 +136,7 @@ public class StoreAddress   {
     this.landmark = landmark;
   }
 
-  public StoreAddress name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Get name
-   * @return name
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public StoreAddress phone(Long phone) {
-    this.phone = phone;
-    return this;
-  }
-
-  /**
-   * Get phone
-   * @return phone
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Long getPhone() {
-    return phone;
-  }
-
-  public void setPhone(Long phone) {
-    this.phone = phone;
-  }
-
-  public StoreAddress pincode(Long pincode) {
+  public StoreAddress pincode(String pincode) {
     this.pincode = pincode;
     return this;
   }
@@ -240,11 +148,11 @@ public class StoreAddress   {
   @ApiModelProperty(value = "")
 
 
-  public Long getPincode() {
+  public String getPincode() {
     return pincode;
   }
 
-  public void setPincode(Long pincode) {
+  public void setPincode(String pincode) {
     this.pincode = pincode;
   }
 
@@ -299,14 +207,10 @@ public class StoreAddress   {
     }
     StoreAddress storeAddress = (StoreAddress) o;
     return Objects.equals(this.addressType, storeAddress.addressType) &&
-        Objects.equals(this.alternatePhone, storeAddress.alternatePhone) &&
         Objects.equals(this.city, storeAddress.city) &&
-        Objects.equals(this.customerId, storeAddress.customerId) &&
         Objects.equals(this.houseNoOrBuildingName, storeAddress.houseNoOrBuildingName) &&
         Objects.equals(this.id, storeAddress.id) &&
         Objects.equals(this.landmark, storeAddress.landmark) &&
-        Objects.equals(this.name, storeAddress.name) &&
-        Objects.equals(this.phone, storeAddress.phone) &&
         Objects.equals(this.pincode, storeAddress.pincode) &&
         Objects.equals(this.roadNameAreaOrStreet, storeAddress.roadNameAreaOrStreet) &&
         Objects.equals(this.state, storeAddress.state);
@@ -314,7 +218,7 @@ public class StoreAddress   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(addressType, alternatePhone, city, customerId, houseNoOrBuildingName, id, landmark, name, phone, pincode, roadNameAreaOrStreet, state);
+    return Objects.hash(addressType, city, houseNoOrBuildingName, id, landmark, pincode, roadNameAreaOrStreet, state);
   }
 
   @Override
@@ -323,14 +227,10 @@ public class StoreAddress   {
     sb.append("class StoreAddress {\n");
     
     sb.append("    addressType: ").append(toIndentedString(addressType)).append("\n");
-    sb.append("    alternatePhone: ").append(toIndentedString(alternatePhone)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
-    sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
     sb.append("    houseNoOrBuildingName: ").append(toIndentedString(houseNoOrBuildingName)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    landmark: ").append(toIndentedString(landmark)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("    pincode: ").append(toIndentedString(pincode)).append("\n");
     sb.append("    roadNameAreaOrStreet: ").append(toIndentedString(roadNameAreaOrStreet)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");

@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A DTO for the TicketLine entity.
+ * A DTO for the {@link com.diviso.graeshoppe.report.domain.TicketLine} entity.
  */
 public class TicketLineDTO implements Serializable {
 
@@ -108,7 +108,7 @@ public class TicketLineDTO implements Serializable {
             ", quantity=" + getQuantity() +
             ", price=" + getPrice() +
             ", total=" + getTotal() +
-            ", sale=" + getSaleId() +
+            ", saleId=" + getSaleId() +
             "}";
     }
 }

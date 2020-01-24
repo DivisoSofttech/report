@@ -4,7 +4,7 @@ import com.diviso.graeshoppe.report.domain.Sale;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
 /**
- * Spring Data Elasticsearch repository for the Sale entity.
+ * Spring Data Elasticsearch repository for the {@link Sale} entity.
  */
 public interface SaleSearchRepository extends ElasticsearchRepository<Sale, Long> {
 }

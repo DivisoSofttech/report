@@ -1,23 +1,15 @@
 package com.diviso.graeshoppe.report.client.customer.model;
 
 import java.util.Objects;
-import com.diviso.graeshoppe.report.client.customer.model.Address;
 import com.diviso.graeshoppe.report.client.customer.model.Contact;
 import com.diviso.graeshoppe.report.client.customer.model.FavouriteProduct;
 import com.diviso.graeshoppe.report.client.customer.model.FavouriteStore;
-import com.diviso.graeshoppe.report.client.customer.model.Note;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Mapping;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -26,31 +18,14 @@ import javax.validation.constraints.*;
  * Customer
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-11-13T14:04:39.267087+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:40:40.577+05:30[Asia/Kolkata]")
 @Document(indexName = "customer")
-//@Mapping(mappingPath = "mappings/customermapping.json")
 public class Customer   {
-  @JsonProperty("addresses")
-  @Valid
-  private List<Address> addresses = null;
-
-  @JsonProperty("card")
-  private String card = null;
-
   @JsonProperty("contact")
   private Contact contact = null;
 
-  @JsonProperty("curDebt")
-  private Double curDebt = null;
-
   @JsonProperty("customerUniqueId")
   private String customerUniqueId = null;
-
-  @JsonProperty("debtDate")
-  private LocalDate debtDate = null;
-
-  @JsonProperty("discount")
-  private Double discount = null;
 
   @JsonProperty("favouriteproducts")
   @Valid
@@ -63,79 +38,26 @@ public class Customer   {
   @JsonProperty("id")
   private Long id = null;
 
-  @JsonProperty("maxDebt")
-  private Double maxDebt = null;
+  @JsonProperty("idpCode")
+  private String idpCode = null;
+
+  @JsonProperty("idpSub")
+  private String idpSub = null;
+
+  @JsonProperty("image")
+  private byte[] image = null;
+
+  @JsonProperty("imageContentType")
+  private String imageContentType = null;
+
+  @JsonProperty("imageLink")
+  private String imageLink = null;
+
+  @JsonProperty("loyaltyPoint")
+  private Long loyaltyPoint = null;
 
   @JsonProperty("name")
   private String name = null;
-
-  @JsonProperty("notes")
-  @Valid
-  private List<Note> notes = null;
-
-  @JsonProperty("photo")
-  private byte[] photo = null;
-
-  @JsonProperty("photoContentType")
-  private String photoContentType = null;
-
-  @JsonProperty("reference")
-  private String reference = null;
-
-  @JsonProperty("searchKey")
-  private String searchKey = null;
-
-  @JsonProperty("visible")
-  private Boolean visible = null;
-
-  public Customer addresses(List<Address> addresses) {
-    this.addresses = addresses;
-    return this;
-  }
-
-  public Customer addAddressesItem(Address addressesItem) {
-    if (this.addresses == null) {
-      this.addresses = new ArrayList<Address>();
-    }
-    this.addresses.add(addressesItem);
-    return this;
-  }
-
-  /**
-   * Get addresses
-   * @return addresses
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
-  public List<Address> getAddresses() {
-    return addresses;
-  }
-
-  public void setAddresses(List<Address> addresses) {
-    this.addresses = addresses;
-  }
-
-  public Customer card(String card) {
-    this.card = card;
-    return this;
-  }
-
-  /**
-   * Get card
-   * @return card
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getCard() {
-    return card;
-  }
-
-  public void setCard(String card) {
-    this.card = card;
-  }
 
   public Customer contact(Contact contact) {
     this.contact = contact;
@@ -158,26 +80,6 @@ public class Customer   {
     this.contact = contact;
   }
 
-  public Customer curDebt(Double curDebt) {
-    this.curDebt = curDebt;
-    return this;
-  }
-
-  /**
-   * Get curDebt
-   * @return curDebt
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Double getCurDebt() {
-    return curDebt;
-  }
-
-  public void setCurDebt(Double curDebt) {
-    this.curDebt = curDebt;
-  }
-
   public Customer customerUniqueId(String customerUniqueId) {
     this.customerUniqueId = customerUniqueId;
     return this;
@@ -196,47 +98,6 @@ public class Customer   {
 
   public void setCustomerUniqueId(String customerUniqueId) {
     this.customerUniqueId = customerUniqueId;
-  }
-
-  public Customer debtDate(LocalDate debtDate) {
-    this.debtDate = debtDate;
-    return this;
-  }
-
-  /**
-   * Get debtDate
-   * @return debtDate
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
-  public LocalDate getDebtDate() {
-    return debtDate;
-  }
-
-  public void setDebtDate(LocalDate debtDate) {
-    this.debtDate = debtDate;
-  }
-
-  public Customer discount(Double discount) {
-    this.discount = discount;
-    return this;
-  }
-
-  /**
-   * Get discount
-   * @return discount
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Double getDiscount() {
-    return discount;
-  }
-
-  public void setDiscount(Double discount) {
-    this.discount = discount;
   }
 
   public Customer favouriteproducts(List<FavouriteProduct> favouriteproducts) {
@@ -317,24 +178,125 @@ public class Customer   {
     this.id = id;
   }
 
-  public Customer maxDebt(Double maxDebt) {
-    this.maxDebt = maxDebt;
+  public Customer idpCode(String idpCode) {
+    this.idpCode = idpCode;
     return this;
   }
 
   /**
-   * Get maxDebt
-   * @return maxDebt
+   * Get idpCode
+   * @return idpCode
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+
+  public String getIdpCode() {
+    return idpCode;
+  }
+
+  public void setIdpCode(String idpCode) {
+    this.idpCode = idpCode;
+  }
+
+  public Customer idpSub(String idpSub) {
+    this.idpSub = idpSub;
+    return this;
+  }
+
+  /**
+   * Get idpSub
+   * @return idpSub
   **/
   @ApiModelProperty(value = "")
 
 
-  public Double getMaxDebt() {
-    return maxDebt;
+  public String getIdpSub() {
+    return idpSub;
   }
 
-  public void setMaxDebt(Double maxDebt) {
-    this.maxDebt = maxDebt;
+  public void setIdpSub(String idpSub) {
+    this.idpSub = idpSub;
+  }
+
+  public Customer image(byte[] image) {
+    this.image = image;
+    return this;
+  }
+
+  /**
+   * Get image
+   * @return image
+  **/
+  @ApiModelProperty(value = "")
+
+@Pattern(regexp="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$") 
+  public byte[] getImage() {
+    return image;
+  }
+
+  public void setImage(byte[] image) {
+    this.image = image;
+  }
+
+  public Customer imageContentType(String imageContentType) {
+    this.imageContentType = imageContentType;
+    return this;
+  }
+
+  /**
+   * Get imageContentType
+   * @return imageContentType
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getImageContentType() {
+    return imageContentType;
+  }
+
+  public void setImageContentType(String imageContentType) {
+    this.imageContentType = imageContentType;
+  }
+
+  public Customer imageLink(String imageLink) {
+    this.imageLink = imageLink;
+    return this;
+  }
+
+  /**
+   * Get imageLink
+   * @return imageLink
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getImageLink() {
+    return imageLink;
+  }
+
+  public void setImageLink(String imageLink) {
+    this.imageLink = imageLink;
+  }
+
+  public Customer loyaltyPoint(Long loyaltyPoint) {
+    this.loyaltyPoint = loyaltyPoint;
+    return this;
+  }
+
+  /**
+   * Get loyaltyPoint
+   * @return loyaltyPoint
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Long getLoyaltyPoint() {
+    return loyaltyPoint;
+  }
+
+  public void setLoyaltyPoint(Long loyaltyPoint) {
+    this.loyaltyPoint = loyaltyPoint;
   }
 
   public Customer name(String name) {
@@ -357,135 +319,6 @@ public class Customer   {
     this.name = name;
   }
 
-  public Customer notes(List<Note> notes) {
-    this.notes = notes;
-    return this;
-  }
-
-  public Customer addNotesItem(Note notesItem) {
-    if (this.notes == null) {
-      this.notes = new ArrayList<Note>();
-    }
-    this.notes.add(notesItem);
-    return this;
-  }
-
-  /**
-   * Get notes
-   * @return notes
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
-  public List<Note> getNotes() {
-    return notes;
-  }
-
-  public void setNotes(List<Note> notes) {
-    this.notes = notes;
-  }
-
-  public Customer photo(byte[] photo) {
-    this.photo = photo;
-    return this;
-  }
-
-  /**
-   * Get photo
-   * @return photo
-  **/
-  @ApiModelProperty(value = "")
-
-@Pattern(regexp="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$") 
-  public byte[] getPhoto() {
-    return photo;
-  }
-
-  public void setPhoto(byte[] photo) {
-    this.photo = photo;
-  }
-
-  public Customer photoContentType(String photoContentType) {
-    this.photoContentType = photoContentType;
-    return this;
-  }
-
-  /**
-   * Get photoContentType
-   * @return photoContentType
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getPhotoContentType() {
-    return photoContentType;
-  }
-
-  public void setPhotoContentType(String photoContentType) {
-    this.photoContentType = photoContentType;
-  }
-
-  public Customer reference(String reference) {
-    this.reference = reference;
-    return this;
-  }
-
-  /**
-   * Get reference
-   * @return reference
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getReference() {
-    return reference;
-  }
-
-  public void setReference(String reference) {
-    this.reference = reference;
-  }
-
-  public Customer searchKey(String searchKey) {
-    this.searchKey = searchKey;
-    return this;
-  }
-
-  /**
-   * Get searchKey
-   * @return searchKey
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getSearchKey() {
-    return searchKey;
-  }
-
-  public void setSearchKey(String searchKey) {
-    this.searchKey = searchKey;
-  }
-
-  public Customer visible(Boolean visible) {
-    this.visible = visible;
-    return this;
-  }
-
-  /**
-   * Get visible
-   * @return visible
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Boolean isVisible() {
-    return visible;
-  }
-
-  public void setVisible(Boolean visible) {
-    this.visible = visible;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -496,29 +329,23 @@ public class Customer   {
       return false;
     }
     Customer customer = (Customer) o;
-    return Objects.equals(this.addresses, customer.addresses) &&
-        Objects.equals(this.card, customer.card) &&
-        Objects.equals(this.contact, customer.contact) &&
-        Objects.equals(this.curDebt, customer.curDebt) &&
+    return Objects.equals(this.contact, customer.contact) &&
         Objects.equals(this.customerUniqueId, customer.customerUniqueId) &&
-        Objects.equals(this.debtDate, customer.debtDate) &&
-        Objects.equals(this.discount, customer.discount) &&
         Objects.equals(this.favouriteproducts, customer.favouriteproducts) &&
         Objects.equals(this.favouritestores, customer.favouritestores) &&
         Objects.equals(this.id, customer.id) &&
-        Objects.equals(this.maxDebt, customer.maxDebt) &&
-        Objects.equals(this.name, customer.name) &&
-        Objects.equals(this.notes, customer.notes) &&
-        Objects.equals(this.photo, customer.photo) &&
-        Objects.equals(this.photoContentType, customer.photoContentType) &&
-        Objects.equals(this.reference, customer.reference) &&
-        Objects.equals(this.searchKey, customer.searchKey) &&
-        Objects.equals(this.visible, customer.visible);
+        Objects.equals(this.idpCode, customer.idpCode) &&
+        Objects.equals(this.idpSub, customer.idpSub) &&
+        Objects.equals(this.image, customer.image) &&
+        Objects.equals(this.imageContentType, customer.imageContentType) &&
+        Objects.equals(this.imageLink, customer.imageLink) &&
+        Objects.equals(this.loyaltyPoint, customer.loyaltyPoint) &&
+        Objects.equals(this.name, customer.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(addresses, card, contact, curDebt, customerUniqueId, debtDate, discount, favouriteproducts, favouritestores, id, maxDebt, name, notes, photo, photoContentType, reference, searchKey, visible);
+    return Objects.hash(contact, customerUniqueId, favouriteproducts, favouritestores, id, idpCode, idpSub, image, imageContentType, imageLink, loyaltyPoint, name);
   }
 
   @Override
@@ -526,24 +353,18 @@ public class Customer   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Customer {\n");
     
-    sb.append("    addresses: ").append(toIndentedString(addresses)).append("\n");
-    sb.append("    card: ").append(toIndentedString(card)).append("\n");
     sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
-    sb.append("    curDebt: ").append(toIndentedString(curDebt)).append("\n");
     sb.append("    customerUniqueId: ").append(toIndentedString(customerUniqueId)).append("\n");
-    sb.append("    debtDate: ").append(toIndentedString(debtDate)).append("\n");
-    sb.append("    discount: ").append(toIndentedString(discount)).append("\n");
     sb.append("    favouriteproducts: ").append(toIndentedString(favouriteproducts)).append("\n");
     sb.append("    favouritestores: ").append(toIndentedString(favouritestores)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    maxDebt: ").append(toIndentedString(maxDebt)).append("\n");
+    sb.append("    idpCode: ").append(toIndentedString(idpCode)).append("\n");
+    sb.append("    idpSub: ").append(toIndentedString(idpSub)).append("\n");
+    sb.append("    image: ").append(toIndentedString(image)).append("\n");
+    sb.append("    imageContentType: ").append(toIndentedString(imageContentType)).append("\n");
+    sb.append("    imageLink: ").append(toIndentedString(imageLink)).append("\n");
+    sb.append("    loyaltyPoint: ").append(toIndentedString(loyaltyPoint)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    notes: ").append(toIndentedString(notes)).append("\n");
-    sb.append("    photo: ").append(toIndentedString(photo)).append("\n");
-    sb.append("    photoContentType: ").append(toIndentedString(photoContentType)).append("\n");
-    sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
-    sb.append("    searchKey: ").append(toIndentedString(searchKey)).append("\n");
-    sb.append("    visible: ").append(toIndentedString(visible)).append("\n");
     sb.append("}");
     return sb.toString();
   }

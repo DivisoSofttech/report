@@ -9,7 +9,7 @@ import org.springframework.validation.annotation.Validated;
  * StoreSettings
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-09-04T22:29:27.309760+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:37:58.581+05:30[Asia/Kolkata]")
 
 public class StoreSettings   {
   @JsonProperty("deliveryCharge")
@@ -17,6 +17,12 @@ public class StoreSettings   {
 
   @JsonProperty("id")
   private Long id = null;
+
+  @JsonProperty("isActive")
+  private Boolean isActive = null;
+
+  @JsonProperty("isInventoryRequired")
+  private Boolean isInventoryRequired = null;
 
   @JsonProperty("orderAcceptType")
   private String orderAcceptType = null;
@@ -62,6 +68,46 @@ public class StoreSettings   {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public StoreSettings isActive(Boolean isActive) {
+    this.isActive = isActive;
+    return this;
+  }
+
+  /**
+   * Get isActive
+   * @return isActive
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Boolean isIsActive() {
+    return isActive;
+  }
+
+  public void setIsActive(Boolean isActive) {
+    this.isActive = isActive;
+  }
+
+  public StoreSettings isInventoryRequired(Boolean isInventoryRequired) {
+    this.isInventoryRequired = isInventoryRequired;
+    return this;
+  }
+
+  /**
+   * Get isInventoryRequired
+   * @return isInventoryRequired
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public Boolean isIsInventoryRequired() {
+    return isInventoryRequired;
+  }
+
+  public void setIsInventoryRequired(Boolean isInventoryRequired) {
+    this.isInventoryRequired = isInventoryRequired;
   }
 
   public StoreSettings orderAcceptType(String orderAcceptType) {
@@ -116,13 +162,15 @@ public class StoreSettings   {
     StoreSettings storeSettings = (StoreSettings) o;
     return Objects.equals(this.deliveryCharge, storeSettings.deliveryCharge) &&
         Objects.equals(this.id, storeSettings.id) &&
+        Objects.equals(this.isActive, storeSettings.isActive) &&
+        Objects.equals(this.isInventoryRequired, storeSettings.isInventoryRequired) &&
         Objects.equals(this.orderAcceptType, storeSettings.orderAcceptType) &&
         Objects.equals(this.serviceCharge, storeSettings.serviceCharge);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(deliveryCharge, id, orderAcceptType, serviceCharge);
+    return Objects.hash(deliveryCharge, id, isActive, isInventoryRequired, orderAcceptType, serviceCharge);
   }
 
   @Override
@@ -132,6 +180,8 @@ public class StoreSettings   {
     
     sb.append("    deliveryCharge: ").append(toIndentedString(deliveryCharge)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
+    sb.append("    isInventoryRequired: ").append(toIndentedString(isInventoryRequired)).append("\n");
     sb.append("    orderAcceptType: ").append(toIndentedString(orderAcceptType)).append("\n");
     sb.append("    serviceCharge: ").append(toIndentedString(serviceCharge)).append("\n");
     sb.append("}");

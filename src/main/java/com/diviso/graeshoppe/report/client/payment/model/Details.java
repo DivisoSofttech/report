@@ -9,7 +9,7 @@ import org.springframework.validation.annotation.Validated;
  * Details
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-08-27T13:48:47.677+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:31:12.462+05:30[Asia/Kolkata]")
 
 public class Details   {
   @JsonProperty("handling_fee")

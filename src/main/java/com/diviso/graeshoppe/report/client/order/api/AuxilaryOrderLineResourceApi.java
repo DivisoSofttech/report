@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-08-27T15:03:55.787+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:48:59.190+05:30[Asia/Kolkata]")
 
 @Api(value = "AuxilaryOrderLineResource", description = "the AuxilaryOrderLineResource API")
 public interface AuxilaryOrderLineResourceApi {

@@ -1,26 +1,27 @@
 package com.diviso.graeshoppe.report.domain;
-
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
-import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * A ComboItem.
  */
 @Entity
 @Table(name = "combo_item")
-@Document(indexName = "comboitem")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "comboitem")
 public class ComboItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
     private Long id;
 
     @Column(name = "combo_item")
@@ -28,6 +29,9 @@ public class ComboItem implements Serializable {
 
     @Column(name = "quantity")
     private Double quantity;
+
+    @Column(name = "product_id")
+    private Long productId;
 
     @ManyToOne
     @JsonIgnoreProperties("comboItems")
@@ -68,6 +72,19 @@ public class ComboItem implements Serializable {
         this.quantity = quantity;
     }
 
+    public Long getProductId() {
+        return productId;
+    }
+
+    public ComboItem productId(Long productId) {
+        this.productId = productId;
+        return this;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
     public OrderLine getOrderLine() {
         return orderLine;
     }
@@ -87,19 +104,15 @@ public class ComboItem implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof ComboItem)) {
             return false;
         }
-        ComboItem comboItem = (ComboItem) o;
-        if (comboItem.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), comboItem.getId());
+        return id != null && id.equals(((ComboItem) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override
@@ -108,6 +121,7 @@ public class ComboItem implements Serializable {
             "id=" + getId() +
             ", comboItem='" + getComboItem() + "'" +
             ", quantity=" + getQuantity() +
+            ", productId=" + getProductId() +
             "}";
     }
 }

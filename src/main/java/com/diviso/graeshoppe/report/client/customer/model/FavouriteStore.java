@@ -3,8 +3,6 @@ package com.diviso.graeshoppe.report.client.customer.model;
 import java.util.Objects;
 import com.diviso.graeshoppe.report.client.customer.model.Customer;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -14,7 +12,7 @@ import javax.validation.constraints.*;
  * FavouriteStore
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-11-13T14:04:39.267087+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:40:40.577+05:30[Asia/Kolkata]")
 
 public class FavouriteStore   {
   @JsonProperty("customer")
@@ -76,7 +74,8 @@ public class FavouriteStore   {
    * Get storeId
    * @return storeId
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
 
 
   public Long getStoreId() {

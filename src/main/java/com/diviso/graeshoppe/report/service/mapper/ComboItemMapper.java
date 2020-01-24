@@ -6,7 +6,7 @@ import com.diviso.graeshoppe.report.service.dto.ComboItemDTO;
 import org.mapstruct.*;
 
 /**
- * Mapper for the entity ComboItem and its DTO ComboItemDTO.
+ * Mapper for the entity {@link ComboItem} and its DTO {@link ComboItemDTO}.
  */
 @Mapper(componentModel = "spring", uses = {OrderLineMapper.class})
 public interface ComboItemMapper extends EntityMapper<ComboItemDTO, ComboItem> {

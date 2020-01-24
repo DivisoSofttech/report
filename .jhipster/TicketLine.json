@@ -24,19 +24,21 @@
     ],
     "relationships": [
         {
-            "relationshipName": "sale",
-            "otherEntityName": "sale",
             "relationshipType": "many-to-one",
+            "otherEntityName": "sale",
+            "otherEntityRelationshipName": "ticketLine",
+            "relationshipName": "sale",
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20191102042322",
+    "changelogDate": "20191231084243",
     "entityTableName": "ticket_line",
     "dto": "mapstruct",
     "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
+    "readOnly": false,
     "clientRootFolder": "report",
     "applications": "*",
     "microserviceName": "report"

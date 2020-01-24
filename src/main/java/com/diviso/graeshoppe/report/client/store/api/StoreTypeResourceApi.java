@@ -5,8 +5,6 @@
  */
 package com.diviso.graeshoppe.report.client.store.api;
 
-import java.util.List;
-import com.diviso.graeshoppe.report.client.store.model.StoreType;
 import com.diviso.graeshoppe.report.client.store.model.StoreTypeDTO;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-09-04T22:29:27.309760+05:30[Asia/Kolkata]")
+import java.util.List;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:37:58.581+05:30[Asia/Kolkata]")
 
 @Api(value = "StoreTypeResource", description = "the StoreTypeResource API")
 public interface StoreTypeResourceApi {
@@ -69,20 +68,6 @@ public interface StoreTypeResourceApi {
         produces = "*/*", 
         method = RequestMethod.GET)
     ResponseEntity<StoreTypeDTO> getStoreTypeUsingGET(@ApiParam(value = "id",required=true) @PathVariable("id") Long id);
-
-
-    @ApiOperation(value = "listToDto", nickname = "listToDtoUsingPOST2", notes = "", response = StoreTypeDTO.class, responseContainer = "List", tags={ "store-type-resource", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = StoreTypeDTO.class, responseContainer = "List"),
-        @ApiResponse(code = 201, message = "Created"),
-        @ApiResponse(code = 401, message = "Unauthorized"),
-        @ApiResponse(code = 403, message = "Forbidden"),
-        @ApiResponse(code = 404, message = "Not Found") })
-    @RequestMapping(value = "/api/storeType/toDto",
-        produces = "*/*", 
-        consumes = "application/json",
-        method = RequestMethod.POST)
-    ResponseEntity<List<StoreTypeDTO>> listToDtoUsingPOST2(@ApiParam(value = "storeTypes" ,required=true )  @Valid @RequestBody List<StoreType> storeType);
 
 
     @ApiOperation(value = "searchStoreTypes", nickname = "searchStoreTypesUsingGET", notes = "", response = StoreTypeDTO.class, responseContainer = "List", tags={ "store-type-resource", })

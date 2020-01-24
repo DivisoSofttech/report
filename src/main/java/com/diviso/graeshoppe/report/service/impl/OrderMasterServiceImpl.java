@@ -5,7 +5,6 @@ import com.diviso.graeshoppe.report.service.ComboItemService;
 import com.diviso.graeshoppe.report.service.OfferLineService;
 import com.diviso.graeshoppe.report.service.OrderLineService;
 import com.diviso.graeshoppe.report.service.OrderMasterService;
-import com.diviso.graeshoppe.report.service.ReportService;
 import com.diviso.graeshoppe.order.avro.AuxilaryOrderLine;
 import com.diviso.graeshoppe.order.avro.Order;
 import com.diviso.graeshoppe.report.client.customer.api.CustomerResourceApi;
@@ -15,7 +14,6 @@ import com.diviso.graeshoppe.report.client.product.model.Product;
 import com.diviso.graeshoppe.report.client.store.model.Store;
 import com.diviso.graeshoppe.report.domain.AuxItem;
 import com.diviso.graeshoppe.report.domain.ComboItem;
-import com.diviso.graeshoppe.report.domain.OfferLine;
 import com.diviso.graeshoppe.report.domain.OrderLine;
 import com.diviso.graeshoppe.report.domain.OrderMaster;
 import com.diviso.graeshoppe.report.repository.OrderMasterRepository;
@@ -36,7 +34,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.query.StringQuery;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,13 +41,12 @@ import java.time.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import com.diviso.graeshoppe.report.domain.OrderMaster;
 import static org.elasticsearch.index.query.QueryBuilders.*;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 
 /**
- * Service Implementation for managing OrderMaster.
+ * Service Implementation for managing {@link OrderMaster}.
  */
 @Service
 @Transactional
@@ -73,8 +69,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 	@Autowired
 	private OfferLineService offerLineService;
-	@Autowired
-	private ReportService reportService;
+
 	@Autowired
 	private OrderLineService orderLineService;
 	@Autowired
@@ -92,6 +87,74 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		this.orderMasterRepository = orderMasterRepository;
 		this.orderMasterMapper = orderMasterMapper;
 		this.orderMasterSearchRepository = orderMasterSearchRepository;
+	}
+
+	/**
+	 * Save a orderMaster.
+	 *
+	 * @param orderMasterDTO the entity to save.
+	 * @return the persisted entity.
+	 */
+	@Override
+	public OrderMasterDTO save(OrderMasterDTO orderMasterDTO) {
+		log.debug("Request to save OrderMaster : {}", orderMasterDTO);
+		OrderMaster orderMaster = orderMasterMapper.toEntity(orderMasterDTO);
+		orderMaster = orderMasterRepository.save(orderMaster);
+		OrderMasterDTO result = orderMasterMapper.toDto(orderMaster);
+		orderMasterSearchRepository.save(orderMaster);
+		return result;
+	}
+
+	/**
+	 * Get all the orderMasters.
+	 *
+	 * @param pageable the pagination information.
+	 * @return the list of entities.
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public Page<OrderMasterDTO> findAll(Pageable pageable) {
+		log.debug("Request to get all OrderMasters");
+		return orderMasterRepository.findAll(pageable).map(orderMasterMapper::toDto);
+	}
+
+	/**
+	 * Get one orderMaster by id.
+	 *
+	 * @param id the id of the entity.
+	 * @return the entity.
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public Optional<OrderMasterDTO> findOne(Long id) {
+		log.debug("Request to get OrderMaster : {}", id);
+		return orderMasterRepository.findById(id).map(orderMasterMapper::toDto);
+	}
+
+	/**
+	 * Delete the orderMaster by id.
+	 *
+	 * @param id the id of the entity.
+	 */
+	@Override
+	public void delete(Long id) {
+		log.debug("Request to delete OrderMaster : {}", id);
+		orderMasterRepository.deleteById(id);
+		orderMasterSearchRepository.deleteById(id);
+	}
+
+	/**
+	 * Search for the orderMaster corresponding to the query.
+	 *
+	 * @param query    the query of the search.
+	 * @param pageable the pagination information.
+	 * @return the list of entities.
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public Page<OrderMasterDTO> search(String query, Pageable pageable) {
+		log.debug("Request to search for a page of OrderMasters for query {}", query);
+		return orderMasterSearchRepository.search(queryStringQuery(query), pageable).map(orderMasterMapper::toDto);
 	}
 
 	private Store findStoreByStoreId(String storeId) {
@@ -115,75 +178,6 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	}
 
 	/**
-	 * Save a orderMaster.
-	 *
-	 * @param orderMasterDTO the entity to save
-	 * @return the persisted entity
-	 */
-	@Override
-	public OrderMasterDTO save(OrderMasterDTO orderMasterDTO) {
-		log.debug("Request to save OrderMaster : {}", orderMasterDTO);
-
-		OrderMaster orderMaster = orderMasterMapper.toEntity(orderMasterDTO);
-		orderMaster = orderMasterRepository.save(orderMaster);
-		OrderMasterDTO result = orderMasterMapper.toDto(orderMaster);
-		orderMasterSearchRepository.save(orderMaster);
-		return result;
-	}
-
-	/**
-	 * Get all the orderMasters.
-	 *
-	 * @param pageable the pagination information
-	 * @return the list of entities
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public Page<OrderMasterDTO> findAll(Pageable pageable) {
-		log.debug("Request to get all OrderMasters");
-		return orderMasterRepository.findAll(pageable).map(orderMasterMapper::toDto);
-	}
-
-	/**
-	 * Get one orderMaster by id.
-	 *
-	 * @param id the id of the entity
-	 * @return the entity
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public Optional<OrderMasterDTO> findOne(Long id) {
-		log.debug("Request to get OrderMaster : {}", id);
-		return orderMasterRepository.findById(id).map(orderMasterMapper::toDto);
-	}
-
-	/**
-	 * Delete the orderMaster by id.
-	 *
-	 * @param id the id of the entity
-	 */
-	@Override
-	public void delete(Long id) {
-		log.debug("Request to delete OrderMaster : {}", id);
-		orderMasterRepository.deleteById(id);
-		orderMasterSearchRepository.deleteById(id);
-	}
-
-	/**
-	 * Search for the orderMaster corresponding to the query.
-	 *
-	 * @param query    the query of the search
-	 * @param pageable the pagination information
-	 * @return the list of entities
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public Page<OrderMasterDTO> search(String query, Pageable pageable) {
-		log.debug("Request to search for a page of OrderMasters for query {}", query);
-		return orderMasterSearchRepository.search(queryStringQuery(query), pageable).map(orderMasterMapper::toDto);
-	}
-
-	/**
 	 * Search for the orderMaster corresponding to the order id.
 	 *
 	 *
@@ -200,7 +194,6 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 	@Override
 	public void convertAndSaveOrderMaster(Order order) {
-
 		OrderMaster orderMaster = new OrderMaster();
 		Store store = findStoreByStoreId(order.getStoreId());
 		Customer customer = findCustomerByReference(order.getCustomerId());
@@ -209,10 +202,16 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setMethodOfOrder(order.getDeliveryInfo().getDeliveryType().toUpperCase());
 		orderMaster.setOrderNumber(order.getOrderId());
 		orderMaster.setDeliveryCharge(order.getDeliveryInfo().getDeliveryCharge());
-		orderMaster.setPhone(order.getCustomerPhone());
+		orderMaster.setLoyaltyPoint(customer.getLoyaltyPoint());
+		if (order.getCustomerPhone() != 0) {
+			orderMaster.setPhone(order.getCustomerPhone());
+		} else {
+			orderMaster.setPhone(customer.getContact().getMobileNumber());
+		}
 		orderMaster.setAllergyNote(order.getAllergyNote());
 		orderMaster.setSubTotal(order.getSubTotal());
 		orderMaster.setStoreIdpcode(order.getStoreId());
+		orderMaster.setZoneId(order.getTimeZone());
 		if (order.getPreOrderDate() == 0) {
 
 			orderMaster.setPreOrderDate(null);
@@ -222,12 +221,13 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 		}
 		orderMaster.setOrderDiscountAmount(0.0);
-		if (order.getPaymentMode().equals("cod")) {
+		orderMaster.setZoneId(order.getTimeZone());
+		if (order.getPaymentMode().equalsIgnoreCase("cod")) {
+			log.info("OrderNot paid");
+			orderMaster.setPaymentStatus("ORDER NOT PAID");
+		} else {
 			log.info("Order paid");
 			orderMaster.setPaymentStatus("ORDER PAID");
-		} else {
-			log.info("Order Not paid");
-			orderMaster.setPaymentStatus("ORDER NOT PAID");
 		}
 		if (order.getDeliveryInfo().getDeliveryAddress() != null) {
 			orderMaster.setRoadNameAreaOrStreet(order.getDeliveryInfo().getDeliveryAddress().getRoadNameAreaOrStreet());
@@ -236,12 +236,11 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 					.setHouseNoOrBuildingName(order.getDeliveryInfo().getDeliveryAddress().getHouseNoOrBuildingName());
 			orderMaster.setCity(order.getDeliveryInfo().getDeliveryAddress().getCity());
 			orderMaster.setLandmark(order.getDeliveryInfo().getDeliveryAddress().getLandmark());
-			// orderMaster.setPhone(order.getDeliveryInfo().getDeliveryAddress().getPhone());
 			orderMaster.setAlternatePhone(order.getDeliveryInfo().getDeliveryAddress().getAlternatePhone());
 			orderMaster.setPincode(order.getDeliveryInfo().getDeliveryAddress().getPincode());
 			orderMaster.setState(order.getDeliveryInfo().getDeliveryAddress().getState());
 			orderMaster.setAddressType(order.getDeliveryInfo().getDeliveryAddress().getAddressType());
-			orderMaster.setName(order.getDeliveryInfo().getDeliveryAddress().getName());
+			orderMaster.setCustomerName(order.getDeliveryInfo().getDeliveryAddress().getName());
 			orderMaster.setCustomerName(order.getDeliveryInfo().getDeliveryAddress().getName());
 
 		} else {
@@ -249,6 +248,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 		}
 		orderMaster.setCustomerId(customer.getCustomerUniqueId());
+		orderMaster.setOrderStatus("payment-processed-unapproved");
 		orderMaster.setNotes(order.getDeliveryInfo().getDeliveryNotes());
 		orderMaster.setOrderFromCustomer(order.getOrderCountRestaurant());
 		orderMaster.setTotalDue(order.getGrandTotal());
@@ -263,7 +263,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 			orderMaster.setOrderAcceptedAt(acceptedDate);
 		}
 
-		log.info("The order master going to persist is ^^^^^^^^^^^^^^^^^ " + orderMaster);
+		log.info("The order master going to persist is  " + orderMaster);
 		OrderMaster updatedResult = orderMasterRepository.save(orderMaster);
 		order.getOfferLines().forEach(offer -> {
 			OfferLineDTO offerLine = new OfferLineDTO();
@@ -304,6 +304,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		} // query to get productname
 		line.setQuantity(orderLine.getQuantity());
 		line.setTotal(orderLine.getTotal());
+		line.setProductId(orderLine.getProductId());
 		line.setAuxItems(orderLine.getAuxilaryOrderLines().stream().map(this::toAuxItem).collect(Collectors.toSet()));
 		List<ComboLineItem> comboItems = findCombosByProductId(orderLine.getProductId());
 		line.setComboItems(comboItems.stream().map(this::toComboItem).collect(Collectors.toSet()));
@@ -315,6 +316,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		ComboItem comboItem = new ComboItem();
 		comboItem.setComboItem(lineitem.getProduct().getName());
 		comboItem.setQuantity(lineitem.getQuantity());
+		comboItem.setProductId(lineitem.getProduct().getId());
 		return comboItem;
 	}
 
@@ -323,6 +325,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		Product product = findProductByProductId(aux.getProductId());
 		auxItem.setAuxItem(product.getName()); // query to get aux name
 		auxItem.setQuantity(aux.getQuantity());
+		auxItem.setProductId(aux.getProductId());
 		auxItem.setTotal(aux.getTotal());
 		return auxItem;
 	}
@@ -336,10 +339,11 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	@Override
 	public Page<OrderMaster> findByExpectedDeliveryBetweenAndStoreIdpcode(String from, String to, String storeIdpcode,
 			Pageable pageable) {
-		log.debug("<<<<<<<<<< findByExpectedDeliveryBetweenAndStoreIdpcode >>>>>>>>>>{}{}",from,to);
-			Instant fromDate = Instant.parse(from.toString()+"T00:00:00Z");
-			Instant toDate = Instant.parse(to.toString()+"T23:59:59Z");
-		return orderMasterRepository.findByExpectedDeliveryBetweenAndStoreIdpcode(fromDate, toDate, storeIdpcode, pageable);
+		log.debug("<<<<<<<<<< findByExpectedDeliveryBetweenAndStoreIdpcode >>>>>>>>>>{}{}", from, to);
+		Instant fromDate = Instant.parse(from.toString() + "T00:00:00Z");
+		Instant toDate = Instant.parse(to.toString() + "T23:59:59Z");
+		return orderMasterRepository.findByExpectedDeliveryBetweenAndStoreIdpcode(fromDate, toDate, storeIdpcode,
+				pageable);
 
 	}
 
@@ -349,7 +353,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		log.debug("<<<<<<<<<<<< countByExpectedDeliveryAndOrderStatus >>>>>>>>>>>>", date);
 		Instant dateBegin = Instant.parse(date.toString() + "T00:00:00Z");
 		Instant dateEnd = Instant.parse(date.toString() + "T23:59:59Z");
-		return orderMasterRepository.countByExpectedDeliveryBetweenAndOrderStatus(dateBegin, dateEnd, orderStatus);
+		return orderMasterRepository.countByOrderPlaceAtBetweenAndOrderStatus(dateBegin, dateEnd, orderStatus);
 	}
 
 	@Override
@@ -367,8 +371,17 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		log.debug("<<<<<<<<<<< countByExpectedDeliveryBetween >>>>>>>>>>{}{}", from, to);
 		Instant fromDate = Instant.parse(from.toString() + "T00:00:00Z");
 		Instant toDate = Instant.parse(to.toString() + "T23:59:59Z");
-		return orderMasterRepository.countByExpectedDeliveryBetween(fromDate, toDate);
+		return orderMasterRepository.countByOrderPlaceAtBetween(fromDate, toDate);
 	}
 
+	public Long weakOrderCount(String date, String orderStatus) {
+		LocalDate to=LocalDate.parse(date).minusDays(7l);
 	
+		Instant fromDate = Instant.parse(date.toString() + "T00:00:00Z");
+		Instant toDate = Instant.parse(to.toString() + "T23:59:59Z");
+
+		return orderMasterRepository.countByOrderPlaceAtBetweenAndOrderStatus(fromDate, toDate, orderStatus);
+
+	}
+
 }

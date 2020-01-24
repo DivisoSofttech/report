@@ -10,23 +10,23 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Service Interface for managing AuxItem.
+ * Service Interface for managing {@link com.diviso.graeshoppe.report.domain.AuxItem}.
  */
 public interface AuxItemService {
 
     /**
      * Save a auxItem.
      *
-     * @param auxItemDTO the entity to save
-     * @return the persisted entity
+     * @param auxItemDTO the entity to save.
+     * @return the persisted entity.
      */
     AuxItemDTO save(AuxItemDTO auxItemDTO);
 
     /**
      * Get all the auxItems.
      *
-     * @param pageable the pagination information
-     * @return the list of entities
+     * @param pageable the pagination information.
+     * @return the list of entities.
      */
     Page<AuxItemDTO> findAll(Pageable pageable);
 
@@ -34,27 +34,27 @@ public interface AuxItemService {
     /**
      * Get the "id" auxItem.
      *
-     * @param id the id of the entity
-     * @return the entity
+     * @param id the id of the entity.
+     * @return the entity.
      */
     Optional<AuxItemDTO> findOne(Long id);
 
     /**
      * Delete the "id" auxItem.
      *
-     * @param id the id of the entity
+     * @param id the id of the entity.
      */
     void delete(Long id);
 
     /**
      * Search for the auxItem corresponding to the query.
      *
-     * @param query the query of the search
+     * @param query the query of the search.
      * 
-     * @param pageable the pagination information
-     * @return the list of entities
+     * @param pageable the pagination information.
+     * @return the list of entities.
      */
     Page<AuxItemDTO> search(String query, Pageable pageable);
 
-	List<AuxItem> findAuxItemByid(Long id);
+    List<AuxItem> findAuxItemByid(Long id);
 }

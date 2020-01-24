@@ -90,10 +90,6 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "name",
-            "fieldType": "String"
-        },
-        {
             "fieldName": "phone",
             "fieldType": "Long"
         },
@@ -140,29 +136,38 @@
         {
             "fieldName": "paymentStatus",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "zoneId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "loyaltyPoint",
+            "fieldType": "Long"
         }
     ],
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "orderLine",
             "otherEntityName": "orderLine",
-            "otherEntityRelationshipName": "orderMaster"
+            "otherEntityRelationshipName": "orderMaster",
+            "relationshipName": "orderLine"
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "offerLines",
             "otherEntityName": "offerLine",
-            "otherEntityRelationshipName": "orderMaster"
+            "otherEntityRelationshipName": "orderMaster",
+            "relationshipName": "offerLines"
         }
     ],
-    "changelogDate": "20190808044727",
+    "changelogDate": "20191231084238",
     "entityTableName": "order_master",
     "dto": "mapstruct",
     "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
+    "readOnly": false,
     "clientRootFolder": "report",
     "applications": "*",
     "microserviceName": "report"

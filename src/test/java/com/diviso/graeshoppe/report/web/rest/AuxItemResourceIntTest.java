@@ -58,6 +58,9 @@ public class AuxItemResourceIntTest {
     private static final Double DEFAULT_TOTAL = 1D;
     private static final Double UPDATED_TOTAL = 2D;
 
+    private static final Long DEFAULT_PRODUCT_ID = 1L;
+    private static final Long UPDATED_PRODUCT_ID = 2L;
+
     @Autowired
     private AuxItemRepository auxItemRepository;
 
@@ -116,7 +119,8 @@ public class AuxItemResourceIntTest {
         AuxItem auxItem = new AuxItem()
             .auxItem(DEFAULT_AUX_ITEM)
             .quantity(DEFAULT_QUANTITY)
-            .total(DEFAULT_TOTAL);
+            .total(DEFAULT_TOTAL)
+            .productId(DEFAULT_PRODUCT_ID);
         return auxItem;
     }
 
@@ -144,6 +148,7 @@ public class AuxItemResourceIntTest {
         assertThat(testAuxItem.getAuxItem()).isEqualTo(DEFAULT_AUX_ITEM);
         assertThat(testAuxItem.getQuantity()).isEqualTo(DEFAULT_QUANTITY);
         assertThat(testAuxItem.getTotal()).isEqualTo(DEFAULT_TOTAL);
+        assertThat(testAuxItem.getProductId()).isEqualTo(DEFAULT_PRODUCT_ID);
 
         // Validate the AuxItem in Elasticsearch
         verify(mockAuxItemSearchRepository, times(1)).save(testAuxItem);
@@ -185,7 +190,8 @@ public class AuxItemResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(auxItem.getId().intValue())))
             .andExpect(jsonPath("$.[*].auxItem").value(hasItem(DEFAULT_AUX_ITEM.toString())))
             .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)))
-            .andExpect(jsonPath("$.[*].total").value(hasItem(DEFAULT_TOTAL.doubleValue())));
+            .andExpect(jsonPath("$.[*].total").value(hasItem(DEFAULT_TOTAL.doubleValue())))
+            .andExpect(jsonPath("$.[*].productId").value(hasItem(DEFAULT_PRODUCT_ID.intValue())));
     }
     
     @Test
@@ -201,7 +207,8 @@ public class AuxItemResourceIntTest {
             .andExpect(jsonPath("$.id").value(auxItem.getId().intValue()))
             .andExpect(jsonPath("$.auxItem").value(DEFAULT_AUX_ITEM.toString()))
             .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY))
-            .andExpect(jsonPath("$.total").value(DEFAULT_TOTAL.doubleValue()));
+            .andExpect(jsonPath("$.total").value(DEFAULT_TOTAL.doubleValue()))
+            .andExpect(jsonPath("$.productId").value(DEFAULT_PRODUCT_ID.intValue()));
     }
 
     @Test
@@ -227,7 +234,8 @@ public class AuxItemResourceIntTest {
         updatedAuxItem
             .auxItem(UPDATED_AUX_ITEM)
             .quantity(UPDATED_QUANTITY)
-            .total(UPDATED_TOTAL);
+            .total(UPDATED_TOTAL)
+            .productId(UPDATED_PRODUCT_ID);
         AuxItemDTO auxItemDTO = auxItemMapper.toDto(updatedAuxItem);
 
         restAuxItemMockMvc.perform(put("/api/aux-items")
@@ -242,6 +250,7 @@ public class AuxItemResourceIntTest {
         assertThat(testAuxItem.getAuxItem()).isEqualTo(UPDATED_AUX_ITEM);
         assertThat(testAuxItem.getQuantity()).isEqualTo(UPDATED_QUANTITY);
         assertThat(testAuxItem.getTotal()).isEqualTo(UPDATED_TOTAL);
+        assertThat(testAuxItem.getProductId()).isEqualTo(UPDATED_PRODUCT_ID);
 
         // Validate the AuxItem in Elasticsearch
         verify(mockAuxItemSearchRepository, times(1)).save(testAuxItem);
@@ -304,7 +313,8 @@ public class AuxItemResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(auxItem.getId().intValue())))
             .andExpect(jsonPath("$.[*].auxItem").value(hasItem(DEFAULT_AUX_ITEM)))
             .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)))
-            .andExpect(jsonPath("$.[*].total").value(hasItem(DEFAULT_TOTAL.doubleValue())));
+            .andExpect(jsonPath("$.[*].total").value(hasItem(DEFAULT_TOTAL.doubleValue())))
+            .andExpect(jsonPath("$.[*].productId").value(hasItem(DEFAULT_PRODUCT_ID.intValue())));
     }
 
     @Test

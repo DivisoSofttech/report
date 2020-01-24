@@ -12,19 +12,21 @@
     ],
     "relationships": [
         {
-            "relationshipName": "orderMaster",
-            "otherEntityName": "orderMaster",
             "relationshipType": "many-to-one",
+            "otherEntityName": "orderMaster",
+            "otherEntityRelationshipName": "offerLines",
+            "relationshipName": "orderMaster",
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20191216062307",
+    "changelogDate": "20191231084244",
     "entityTableName": "offer_line",
     "dto": "mapstruct",
     "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
+    "readOnly": false,
     "clientRootFolder": "report",
     "applications": "*",
     "microserviceName": "report"

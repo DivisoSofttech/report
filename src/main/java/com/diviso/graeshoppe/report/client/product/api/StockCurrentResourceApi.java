@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-09-04T22:30:51.169319+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:45:03.566+05:30[Asia/Kolkata]")
 
 @Api(value = "StockCurrentResource", description = "the StockCurrentResource API")
 public interface StockCurrentResourceApi {
@@ -44,6 +44,18 @@ public interface StockCurrentResourceApi {
     @RequestMapping(value = "/api/stock-currents/{id}",
         method = RequestMethod.DELETE)
     ResponseEntity<Void> deleteStockCurrentUsingDELETE(@ApiParam(value = "id",required=true) @PathVariable("id") Long id);
+
+
+    @ApiOperation(value = "exportStockCurrentListAsPdf", nickname = "exportStockCurrentListAsPdfUsingGET", notes = "", response = byte[].class, tags={ "stock-current-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = byte[].class),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/pdf/stockcurrent-report/{idpcode}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<byte[]> exportStockCurrentListAsPdfUsingGET(@ApiParam(value = "idpcode",required=true) @PathVariable("idpcode") String idpcode);
 
 
     @ApiOperation(value = "getAllStockCurrents", nickname = "getAllStockCurrentsUsingGET", notes = "", response = StockCurrentDTO.class, responseContainer = "List", tags={ "stock-current-resource", })

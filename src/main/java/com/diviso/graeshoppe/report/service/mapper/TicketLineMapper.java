@@ -6,15 +6,17 @@ import com.diviso.graeshoppe.report.service.dto.TicketLineDTO;
 import org.mapstruct.*;
 
 /**
- * Mapper for the entity TicketLine and its DTO TicketLineDTO.
+ * Mapper for the entity {@link TicketLine} and its DTO {@link TicketLineDTO}.
  */
 @Mapper(componentModel = "spring", uses = {SaleMapper.class})
 public interface TicketLineMapper extends EntityMapper<TicketLineDTO, TicketLine> {
 
-    @Mapping(source = "sale.id", target = "saleId")
+    @Override
+	@Mapping(source = "sale.id", target = "saleId")
     TicketLineDTO toDto(TicketLine ticketLine);
 
-    @Mapping(source = "saleId", target = "sale")
+    @Override
+	@Mapping(source = "saleId", target = "sale")
     TicketLine toEntity(TicketLineDTO ticketLineDTO);
 
     default TicketLine fromId(Long id) {

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-08-27T15:03:55.787+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:48:59.190+05:30[Asia/Kolkata]")
 
 @Api(value = "OrderLineCommandResource", description = "the OrderLineCommandResource API")
 public interface OrderLineCommandResourceApi {
@@ -35,6 +35,18 @@ public interface OrderLineCommandResourceApi {
     ResponseEntity<OrderLineDTO> createOrderLineUsingPOST(@ApiParam(value = "orderLineDTO" ,required=true )  @Valid @RequestBody OrderLineDTO orderLineDTO);
 
 
+    @ApiOperation(value = "deleteByProductIdAndOrderId", nickname = "deleteByProductIdAndOrderIdUsingGET", notes = "", response = OrderLineDTO.class, responseContainer = "List", tags={ "order-line-command-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = OrderLineDTO.class, responseContainer = "List"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/deleteByProductIdAndOrderId/{productId}/{orderId}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<List<OrderLineDTO>> deleteByProductIdAndOrderIdUsingGET(@ApiParam(value = "orderId",required=true) @PathVariable("orderId") Long orderId,@ApiParam(value = "productId",required=true) @PathVariable("productId") Long productId);
+
+
     @ApiOperation(value = "deleteOrderLine", nickname = "deleteOrderLineUsingDELETE", notes = "", tags={ "order-line-command-resource", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK"),
@@ -44,6 +56,18 @@ public interface OrderLineCommandResourceApi {
     @RequestMapping(value = "/api/order-lines/{id}",
         method = RequestMethod.DELETE)
     ResponseEntity<Void> deleteOrderLineUsingDELETE(@ApiParam(value = "id",required=true) @PathVariable("id") Long id);
+
+
+    @ApiOperation(value = "findByOrderId", nickname = "findByOrderIdUsingGET", notes = "", response = OrderLineDTO.class, responseContainer = "List", tags={ "order-line-command-resource", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "OK", response = OrderLineDTO.class, responseContainer = "List"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 403, message = "Forbidden"),
+        @ApiResponse(code = 404, message = "Not Found") })
+    @RequestMapping(value = "/api/findbyorderid/{orderId}",
+        produces = "*/*", 
+        method = RequestMethod.GET)
+    ResponseEntity<List<OrderLineDTO>> findByOrderIdUsingGET(@ApiParam(value = "orderId",required=true) @PathVariable("orderId") String orderId);
 
 
     @ApiOperation(value = "getAllOrderLines", nickname = "getAllOrderLinesUsingGET", notes = "", response = OrderLineDTO.class, responseContainer = "List", tags={ "order-line-command-resource", })

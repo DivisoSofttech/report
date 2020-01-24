@@ -4,8 +4,6 @@ import java.util.Objects;
 import com.diviso.graeshoppe.report.client.product.model.Product;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
-
-import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 
@@ -13,8 +11,8 @@ import javax.validation.Valid;
  * AuxilaryLineItem
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-09-04T22:30:51.169319+05:30[Asia/Kolkata]")
-@Document(indexName = "auxilarylineitem")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:45:03.566+05:30[Asia/Kolkata]")
+
 public class AuxilaryLineItem   {
   @JsonProperty("auxilaryItem")
   private Product auxilaryItem = null;

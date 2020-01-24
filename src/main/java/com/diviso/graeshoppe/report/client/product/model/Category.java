@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
  * Category
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-09-04T22:30:51.169319+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:45:03.566+05:30[Asia/Kolkata]")
 
 public class Category   {
   @JsonProperty("description")
@@ -31,6 +31,9 @@ public class Category   {
 
   @JsonProperty("imageContentType")
   private String imageContentType = null;
+
+  @JsonProperty("imageLink")
+  private String imageLink = null;
 
   @JsonProperty("name")
   private String name = null;
@@ -139,6 +142,26 @@ public class Category   {
     this.imageContentType = imageContentType;
   }
 
+  public Category imageLink(String imageLink) {
+    this.imageLink = imageLink;
+    return this;
+  }
+
+  /**
+   * Get imageLink
+   * @return imageLink
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getImageLink() {
+    return imageLink;
+  }
+
+  public void setImageLink(String imageLink) {
+    this.imageLink = imageLink;
+  }
+
   public Category name(String name) {
     this.name = name;
     return this;
@@ -203,13 +226,14 @@ public class Category   {
         Objects.equals(this.id, category.id) &&
         Objects.equals(this.image, category.image) &&
         Objects.equals(this.imageContentType, category.imageContentType) &&
+        Objects.equals(this.imageLink, category.imageLink) &&
         Objects.equals(this.name, category.name) &&
         Objects.equals(this.products, category.products);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, iDPcode, id, image, imageContentType, name, products);
+    return Objects.hash(description, iDPcode, id, image, imageContentType, imageLink, name, products);
   }
 
   @Override
@@ -222,6 +246,7 @@ public class Category   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    image: ").append(toIndentedString(image)).append("\n");
     sb.append("    imageContentType: ").append(toIndentedString(imageContentType)).append("\n");
+    sb.append("    imageLink: ").append(toIndentedString(imageLink)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    products: ").append(toIndentedString(products)).append("\n");
     sb.append("}");

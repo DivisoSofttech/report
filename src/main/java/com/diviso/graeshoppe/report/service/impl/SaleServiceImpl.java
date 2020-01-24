@@ -19,7 +19,7 @@ import java.util.Optional;
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
- * Service Implementation for managing Sale.
+ * Service Implementation for managing {@link Sale}.
  */
 @Service
 @Transactional
@@ -42,8 +42,8 @@ public class SaleServiceImpl implements SaleService {
     /**
      * Save a sale.
      *
-     * @param saleDTO the entity to save
-     * @return the persisted entity
+     * @param saleDTO the entity to save.
+     * @return the persisted entity.
      */
     @Override
     public SaleDTO save(SaleDTO saleDTO) {
@@ -58,8 +58,8 @@ public class SaleServiceImpl implements SaleService {
     /**
      * Get all the sales.
      *
-     * @param pageable the pagination information
-     * @return the list of entities
+     * @param pageable the pagination information.
+     * @return the list of entities.
      */
     @Override
     @Transactional(readOnly = true)
@@ -73,8 +73,8 @@ public class SaleServiceImpl implements SaleService {
     /**
      * Get one sale by id.
      *
-     * @param id the id of the entity
-     * @return the entity
+     * @param id the id of the entity.
+     * @return the entity.
      */
     @Override
     @Transactional(readOnly = true)
@@ -87,20 +87,21 @@ public class SaleServiceImpl implements SaleService {
     /**
      * Delete the sale by id.
      *
-     * @param id the id of the entity
+     * @param id the id of the entity.
      */
     @Override
     public void delete(Long id) {
-        log.debug("Request to delete Sale : {}", id);        saleRepository.deleteById(id);
+        log.debug("Request to delete Sale : {}", id);
+        saleRepository.deleteById(id);
         saleSearchRepository.deleteById(id);
     }
 
     /**
      * Search for the sale corresponding to the query.
      *
-     * @param query the query of the search
-     * @param pageable the pagination information
-     * @return the list of entities
+     * @param query the query of the search.
+     * @param pageable the pagination information.
+     * @return the list of entities.
      */
     @Override
     @Transactional(readOnly = true)

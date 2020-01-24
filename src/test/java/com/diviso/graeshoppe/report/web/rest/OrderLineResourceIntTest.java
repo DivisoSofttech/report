@@ -58,6 +58,9 @@ public class OrderLineResourceIntTest {
     private static final Double DEFAULT_TOTAL = 1D;
     private static final Double UPDATED_TOTAL = 2D;
 
+    private static final Long DEFAULT_PRODUCT_ID = 1L;
+    private static final Long UPDATED_PRODUCT_ID = 2L;
+
     @Autowired
     private OrderLineRepository orderLineRepository;
 
@@ -116,7 +119,8 @@ public class OrderLineResourceIntTest {
         OrderLine orderLine = new OrderLine()
             .item(DEFAULT_ITEM)
             .quantity(DEFAULT_QUANTITY)
-            .total(DEFAULT_TOTAL);
+            .total(DEFAULT_TOTAL)
+            .productId(DEFAULT_PRODUCT_ID);
         return orderLine;
     }
 
@@ -144,6 +148,7 @@ public class OrderLineResourceIntTest {
         assertThat(testOrderLine.getItem()).isEqualTo(DEFAULT_ITEM);
         assertThat(testOrderLine.getQuantity()).isEqualTo(DEFAULT_QUANTITY);
         assertThat(testOrderLine.getTotal()).isEqualTo(DEFAULT_TOTAL);
+        assertThat(testOrderLine.getProductId()).isEqualTo(DEFAULT_PRODUCT_ID);
 
         // Validate the OrderLine in Elasticsearch
         verify(mockOrderLineSearchRepository, times(1)).save(testOrderLine);
@@ -185,7 +190,8 @@ public class OrderLineResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(orderLine.getId().intValue())))
             .andExpect(jsonPath("$.[*].item").value(hasItem(DEFAULT_ITEM.toString())))
             .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)))
-            .andExpect(jsonPath("$.[*].total").value(hasItem(DEFAULT_TOTAL.doubleValue())));
+            .andExpect(jsonPath("$.[*].total").value(hasItem(DEFAULT_TOTAL.doubleValue())))
+            .andExpect(jsonPath("$.[*].productId").value(hasItem(DEFAULT_PRODUCT_ID.intValue())));
     }
     
     @Test
@@ -201,7 +207,8 @@ public class OrderLineResourceIntTest {
             .andExpect(jsonPath("$.id").value(orderLine.getId().intValue()))
             .andExpect(jsonPath("$.item").value(DEFAULT_ITEM.toString()))
             .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY))
-            .andExpect(jsonPath("$.total").value(DEFAULT_TOTAL.doubleValue()));
+            .andExpect(jsonPath("$.total").value(DEFAULT_TOTAL.doubleValue()))
+            .andExpect(jsonPath("$.productId").value(DEFAULT_PRODUCT_ID.intValue()));
     }
 
     @Test
@@ -227,7 +234,8 @@ public class OrderLineResourceIntTest {
         updatedOrderLine
             .item(UPDATED_ITEM)
             .quantity(UPDATED_QUANTITY)
-            .total(UPDATED_TOTAL);
+            .total(UPDATED_TOTAL)
+            .productId(UPDATED_PRODUCT_ID);
         OrderLineDTO orderLineDTO = orderLineMapper.toDto(updatedOrderLine);
 
         restOrderLineMockMvc.perform(put("/api/order-lines")
@@ -242,6 +250,7 @@ public class OrderLineResourceIntTest {
         assertThat(testOrderLine.getItem()).isEqualTo(UPDATED_ITEM);
         assertThat(testOrderLine.getQuantity()).isEqualTo(UPDATED_QUANTITY);
         assertThat(testOrderLine.getTotal()).isEqualTo(UPDATED_TOTAL);
+        assertThat(testOrderLine.getProductId()).isEqualTo(UPDATED_PRODUCT_ID);
 
         // Validate the OrderLine in Elasticsearch
         verify(mockOrderLineSearchRepository, times(1)).save(testOrderLine);
@@ -304,7 +313,8 @@ public class OrderLineResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(orderLine.getId().intValue())))
             .andExpect(jsonPath("$.[*].item").value(hasItem(DEFAULT_ITEM)))
             .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)))
-            .andExpect(jsonPath("$.[*].total").value(hasItem(DEFAULT_TOTAL.doubleValue())));
+            .andExpect(jsonPath("$.[*].total").value(hasItem(DEFAULT_TOTAL.doubleValue())))
+            .andExpect(jsonPath("$.[*].productId").value(hasItem(DEFAULT_PRODUCT_ID.intValue())));
     }
 
     @Test

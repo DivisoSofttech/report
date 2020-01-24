@@ -5,29 +5,28 @@ import com.diviso.graeshoppe.report.service.dto.OfferLineDTO;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
 
 /**
- * Service Interface for managing OfferLine.
+ * Service Interface for managing {@link com.diviso.graeshoppe.report.domain.OfferLine}.
  */
 public interface OfferLineService {
 
     /**
      * Save a offerLine.
      *
-     * @param offerLineDTO the entity to save
-     * @return the persisted entity
+     * @param offerLineDTO the entity to save.
+     * @return the persisted entity.
      */
     OfferLineDTO save(OfferLineDTO offerLineDTO);
 
     /**
      * Get all the offerLines.
      *
-     * @param pageable the pagination information
-     * @return the list of entities
+     * @param pageable the pagination information.
+     * @return the list of entities.
      */
     Page<OfferLineDTO> findAll(Pageable pageable);
 
@@ -35,27 +34,27 @@ public interface OfferLineService {
     /**
      * Get the "id" offerLine.
      *
-     * @param id the id of the entity
-     * @return the entity
+     * @param id the id of the entity.
+     * @return the entity.
      */
     Optional<OfferLineDTO> findOne(Long id);
 
     /**
      * Delete the "id" offerLine.
      *
-     * @param id the id of the entity
+     * @param id the id of the entity.
      */
     void delete(Long id);
 
     /**
      * Search for the offerLine corresponding to the query.
      *
-     * @param query the query of the search
+     * @param query the query of the search.
      * 
-     * @param pageable the pagination information
-     * @return the list of entities
+     * @param pageable the pagination information.
+     * @return the list of entities.
      */
     Page<OfferLineDTO> search(String query, Pageable pageable);
-
-	List<OfferLine> findOfferLinesByOrderNumber(String orderId);
+    
+    List<OfferLine> findOfferLinesByOrderNumber(String orderId);
 }

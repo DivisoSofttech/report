@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportcomboaux" pageWidth="170" pageHeight="842" columnWidth="130" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="4f9c452d-ec08-4c11-b02e-84e1e88767b7">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter4.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="139"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="856"/>
+	<parameter name="order_number" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select  @rowid:=@rowid+1 as rowid, ct.* from (SELECT @rowid:=0) as init, (
+
+
+(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', storelocation_name as 'storelocation_name', method_of_order as 'method_of_order',expected_delivery as 'expected_delivery', order_number as 'order_number', notes as 'notes', order_discount_amount as'order_discount_amount', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id',customer_name as 'customer_name', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street' ,city as 'city', state as 'state', landmark as 'landmark', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer' ,customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at',pre_order_date as 'pre_order_date',payment_ref as 'payment_ref', payment_status as 'payment_status',zone_id as 'zone_id', loyalty_point as 'loyalty_point',ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id',"[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',"[]" as 'comboid', "[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id' from order_master om, order_line ol, aux_item ai where om.id = ol.order_master_id and om.order_number=$P{order_number} and ol.id NOT IN 
+							( select ol_1.id   from order_line ol_1, aux_item ai_1, combo_item ci_1  where ol_1.id = ai_1.order_line_id OR ol_1.id = ci_1.order_line_id))
+												
+UNION
+
+(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', storelocation_name as 'storelocation_name', method_of_order as 'method_of_order', expected_delivery as 'expected_delivery', order_number as 'order_number', notes as 'notes',order_discount_amount as'order_discount_amount',  delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id',customer_name as 'customer_name', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street', city as 'city', state as 'state', landmark as 'landmark', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at',pre_order_date as 'pre_order_date',payment_ref as 'payment_ref', payment_status as 'payment_status',zone_id as 'zone_id', loyalty_point as 'loyalty_point', ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',"[]" as 'comboid',"[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id'  from order_master om, order_line ol, combo_item ci where om.id = ol.order_master_id and om.order_number=$P{order_number} and ol.id NOT IN 
+							( select ol_1.id   from order_line ol_1, aux_item ai_1, combo_item ci_1  where ol_1.id = ai_1.order_line_id OR ol_1.id = ci_1.order_line_id)) 
+
+UNION
+
+
+(select om.id as 'omid',store_name as 'store_name', store_phone as 'store_phone', storelocation_name as 'storelocation_name', method_of_order as 'method_of_order', expected_delivery as 'expected_delivery',order_number as 'order_number', notes as 'notes', order_discount_amount as'order_discount_amount', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id',customer_name as 'customer_name', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street', city as 'city', state as 'state', landmark as 'landmark', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at',pre_order_date as 'pre_order_date', payment_ref as 'payment_ref', payment_status as 'payment_status', zone_id as 'zone_id', loyalty_point as 'loyalty_point',ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', ai.id as 'auxid',aux_item as 'aux_item', ai.quantity as 'auxquantity',ai.total as 'auxtotal', order_line_id as 'order_line_id',"[]" as 'comboid', "[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id' from order_master om, order_line ol, aux_item ai where om.id = ol.order_master_id and ol.id = ai.order_line_id and om.order_number= $P{order_number}
+
+)UNION
+
+
+(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', storelocation_name as 'storelocation_name', method_of_order as 'method_of_order', expected_delivery as 'expected_delivery', order_number as 'order_number', notes as 'notes', order_discount_amount as'order_discount_amount', delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id', customer_name as 'customer_name',pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street' ,city as 'city', state as 'state', landmark as 'landmark', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at',pre_order_date as 'pre_order_date',payment_ref as 'payment_ref', payment_status as 'payment_status',zone_id as 'zone_id', loyalty_point as 'loyalty_point', ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',ci.id as 'comboid', combo_item as 'combo_item',ci.quantity as 'comboquantity', order_line_id as 'comboorder_line_id'   from order_master om, order_line ol, combo_item ci where om.id = ol.order_master_id and ol.id = ci.order_line_id and om.order_number=$P{order_number}) 
+UNION
+
+
+
+(select om.id as 'omid', store_name as 'store_name', store_phone as 'store_phone', storelocation_name as 'storelocation_name', method_of_order as 'method_of_order', expected_delivery as 'expected_delivery', order_number as 'order_number', notes as 'notes',order_discount_amount as'order_discount_amount',  delivery_charge as 'delivery_charge' , service_charge as 'service_charge' , total_due as 'total_due', order_status as 'order_status', customer_id as 'customer_id',customer_name as 'customer_name', pincode as 'pincode', house_no_or_building_name as 'house_no_or_building_name' , road_name_area_or_street as 'road_name_area_or_street', city as 'city', state as 'state', landmark as 'landmark', phone as 'phone', alternate_phone as 'alternate_phone', address_type as 'address_type' , order_from_customer as 'order_from_customer', customer_order as 'customer_order', order_place_at as 'order_place_at', order_accepted_at as 'order_accepted_at',pre_order_date as 'pre_order_date', payment_ref as 'payment_ref', payment_status as 'payment_status',zone_id as 'zone_id', loyalty_point as 'loyalty_point',ol.id as 'olid',item as 'item', ol.quantity as 'olquantity',ol.total as 'oltotal', order_master_id as 'order_master-id', "[]" as 'auxid',"[]" as 'aux_item',"[]" as 'auxquantity',"[]" as 'auxtotal', "[]" as 'order_line_id',"[]" as 'comboid',"[]" as 'combo_item',"[]" as 'comboquantity', "[]" as 'comboorder_line_id'  from order_master om, order_line ol where om.id = ol.order_master_id and om.order_number= $P{order_number})
+
+
+ )
+							
+							
+ct ORDER BY  item ASC,rowid DESC]]>
+	</queryString>
+	<field name="rowid" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="rowid"/>
+	</field>
+	<field name="omid" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="omid"/>
+	</field>
+	<field name="store_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="store_name"/>
+	</field>
+	<field name="store_phone" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="store_phone"/>
+	</field>
+	<field name="storelocation_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="storelocation_name"/>
+	</field>
+	<field name="method_of_order" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="method_of_order"/>
+	</field>
+	<field name="expected_delivery" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="expected_delivery"/>
+	</field>
+	<field name="order_number" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="order_number"/>
+	</field>
+	<field name="notes" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="notes"/>
+	</field>
+	<field name="order_discount_amount" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="order_discount_amount"/>
+	</field>
+	<field name="delivery_charge" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="delivery_charge"/>
+	</field>
+	<field name="service_charge" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="service_charge"/>
+	</field>
+	<field name="total_due" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="total_due"/>
+	</field>
+	<field name="order_status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="order_status"/>
+	</field>
+	<field name="customer_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="customer_id"/>
+	</field>
+	<field name="customer_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="customer_name"/>
+	</field>
+	<field name="pincode" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="pincode"/>
+	</field>
+	<field name="house_no_or_building_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="house_no_or_building_name"/>
+	</field>
+	<field name="road_name_area_or_street" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="road_name_area_or_street"/>
+	</field>
+	<field name="city" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="city"/>
+	</field>
+	<field name="state" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="state"/>
+	</field>
+	<field name="landmark" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="landmark"/>
+	</field>
+	<field name="phone" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="phone"/>
+	</field>
+	<field name="alternate_phone" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="alternate_phone"/>
+	</field>
+	<field name="address_type" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="address_type"/>
+	</field>
+	<field name="order_from_customer" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="order_from_customer"/>
+	</field>
+	<field name="customer_order" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="customer_order"/>
+	</field>
+	<field name="order_place_at" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="order_place_at"/>
+	</field>
+	<field name="order_accepted_at" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="order_accepted_at"/>
+	</field>
+	<field name="pre_order_date" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="pre_order_date"/>
+	</field>
+	<field name="payment_ref" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="payment_ref"/>
+	</field>
+	<field name="payment_status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="payment_status"/>
+	</field>
+	<field name="zone_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="zone_id"/>
+	</field>
+	<field name="loyalty_point" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="loyalty_point"/>
+	</field>
+	<field name="olid" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="olid"/>
+	</field>
+	<field name="item" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="item"/>
+	</field>
+	<field name="olquantity" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="olquantity"/>
+	</field>
+	<field name="oltotal" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="oltotal"/>
+	</field>
+	<field name="order_master-id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="order_master-id"/>
+	</field>
+	<field name="auxid" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="auxid"/>
+	</field>
+	<field name="aux_item" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="aux_item"/>
+	</field>
+	<field name="auxquantity" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="auxquantity"/>
+	</field>
+	<field name="auxtotal" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="auxtotal"/>
+	</field>
+	<field name="order_line_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="order_line_id"/>
+	</field>
+	<field name="comboid" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="comboid"/>
+	</field>
+	<field name="combo_item" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="combo_item"/>
+	</field>
+	<field name="comboquantity" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="comboquantity"/>
+	</field>
+	<field name="comboorder_line_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="comboorder_line_id"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="209">
+			<textField>
+				<reportElement x="12" y="22" width="100" height="25" uuid="8ec6175f-a4de-4bbd-8e4f-23156f9c5275"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{store_name}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RealSize">
+				<reportElement positionType="Float" x="7" y="-57" width="116" height="144" uuid="3cba4762-53c6-475f-902e-332d4514fd69"/>
+				<graphicElement fill="Solid"/>
+				<imageExpression><![CDATA["logo.png"]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="-12" y="141" width="116" height="17" isRemoveLineWhenBlank="true" uuid="22d1dfca-067d-42a9-a999-2bd56a1b0d03"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Restaurant Notes :"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="-12" y="156" width="158" height="11" isPrintInFirstWholeBand="true" uuid="cc7db3bd-97ef-4767-bac0-488d4334084e">
+					<printWhenExpression><![CDATA[!$F{notes}.equalsIgnoreCase("null")]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{notes}.substring(0, 1)+$F{notes}.substring(1, $F{notes}.length()).toLowerCase()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="-21" y="135" width="171" height="1" uuid="e1253931-7791-4744-8403-5802bb1c3139"/>
+			</line>
+			<line>
+				<reportElement x="-21" y="67" width="171" height="1" uuid="8ad4752c-fec7-47f6-a64e-dd159d1cb365"/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="-19" y="188" width="169" height="1" uuid="6cb58fd0-79f7-4f92-abb6-97c1480912eb"/>
+			</line>
+			<textField>
+				<reportElement positionType="Float" x="-15" y="72" width="159" height="18" uuid="d2e79ba7-2da1-4300-ac87-4745bd42485c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{method_of_order}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="97" y="189" width="44" height="20" uuid="e9c388e2-2268-451c-9a68-4d66fa86f2f3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["EUR"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="-6" y="46" width="132" height="17" uuid="30543e32-a8c6-4c76-88c9-ec7702f37672"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{storelocation_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="-15" y="110" width="99" height="20" uuid="d1664100-6775-4000-8ff4-a89437c804f0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Order Number :"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="70" y="112" width="80" height="20" uuid="b713ee55-05a6-4f06-bef1-67a16f21b572"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{order_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="-15" y="167" width="102" height="17" uuid="d13d4966-ca74-4564-9781-b956632e98a9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Please ring me on"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="78" y="167" width="74" height="16" uuid="3aa76bb7-3072-47dc-96bb-38b61befe136"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="M/d/yy">
+				<reportElement positionType="Float" x="-21" y="96" width="173" height="12" uuid="01ae1d10-0591-43af-a4b3-8096d0666c18">
+					<printWhenExpression><![CDATA[$F{pre_order_date}==null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[String.format("Due %1$s at ASAP / %2$s",java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
+            .withZone(java.time.ZoneId.of($F{zone_id}))
+            .format(java.time.Instant.parse($F{expected_delivery}.toString().substring(0, 10)+"T"+$F{expected_delivery}.toString().substring(11,19)+".000Z")).substring(0,9),
+java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
+            .withZone(java.time.ZoneId.of($F{zone_id}))
+            .format(java.time.Instant.parse($F{expected_delivery}.toString().substring(0, 10)+"T"+$F{expected_delivery}.toString().substring(11,19)+".000Z")).substring(9)
+	)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="M/d/yy" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="-3" y="92" width="143" height="12" uuid="e9bd3b56-d4da-4129-8310-1a1751f0e07d">
+					<printWhenExpression><![CDATA[$F{pre_order_date}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[String.format("Requested  for %1$s\nat  ASAP / %2$s",java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
+            .withZone(java.time.ZoneId.of($F{zone_id}))
+            .format(java.time.Instant.parse($F{pre_order_date}.toString().substring(0, 10)+"T"+$F{pre_order_date}.toString().substring(11,19)+".000Z")).substring(0,9),java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
+            .withZone(java.time.ZoneId.of($F{zone_id}))
+            .format(java.time.Instant.parse($F{pre_order_date}.toString().substring(0, 10)+"T"+$F{pre_order_date}.toString().substring(11,19)+".000Z")).substring(9)
+           
+            )]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="-12" y="0" width="106" height="14" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="39a842e0-7523-40fd-9558-2cc45f7986ee"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[String.format("%1$2s x %2$-50.50s", $F{olquantity}, $F{item})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,#00.00#">
+				<reportElement positionType="Float" x="90" y="0" width="53" height="14" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="aee8c8df-628b-4e45-a6be-11aa820e4d8e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{oltotal}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="14">
+			<printWhenExpression><![CDATA[!$F{aux_item}.equals("[]")]]></printWhenExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="2" y="-1" width="90" height="15" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="60f7b0dd-91bc-4f33-aa10-75a1d61effef">
+					<printWhenExpression><![CDATA[!$F{aux_item}.equals("[]")]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[String.format("%1$2s x %2$-20.20s", $F{auxquantity},$F{aux_item})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,#00.00#">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="90" y="-1" width="53" height="15" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="80a0fb0e-13e8-4d22-91d6-3d8668ad6da1">
+					<printWhenExpression><![CDATA[!$F{aux_item}.equals("[]")]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{auxtotal}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="11">
+			<printWhenExpression><![CDATA[!$F{combo_item}.equals("[]")]]></printWhenExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="65" y="1" width="27" height="10" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="b55fa7a0-58ba-46ef-918c-585c8a2e01df">
+					<printWhenExpression><![CDATA[!$F{combo_item}.equals("[]")]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{comboquantity}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="18" y="0" width="55" height="11" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="6d9fbbd8-cf9b-488c-bd5d-6a38e65bcb2f">
+					<printWhenExpression><![CDATA[!$F{combo_item}.equals("[]")]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{combo_item}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="478" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="#,#00.00#">
+				<reportElement positionType="Float" x="93" y="4" width="50" height="15" uuid="cb6e1fcd-2d38-4174-910a-5bf196d3893b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{delivery_charge}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="" positionType="Float" x="-12" y="3" width="91" height="15" uuid="a93b4d72-bc30-4cd8-aee6-24bbbac0644a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Delivery Charge :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="#,#00.00#">
+				<reportElement positionType="Float" x="94" y="51" width="50" height="20" uuid="b8e6d9d2-f216-46fa-bf0c-57b92456f2f9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_due}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="-12" y="50" width="82" height="20" uuid="518eb718-2a79-49a4-a5b4-a7125a7541f8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Total Due]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="-12" y="197" width="143" height="20" uuid="3420043d-255b-44d4-9960-5fa2122ccb17"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Customer details     :]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="92" y="48" width="52" height="1" uuid="1c2e2e9e-0989-4e49-92b4-565a2007ced3"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="-12" y="241" width="162" height="20" isRemoveLineWhenBlank="true" uuid="e5a459f7-3625-459b-b048-08df39840ccb">
+					<printWhenExpression><![CDATA[!($F{house_no_or_building_name}.equalsIgnoreCase("null"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="13" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{house_no_or_building_name}.substring(0, 1)+$F{house_no_or_building_name}.substring(1, $F{house_no_or_building_name}.length()).toLowerCase()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="-12" y="262" width="161" height="20" isRemoveLineWhenBlank="true" uuid="3f7ad432-69c2-4def-bbc9-8e613eaf76c7">
+					<printWhenExpression><![CDATA[!($F{city}.equalsIgnoreCase("null"))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="13" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{city}.substring(0, 1)+$F{city}.substring(1, $F{city}.length()).toLowerCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="-12" y="447" width="152" height="16" uuid="3eb87081-72ce-4a09-aa20-801830bc7af7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Powered by Graeshoppe"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="-12" y="321" width="162" height="20" isRemoveLineWhenBlank="true" uuid="88b402fb-8a7f-47cb-8d50-efd754ff00fc">
+					<printWhenExpression><![CDATA[!($F{pincode}.equalsIgnoreCase("null"))]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="13" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pincode}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="-12" y="282" width="162" height="20" isRemoveLineWhenBlank="true" uuid="e91dad65-ac5a-471c-8404-1c0d9a6b1684">
+					<printWhenExpression><![CDATA[!($F{landmark}.equalsIgnoreCase("null"))]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="13" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{landmark}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,#00.00#">
+				<reportElement positionType="Float" x="93" y="22" width="50" height="15" uuid="daf89821-5578-4eaa-b23a-b03a0ac6e296"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{order_discount_amount}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="-12" y="22" width="109" height="15" uuid="3c872c1b-5779-4e51-b541-7d4b711e1c4e"/>
+				<textFieldExpression><![CDATA["Food Exp discount (10%) :"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="-12" y="358" width="157" height="16" isRemoveLineWhenBlank="true" uuid="fa32bedc-4405-4e78-b9fb-a5f1ebba4768">
+					<printWhenExpression><![CDATA[($F{order_from_customer}==1)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Attention : Please note this is the first order from this customer, please make sure the order details are correct."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="-12" y="387" width="91" height="20" uuid="ea58657f-d9d0-4f80-be50-bf91341f204e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Order Placed    :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="-12" y="410" width="90" height="20" uuid="f89b3b1f-a951-4827-8d9c-2640e3535f1b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Order Accepted:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="-21" y="77" width="170" height="30" uuid="c1ad72b7-5502-4d60-8171-1f9e895f8c9a"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Double"/>
+					<bottomPen lineWidth="1.0" lineStyle="Double"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{payment_status}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="-12" y="221" width="162" height="18" isRemoveLineWhenBlank="true" uuid="e32505ed-93b3-4c96-b700-f6aa6972fd9d">
+					<printWhenExpression><![CDATA[!($F{customer_name}.equalsIgnoreCase("null"))]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="-12" y="303" width="162" height="18" isRemoveLineWhenBlank="true" uuid="d1a12bf3-f1e2-46f3-9b43-c04e8413966b">
+					<printWhenExpression><![CDATA[!($F{state}.equalsIgnoreCase("null"))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{state}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="-12" y="148" width="136" height="17" uuid="fc7c9723-26ba-4abe-b3d2-5d5b2251703c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Order From This Customer   :"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="-12" y="166" width="136" height="17" uuid="37967148-6504-4489-a105-9987b8d82842"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Customer's Food Exp Orders:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="119" y="166" width="30" height="17" uuid="0c7c816d-d556-45fc-a083-bfba5eed5f88"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer_order}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="119" y="148" width="30" height="17" uuid="74d9c6b0-23d4-40e3-943e-bd0670fcbb41"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{order_from_customer}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="-13" y="116" width="137" height="16" uuid="06638c0e-e3ae-4dab-8a92-deb00a6ea011"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Customer Id                     :"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="108" y="116" width="42" height="16" uuid="fb353e41-1c4f-4a5c-8a1d-91eee72e1d92"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer_id}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="-12" y="132" width="136" height="15" uuid="fc53990d-c97c-47c4-82dc-9411c9bb9a37"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Loyalty Card Point           :"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
+				<reportElement positionType="Float" x="56" y="387" width="94" height="20" uuid="6e013888-f631-40e8-8510-42f1d26cf240"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
+            .withZone(java.time.ZoneId.of($F{zone_id}))
+            .format(java.time.Instant.parse($F{order_place_at}.toString().substring(0, 10)+"T"+$F{order_place_at}.toString().substring(11,19)+".000Z"))]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="d/M/yy h:mm a">
+				<reportElement positionType="Float" x="56" y="410" width="94" height="20" uuid="de7598d0-0650-4476-acdf-34e772ffdade"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
+            .withZone(java.time.ZoneId.of($F{zone_id}))
+            .format(java.time.Instant.parse($F{order_accepted_at}.toString().substring(0, 10)+"T"+$F{order_accepted_at}.toString().substring(11,19)+".000Z"))]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="MMMMM dd, yyyy">
+				<reportElement positionType="Float" x="-10" y="463" width="149" height="15" uuid="68eeb0da-d401-44d6-aec5-7441af2b1c2b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a").withZone(java.time.ZoneId.of($F{zone_id})).format( java.time.Instant.now())]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="119" y="132" width="30" height="16" uuid="d5effe4f-b5ac-459e-bfbe-68f13c7195af">
+					<printWhenExpression><![CDATA[$F{loyalty_point}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{loyalty_point}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

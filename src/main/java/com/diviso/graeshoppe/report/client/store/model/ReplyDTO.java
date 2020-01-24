@@ -11,7 +11,7 @@ import javax.validation.Valid;
  * ReplyDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-09-04T22:29:27.309760+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:37:58.581+05:30[Asia/Kolkata]")
 
 public class ReplyDTO   {
   @JsonProperty("id")
@@ -22,9 +22,6 @@ public class ReplyDTO   {
 
   @JsonProperty("reply")
   private String reply = null;
-
-  @JsonProperty("reviewId")
-  private Long reviewId = null;
 
   @JsonProperty("userName")
   private String userName = null;
@@ -90,26 +87,6 @@ public class ReplyDTO   {
     this.reply = reply;
   }
 
-  public ReplyDTO reviewId(Long reviewId) {
-    this.reviewId = reviewId;
-    return this;
-  }
-
-  /**
-   * Get reviewId
-   * @return reviewId
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public Long getReviewId() {
-    return reviewId;
-  }
-
-  public void setReviewId(Long reviewId) {
-    this.reviewId = reviewId;
-  }
-
   public ReplyDTO userName(String userName) {
     this.userName = userName;
     return this;
@@ -143,13 +120,12 @@ public class ReplyDTO   {
     return Objects.equals(this.id, replyDTO.id) &&
         Objects.equals(this.repliedDate, replyDTO.repliedDate) &&
         Objects.equals(this.reply, replyDTO.reply) &&
-        Objects.equals(this.reviewId, replyDTO.reviewId) &&
         Objects.equals(this.userName, replyDTO.userName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, repliedDate, reply, reviewId, userName);
+    return Objects.hash(id, repliedDate, reply, userName);
   }
 
   @Override
@@ -160,7 +136,6 @@ public class ReplyDTO   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    repliedDate: ").append(toIndentedString(repliedDate)).append("\n");
     sb.append("    reply: ").append(toIndentedString(reply)).append("\n");
-    sb.append("    reviewId: ").append(toIndentedString(reviewId)).append("\n");
     sb.append("    userName: ").append(toIndentedString(userName)).append("\n");
     sb.append("}");
     return sb.toString();

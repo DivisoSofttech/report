@@ -9,7 +9,7 @@ import org.springframework.validation.annotation.Validated;
  * AddressDTO
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-08-27T15:03:55.787+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:48:59.190+05:30[Asia/Kolkata]")
 
 public class AddressDTO   {
   @JsonProperty("addressType")
@@ -23,6 +23,9 @@ public class AddressDTO   {
 
   @JsonProperty("customerId")
   private String customerId = null;
+
+  @JsonProperty("email")
+  private String email = null;
 
   @JsonProperty("houseNoOrBuildingName")
   private String houseNoOrBuildingName = null;
@@ -40,7 +43,7 @@ public class AddressDTO   {
   private Long phone = null;
 
   @JsonProperty("pincode")
-  private Long pincode = null;
+  private String pincode = null;
 
   @JsonProperty("roadNameAreaOrStreet")
   private String roadNameAreaOrStreet = null;
@@ -126,6 +129,26 @@ public class AddressDTO   {
 
   public void setCustomerId(String customerId) {
     this.customerId = customerId;
+  }
+
+  public AddressDTO email(String email) {
+    this.email = email;
+    return this;
+  }
+
+  /**
+   * Get email
+   * @return email
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
 
   public AddressDTO houseNoOrBuildingName(String houseNoOrBuildingName) {
@@ -228,7 +251,7 @@ public class AddressDTO   {
     this.phone = phone;
   }
 
-  public AddressDTO pincode(Long pincode) {
+  public AddressDTO pincode(String pincode) {
     this.pincode = pincode;
     return this;
   }
@@ -240,11 +263,11 @@ public class AddressDTO   {
   @ApiModelProperty(value = "")
 
 
-  public Long getPincode() {
+  public String getPincode() {
     return pincode;
   }
 
-  public void setPincode(Long pincode) {
+  public void setPincode(String pincode) {
     this.pincode = pincode;
   }
 
@@ -302,6 +325,7 @@ public class AddressDTO   {
         Objects.equals(this.alternatePhone, addressDTO.alternatePhone) &&
         Objects.equals(this.city, addressDTO.city) &&
         Objects.equals(this.customerId, addressDTO.customerId) &&
+        Objects.equals(this.email, addressDTO.email) &&
         Objects.equals(this.houseNoOrBuildingName, addressDTO.houseNoOrBuildingName) &&
         Objects.equals(this.id, addressDTO.id) &&
         Objects.equals(this.landmark, addressDTO.landmark) &&
@@ -314,7 +338,7 @@ public class AddressDTO   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(addressType, alternatePhone, city, customerId, houseNoOrBuildingName, id, landmark, name, phone, pincode, roadNameAreaOrStreet, state);
+    return Objects.hash(addressType, alternatePhone, city, customerId, email, houseNoOrBuildingName, id, landmark, name, phone, pincode, roadNameAreaOrStreet, state);
   }
 
   @Override
@@ -326,6 +350,7 @@ public class AddressDTO   {
     sb.append("    alternatePhone: ").append(toIndentedString(alternatePhone)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
     sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
+    sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    houseNoOrBuildingName: ").append(toIndentedString(houseNoOrBuildingName)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    landmark: ").append(toIndentedString(landmark)).append("\n");

@@ -117,9 +117,6 @@ public class OrderMasterResourceIntTest {
     private static final String DEFAULT_LANDMARK = "AAAAAAAAAA";
     private static final String UPDATED_LANDMARK = "BBBBBBBBBB";
 
-    private static final String DEFAULT_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_NAME = "BBBBBBBBBB";
-
     private static final Long DEFAULT_PHONE = 1L;
     private static final Long UPDATED_PHONE = 2L;
 
@@ -155,6 +152,18 @@ public class OrderMasterResourceIntTest {
 
     private static final String DEFAULT_PAYMENT_STATUS = "AAAAAAAAAA";
     private static final String UPDATED_PAYMENT_STATUS = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ZONE_ID = "AAAAAAAAAA";
+    private static final String UPDATED_ZONE_ID = "BBBBBBBBBB";
+
+    private static final Long DEFAULT_LOYALTY_POINT = 1L;
+    private static final Long UPDATED_LOYALTY_POINT = 2L;
+
+    private static final Double DEFAULT_REFUNDED_AMOUNT = 1D;
+    private static final Double UPDATED_REFUNDED_AMOUNT = 2D;
+
+    private static final Long DEFAULT_CANCELLATION_REF = 1L;
+    private static final Long UPDATED_CANCELLATION_REF = 2L;
 
     @Autowired
     private OrderMasterRepository orderMasterRepository;
@@ -234,7 +243,6 @@ public class OrderMasterResourceIntTest {
             .city(DEFAULT_CITY)
             .state(DEFAULT_STATE)
             .landmark(DEFAULT_LANDMARK)
-            .name(DEFAULT_NAME)
             .phone(DEFAULT_PHONE)
             .alternatePhone(DEFAULT_ALTERNATE_PHONE)
             .addressType(DEFAULT_ADDRESS_TYPE)
@@ -246,7 +254,11 @@ public class OrderMasterResourceIntTest {
             .preOrderDate(DEFAULT_PRE_ORDER_DATE)
             .email(DEFAULT_EMAIL)
             .paymentRef(DEFAULT_PAYMENT_REF)
-            .paymentStatus(DEFAULT_PAYMENT_STATUS);
+            .paymentStatus(DEFAULT_PAYMENT_STATUS)
+            .zoneId(DEFAULT_ZONE_ID)
+            .loyaltyPoint(DEFAULT_LOYALTY_POINT)
+            .refundedAmount(DEFAULT_REFUNDED_AMOUNT)
+            .cancellationRef(DEFAULT_CANCELLATION_REF);
         return orderMaster;
     }
 
@@ -293,7 +305,6 @@ public class OrderMasterResourceIntTest {
         assertThat(testOrderMaster.getCity()).isEqualTo(DEFAULT_CITY);
         assertThat(testOrderMaster.getState()).isEqualTo(DEFAULT_STATE);
         assertThat(testOrderMaster.getLandmark()).isEqualTo(DEFAULT_LANDMARK);
-        assertThat(testOrderMaster.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testOrderMaster.getPhone()).isEqualTo(DEFAULT_PHONE);
         assertThat(testOrderMaster.getAlternatePhone()).isEqualTo(DEFAULT_ALTERNATE_PHONE);
         assertThat(testOrderMaster.getAddressType()).isEqualTo(DEFAULT_ADDRESS_TYPE);
@@ -306,6 +317,10 @@ public class OrderMasterResourceIntTest {
         assertThat(testOrderMaster.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testOrderMaster.getPaymentRef()).isEqualTo(DEFAULT_PAYMENT_REF);
         assertThat(testOrderMaster.getPaymentStatus()).isEqualTo(DEFAULT_PAYMENT_STATUS);
+        assertThat(testOrderMaster.getZoneId()).isEqualTo(DEFAULT_ZONE_ID);
+        assertThat(testOrderMaster.getLoyaltyPoint()).isEqualTo(DEFAULT_LOYALTY_POINT);
+        assertThat(testOrderMaster.getRefundedAmount()).isEqualTo(DEFAULT_REFUNDED_AMOUNT);
+        assertThat(testOrderMaster.getCancellationRef()).isEqualTo(DEFAULT_CANCELLATION_REF);
 
         // Validate the OrderMaster in Elasticsearch
         verify(mockOrderMasterSearchRepository, times(1)).save(testOrderMaster);
@@ -367,7 +382,6 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY.toString())))
             .andExpect(jsonPath("$.[*].state").value(hasItem(DEFAULT_STATE.toString())))
             .andExpect(jsonPath("$.[*].landmark").value(hasItem(DEFAULT_LANDMARK.toString())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.intValue())))
             .andExpect(jsonPath("$.[*].alternatePhone").value(hasItem(DEFAULT_ALTERNATE_PHONE.intValue())))
             .andExpect(jsonPath("$.[*].addressType").value(hasItem(DEFAULT_ADDRESS_TYPE.toString())))
@@ -379,7 +393,11 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].preOrderDate").value(hasItem(DEFAULT_PRE_ORDER_DATE.toString())))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
             .andExpect(jsonPath("$.[*].paymentRef").value(hasItem(DEFAULT_PAYMENT_REF.toString())))
-            .andExpect(jsonPath("$.[*].paymentStatus").value(hasItem(DEFAULT_PAYMENT_STATUS.toString())));
+            .andExpect(jsonPath("$.[*].paymentStatus").value(hasItem(DEFAULT_PAYMENT_STATUS.toString())))
+            .andExpect(jsonPath("$.[*].zoneId").value(hasItem(DEFAULT_ZONE_ID.toString())))
+            .andExpect(jsonPath("$.[*].loyaltyPoint").value(hasItem(DEFAULT_LOYALTY_POINT.intValue())))
+            .andExpect(jsonPath("$.[*].refundedAmount").value(hasItem(DEFAULT_REFUNDED_AMOUNT.doubleValue())))
+            .andExpect(jsonPath("$.[*].cancellationRef").value(hasItem(DEFAULT_CANCELLATION_REF.intValue())));
     }
     
     @Test
@@ -415,7 +433,6 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.city").value(DEFAULT_CITY.toString()))
             .andExpect(jsonPath("$.state").value(DEFAULT_STATE.toString()))
             .andExpect(jsonPath("$.landmark").value(DEFAULT_LANDMARK.toString()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.intValue()))
             .andExpect(jsonPath("$.alternatePhone").value(DEFAULT_ALTERNATE_PHONE.intValue()))
             .andExpect(jsonPath("$.addressType").value(DEFAULT_ADDRESS_TYPE.toString()))
@@ -427,7 +444,11 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.preOrderDate").value(DEFAULT_PRE_ORDER_DATE.toString()))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.paymentRef").value(DEFAULT_PAYMENT_REF.toString()))
-            .andExpect(jsonPath("$.paymentStatus").value(DEFAULT_PAYMENT_STATUS.toString()));
+            .andExpect(jsonPath("$.paymentStatus").value(DEFAULT_PAYMENT_STATUS.toString()))
+            .andExpect(jsonPath("$.zoneId").value(DEFAULT_ZONE_ID.toString()))
+            .andExpect(jsonPath("$.loyaltyPoint").value(DEFAULT_LOYALTY_POINT.intValue()))
+            .andExpect(jsonPath("$.refundedAmount").value(DEFAULT_REFUNDED_AMOUNT.doubleValue()))
+            .andExpect(jsonPath("$.cancellationRef").value(DEFAULT_CANCELLATION_REF.intValue()));
     }
 
     @Test
@@ -473,7 +494,6 @@ public class OrderMasterResourceIntTest {
             .city(UPDATED_CITY)
             .state(UPDATED_STATE)
             .landmark(UPDATED_LANDMARK)
-            .name(UPDATED_NAME)
             .phone(UPDATED_PHONE)
             .alternatePhone(UPDATED_ALTERNATE_PHONE)
             .addressType(UPDATED_ADDRESS_TYPE)
@@ -485,7 +505,11 @@ public class OrderMasterResourceIntTest {
             .preOrderDate(UPDATED_PRE_ORDER_DATE)
             .email(UPDATED_EMAIL)
             .paymentRef(UPDATED_PAYMENT_REF)
-            .paymentStatus(UPDATED_PAYMENT_STATUS);
+            .paymentStatus(UPDATED_PAYMENT_STATUS)
+            .zoneId(UPDATED_ZONE_ID)
+            .loyaltyPoint(UPDATED_LOYALTY_POINT)
+            .refundedAmount(UPDATED_REFUNDED_AMOUNT)
+            .cancellationRef(UPDATED_CANCELLATION_REF);
         OrderMasterDTO orderMasterDTO = orderMasterMapper.toDto(updatedOrderMaster);
 
         restOrderMasterMockMvc.perform(put("/api/order-masters")
@@ -519,7 +543,6 @@ public class OrderMasterResourceIntTest {
         assertThat(testOrderMaster.getCity()).isEqualTo(UPDATED_CITY);
         assertThat(testOrderMaster.getState()).isEqualTo(UPDATED_STATE);
         assertThat(testOrderMaster.getLandmark()).isEqualTo(UPDATED_LANDMARK);
-        assertThat(testOrderMaster.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testOrderMaster.getPhone()).isEqualTo(UPDATED_PHONE);
         assertThat(testOrderMaster.getAlternatePhone()).isEqualTo(UPDATED_ALTERNATE_PHONE);
         assertThat(testOrderMaster.getAddressType()).isEqualTo(UPDATED_ADDRESS_TYPE);
@@ -532,6 +555,10 @@ public class OrderMasterResourceIntTest {
         assertThat(testOrderMaster.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testOrderMaster.getPaymentRef()).isEqualTo(UPDATED_PAYMENT_REF);
         assertThat(testOrderMaster.getPaymentStatus()).isEqualTo(UPDATED_PAYMENT_STATUS);
+        assertThat(testOrderMaster.getZoneId()).isEqualTo(UPDATED_ZONE_ID);
+        assertThat(testOrderMaster.getLoyaltyPoint()).isEqualTo(UPDATED_LOYALTY_POINT);
+        assertThat(testOrderMaster.getRefundedAmount()).isEqualTo(UPDATED_REFUNDED_AMOUNT);
+        assertThat(testOrderMaster.getCancellationRef()).isEqualTo(UPDATED_CANCELLATION_REF);
 
         // Validate the OrderMaster in Elasticsearch
         verify(mockOrderMasterSearchRepository, times(1)).save(testOrderMaster);
@@ -614,7 +641,6 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY)))
             .andExpect(jsonPath("$.[*].state").value(hasItem(DEFAULT_STATE)))
             .andExpect(jsonPath("$.[*].landmark").value(hasItem(DEFAULT_LANDMARK)))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.intValue())))
             .andExpect(jsonPath("$.[*].alternatePhone").value(hasItem(DEFAULT_ALTERNATE_PHONE.intValue())))
             .andExpect(jsonPath("$.[*].addressType").value(hasItem(DEFAULT_ADDRESS_TYPE)))
@@ -626,7 +652,11 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].preOrderDate").value(hasItem(DEFAULT_PRE_ORDER_DATE.toString())))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
             .andExpect(jsonPath("$.[*].paymentRef").value(hasItem(DEFAULT_PAYMENT_REF)))
-            .andExpect(jsonPath("$.[*].paymentStatus").value(hasItem(DEFAULT_PAYMENT_STATUS)));
+            .andExpect(jsonPath("$.[*].paymentStatus").value(hasItem(DEFAULT_PAYMENT_STATUS)))
+            .andExpect(jsonPath("$.[*].zoneId").value(hasItem(DEFAULT_ZONE_ID)))
+            .andExpect(jsonPath("$.[*].loyaltyPoint").value(hasItem(DEFAULT_LOYALTY_POINT.intValue())))
+            .andExpect(jsonPath("$.[*].refundedAmount").value(hasItem(DEFAULT_REFUNDED_AMOUNT.doubleValue())))
+            .andExpect(jsonPath("$.[*].cancellationRef").value(hasItem(DEFAULT_CANCELLATION_REF.intValue())));
     }
 
     @Test

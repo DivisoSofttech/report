@@ -6,66 +6,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
 
 /**
  * Banner
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-09-04T22:29:27.309760+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:37:58.581+05:30[Asia/Kolkata]")
 
 public class Banner   {
-  @JsonProperty("file")
-  private byte[] file = null;
-
-  @JsonProperty("fileContentType")
-  private String fileContentType = null;
-
   @JsonProperty("id")
   private Long id = null;
 
+  @JsonProperty("imageLink")
+  private String imageLink = null;
+
   @JsonProperty("store")
   private Store store = null;
-
-  public Banner file(byte[] file) {
-    this.file = file;
-    return this;
-  }
-
-  /**
-   * Get file
-   * @return file
-  **/
-  @ApiModelProperty(value = "")
-
-@Pattern(regexp="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$") 
-  public byte[] getFile() {
-    return file;
-  }
-
-  public void setFile(byte[] file) {
-    this.file = file;
-  }
-
-  public Banner fileContentType(String fileContentType) {
-    this.fileContentType = fileContentType;
-    return this;
-  }
-
-  /**
-   * Get fileContentType
-   * @return fileContentType
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getFileContentType() {
-    return fileContentType;
-  }
-
-  public void setFileContentType(String fileContentType) {
-    this.fileContentType = fileContentType;
-  }
 
   public Banner id(Long id) {
     this.id = id;
@@ -85,6 +41,26 @@ public class Banner   {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public Banner imageLink(String imageLink) {
+    this.imageLink = imageLink;
+    return this;
+  }
+
+  /**
+   * Get imageLink
+   * @return imageLink
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getImageLink() {
+    return imageLink;
+  }
+
+  public void setImageLink(String imageLink) {
+    this.imageLink = imageLink;
   }
 
   public Banner store(Store store) {
@@ -118,15 +94,14 @@ public class Banner   {
       return false;
     }
     Banner banner = (Banner) o;
-    return Objects.equals(this.file, banner.file) &&
-        Objects.equals(this.fileContentType, banner.fileContentType) &&
-        Objects.equals(this.id, banner.id) &&
+    return Objects.equals(this.id, banner.id) &&
+        Objects.equals(this.imageLink, banner.imageLink) &&
         Objects.equals(this.store, banner.store);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(file, fileContentType, id, store);
+    return Objects.hash(id, imageLink, store);
   }
 
   @Override
@@ -134,9 +109,8 @@ public class Banner   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Banner {\n");
     
-    sb.append("    file: ").append(toIndentedString(file)).append("\n");
-    sb.append("    fileContentType: ").append(toIndentedString(fileContentType)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    imageLink: ").append(toIndentedString(imageLink)).append("\n");
     sb.append("    store: ").append(toIndentedString(store)).append("\n");
     sb.append("}");
     return sb.toString();

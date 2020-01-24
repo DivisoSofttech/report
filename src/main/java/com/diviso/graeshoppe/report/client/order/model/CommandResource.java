@@ -9,7 +9,7 @@ import org.springframework.validation.annotation.Validated;
  * CommandResource
  */
 @Validated
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-08-27T15:03:55.787+05:30[Asia/Kolkata]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-31T16:48:59.190+05:30[Asia/Kolkata]")
 
 public class CommandResource   {
   @JsonProperty("nextTaskId")

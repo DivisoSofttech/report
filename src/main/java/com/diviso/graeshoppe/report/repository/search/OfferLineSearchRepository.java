@@ -4,7 +4,7 @@ import com.diviso.graeshoppe.report.domain.OfferLine;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
 /**
- * Spring Data Elasticsearch repository for the OfferLine entity.
+ * Spring Data Elasticsearch repository for the {@link OfferLine} entity.
  */
 public interface OfferLineSearchRepository extends ElasticsearchRepository<OfferLine, Long> {
 }

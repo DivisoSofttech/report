@@ -2,6 +2,8 @@ package com.diviso.graeshoppe.report.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
@@ -14,6 +16,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "aux_item")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "auxitem")
 public class AuxItem implements Serializable {
 
@@ -31,6 +34,9 @@ public class AuxItem implements Serializable {
 
     @Column(name = "total")
     private Double total;
+
+    @Column(name = "product_id")
+    private Long productId;
 
     @ManyToOne
     @JsonIgnoreProperties("auxItems")
@@ -84,6 +90,19 @@ public class AuxItem implements Serializable {
         this.total = total;
     }
 
+    public Long getProductId() {
+        return productId;
+    }
+
+    public AuxItem productId(Long productId) {
+        this.productId = productId;
+        return this;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
     public OrderLine getOrderLine() {
         return orderLine;
     }
@@ -125,6 +144,7 @@ public class AuxItem implements Serializable {
             ", auxItem='" + getAuxItem() + "'" +
             ", quantity=" + getQuantity() +
             ", total=" + getTotal() +
+            ", productId=" + getProductId() +
             "}";
     }
 }

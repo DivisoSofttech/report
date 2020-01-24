@@ -26,7 +26,6 @@ roadNameAreaOrStreet String,
 city String,
 state String,
 landmark String,
-name String,
 phone Long,
 alternatePhone Long,
 addressType String,
@@ -38,7 +37,12 @@ allergyNote String,
 preOrderDate Instant,
 email String,
 paymentRef String,
-paymentStatus String
+paymentStatus String,
+zoneId String,
+loyaltyPoint Long,
+refundedAmount Double,
+cancellationRef Long
+
 
 }
 
@@ -49,17 +53,20 @@ paymentStatus String
 entity AuxItem{
 	auxItem String,
 	quantity Integer,
-	total Double
+	total Double,
+	productId Long
 }
 
 entity ComboItem{
 	comboItem String,
-	quantity Double
+	quantity Double,
+	productId Long
 }
 entity OrderLine{
 item String,
 quantity Integer,
-total Double
+total Double,
+productId Long
 }
 
 entity Sale{

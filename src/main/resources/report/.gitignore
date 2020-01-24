@@ -1,3 +1,9 @@
-/reportSummary.jasper
+/reportdeliveryv1.jasper
 /reportcollection.jasper
-/reportdelivery.jasper
+/subreportCash.jasper
+/subreportCard.jasper
+/deliveryCard.jasper
+/deliveryCash.jasper
+/detailedOrderSummary1.jasper
+/collectionCard.jasper
+/collectionCash.jasper

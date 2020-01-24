@@ -2,6 +2,8 @@ package com.diviso.graeshoppe.report.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
@@ -17,6 +19,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "order_master")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "ordermaster")
 public class OrderMaster implements Serializable {
 
@@ -92,9 +95,6 @@ public class OrderMaster implements Serializable {
     @Column(name = "landmark")
     private String landmark;
 
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "phone")
     private Long phone;
 
@@ -131,9 +131,23 @@ public class OrderMaster implements Serializable {
     @Column(name = "payment_status")
     private String paymentStatus;
 
+    @Column(name = "zone_id")
+    private String zoneId;
+
+    @Column(name = "loyalty_point")
+    private Long loyaltyPoint;
+
+    @Column(name = "refunded_amount")
+    private Double refundedAmount;
+
+    @Column(name = "cancellation_ref")
+    private Long cancellationRef;
+
     @OneToMany(mappedBy = "orderMaster")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<OrderLine> orderLines = new HashSet<>();
     @OneToMany(mappedBy = "orderMaster")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<OfferLine> offerLines = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -430,19 +444,6 @@ public class OrderMaster implements Serializable {
         this.landmark = landmark;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public OrderMaster name(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Long getPhone() {
         return phone;
     }
@@ -599,6 +600,58 @@ public class OrderMaster implements Serializable {
         this.paymentStatus = paymentStatus;
     }
 
+    public String getZoneId() {
+        return zoneId;
+    }
+
+    public OrderMaster zoneId(String zoneId) {
+        this.zoneId = zoneId;
+        return this;
+    }
+
+    public void setZoneId(String zoneId) {
+        this.zoneId = zoneId;
+    }
+
+    public Long getLoyaltyPoint() {
+        return loyaltyPoint;
+    }
+
+    public OrderMaster loyaltyPoint(Long loyaltyPoint) {
+        this.loyaltyPoint = loyaltyPoint;
+        return this;
+    }
+
+    public void setLoyaltyPoint(Long loyaltyPoint) {
+        this.loyaltyPoint = loyaltyPoint;
+    }
+
+    public Double getRefundedAmount() {
+        return refundedAmount;
+    }
+
+    public OrderMaster refundedAmount(Double refundedAmount) {
+        this.refundedAmount = refundedAmount;
+        return this;
+    }
+
+    public void setRefundedAmount(Double refundedAmount) {
+        this.refundedAmount = refundedAmount;
+    }
+
+    public Long getCancellationRef() {
+        return cancellationRef;
+    }
+
+    public OrderMaster cancellationRef(Long cancellationRef) {
+        this.cancellationRef = cancellationRef;
+        return this;
+    }
+
+    public void setCancellationRef(Long cancellationRef) {
+        this.cancellationRef = cancellationRef;
+    }
+
     public Set<OrderLine> getOrderLines() {
         return orderLines;
     }
@@ -696,7 +749,6 @@ public class OrderMaster implements Serializable {
             ", city='" + getCity() + "'" +
             ", state='" + getState() + "'" +
             ", landmark='" + getLandmark() + "'" +
-            ", name='" + getName() + "'" +
             ", phone=" + getPhone() +
             ", alternatePhone=" + getAlternatePhone() +
             ", addressType='" + getAddressType() + "'" +
@@ -709,6 +761,10 @@ public class OrderMaster implements Serializable {
             ", email='" + getEmail() + "'" +
             ", paymentRef='" + getPaymentRef() + "'" +
             ", paymentStatus='" + getPaymentStatus() + "'" +
+            ", zoneId='" + getZoneId() + "'" +
+            ", loyaltyPoint=" + getLoyaltyPoint() +
+            ", refundedAmount=" + getRefundedAmount() +
+            ", cancellationRef=" + getCancellationRef() +
             "}";
     }
 }

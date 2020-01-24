@@ -8,23 +8,29 @@
         {
             "fieldName": "quantity",
             "fieldType": "Double"
+        },
+        {
+            "fieldName": "productId",
+            "fieldType": "Long"
         }
     ],
     "relationships": [
         {
-            "relationshipName": "orderLine",
-            "otherEntityName": "orderLine",
             "relationshipType": "many-to-one",
+            "otherEntityName": "orderLine",
+            "otherEntityRelationshipName": "comboItem",
+            "relationshipName": "orderLine",
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190819104624",
+    "changelogDate": "20191231084240",
     "entityTableName": "combo_item",
     "dto": "mapstruct",
     "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
+    "readOnly": false,
     "clientRootFolder": "report",
     "applications": "*",
     "microserviceName": "report"
