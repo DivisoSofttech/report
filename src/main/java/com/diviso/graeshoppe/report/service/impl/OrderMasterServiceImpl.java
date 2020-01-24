@@ -248,6 +248,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 		}
 		orderMaster.setCustomerId(customer.getCustomerUniqueId());
+		orderMaster.setOrderStatus("payment-processed-unapproved");
 		orderMaster.setNotes(order.getDeliveryInfo().getDeliveryNotes());
 		orderMaster.setOrderFromCustomer(order.getOrderCountRestaurant());
 		orderMaster.setTotalDue(order.getGrandTotal());

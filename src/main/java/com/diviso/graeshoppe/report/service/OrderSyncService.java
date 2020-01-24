@@ -3,6 +3,7 @@ package com.diviso.graeshoppe.report.service;
 import com.diviso.graeshoppe.report.config.KafkaProperties;
 import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
 import com.diviso.graeshoppe.order.avro.ApprovalInfo;
+import com.diviso.graeshoppe.avro.*;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.slf4j.Logger;
@@ -15,6 +16,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -27,14 +29,53 @@ public class OrderSyncService {
 	private String orderTopic;
 	@Value("${topic.approvalInfo.destination}")
 	private String approvalInfoTopic;
+	@Value("${topic.cancellation.destination}")
+	private String cancellationTopic;
 	private final KafkaProperties kafkaProperties;
 	private ExecutorService sseExecutorService = Executors.newCachedThreadPool();
 
 	@Autowired
-	private  OrderMasterService orderMasterService;
+	private OrderMasterService orderMasterService;
 
 	public OrderSyncService(KafkaProperties kafkaProperties) {
 		this.kafkaProperties = kafkaProperties;
+	}
+
+	public void subscribeToCancellationRequest() {
+		log.debug("REST request to consume records from Kafka topics {}", cancellationTopic);
+		Map<String, Object> consumerProps = kafkaProperties.getConsumerProps();
+		sseExecutorService.execute(() -> {
+			KafkaConsumer<String, CancellationRequest> consumer = new KafkaConsumer<>(consumerProps);
+			consumer.subscribe(Collections.singletonList(cancellationTopic));
+			boolean exitLoop = false;
+			while (!exitLoop) {
+				try {
+					ConsumerRecords<String, CancellationRequest> records = consumer.poll(Duration.ofSeconds(5));
+					records.forEach(record -> {
+						log.info("CancellationRequest  is consuming " + record);
+						Optional<OrderMasterDTO> orderMaster = orderMasterService
+								.findByOrderNumber(record.value().getOrderId());
+						if (orderMaster.isPresent()) {
+							orderMaster.get().setOrderStatus("cancellation-requested");
+							orderMaster.get().setRefundedAmount(record.value().getAmount());
+							orderMaster.get().setTotalDue(orderMaster.get().getTotalDue() - record.value().getAmount());
+							orderMaster.get().setCancellationRef(record.value().getId());
+							orderMasterService.save(orderMaster.get());
+						} else {
+							log.info("The order doesn't found with ref " + record.value().getOrderId());
+						}
+
+					});
+
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					log.trace("Complete with error {}", ex.getMessage(), ex);
+					exitLoop = true;
+				}
+			}
+			log.info("Consumer is going to close");
+			consumer.close();
+		});
 	}
 
 	public void subscribeToApprovalInfo() {
@@ -55,6 +96,7 @@ public class OrderSyncService {
 						if (record.value().getExpectedDelivery() != 0) {
 							orderMaster.setExpectedDelivery(Instant.ofEpochMilli(record.value().getExpectedDelivery()));
 						}
+						orderMaster.setOrderStatus("payment-processed-approved");
 						orderMasterService.save(orderMaster);
 					});
 
@@ -81,7 +123,7 @@ public class OrderSyncService {
 					ConsumerRecords<String, Order> records = consumer.poll(Duration.ofSeconds(5));
 					records.forEach(record -> {
 						log.info("Order is consuming " + record);
-						log.info("Order master service is "+orderMasterService+" value is "+record.value());
+						log.info("Order master service is " + orderMasterService + " value is " + record.value());
 						orderMasterService.convertAndSaveOrderMaster(record.value());
 					});
 
@@ -99,6 +141,7 @@ public class OrderSyncService {
 	public void startConsumers() {
 		subscribeToApprovalInfo();
 		subscribeToOrder();
+		subscribeToCancellationRequest();
 	}
 
 }

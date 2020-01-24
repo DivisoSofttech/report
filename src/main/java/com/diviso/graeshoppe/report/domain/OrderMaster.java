@@ -1,14 +1,18 @@
 package com.diviso.graeshoppe.report.domain;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Objects;
 
 /**
  * A OrderMaster.
@@ -16,14 +20,13 @@ import java.util.Set;
 @Entity
 @Table(name = "order_master")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "ordermaster")
+@Document(indexName = "ordermaster")
 public class OrderMaster implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
     private Long id;
 
     @Column(name = "store_idpcode")
@@ -134,14 +137,18 @@ public class OrderMaster implements Serializable {
     @Column(name = "loyalty_point")
     private Long loyaltyPoint;
 
+    @Column(name = "refunded_amount")
+    private Double refundedAmount;
+
+    @Column(name = "cancellation_ref")
+    private Long cancellationRef;
+
     @OneToMany(mappedBy = "orderMaster")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<OrderLine> orderLines = new HashSet<>();
-
     @OneToMany(mappedBy = "orderMaster")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<OfferLine> offerLines = new HashSet<>();
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -619,6 +626,32 @@ public class OrderMaster implements Serializable {
         this.loyaltyPoint = loyaltyPoint;
     }
 
+    public Double getRefundedAmount() {
+        return refundedAmount;
+    }
+
+    public OrderMaster refundedAmount(Double refundedAmount) {
+        this.refundedAmount = refundedAmount;
+        return this;
+    }
+
+    public void setRefundedAmount(Double refundedAmount) {
+        this.refundedAmount = refundedAmount;
+    }
+
+    public Long getCancellationRef() {
+        return cancellationRef;
+    }
+
+    public OrderMaster cancellationRef(Long cancellationRef) {
+        this.cancellationRef = cancellationRef;
+        return this;
+    }
+
+    public void setCancellationRef(Long cancellationRef) {
+        this.cancellationRef = cancellationRef;
+    }
+
     public Set<OrderLine> getOrderLines() {
         return orderLines;
     }
@@ -675,15 +708,19 @@ public class OrderMaster implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof OrderMaster)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        return id != null && id.equals(((OrderMaster) o).id);
+        OrderMaster orderMaster = (OrderMaster) o;
+        if (orderMaster.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), orderMaster.getId());
     }
 
     @Override
     public int hashCode() {
-        return 31;
+        return Objects.hashCode(getId());
     }
 
     @Override
@@ -726,6 +763,8 @@ public class OrderMaster implements Serializable {
             ", paymentStatus='" + getPaymentStatus() + "'" +
             ", zoneId='" + getZoneId() + "'" +
             ", loyaltyPoint=" + getLoyaltyPoint() +
+            ", refundedAmount=" + getRefundedAmount() +
+            ", cancellationRef=" + getCancellationRef() +
             "}";
     }
 }

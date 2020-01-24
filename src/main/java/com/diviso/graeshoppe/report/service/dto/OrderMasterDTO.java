@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A DTO for the {@link com.diviso.graeshoppe.report.domain.OrderMaster} entity.
+ * A DTO for the OrderMaster entity.
  */
 public class OrderMasterDTO implements Serializable {
 
@@ -81,6 +81,10 @@ public class OrderMasterDTO implements Serializable {
     private String zoneId;
 
     private Long loyaltyPoint;
+
+    private Double refundedAmount;
+
+    private Long cancellationRef;
 
 
     public Long getId() {
@@ -379,6 +383,22 @@ public class OrderMasterDTO implements Serializable {
         this.loyaltyPoint = loyaltyPoint;
     }
 
+    public Double getRefundedAmount() {
+        return refundedAmount;
+    }
+
+    public void setRefundedAmount(Double refundedAmount) {
+        this.refundedAmount = refundedAmount;
+    }
+
+    public Long getCancellationRef() {
+        return cancellationRef;
+    }
+
+    public void setCancellationRef(Long cancellationRef) {
+        this.cancellationRef = cancellationRef;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -440,6 +460,8 @@ public class OrderMasterDTO implements Serializable {
             ", paymentStatus='" + getPaymentStatus() + "'" +
             ", zoneId='" + getZoneId() + "'" +
             ", loyaltyPoint=" + getLoyaltyPoint() +
+            ", refundedAmount=" + getRefundedAmount() +
+            ", cancellationRef=" + getCancellationRef() +
             "}";
     }
 }
