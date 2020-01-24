@@ -229,4 +229,6 @@ topic:
       destination: approvalinfo
    cancellation:
       destination: cancellationrequest
+   orderstate:
+     destination: orderstatechange 
 # application:
