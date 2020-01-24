@@ -13,7 +13,7 @@ import net.sf.jasperreports.engine.JRException;
 public interface QueryService {
 		
 
-	byte[] getReportSummaryAsPdf(LocalDate date,String storeId) throws JRException;
+	byte[] getReportSummaryAsPdf(LocalDate fromDate,LocalDate toDate, String storeId) throws JRException;
 
 	/**
 	 * @param orderNumber
