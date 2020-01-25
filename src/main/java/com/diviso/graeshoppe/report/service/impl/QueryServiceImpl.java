@@ -758,7 +758,7 @@ public class QueryServiceImpl implements QueryService {
 	public byte[] getCancellationSummaryAsPdf(String date, String storeName) throws JRException {
 		
 		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/cancellationReport.jrxml");
-
+		 System.out.println(">>>>>>>>>>>>>>>>>>>> cancellationSummary impl"+date+">>>>>>>>>>"+storeName);
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("date", date);
 		parameters.put("store_idpcode", storeName);

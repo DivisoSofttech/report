@@ -515,7 +515,7 @@ System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf re
 		// log.debug("REST request to get a pdf");
 
 		byte[] pdfContents = null;
-		// System.out.println(">>>>>>>>>>>>>>>>>>>>"+orderNumber);
+		 System.out.println(">>>>>>>>>>>>>>>>>>>> cancellationSummary"+date+">>>>>>>>>>"+storeName);
 
 		try {
 
