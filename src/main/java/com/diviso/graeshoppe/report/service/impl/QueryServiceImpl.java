@@ -141,14 +141,15 @@ public class QueryServiceImpl implements QueryService {
 	
 
 	@Override
-	public byte[] getReportSummaryAsPdf(String date, String storeId) throws JRException {
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>> query service impl");
-		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/reportSummaryV1.jrxml");
 
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>> "+ date+">>>>>>>>>>>>>>"+storeId);
+	public byte[] getReportSummaryAsPdf(String date, String storeId) throws JRException {
+		log.debug("<<<<<<<<<<<<<< getReportSummaryAsPdf >>>>>>>>>>{}{}",date,storeId);
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/reportSummary.jrxml");
 		Map<String, Object> parameters = new HashMap<String, Object>();
+
 		parameters.put("date", date);
-		parameters.put("store_idpcode", storeId);
+		parameters.put("store_name", storeId);
+		
 		Connection conn = null;
 		try {
 			conn = dataSource.getConnection();
@@ -774,6 +775,7 @@ public class QueryServiceImpl implements QueryService {
 		return JasperExportManager.exportReportToPdf(jp);
 	}
 	
+
 
 	
 	/*public ReportSummary createReportSummaryBetweenTwoDates(String fromDate, String toDate) {

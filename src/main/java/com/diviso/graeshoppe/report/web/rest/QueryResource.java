@@ -66,6 +66,8 @@ public class QueryResource {
 	 * queryService.getOrderAggregator(orderNumber); }
 	 */
 
+
+	
 	@GetMapping("/reportSummary/{date}")
 	public ResponseEntity<byte[]> getReportSummaryAsPdf(@PathVariable String date, @RequestParam(value="storeName", required=false) String storeName) {
 
@@ -104,6 +106,7 @@ public class QueryResource {
 	@GetMapping("/detailedOrderSummary/{date}")
 	public ResponseEntity<byte[]> getDetailedOrderSummaryAsPdf(@PathVariable String date, @RequestParam(value="storeName", required=false) String storeName) {
 
+
 		// log.debug("REST request to get a pdf");
 
 		byte[] pdfContents = null;
@@ -111,9 +114,11 @@ public class QueryResource {
 
 		try {
 
+
 			// System.out.println("starting of try block>>>>>>>>>>>>>>>>>>>>"+orderNumber);
 			pdfContents = queryService.getDetailedOrderSummaryAsPdf(date, storeName);
 			// System.out.println("ending try block>>>>>>>>>>>>>>>>>>>>"+orderNumber);
+
 		} catch (JRException e) {
 			e.printStackTrace();
 		}
@@ -223,6 +228,11 @@ public class QueryResource {
 		return orderMasterService.countByExpectedDeliveryBetween(from, to);
 	}
 
+	/**
+	 * @author Prince
+	 * @param orderId
+	 * @return
+	 */
 	@GetMapping("/findOfferLinesByOrderNumber/{orderId}")
 	public List<OfferLine> findOfferLinesByOrderNumber(@PathVariable String orderId) {
 		log.debug("<<<<<<<findByOfferLine_orderNumber >>>>>>{}", orderId);
@@ -230,6 +240,11 @@ public class QueryResource {
 
 	}
 
+	/**
+	 * @author Prince
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/findAuxItemByid/{id}")
 	public List<AuxItem> findAuxItemByid(@PathVariable Long id) {
 		log.debug("<<<<<<<findAuxItemByid >>>>>>{}", id);
@@ -237,6 +252,11 @@ public class QueryResource {
 
 	}
 
+	/**
+	 * @author Prince
+	 * @param orderNumber
+	 * @return
+	 */
 	@GetMapping("/findOrderLinesByOrderNumber/{orderNumber}")
 	public List<OrderLine> findOrderLineByOrderNumber(@PathVariable String orderNumber) {
 		log.debug("<<<<<<<<<<<<findByOrderLine_OrderMaster>>>>>>>>{}", orderNumber);
