@@ -144,11 +144,11 @@ public class QueryServiceImpl implements QueryService {
 
 	public byte[] getReportSummaryAsPdf(String date, String storeId) throws JRException {
 		log.debug("<<<<<<<<<<<<<< getReportSummaryAsPdf >>>>>>>>>>{}{}",date,storeId);
-		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/reportSummary.jrxml");
+		JasperReport jr = JasperCompileManager.compileReport("src/main/resources/report/reportSummaryV1.jrxml");
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("date", date);
-		parameters.put("store_name", storeId);
+		parameters.put("store_idpcode", storeId);
 		
 		Connection conn = null;
 		try {
