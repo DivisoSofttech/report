@@ -540,7 +540,7 @@ System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf re
 
 	public CancellationSummary createCancellationReportSummaryView(@PathVariable String date, @PathVariable String storeName) {
 	
-		
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>> cancellationReportView"+ date+""+storeName);
 		return queryService.createCancellationReportSummaryView(date, storeName);
 	
 		

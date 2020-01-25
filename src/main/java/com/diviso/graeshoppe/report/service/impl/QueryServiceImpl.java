@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.diviso.graeshoppe.report.client.payment.api.PaymentResourceApi;
 import com.diviso.graeshoppe.report.client.payment.model.PaymentDTO;
 import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
+import com.diviso.graeshoppe.report.domain.CancellationSummary;
 import com.diviso.graeshoppe.report.domain.OrderMaster;
 import com.diviso.graeshoppe.report.domain.ReportOrderModel;
 import com.diviso.graeshoppe.report.domain.ReportSummary;
@@ -773,6 +774,79 @@ public class QueryServiceImpl implements QueryService {
 
 		JasperPrint jp = JasperFillManager.fillReport(jr, parameters, conn);
 		return JasperExportManager.exportReportToPdf(jp);
+	}
+
+	@Override
+	public CancellationSummary createCancellationReportSummaryView(String date, String storeName) {
+		Instant dateBegin = Instant.parse(date.toString() + "T00:00:00Z");
+		Instant dateEnd = Instant.parse(date.toString() + "T23:59:59Z");
+		CancellationSummary cancellationSummary = new CancellationSummary();
+		
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+dateBegin+">>>>>>>>>"+dateEnd);
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>> cancellationReportView impl"+ date+""+storeName);
+		
+		cancellationSummary.setDate(LocalDate.parse(date));
+		
+		cancellationSummary.setStoreId(storeName);
+
+	
+		
+		List<OrderMaster> omList= orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcode(dateBegin, dateEnd, storeName);
+	
+		Double sum=0.0;
+		Long allCardCount=0l;
+		Double allCardTotal=0.0;
+		Double allRefundAmount=0.0;
+		Long deliveryCardCount=0l;
+		Double deliveryCardTotal=0.0;
+		Double deliveryRefundAmount=0.0;
+		Long collectionCardCount= 0l;
+		Double collectionCardTotal=0.0;
+		Double collectionRefundAmount=0.0;
+		
+		
+		
+		for(OrderMaster om: omList) {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> entering for loop");
+			sum +=om.getTotalDue();
+			if(om.getPaymentStatus().equals("ORDER PAID")&& om.getCancellationRef()!=null) {
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>  order not paid");
+				allCardCount++;
+				allCardTotal += om.getTotalDue();
+				allRefundAmount += om.getRefundedAmount();
+			}
+			
+			
+			if(om.getMethodOfOrder().equals("DELIVERY") && om.getPaymentStatus().equals("ORDER PAID") && om.getCancellationRef() != null) {
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>  delivery");
+				deliveryCardCount++;
+				deliveryCardTotal += om.getTotalDue();
+				deliveryRefundAmount += om.getRefundedAmount();
+			}
+			
+			if(om.getMethodOfOrder().equals("COLLECTION" )&& om.getPaymentStatus().equals("ORDER PAID") && om.getCancellationRef() != null){
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> collection");
+				 collectionCardCount++;
+				 collectionCardTotal += om.getTotalDue();
+				 collectionRefundAmount += om.getRefundedAmount();
+			}
+			System.out.println(om.getMethodOfOrder()+"1");
+		}
+		
+		cancellationSummary.setAllCardCount(allCardCount);
+		cancellationSummary.setAllCardTotal(allCardTotal);
+		cancellationSummary.setAllRefundAmount(allRefundAmount);
+		cancellationSummary.setCollectionCardCount(collectionCardCount);
+		cancellationSummary.setCollectionCardTotal(collectionCardTotal);
+		cancellationSummary.setCollectionRefundAmount(collectionRefundAmount);
+		cancellationSummary.setDeliveryCardCount(deliveryCardCount);
+		cancellationSummary.setDeliveryCardTotal(deliveryCardTotal);
+		cancellationSummary.setDeliveryRefundAmount(deliveryRefundAmount);
+
+		
+		
+		return cancellationSummary;
+
 	}
 	
 

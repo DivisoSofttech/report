@@ -8,7 +8,7 @@ private LocalDate date;
 	
 	private String storeId;
 	
-	private Integer allCardCount;
+	private Long allCardCount;
 	private Double allCardTotal;
 	private Double allRefundAmount;
 	
@@ -32,10 +32,10 @@ private LocalDate date;
 	public void setStoreId(String storeId) {
 		this.storeId = storeId;
 	}
-	public Integer getAllCardCount() {
+	public Long getAllCardCount() {
 		return allCardCount;
 	}
-	public void setAllCardCount(Integer allCardCount) {
+	public void setAllCardCount(Long allCardCount) {
 		this.allCardCount = allCardCount;
 	}
 	public Double getAllCardTotal() {
