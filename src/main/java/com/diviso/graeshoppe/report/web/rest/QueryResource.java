@@ -488,7 +488,31 @@ System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf re
 		return orderMasterService.weakOrderCount(date, statusName);
 	}
 	
-	
+	@GetMapping("/cancellationSummary/{date}/{storeName}")
+	public ResponseEntity<byte[]> getCancellationSummaryAsPdf(@PathVariable String date, @PathVariable String storeName) {
+
+		// log.debug("REST request to get a pdf");
+
+		byte[] pdfContents = null;
+		// System.out.println(">>>>>>>>>>>>>>>>>>>>"+orderNumber);
+
+		try {
+
+			// System.out.println("starting of try block>>>>>>>>>>>>>>>>>>>>"+orderNumber);
+			pdfContents = queryService.getCancellationSummaryAsPdf(date, storeName);
+			// System.out.println("ending try block>>>>>>>>>>>>>>>>>>>>"+orderNumber);
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType("application/pdf"));
+		String fileName = "CancellationSummary.pdf";
+		headers.add("content-disposition", "attachment; filename=" + fileName);
+		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(pdfContents, headers, HttpStatus.OK);
+		return response;
+	}
+
 
 	
 }
