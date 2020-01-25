@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.diviso.graeshoppe.report.domain.AuxItem;
+import com.diviso.graeshoppe.report.domain.CancellationSummary;
 import com.diviso.graeshoppe.report.domain.OfferLine;
 import com.diviso.graeshoppe.report.domain.OrderLine;
 import com.diviso.graeshoppe.report.domain.OrderMaster;
@@ -534,5 +535,17 @@ System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf re
 	}
 
 
+
+	@GetMapping("/cancellationReportview/{date}/{storeName}")
+
+	public CancellationSummary createCancellationReportSummaryView(@PathVariable String date, @PathVariable String storeName) {
+	
+		
+		return queryService.createCancellationReportSummaryView(date, storeName);
+	
+		
+	}
+
+	
 	
 }

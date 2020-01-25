@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.diviso.graeshoppe.report.domain.CancellationSummary;
 import com.diviso.graeshoppe.report.domain.OrderMaster;
 import com.diviso.graeshoppe.report.domain.ReportOrderModel;
 import com.diviso.graeshoppe.report.domain.ReportSummary;
@@ -77,6 +78,8 @@ public interface QueryService {
 	byte[] getDetailedOrderSummaryAsPdf(String date, String storeName) throws JRException;
 
 	byte[] getCancellationSummaryAsPdf(String date, String storeName)throws JRException;
+
+	CancellationSummary createCancellationReportSummaryView(String date, String storeName);
 
 	//ReportSummary createReportSummaryBetweenTwoDates(String fromDate, String toDate);
 
