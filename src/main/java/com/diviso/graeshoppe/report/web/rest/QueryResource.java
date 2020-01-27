@@ -104,8 +104,8 @@ public class QueryResource {
 	}
 
 	// Detailed Report Summary Docket
-	@GetMapping("/detailedOrderSummary/{date}")
-	public ResponseEntity<byte[]> getDetailedOrderSummaryAsPdf(@PathVariable String date, @RequestParam(value="storeName", required=false) String storeName) {
+	@GetMapping("/detailedOrderSummary/{date}/{storeName}")
+	public ResponseEntity<byte[]> getDetailedOrderSummaryAsPdf(@PathVariable String date, @PathVariable String storeName) {
 
 
 		// log.debug("REST request to get a pdf");
