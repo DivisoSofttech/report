@@ -283,7 +283,7 @@
 					<subreportParameterExpression><![CDATA[$P{store_idpcode}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["collectionCard.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["src/main/resources/report/collectionCard.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
 				<reportElement x="-18" y="32" width="152" height="10" uuid="770ffb5f-546e-4054-91ff-79c49bdc214e"/>
