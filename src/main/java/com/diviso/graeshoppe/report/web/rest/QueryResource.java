@@ -545,7 +545,48 @@ System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf re
 	
 		
 	}
+	
+	@GetMapping("grandTotalOfAStore/{fromDate}/{toDate}/{storeName}")
+	public Double findGrandTotalBetweenAndStoreName(@PathVariable String fromDate, @PathVariable String toDate, @PathVariable String storeName) {
+		log.debug("<<<<<<<<<<<<<<<<<<<< findGrandTotalByDateAndStatusName >>>>>>>>>>{}", fromDate, toDate, storeName);
+		return queryService.findGrandTotalBetweenDateAndStoreName(fromDate, toDate, storeName);
+	}
+	
+	
+	@GetMapping("/detailedReportview/{fromDate}/{toDate}/{storeName}")
 
+	public ReportSummary createDetailedReportSummaryView(@PathVariable String fromDate,@PathVariable String toDate, @PathVariable String storeName) {
+	
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>> detailedReportView"+ fromDate+""+toDate+""+storeName);
+		return queryService.createDetailedReportSummaryView(fromDate, toDate,storeName);
+	
+		
+	}
+	
+	@GetMapping("/docketHeader/{orderNumber}")
+
+	public String createDocketHeaderView(@PathVariable String orderNumber) {
+	
+		//System.out.println(">>>>>>>>>>>>>>>>>>>>>>> detailedReportView"+ fromDate+""+toDate+""+storeName);
+		return queryService.createDocketHeaderView(orderNumber);
+	
+		
+	}
+	
+	@GetMapping("/docketContent/{orderNumber}")
+
+	public String createDocketContent(@PathVariable String orderNumber) {
+	
+		//System.out.println(">>>>>>>>>>>>>>>>>>>>>>> detailedReportView"+ fromDate+""+toDate+""+storeName);
+		return queryService.createDocketContent(orderNumber);
+	
+		
+	}
+	
+	
+	
+	
+	
 	
 	
 }

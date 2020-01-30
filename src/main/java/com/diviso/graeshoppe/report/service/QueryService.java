@@ -81,6 +81,14 @@ public interface QueryService {
 
 	CancellationSummary createCancellationReportSummaryView(String date, String storeName);
 
+	Double findGrandTotalBetweenDateAndStoreName(String fromDate, String toDate, String storeName);
+
+	ReportSummary createDetailedReportSummaryView(String fromDate, String toDate, String storeName);
+
+	String createDocketHeaderView(String orderNumber);
+
+	String createDocketContent(String orderNumber);
+
 	//ReportSummary createReportSummaryBetweenTwoDates(String fromDate, String toDate);
 
 	//List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(String fromDate,String toDate, String storeId);

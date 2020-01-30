@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import java.util.Map;
+import java.util.Optional;
+
 import javax.sql.DataSource;
 
 
@@ -22,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.diviso.graeshoppe.report.client.payment.api.PaymentResourceApi;
 import com.diviso.graeshoppe.report.client.payment.model.PaymentDTO;
 import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
+import com.diviso.graeshoppe.report.service.mapper.CustomMapper;
 import com.diviso.graeshoppe.report.domain.CancellationSummary;
 import com.diviso.graeshoppe.report.domain.OrderMaster;
 import com.diviso.graeshoppe.report.domain.ReportOrderModel;
@@ -43,6 +46,9 @@ public class QueryServiceImpl implements QueryService {
 	
 	@Autowired
 	OrderMasterService orderMasterService;
+	
+	@Autowired
+	CustomMapper customMapper;
 
 	@Autowired
 	OrderMasterRepository orderMasterRepository;
@@ -847,6 +853,123 @@ public class QueryServiceImpl implements QueryService {
 		
 		return cancellationSummary;
 
+	}
+
+	@Override
+	public Double findGrandTotalBetweenDateAndStoreName(String fromDate, String toDate, String storeName) {
+		
+		
+			Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
+			Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
+
+			List<OrderMaster> omList= orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcode(dateBegin, dateEnd, storeName);
+		
+			Double sum=0.0;
+			
+
+			for(OrderMaster om: omList) {
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> entering for loop");
+				sum +=om.getTotalDue();
+			}
+			return sum;
+	}
+
+	@Override
+	public ReportSummary createDetailedReportSummaryView(String fromDate, String toDate, String storeName) {
+	
+		Instant dateBegin = Instant.parse(fromDate.toString() + "T00:00:00Z");
+		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
+		ReportSummary reportSummary = new ReportSummary();
+		List<OrderMaster> omList=null;
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+dateBegin+">>>>>>>>>"+dateEnd);
+		
+		reportSummary.setDate(LocalDate.parse(fromDate));
+		
+		reportSummary.setStoreId(storeName);
+
+	
+		if(fromDate!=null && toDate!=null && storeName!=null) {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> store id != null");
+			omList= orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcode(dateBegin, dateEnd, storeName);
+		
+		}
+		else if(fromDate!=null && toDate!=null &&  storeName==null) {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> store id == null");
+			omList=orderMasterRepository.findByOrderPlaceAtBetween(dateBegin, dateEnd);
+		}
+		Double sum=0.0;
+		Long codOrdersCount=0l;
+		Double codOrdersSum=0.0;
+		Long cardOrdersCount=0l;
+		Double cardOrdersSum=0.0;
+		Long deliveryCount= 0l;
+		Double deliveryOrdersSum=0.0;
+		Long collectionCount=0l;
+		Double collectionOrdersSum=0.0;
+		
+		
+		
+		for(OrderMaster om: omList) {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> entering for loop");
+			sum +=om.getTotalDue();
+			if(om.getPaymentStatus().equals("ORDER NOT PAID")) {
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>  order not paid");
+				codOrdersCount++;
+				codOrdersSum += om.getTotalDue();
+				
+			}else if(om.getPaymentStatus().equals("ORDER PAID")) {
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> order paid");
+				cardOrdersCount++;
+				cardOrdersSum +=  om.getTotalDue();
+			}
+			
+			
+			if(om.getMethodOfOrder().equals("DELIVERY")) {
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>  delivery");
+				deliveryCount++;
+				deliveryOrdersSum += om.getTotalDue();
+			}
+			else if(om.getMethodOfOrder().equals("COLLECTION")){
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> collection");
+				 collectionCount++;
+				 collectionOrdersSum += om.getTotalDue();
+			}
+			System.out.println(om.getMethodOfOrder()+"1");
+		}
+		reportSummary.setTypeAllCount(omList.size());
+		reportSummary.setTypeAllTotal(sum);
+		reportSummary.setTypeCardCount(cardOrdersCount);
+		reportSummary.setTypeCardTotal(cardOrdersSum);
+		reportSummary.setTypeCashCount(codOrdersCount);
+		reportSummary.setTypeCashTotal(codOrdersSum);
+		reportSummary.setTypeDeliveryCount(deliveryCount);
+		reportSummary.setTypeDeliveryTotal(deliveryOrdersSum);
+		reportSummary.setTypeCollectionCount(collectionCount);
+		reportSummary.setTypeCollectionTotal(collectionOrdersSum);
+		
+		reportSummary.setCollectionCard(orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcodeAndMethodOfOrderAndPaymentStatus(dateBegin, dateEnd, storeName, "COLLECTION", "CARD"));
+		reportSummary.setCollectionCash(orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcodeAndMethodOfOrderAndPaymentStatus(dateBegin, dateEnd, storeName, "COLLECTION", "CASH"));
+		reportSummary.setDeliveryCard(orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcodeAndMethodOfOrderAndPaymentStatus(dateBegin, dateEnd, storeName, "DELIVERY", "CARD"));
+		reportSummary.setDeliveryCash(orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcodeAndMethodOfOrderAndPaymentStatus(dateBegin, dateEnd, storeName, "DELIVERY", "CASH"));
+		return reportSummary;
+	}
+
+	@Override
+	public String createDocketHeaderView(String orderNumber) {
+//		Optional<Object> om= orderMasterRepository.findByOrderNumber(orderNumber).map(customMapper::toEntity);
+		OrderMaster om= orderMasterRepository.findByOrderNumber(orderNumber).get();
+
+		System.out.println("converted data"+customMapper.toEntity(om).headers());
+		return customMapper.toEntity(om).headers();
+		
+	}
+
+	@Override
+	public String createDocketContent(String orderNumber) {
+		OrderMaster om= orderMasterRepository.findByOrderNumber(orderNumber).get();
+
+		//System.out.println("converted data"+customMapper.toEntity(om).headers());
+		return customMapper.toEntity(om).content();
 	}
 	
 

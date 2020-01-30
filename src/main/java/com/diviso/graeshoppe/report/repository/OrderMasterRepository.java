@@ -166,4 +166,9 @@ Page<OrderMaster> findByorderPlaceAtBetweenAndStoreIdpcode(Instant dateBegin, In
 
 	List<OrderMaster> findByOrderPlaceAtBetween(Instant dateBegin, Instant dateEnd);
 
+
+
+	List<OrderMaster> findByOrderPlaceAtBetweenAndStoreIdpcodeAndMethodOfOrderAndPaymentStatus(Instant dateBegin,
+			Instant dateEnd, String storeName, String methodOfOrder, String paymentStatus);
+
 }

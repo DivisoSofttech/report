@@ -1,6 +1,7 @@
 package com.diviso.graeshoppe.report.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,9 +28,31 @@ public class ReportSummary {
 	private Long typeCardCount;
 	private Double typeCardTotal;
 	
+	private List<OrderMaster> deliveryCard = new ArrayList<OrderMaster>();
+	private List<OrderMaster> deliveryCash = new ArrayList<OrderMaster>();
+	private List<OrderMaster> collectionCard = new ArrayList<OrderMaster>();
+	private List<OrderMaster> collectionCash = new ArrayList<OrderMaster>();
 	
 	public Integer getTypeAllCount() {
 		return typeAllCount;
+	}
+	public List<OrderMaster> getDeliveryCash() {
+		return deliveryCash;
+	}
+	public void setDeliveryCash(List<OrderMaster> deliveryCash) {
+		this.deliveryCash = deliveryCash;
+	}
+	public List<OrderMaster> getCollectionCard() {
+		return collectionCard;
+	}
+	public void setCollectionCard(List<OrderMaster> collectionCard) {
+		this.collectionCard = collectionCard;
+	}
+	public List<OrderMaster> getCollectionCash() {
+		return collectionCash;
+	}
+	public void setCollectionCash(List<OrderMaster> collectionCash) {
+		this.collectionCash = collectionCash;
 	}
 	public void setTypeAllCount(Integer typeAllCount) {
 		this.typeAllCount = typeAllCount;
@@ -109,6 +132,12 @@ public class ReportSummary {
 	}
 	public void setDate(LocalDate date) {
 		this.date = date;
+	}
+	public List<OrderMaster> getDeliveryCard() {
+		return deliveryCard;
+	}
+	public void setDeliveryCard(List<OrderMaster> deliveryCard) {
+		this.deliveryCard = deliveryCard;
 	}
 	
 	
