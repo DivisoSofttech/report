@@ -253,7 +253,7 @@
 	<detail>
 		<band height="42" splitType="Stretch">
 			<subreport>
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="-18" y="0" width="152" height="12" uuid="4eaa1bb8-87cd-43fc-8c0f-99e96df675c8"/>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="-18" y="0" width="158" height="12" uuid="4eaa1bb8-87cd-43fc-8c0f-99e96df675c8"/>
 				<subreportParameter name="date">
 					<subreportParameterExpression><![CDATA[$P{date}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -261,10 +261,10 @@
 					<subreportParameterExpression><![CDATA[$P{store_idpcode}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["/home/neeraja/graeshoppe/report5/report/src/main/resources/report/deliveryCard.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["src/main/resources/report/deliveryCard.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="-18" y="12" width="152" height="9" isPrintInFirstWholeBand="true" uuid="ffce7a82-e70b-4537-9e39-8c6dc02be0d7"/>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="-18" y="12" width="158" height="9" isPrintInFirstWholeBand="true" uuid="ffce7a82-e70b-4537-9e39-8c6dc02be0d7"/>
 				<subreportParameter name="date">
 					<subreportParameterExpression><![CDATA[$P{date}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -272,10 +272,10 @@
 					<subreportParameterExpression><![CDATA[$P{store_idpcode}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["/home/neeraja/graeshoppe/report5/report/src/main/resources/report/deliveryCash.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["src/main/resources/report/deliveryCash.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" x="-18" y="22" width="152" height="9" isRemoveLineWhenBlank="true" uuid="b02d5d19-0d16-4f5e-a165-fb472b6dabed"/>
+				<reportElement positionType="Float" x="-18" y="22" width="158" height="9" isRemoveLineWhenBlank="true" uuid="b02d5d19-0d16-4f5e-a165-fb472b6dabed"/>
 				<subreportParameter name="date">
 					<subreportParameterExpression><![CDATA[$P{date}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -286,7 +286,7 @@
 				<subreportExpression><![CDATA["src/main/resources/report/collectionCard.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="-18" y="32" width="152" height="10" uuid="770ffb5f-546e-4054-91ff-79c49bdc214e"/>
+				<reportElement x="-18" y="32" width="158" height="10" uuid="770ffb5f-546e-4054-91ff-79c49bdc214e"/>
 				<subreportParameter name="date">
 					<subreportParameterExpression><![CDATA[$P{date}]]></subreportParameterExpression>
 				</subreportParameter>
