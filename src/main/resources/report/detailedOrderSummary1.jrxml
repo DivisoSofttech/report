@@ -261,7 +261,7 @@
 					<subreportParameterExpression><![CDATA[$P{store_idpcode}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["/home/neeraja/graeshoppe/report5/report/src/main/resources/report/deliveryCard.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["src/main/resources/report/deliveryCard.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
 				<reportElement positionType="Float" isPrintRepeatedValues="false" x="-18" y="12" width="152" height="9" isPrintInFirstWholeBand="true" uuid="ffce7a82-e70b-4537-9e39-8c6dc02be0d7"/>
@@ -272,7 +272,7 @@
 					<subreportParameterExpression><![CDATA[$P{store_idpcode}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["/home/neeraja/graeshoppe/report5/report/src/main/resources/report/deliveryCash.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["src/main/resources/report/deliveryCash.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
 				<reportElement positionType="Float" x="-18" y="22" width="152" height="9" isRemoveLineWhenBlank="true" uuid="b02d5d19-0d16-4f5e-a165-fb472b6dabed"/>
