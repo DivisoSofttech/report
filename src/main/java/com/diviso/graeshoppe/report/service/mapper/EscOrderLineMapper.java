@@ -23,7 +23,7 @@ import com.diviso.graeshoppe.report.service.dto.OrderLineDTO;
 	    @Mapping(target = "comboItems", ignore = true)
 	   
 	    @Mapping(source = "orderMasterId", target = "orderMaster")
-	    EscOrderLine toEscOrderLine(OrderLineDTO orderLineDTO);
+	    EscOrderLine toEntity(OrderLineDTO orderLineDTO);
 
 	    default OrderLine fromId(Long id) {
 	        if (id == null) {
