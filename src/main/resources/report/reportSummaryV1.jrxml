@@ -103,7 +103,7 @@
 				<textFieldExpression><![CDATA[$F{store_name}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-30" y="98" width="174" height="19" uuid="f94b11d4-1311-4f35-b186-3c4c23bb044e"/>
+				<reportElement positionType="Float" x="-19" y="98" width="166" height="19" uuid="f94b11d4-1311-4f35-b186-3c4c23bb044e"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
