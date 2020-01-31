@@ -218,8 +218,8 @@ public class QueryResource {
 	}
 
 	@GetMapping("/findOrderMasterByExpectedDeliveryBetween/{from}/{to}")
-	public Page<OrderMaster> findOrderMasterByExpectedDeliveryBetween(@PathVariable Instant from,
-			@PathVariable Instant to, Pageable pageable) {
+	public Page<OrderMaster> findOrderMasterByExpectedDeliveryBetween(@PathVariable String from,
+			@PathVariable String to, Pageable pageable) {
 		return orderMasterService.findByExpectedDeliveryBetween(from, to, pageable);
 	}
 
@@ -584,7 +584,7 @@ System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf re
 	}
 	
 
-	@GetMapping("/docketProduct/{orderNumber}")
+	@GetMapping("/docketProducts/{orderNumber}")
 
 	public String createDocketProduct(@PathVariable String orderNumber) {
 	

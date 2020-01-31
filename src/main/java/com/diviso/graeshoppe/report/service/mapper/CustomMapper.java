@@ -12,12 +12,14 @@ import org.mapstruct.*;
 public interface CustomMapper extends EntityMapper<OrderMaster, EscPosDocket> {
 
 
-    @Mapping(target = "orderLines", ignore = true)
+    //@Mapping(target = "orderLines", ignore = true)
     @Mapping(target = "offerLines", ignore = true)
     EscPosDocket toEntity(OrderMaster orderMaster);
 
     default EscPosDocket fromId(Long id) {
         if (id == null) {
+    		System.out.println("/////ghhhhhhhhhhhhhhhhh///");
+
             return null;
         }
         EscPosDocket escPosDocket = new EscPosDocket();

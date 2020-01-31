@@ -365,6 +365,7 @@ public class EscPosDocket {
 	
 	public String products() {
 		 String content= null;
+		 System.out.println(">>>>>>>>>>>>>>>>>>>>>>"+getOrderLines());
 		 for(OrderLine ol:getOrderLines()) {
 			 content= content.concat(""+ol.getQuantity()+" x "+""+ol.getItem()+"   "+ol.getTotal()+"/n");
 		 }

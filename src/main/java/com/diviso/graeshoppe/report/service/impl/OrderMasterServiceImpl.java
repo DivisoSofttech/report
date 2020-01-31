@@ -362,8 +362,11 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	}
 
 	@Override
-	public Page<OrderMaster> findByExpectedDeliveryBetween(Instant from, Instant to, Pageable pageable) {
-		return orderMasterRepository.findByExpectedDeliveryBetween(from, to, pageable);
+	public Page<OrderMaster> findByExpectedDeliveryBetween(String from, String to, Pageable pageable) {
+	
+		Instant dateBegin = Instant.parse(from.toString() + "T00:00:00Z");
+		Instant dateEnd = Instant.parse(to.toString() + "T23:59:59Z");
+		return orderMasterRepository.findByExpectedDeliveryBetween(dateBegin, dateEnd, pageable);
 	}
 
 	@Override

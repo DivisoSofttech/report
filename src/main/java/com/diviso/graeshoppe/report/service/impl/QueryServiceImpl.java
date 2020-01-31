@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.sql.DataSource;
 
@@ -982,7 +983,14 @@ public class QueryServiceImpl implements QueryService {
 	@Override
 	public String createDocketProduct(String orderNumber) {
 		OrderMaster om= orderMasterRepository.findByOrderNumber(orderNumber).get();
-		List<OrderLine> ol=orderLineRepository.findByOrderMasterId(om.getId());
+		System.out.println("*************************"+om.getId());
+		
+		Set<OrderLine> ol=orderLineRepository.findByOrderMasterId(om.getId());
+		System.out.println("//////////////////////////////////"+ol);
+		
+		om.setOrderLines(ol);
+		System.out.println("//////////////////////////////////222222222222"+customMapper.toEntity(om));
+
 		return customMapper.toEntity(om).products();
 		
 	}

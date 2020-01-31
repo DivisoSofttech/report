@@ -74,7 +74,7 @@ public interface OrderMasterService {
 
 	Long countByExpectedDeliveryAndOrderStatus(String date, String orderStatus);
 
-	Page<OrderMaster> findByExpectedDeliveryBetween(Instant from, Instant to, Pageable pageable);
+	Page<OrderMaster> findByExpectedDeliveryBetween(String from, String to, Pageable pageable);
 
 	Long countByOrderStatus(String orderStatus);
 

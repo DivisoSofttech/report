@@ -3,6 +3,7 @@ package com.diviso.graeshoppe.report.repository;
 import com.diviso.graeshoppe.report.domain.OrderLine;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
@@ -20,8 +21,9 @@ public interface OrderLineRepository extends JpaRepository<OrderLine, Long> {
 		
 		List<OrderLine> findByOrderMaster_OrderNumber(String id);
 
-		
 
-		List<OrderLine> findByOrderMasterId(Long id);
+		Set<OrderLine> findByOrderMaster_OrderNumber(Long id);
+
+		Set<OrderLine> findByOrderMasterId(Long id);
 	
 }
