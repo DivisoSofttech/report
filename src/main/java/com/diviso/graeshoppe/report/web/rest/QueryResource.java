@@ -565,7 +565,7 @@ System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf re
 	
 	@GetMapping("/docketHeader/{orderNumber}")
 
-	public String createDocketHeaderView(@PathVariable String orderNumber) {
+	public String createDocketHeader(@PathVariable String orderNumber) {
 	
 		//System.out.println(">>>>>>>>>>>>>>>>>>>>>>> detailedReportView"+ fromDate+""+toDate+""+storeName);
 		return queryService.createDocketHeaderView(orderNumber);
@@ -579,6 +579,17 @@ System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf re
 	
 		//System.out.println(">>>>>>>>>>>>>>>>>>>>>>> detailedReportView"+ fromDate+""+toDate+""+storeName);
 		return queryService.createDocketContent(orderNumber);
+	
+		
+	}
+	
+
+	@GetMapping("/docketProduct/{orderNumber}")
+
+	public String createDocketProduct(@PathVariable String orderNumber) {
+	
+		//System.out.println(">>>>>>>>>>>>>>>>>>>>>>> detailedReportView"+ fromDate+""+toDate+""+storeName);
+		return queryService.createDocketProduct(orderNumber);
 	
 		
 	}

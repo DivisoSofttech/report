@@ -26,9 +26,11 @@ import com.diviso.graeshoppe.report.client.payment.model.PaymentDTO;
 import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
 import com.diviso.graeshoppe.report.service.mapper.CustomMapper;
 import com.diviso.graeshoppe.report.domain.CancellationSummary;
+import com.diviso.graeshoppe.report.domain.OrderLine;
 import com.diviso.graeshoppe.report.domain.OrderMaster;
 import com.diviso.graeshoppe.report.domain.ReportOrderModel;
 import com.diviso.graeshoppe.report.domain.ReportSummary;
+import com.diviso.graeshoppe.report.repository.OrderLineRepository;
 import com.diviso.graeshoppe.report.repository.OrderMasterRepository;
 import com.diviso.graeshoppe.report.service.QueryService;
 import net.sf.jasperreports.engine.JRException;
@@ -52,6 +54,11 @@ public class QueryServiceImpl implements QueryService {
 
 	@Autowired
 	OrderMasterRepository orderMasterRepository;
+	
+
+	@Autowired
+	OrderLineRepository orderLineRepository;
+	
 	private static List<ReportSummary> reportSummaryList = new ArrayList<ReportSummary>();
 	
 	/*private final JestClient jestClient;
@@ -970,6 +977,14 @@ public class QueryServiceImpl implements QueryService {
 
 		//System.out.println("converted data"+customMapper.toEntity(om).headers());
 		return customMapper.toEntity(om).content();
+	}
+
+	@Override
+	public String createDocketProduct(String orderNumber) {
+		OrderMaster om= orderMasterRepository.findByOrderNumber(orderNumber).get();
+		List<OrderLine> ol=orderLineRepository.findByOrderMasterId(om.getId());
+		return customMapper.toEntity(om).products();
+		
 	}
 	
 

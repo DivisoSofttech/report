@@ -13,6 +13,7 @@ public interface CustomMapper extends EntityMapper<OrderMaster, EscPosDocket> {
 
 
     @Mapping(target = "orderLines", ignore = true)
+    @Mapping(target = "offerLines", ignore = true)
     EscPosDocket toEntity(OrderMaster orderMaster);
 
     default EscPosDocket fromId(Long id) {

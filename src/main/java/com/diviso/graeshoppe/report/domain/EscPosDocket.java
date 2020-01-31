@@ -69,6 +69,8 @@ public class EscPosDocket {
 	 
 	 private Long cancellationRef;
 	 private Set<OrderLine> orderLines = new HashSet<>();
+	 
+	 private Set<OfferLine> offerLines = new HashSet<>();
 	
 	 public Long getId() {
 		return id;
@@ -310,7 +312,12 @@ public class EscPosDocket {
 	public void setOrderLines(Set<OrderLine> orderLines) {
 		this.orderLines = orderLines;
 	}
-	 
+	public Set<OfferLine> getOfferLines() {
+		return offerLines;
+	}
+	public void setOfferLines(Set<OfferLine> offerLines) {
+		this.offerLines = offerLines;
+	}
 	
 	public String headers() {
 		
@@ -355,7 +362,19 @@ public class EscPosDocket {
 		 }
 		 return content;
 	}
-		
+	
+	public String products() {
+		 String content= null;
+		 for(OrderLine ol:getOrderLines()) {
+			 content= content.concat(""+ol.getQuantity()+" x "+""+ol.getItem()+"   "+ol.getTotal()+"/n");
+		 }
+		 
+		 return content;
+	}
+	
+	
+	
+	
 	}
 	
 	

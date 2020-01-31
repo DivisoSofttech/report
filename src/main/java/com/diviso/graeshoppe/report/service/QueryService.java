@@ -89,6 +89,8 @@ public interface QueryService {
 
 	String createDocketContent(String orderNumber);
 
+	String createDocketProduct(String orderNumber);
+
 	//ReportSummary createReportSummaryBetweenTwoDates(String fromDate, String toDate);
 
 	//List<OrderMaster> getOrdersViewByDateAndStoreIdpcode(String fromDate,String toDate, String storeId);

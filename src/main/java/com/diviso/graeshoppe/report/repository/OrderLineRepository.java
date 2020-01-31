@@ -19,5 +19,9 @@ public interface OrderLineRepository extends JpaRepository<OrderLine, Long> {
 		//ResponseEntity<OrderLine> findByOrderLineOrderMaster(@Param("id") String orderId);
 		
 		List<OrderLine> findByOrderMaster_OrderNumber(String id);
+
+		
+
+		List<OrderLine> findByOrderMasterId(Long id);
 	
 }
