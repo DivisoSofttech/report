@@ -85,11 +85,23 @@ public interface QueryService {
 
 	ReportSummary createDetailedReportSummaryView(String fromDate, String toDate, String storeName);
 
-	String createDocketHeaderView(String orderNumber);
+	String getDocketHeaderView(String orderNumber);
 
-	String createDocketContent(String orderNumber);
+	String getDocketContent(String orderNumber);
 
-	String createDocketProduct(String orderNumber);
+	String getDocketProduct(String orderNumber);
+
+	String getDocketDiscountAndTotal(String orderNumber);
+
+	String getDocketPaymentStatus(String orderNumber);
+
+	String getDocketCustomerOrderDetails(String orderNumber);
+
+	String getDocketCustomerDetails(String orderNumber);
+
+	String getFooters(String orderNumber);
+
+	
 
 	//ReportSummary createReportSummaryBetweenTwoDates(String fromDate, String toDate);
 

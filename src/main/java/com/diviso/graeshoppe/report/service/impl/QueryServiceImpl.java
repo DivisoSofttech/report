@@ -26,11 +26,15 @@ import com.diviso.graeshoppe.report.client.payment.api.PaymentResourceApi;
 import com.diviso.graeshoppe.report.client.payment.model.PaymentDTO;
 import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
 import com.diviso.graeshoppe.report.service.mapper.CustomMapper;
+import com.diviso.graeshoppe.report.domain.AuxItem;
 import com.diviso.graeshoppe.report.domain.CancellationSummary;
+import com.diviso.graeshoppe.report.domain.ComboItem;
 import com.diviso.graeshoppe.report.domain.OrderLine;
 import com.diviso.graeshoppe.report.domain.OrderMaster;
 import com.diviso.graeshoppe.report.domain.ReportOrderModel;
 import com.diviso.graeshoppe.report.domain.ReportSummary;
+import com.diviso.graeshoppe.report.repository.AuxItemRepository;
+import com.diviso.graeshoppe.report.repository.ComboItemRepository;
 import com.diviso.graeshoppe.report.repository.OrderLineRepository;
 import com.diviso.graeshoppe.report.repository.OrderMasterRepository;
 import com.diviso.graeshoppe.report.service.QueryService;
@@ -44,6 +48,7 @@ import com.diviso.graeshoppe.report.service.OrderMasterService;
 @Service
 @Transactional
 public class QueryServiceImpl implements QueryService {
+	
 	@Autowired
 	DataSource dataSource;
 	
@@ -56,13 +61,19 @@ public class QueryServiceImpl implements QueryService {
 	@Autowired
 	OrderMasterRepository orderMasterRepository;
 	
-
 	@Autowired
 	OrderLineRepository orderLineRepository;
 	
+	@Autowired
+	AuxItemRepository auxItemRepository;
+	
+	@Autowired
+	ComboItemRepository comboItemRepository;
+	
 	private static List<ReportSummary> reportSummaryList = new ArrayList<ReportSummary>();
 	
-	/*private final JestClient jestClient;
+	/*private fina@Autowired
+	OrderLineRepository orderLineRepository;l JestClient jestClient;
 	private final JestElasticsearchTemplate elasticsearchTemplate;
 
 	int i = 0;
@@ -963,25 +974,25 @@ public class QueryServiceImpl implements QueryService {
 	}
 
 	@Override
-	public String createDocketHeaderView(String orderNumber) {
+	public String getDocketHeaderView(String orderNumber) {
 //		Optional<Object> om= orderMasterRepository.findByOrderNumber(orderNumber).map(customMapper::toEntity);
 		OrderMaster om= orderMasterRepository.findByOrderNumber(orderNumber).get();
 
-		System.out.println("converted data"+customMapper.toEntity(om).headers());
-		return customMapper.toEntity(om).headers();
+		System.out.println("converted data"+customMapper.toEntity(om).getHeaders());
+		return customMapper.toEntity(om).getHeaders();
 		
 	}
 
 	@Override
-	public String createDocketContent(String orderNumber) {
+	public String getDocketContent(String orderNumber) {
 		OrderMaster om= orderMasterRepository.findByOrderNumber(orderNumber).get();
 
 		//System.out.println("converted data"+customMapper.toEntity(om).headers());
-		return customMapper.toEntity(om).content();
+		return customMapper.toEntity(om).getContent();
 	}
 
 	@Override
-	public String createDocketProduct(String orderNumber) {
+	public String getDocketProduct(String orderNumber) {
 		OrderMaster om= orderMasterRepository.findByOrderNumber(orderNumber).get();
 		System.out.println("*************************"+om.getId());
 		
@@ -989,10 +1000,52 @@ public class QueryServiceImpl implements QueryService {
 		System.out.println("//////////////////////////////////"+ol);
 		
 		om.setOrderLines(ol);
-		System.out.println("//////////////////////////////////222222222222"+customMapper.toEntity(om));
-
-		return customMapper.toEntity(om).products();
+		for(OrderLine ol1:ol) {
+			System.out.println("++++++++++++++++++++++++++++++++++++"+ol1.getId());
+		Set<AuxItem> ai=auxItemRepository.findByOrderLineId(ol1.getId());
 		
+		System.out.println("?????????????????????  aux item"+ai);
+		ol1.setAuxItems(ai);
+		Set<ComboItem> ci= comboItemRepository.findByOrderLineId(ol1.getId());
+		
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>> comboItem"+ci);
+		ol1.setComboItems(ci);
+		}
+		
+		System.out.println("//////////////////////////////////222222222222"+customMapper.toEntity(om).getOrderNumber());
+
+		return customMapper.toEntity(om).getProducts();
+		
+	}
+
+	@Override
+	public String getDocketDiscountAndTotal(String orderNumber) {
+		OrderMaster om= orderMasterRepository.findByOrderNumber(orderNumber).get();
+		return customMapper.toEntity(om).getDiscountAndTotal();
+	}
+
+	@Override
+	public String getDocketPaymentStatus(String orderNumber) {
+		OrderMaster om= orderMasterRepository.findByOrderNumber(orderNumber).get();
+		return customMapper.toEntity(om).getPaymentStatusForDocket();
+	}
+
+	@Override
+	public String getDocketCustomerOrderDetails(String orderNumber) {
+		OrderMaster om= orderMasterRepository.findByOrderNumber(orderNumber).get();
+		return customMapper.toEntity(om).getCustomerOrderDetails();
+	}
+
+	@Override
+	public String getDocketCustomerDetails(String orderNumber) {
+		OrderMaster om= orderMasterRepository.findByOrderNumber(orderNumber).get();
+		return customMapper.toEntity(om).getCustomerDetails();
+	}
+
+	@Override
+	public String getFooters(String orderNumber) {
+		OrderMaster om= orderMasterRepository.findByOrderNumber(orderNumber).get();
+		return customMapper.toEntity(om).getFooter();
 	}
 	
 

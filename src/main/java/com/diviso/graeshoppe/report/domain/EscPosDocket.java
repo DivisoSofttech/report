@@ -319,63 +319,133 @@ public class EscPosDocket {
 		this.offerLines = offerLines;
 	}
 	
-	public String headers() {
+	public String getHeaders() {
 		
 		return ""+getStoreName()+
-			   "/n"+getStorelocationName()+
-			   "/n----------------------------";
-			
+			   "\n"+getStorelocationName()+
+			   "\\n----------------------------";
+	
 	}
 	
-	public String content() {
+	public String getContent() {
 		 String content= null;
 		// Date d1=new Date();
 		// LocalDateTime t = LocalDateTime.ofInstant(this.getExpectedDelivery(), null);
-		Instant date = this.getExpectedDelivery();
-		System.out.println("++++++++++++++++++++++++++++++++++++++++++"+date);
-		Date d = Date.from(date);
-		 SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");  
-		    String strDate= dateFormatter.format(d);  
-		    SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm a");  
-		    String strTime =timeFormatter.format(d);
-		System.out.println(d);
+		/*
+		 * Instant date = this.getExpectedDelivery();
+		 * System.out.println("++++++++++++++++++++++++++++++++++++++++++"+date); Date d
+		 * = Date.from(date); SimpleDateFormat dateFormatter = new
+		 * SimpleDateFormat("dd/MM/yyyy");
+		 */
+		 
+		 
+		/*
+		 * String strDate= dateFormatter.format(d); SimpleDateFormat timeFormatter = new
+		 * SimpleDateFormat("HH:mm a"); String strTime =timeFormatter.format(d);
+		 */
+		
 		 if(getPreOrderDate()==null) {
+			 
+			 String strExpdlvryDate=java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
+			            .withZone(java.time.ZoneId.of(getZoneId()))
+			            .format(java.time.Instant.parse(getExpectedDelivery().toString().substring(0, 10)+"T"+getExpectedDelivery().toString().substring(11,19)+".000Z")).substring(0,9);   
+			 String strExpdlvryTime =java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
+			            .withZone(java.time.ZoneId.of(getZoneId()))
+			            .format(java.time.Instant.parse(getExpectedDelivery().toString().substring(0, 10)+"T"+getExpectedDelivery().toString().substring(11,19)+".000Z")).substring(9);
+			 
+			 
 			content= ""+getMethodOfOrder()+
-				     "/n Due "+strDate+" at asap /"+strTime+"/nOrder Number :"+getOrderNumber()+
-				     "/n--------------------------------"+
-				     "/nRestaurant notes: "+
-				     "/n"+getNotes()+
-				     "/nPlease ring me on:"+getPhone()+
-				     "/n--------------------------------"+
+				     "\nDue "+strExpdlvryDate+" at asap /"+strExpdlvryTime+"\nOrder Number :"+getOrderNumber()+
+				     "\n--------------------------------"+
+				     "\nRestaurant notes: "+
+				     "\n"+getNotes()+
+				     "\nPlease ring me on:"+getPhone()+
+				     "\n--------------------------------"+
 				     "                                EUR";
 			
 		   }
 		 else if(getPreOrderDate()!=null) {
+			 
+			 String strPreOrderDate=java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
+			            .withZone(java.time.ZoneId.of(getZoneId()))
+			            .format(java.time.Instant.parse(getPreOrderDate().toString().substring(0, 10)+"T"+getPreOrderDate().toString().substring(11,19)+".000Z")).substring(0,9);   
+			 String strPreOrderTime =java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
+			            .withZone(java.time.ZoneId.of(getZoneId()))
+			            .format(java.time.Instant.parse(getPreOrderDate().toString().substring(0, 10)+"T"+getPreOrderDate().toString().substring(11,19)+".000Z")).substring(9);
+			 
+			 
 			 content= ""+getMethodOfOrder()+
-					 "/n Requested for "+strDate+" at asap  /"+strTime+"/nOrder Number :"+getOrderNumber()+
-					 "/n--------------------------------"+
-				     "/nRestaurant notes: "+
-				     "/n"+getNotes()+
-				     "/nPlease ring me on:"+getPhone()+
-				     "/n--------------------------------"+
+					 "\n Requested for "+strPreOrderDate+" at asap  /"+strPreOrderTime+"/nOrder Number :"+getOrderNumber()+
+					 "\n--------------------------------"+
+				     "\nRestaurant notes: "+
+				     "\n"+getNotes()+
+				     "\nPlease ring me on:"+getPhone()+
+				     "\n--------------------------------"+
 				     "                                EUR";
 		 }
 		 return content;
 	}
 	
-	public String products() {
-		 String content= null;
+	public String getProducts() {
+		 String content= "";
 		 System.out.println(">>>>>>>>>>>>>>>>>>>>>>"+getOrderLines());
 		 for(OrderLine ol:getOrderLines()) {
-			 content= content.concat(""+ol.getQuantity()+" x "+""+ol.getItem()+"   "+ol.getTotal()+"/n");
+			 content= content.concat(""+ol.getQuantity()+" x "+""+ol.getItem()+"   "+ol.getTotal()+"\n");
+			 for(AuxItem ai:ol.getAuxItems()) {
+				 System.out.println("////////////Entering auxitem for loop in escposdocket");
+				 content=content.concat(""+ai.getQuantity()+" x "+""+ai.getAuxItem()+"   "+ai.getTotal()+"\n");
+			 }
+			 for(ComboItem ci:ol.getComboItems()) {
+				 System.out.println("////////////Entering comboitem for loop in escposdocket");
+				 content=content.concat(""+ci.getComboItem()+"   "+ci.getQuantity()+"\n"); 
+			 }
 		 }
 		 
 		 return content;
 	}
 	
+	public String getDiscountAndTotal() {
+		return "Food Exp discount (10%)"+getOrderDiscountAmount()+"\n"+
+				"Delivery charge :"+getDeliveryCharge()+"\n"+
+				"                 ------------------"+"\n"+
+				"Total Due"+getTotalDue()+"\n";			
+	}
 	
 	
+	public String getPaymentStatusForDocket() {
+		return "----------------------------\n"+
+				""+getPaymentStatus()+"\n"+
+				"----------------------------\n";
+				
+	}
 	
+	public String getCustomerOrderDetails() {
+		return "Customer Id               :"+getCustomerId()+"\n"+
+	           "Loyalty card point        :"+getLoyaltyPoint()+"\n"+
+			   "Order from this customer  :"+getOrderFromCustomer()+"\n"+
+	           "Customer's food exp order :"+getCustomerOrder()+"\n\n\n";
+	           
+	}
+	
+	public String getCustomerDetails() {
+		return "Customer details:"+"\n"+
+			   ""+getCustomerName()+"\n"+
+			   ""+getHouseNoOrBuildingName()+"\n"+
+			   ""+getRoadNameAreaOrStreet()+"\n"+
+			   ""+getLandmark()+"\n"+
+			   ""+getCity()+"\n"+
+			   ""+getState()+"\n"+
+			   ""+getPincode()+"\n\n\n"+
+			   "order placed  :"+getOrderPlaceAt()+"\n"+
+			   "order accepted:"+getOrderAcceptedAt()+"\n";
+			   
+	}
+	
+	public String getFooter() {
+		return "Powered by Graeshoppe\n"+
+				""+java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a").withZone(java.time.ZoneId.of(getZoneId())).format( java.time.Instant.now());
+	
+	}
 	}
 	
 	

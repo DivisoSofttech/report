@@ -565,20 +565,19 @@ System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf re
 	
 	@GetMapping("/docketHeader/{orderNumber}")
 
-	public String createDocketHeader(@PathVariable String orderNumber) {
+	public String getDocketHeader(@PathVariable String orderNumber) {
 	
 		//System.out.println(">>>>>>>>>>>>>>>>>>>>>>> detailedReportView"+ fromDate+""+toDate+""+storeName);
-		return queryService.createDocketHeaderView(orderNumber);
+		return queryService.getDocketHeaderView(orderNumber);
 	
 		
 	}
 	
 	@GetMapping("/docketContent/{orderNumber}")
 
-	public String createDocketContent(@PathVariable String orderNumber) {
-	
-		//System.out.println(">>>>>>>>>>>>>>>>>>>>>>> detailedReportView"+ fromDate+""+toDate+""+storeName);
-		return queryService.createDocketContent(orderNumber);
+	public String getDocketContent(@PathVariable String orderNumber) {
+
+		return queryService.getDocketContent(orderNumber);
 	
 		
 	}
@@ -586,13 +585,54 @@ System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf re
 
 	@GetMapping("/docketProducts/{orderNumber}")
 
-	public String createDocketProduct(@PathVariable String orderNumber) {
+	public String getDocketProducts(@PathVariable String orderNumber) {
 	
-		//System.out.println(">>>>>>>>>>>>>>>>>>>>>>> detailedReportView"+ fromDate+""+toDate+""+storeName);
-		return queryService.createDocketProduct(orderNumber);
+		return queryService.getDocketProduct(orderNumber);
 	
 		
 	}
+	
+
+	@GetMapping("/docketDiscountAndTotal/{orderNumber}")
+
+	public String getDocketDiscountAndTotal(@PathVariable String orderNumber) {
+	
+		return queryService.getDocketDiscountAndTotal(orderNumber);
+	
+		
+	}
+	
+	@GetMapping("/docketPaymentStatus/{orderNumber}")
+
+	public String getDocketPaymentStatus(@PathVariable String orderNumber) {
+	
+		return queryService.getDocketPaymentStatus(orderNumber);
+	
+		
+	}
+	
+
+	@GetMapping("/docketCustomerOrder/{orderNumber}")
+
+	public String getCustomerOrderDetails(@PathVariable String orderNumber) {
+	
+		return queryService.getDocketCustomerOrderDetails(orderNumber);	
+	}
+
+	@GetMapping("/docketCustomerDetails/{orderNumber}")
+
+	public String getCustomerDetails(@PathVariable String orderNumber) {
+	
+		return queryService.getDocketCustomerDetails(orderNumber);	
+	}
+
+	@GetMapping("/docketFooters/{orderNumber}")
+
+	public String getFooters(@PathVariable String orderNumber) {
+	
+		return queryService.getFooters(orderNumber);	
+	}
+
 	
 	
 	
