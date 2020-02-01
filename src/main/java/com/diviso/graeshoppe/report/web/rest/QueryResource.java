@@ -17,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.diviso.graeshoppe.report.domain.AuxItem;
 import com.diviso.graeshoppe.report.domain.CancellationSummary;
+import com.diviso.graeshoppe.report.domain.EscPosDocket;
 import com.diviso.graeshoppe.report.domain.OfferLine;
 import com.diviso.graeshoppe.report.domain.OrderLine;
 import com.diviso.graeshoppe.report.domain.OrderMaster;
@@ -563,6 +564,12 @@ System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf re
 		
 	}
 	
+	@GetMapping("/allEscDocket")
+	public EscPosDocket findAll() {
+		return null;
+		
+	}
+	
 	@GetMapping("/docketHeader/{orderNumber}")
 
 	public String getDocketHeader(@PathVariable String orderNumber) {
@@ -624,6 +631,12 @@ System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf re
 	public String getCustomerDetails(@PathVariable String orderNumber) {
 	
 		return queryService.getDocketCustomerDetails(orderNumber);	
+	}
+	@GetMapping("/docketAttentionForOrder/{orderNumber}")
+
+	public String getAttentionForOrder(@PathVariable String orderNumber) {
+	
+		return queryService.getAttentionForOrder(orderNumber);	
 	}
 
 	@GetMapping("/docketFooters/{orderNumber}")

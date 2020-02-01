@@ -807,9 +807,6 @@ public class QueryServiceImpl implements QueryService {
 		Instant dateEnd = Instant.parse(date.toString() + "T23:59:59Z");
 		CancellationSummary cancellationSummary = new CancellationSummary();
 		
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+dateBegin+">>>>>>>>>"+dateEnd);
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>> cancellationReportView impl"+ date+""+storeName);
-		
 		cancellationSummary.setDate(LocalDate.parse(date));
 		
 		cancellationSummary.setStoreId(storeName);
@@ -832,10 +829,9 @@ public class QueryServiceImpl implements QueryService {
 		
 		
 		for(OrderMaster om: omList) {
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> entering for loop");
+			
 			sum +=om.getTotalDue();
 			if(om.getPaymentStatus().equals("ORDER PAID")&& om.getCancellationRef()!=null) {
-				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>  order not paid");
 				allCardCount++;
 				allCardTotal += om.getTotalDue();
 				allRefundAmount += om.getRefundedAmount();
@@ -843,14 +839,12 @@ public class QueryServiceImpl implements QueryService {
 			
 			
 			if(om.getMethodOfOrder().equals("DELIVERY") && om.getPaymentStatus().equals("ORDER PAID") && om.getCancellationRef() != null) {
-				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>  delivery");
 				deliveryCardCount++;
 				deliveryCardTotal += om.getTotalDue();
 				deliveryRefundAmount += om.getRefundedAmount();
 			}
 			
 			if(om.getMethodOfOrder().equals("COLLECTION" )&& om.getPaymentStatus().equals("ORDER PAID") && om.getCancellationRef() != null){
-				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> collection");
 				 collectionCardCount++;
 				 collectionCardTotal += om.getTotalDue();
 				 collectionRefundAmount += om.getRefundedAmount();
@@ -887,7 +881,6 @@ public class QueryServiceImpl implements QueryService {
 			
 
 			for(OrderMaster om: omList) {
-				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> entering for loop");
 				sum +=om.getTotalDue();
 			}
 			return sum;
@@ -900,20 +893,16 @@ public class QueryServiceImpl implements QueryService {
 		Instant dateEnd = Instant.parse(toDate.toString() + "T23:59:59Z");
 		ReportSummary reportSummary = new ReportSummary();
 		List<OrderMaster> omList=null;
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+dateBegin+">>>>>>>>>"+dateEnd);
-		
 		reportSummary.setDate(LocalDate.parse(fromDate));
 		
 		reportSummary.setStoreId(storeName);
 
 	
 		if(fromDate!=null && toDate!=null && storeName!=null) {
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> store id != null");
 			omList= orderMasterRepository.findByOrderPlaceAtBetweenAndStoreIdpcode(dateBegin, dateEnd, storeName);
 		
 		}
 		else if(fromDate!=null && toDate!=null &&  storeName==null) {
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> store id == null");
 			omList=orderMasterRepository.findByOrderPlaceAtBetween(dateBegin, dateEnd);
 		}
 		Double sum=0.0;
@@ -929,27 +918,23 @@ public class QueryServiceImpl implements QueryService {
 		
 		
 		for(OrderMaster om: omList) {
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> entering for loop");
+			
 			sum +=om.getTotalDue();
 			if(om.getPaymentStatus().equals("ORDER NOT PAID")) {
-				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>  order not paid");
 				codOrdersCount++;
 				codOrdersSum += om.getTotalDue();
 				
 			}else if(om.getPaymentStatus().equals("ORDER PAID")) {
-				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> order paid");
 				cardOrdersCount++;
 				cardOrdersSum +=  om.getTotalDue();
 			}
 			
 			
 			if(om.getMethodOfOrder().equals("DELIVERY")) {
-				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>  delivery");
 				deliveryCount++;
 				deliveryOrdersSum += om.getTotalDue();
 			}
 			else if(om.getMethodOfOrder().equals("COLLECTION")){
-				System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> collection");
 				 collectionCount++;
 				 collectionOrdersSum += om.getTotalDue();
 			}
@@ -986,34 +971,22 @@ public class QueryServiceImpl implements QueryService {
 	@Override
 	public String getDocketContent(String orderNumber) {
 		OrderMaster om= orderMasterRepository.findByOrderNumber(orderNumber).get();
-
-		//System.out.println("converted data"+customMapper.toEntity(om).headers());
 		return customMapper.toEntity(om).getContent();
 	}
 
 	@Override
 	public String getDocketProduct(String orderNumber) {
 		OrderMaster om= orderMasterRepository.findByOrderNumber(orderNumber).get();
-		System.out.println("*************************"+om.getId());
-		
 		Set<OrderLine> ol=orderLineRepository.findByOrderMasterId(om.getId());
-		System.out.println("//////////////////////////////////"+ol);
-		
 		om.setOrderLines(ol);
-		for(OrderLine ol1:ol) {
-			System.out.println("++++++++++++++++++++++++++++++++++++"+ol1.getId());
-		Set<AuxItem> ai=auxItemRepository.findByOrderLineId(ol1.getId());
 		
-		System.out.println("?????????????????????  aux item"+ai);
+		for(OrderLine ol1:ol) {	
+		Set<AuxItem> ai=auxItemRepository.findByOrderLineId(ol1.getId());
 		ol1.setAuxItems(ai);
 		Set<ComboItem> ci= comboItemRepository.findByOrderLineId(ol1.getId());
-		
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>> comboItem"+ci);
 		ol1.setComboItems(ci);
 		}
 		
-		System.out.println("//////////////////////////////////222222222222"+customMapper.toEntity(om).getOrderNumber());
-
 		return customMapper.toEntity(om).getProducts();
 		
 	}
@@ -1046,6 +1019,12 @@ public class QueryServiceImpl implements QueryService {
 	public String getFooters(String orderNumber) {
 		OrderMaster om= orderMasterRepository.findByOrderNumber(orderNumber).get();
 		return customMapper.toEntity(om).getFooter();
+	}
+
+	@Override
+	public String getAttentionForOrder(String orderNumber) {
+		OrderMaster om= orderMasterRepository.findByOrderNumber(orderNumber).get();
+		return customMapper.toEntity(om).getAttentionForFirstOrder();
 	}
 	
 

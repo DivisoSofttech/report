@@ -423,8 +423,7 @@ public class EscPosDocket {
 		return "Customer Id               :"+getCustomerId()+"\n"+
 	           "Loyalty card point        :"+getLoyaltyPoint()+"\n"+
 			   "Order from this customer  :"+getOrderFromCustomer()+"\n"+
-	           "Customer's food exp order :"+getCustomerOrder()+"\n\n\n";
-	           
+	           "Customer's food exp order :"+getCustomerOrder()+"\n\n\n";           
 	}
 	
 	public String getCustomerDetails() {
@@ -439,6 +438,11 @@ public class EscPosDocket {
 			   "order placed  :"+getOrderPlaceAt()+"\n"+
 			   "order accepted:"+getOrderAcceptedAt()+"\n";
 			   
+	}
+	
+	public String getAttentionForFirstOrder() {
+		return "Attention : Please note this is\n the first order from this \n customer, please make sure the \n order details are correct.";
+		
 	}
 	
 	public String getFooter() {

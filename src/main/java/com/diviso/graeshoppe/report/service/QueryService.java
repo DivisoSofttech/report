@@ -101,6 +101,8 @@ public interface QueryService {
 
 	String getFooters(String orderNumber);
 
+	String getAttentionForOrder(String orderNumber);
+
 	
 
 	//ReportSummary createReportSummaryBetweenTwoDates(String fromDate, String toDate);
