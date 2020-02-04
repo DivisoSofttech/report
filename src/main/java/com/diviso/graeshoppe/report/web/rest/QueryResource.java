@@ -632,6 +632,7 @@ System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf re
 	
 		return queryService.getDocketCustomerDetails(orderNumber);	
 	}
+	
 	@GetMapping("/docketAttentionForOrder/{orderNumber}")
 
 	public String getAttentionForOrder(@PathVariable String orderNumber) {

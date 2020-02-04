@@ -77,7 +77,8 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 	@Autowired
 	private ComboItemService comboItemService;
 	private final OrderMasterMapper orderMasterMapper;
-
+	
+	
 	@Autowired
 	private CustomerResourceApi customerResourceApi;
 	private final OrderMasterSearchRepository orderMasterSearchRepository;
@@ -265,6 +266,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 		log.info("The order master going to persist is  " + orderMaster);
 		OrderMaster updatedResult = orderMasterRepository.save(orderMaster);
+		orderMasterSearchRepository.save(updatedResult);
 		order.getOfferLines().forEach(offer -> {
 			OfferLineDTO offerLine = new OfferLineDTO();
 			offerLine.setOfferRef(offer.getOfferRef());
