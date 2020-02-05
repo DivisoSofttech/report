@@ -52,8 +52,8 @@ public class OrderLineServiceImpl implements OrderLineService {
         OrderLine orderLine = orderLineMapper.toEntity(orderLineDTO);
         orderLine = orderLineRepository.save(orderLine);
         OrderLineDTO result = orderLineMapper.toDto(orderLine);
-        orderLineSearchRepository.save(orderLine);
-        updateToEs(result);
+        OrderLine orderLineES = orderLineSearchRepository.save(orderLine);
+        updateToEs(orderLineES);
         return result;
     }
 
@@ -86,9 +86,8 @@ public class OrderLineServiceImpl implements OrderLineService {
             .map(orderLineMapper::toDto);
     }
 
-    private void updateToEs(OrderLineDTO orderLineDTO) {
-    	OrderLine orderLine = orderLineMapper.toEntity(orderLineDTO);
-         orderLineSearchRepository.save(orderLine);
+    private void updateToEs(OrderLine orderLineES) {
+         orderLineSearchRepository.save(orderLineES);
     }
     /**
      * Delete the orderLine by id.
