@@ -17,8 +17,12 @@
 	<parameter name="date" class="java.lang.String"/>
 	<parameter name="store_idpcode" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select  order_number, total_due, time(order_place_at) from order_master where date(order_place_at)=  $P{date} && store_idpcode=  $P{store_idpcode} && payment_status="ORDER NOT PAID" && method_of_order="DELIVERY"]]>
+		<![CDATA[select  zone_id,order_number, total_due, order_place_at from order_master where date(order_place_at)=  $P{date} && store_idpcode=  $P{store_idpcode} && payment_status="ORDER NOT PAID" && method_of_order="DELIVERY"]]>
 	</queryString>
+	<field name="zone_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="zone_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
 	<field name="order_number" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="order_number"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
@@ -27,8 +31,9 @@
 		<property name="com.jaspersoft.studio.field.label" value="total_due"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
 	</field>
-	<field name="time(order_place_at)" class="java.sql.Time">
-		<property name="com.jaspersoft.studio.field.label" value="time(order_place_at)"/>
+	<field name="order_place_at" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="order_place_at"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -59,19 +64,22 @@
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{order_number}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="HH:mm">
-				<reportElement positionType="Float" x="51" y="1" width="58" height="14" uuid="6c5ae01d-1c61-4fde-862d-fcd337c5f019">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="058605d1-2549-4227-8ae8-59a3e70d40a8"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{time(order_place_at)}]]></textFieldExpression>
-			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="80" y="1" width="56" height="13" uuid="69908f1e-93da-4166-b537-d07fd5259245">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f8fe8382-f007-4122-92de-7cb76393d465"/>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{total_due}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="HH:mm">
+				<reportElement positionType="Float" x="51" y="1" width="58" height="14" uuid="6f7c4fbf-8991-4a31-b222-317e779290c1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="058605d1-2549-4227-8ae8-59a3e70d40a8"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
+            .withZone(java.time.ZoneId.of($F{zone_id}))
+            .format(java.time.Instant.parse($F{order_place_at}.toString().substring(0, 10)+"T"+$F{order_place_at}.toString().substring(11,19)+".000Z")).substring(9)
+]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
