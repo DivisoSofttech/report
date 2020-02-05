@@ -60,6 +60,7 @@ public class AuxItemServiceImpl implements AuxItemService {
     }
     private void updateToEs(AuxItemDTO auxItemDTO) {
     	AuxItem auxItem = auxItemMapper.toEntity(auxItemDTO);
+    	auxItem = auxItemRepository.save(auxItem);
     	auxItemSearchRepository.save(auxItem);
     }
     /**
