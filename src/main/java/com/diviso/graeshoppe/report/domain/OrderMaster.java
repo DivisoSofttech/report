@@ -143,6 +143,9 @@ public class OrderMaster implements Serializable {
     @Column(name = "cancellation_ref")
     private Long cancellationRef;
 
+    @Column(name = "next_task_id")
+    private String nextTaskId;
+
     @OneToMany(mappedBy = "orderMaster")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<OrderLine> orderLines = new HashSet<>();
@@ -652,6 +655,19 @@ public class OrderMaster implements Serializable {
         this.cancellationRef = cancellationRef;
     }
 
+    public String getNextTaskId() {
+        return nextTaskId;
+    }
+
+    public OrderMaster nextTaskId(String nextTaskId) {
+        this.nextTaskId = nextTaskId;
+        return this;
+    }
+
+    public void setNextTaskId(String nextTaskId) {
+        this.nextTaskId = nextTaskId;
+    }
+
     public Set<OrderLine> getOrderLines() {
         return orderLines;
     }
@@ -765,6 +781,7 @@ public class OrderMaster implements Serializable {
             ", loyaltyPoint=" + getLoyaltyPoint() +
             ", refundedAmount=" + getRefundedAmount() +
             ", cancellationRef=" + getCancellationRef() +
+            ", nextTaskId='" + getNextTaskId() + "'" +
             "}";
     }
 }

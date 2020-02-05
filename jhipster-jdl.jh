@@ -41,8 +41,8 @@ paymentStatus String,
 zoneId String,
 loyaltyPoint Long,
 refundedAmount Double,
-cancellationRef Long
-
+cancellationRef Long,
+nextTaskId String
 
 }
 

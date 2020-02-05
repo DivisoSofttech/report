@@ -208,6 +208,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setOrderNumber(order.getOrderId());
 		orderMaster.setDeliveryCharge(order.getDeliveryInfo().getDeliveryCharge());
 		orderMaster.setLoyaltyPoint(customer.getLoyaltyPoint());
+		orderMaster.setNextTaskId(order.getNextTaskId());
 		if (order.getCustomerPhone() != 0) {
 			orderMaster.setPhone(order.getCustomerPhone());
 		} else {

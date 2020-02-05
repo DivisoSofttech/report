@@ -86,6 +86,8 @@ public class OrderMasterDTO implements Serializable {
 
     private Long cancellationRef;
 
+    private String nextTaskId;
+
 
     public Long getId() {
         return id;
@@ -399,6 +401,14 @@ public class OrderMasterDTO implements Serializable {
         this.cancellationRef = cancellationRef;
     }
 
+    public String getNextTaskId() {
+        return nextTaskId;
+    }
+
+    public void setNextTaskId(String nextTaskId) {
+        this.nextTaskId = nextTaskId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -462,6 +472,7 @@ public class OrderMasterDTO implements Serializable {
             ", loyaltyPoint=" + getLoyaltyPoint() +
             ", refundedAmount=" + getRefundedAmount() +
             ", cancellationRef=" + getCancellationRef() +
+            ", nextTaskId='" + getNextTaskId() + "'" +
             "}";
     }
 }
