@@ -21,6 +21,7 @@
     <include file="config/liquibase/changelog/20191231084242_added_entity_Sale.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191231084243_added_entity_TicketLine.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191231084244_added_entity_OfferLine.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200205062245_added_entity_Notification.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20191231084239_added_entity_constraints_AuxItem.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191231084240_added_entity_constraints_ComboItem.xml" relativeToChangelogFile="false"/>

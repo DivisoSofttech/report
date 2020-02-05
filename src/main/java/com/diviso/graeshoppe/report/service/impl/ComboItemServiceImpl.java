@@ -2,9 +2,11 @@ package com.diviso.graeshoppe.report.service.impl;
 
 import com.diviso.graeshoppe.report.service.ComboItemService;
 import com.diviso.graeshoppe.report.domain.ComboItem;
+import com.diviso.graeshoppe.report.domain.OrderLine;
 import com.diviso.graeshoppe.report.repository.ComboItemRepository;
 import com.diviso.graeshoppe.report.repository.search.ComboItemSearchRepository;
 import com.diviso.graeshoppe.report.service.dto.ComboItemDTO;
+import com.diviso.graeshoppe.report.service.dto.OrderLineDTO;
 import com.diviso.graeshoppe.report.service.mapper.ComboItemMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,9 +54,14 @@ public class ComboItemServiceImpl implements ComboItemService {
         comboItem = comboItemRepository.save(comboItem);
         ComboItemDTO result = comboItemMapper.toDto(comboItem);
         comboItemSearchRepository.save(comboItem);
+        updateToEs(result);
         return result;
     }
 
+    private void updateToEs(ComboItemDTO comboItemDTO) {
+    	ComboItem comboItem = comboItemMapper.toEntity(comboItemDTO);
+    	comboItemSearchRepository.save(comboItem);
+    }
     /**
      * Get all the comboItems.
      *

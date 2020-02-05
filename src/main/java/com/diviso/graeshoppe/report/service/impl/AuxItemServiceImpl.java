@@ -2,9 +2,11 @@ package com.diviso.graeshoppe.report.service.impl;
 
 import com.diviso.graeshoppe.report.service.AuxItemService;
 import com.diviso.graeshoppe.report.domain.AuxItem;
+import com.diviso.graeshoppe.report.domain.ComboItem;
 import com.diviso.graeshoppe.report.repository.AuxItemRepository;
 import com.diviso.graeshoppe.report.repository.search.AuxItemSearchRepository;
 import com.diviso.graeshoppe.report.service.dto.AuxItemDTO;
+import com.diviso.graeshoppe.report.service.dto.ComboItemDTO;
 import com.diviso.graeshoppe.report.service.mapper.AuxItemMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,9 +55,13 @@ public class AuxItemServiceImpl implements AuxItemService {
         auxItem = auxItemRepository.save(auxItem);
         AuxItemDTO result = auxItemMapper.toDto(auxItem);
         auxItemSearchRepository.save(auxItem);
+        updateToEs(result);
         return result;
     }
-
+    private void updateToEs(AuxItemDTO auxItemDTO) {
+    	AuxItem auxItem = auxItemMapper.toEntity(auxItemDTO);
+    	auxItemSearchRepository.save(auxItem);
+    }
     /**
      * Get all the auxItems.
      *

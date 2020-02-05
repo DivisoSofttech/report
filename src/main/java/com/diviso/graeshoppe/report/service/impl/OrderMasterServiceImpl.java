@@ -2,6 +2,7 @@ package com.diviso.graeshoppe.report.service.impl;
 
 import com.diviso.graeshoppe.report.service.AuxItemService;
 import com.diviso.graeshoppe.report.service.ComboItemService;
+import com.diviso.graeshoppe.report.service.NotificationService;
 import com.diviso.graeshoppe.report.service.OfferLineService;
 import com.diviso.graeshoppe.report.service.OrderLineService;
 import com.diviso.graeshoppe.report.service.OrderMasterService;
@@ -20,6 +21,7 @@ import com.diviso.graeshoppe.report.repository.OrderMasterRepository;
 import com.diviso.graeshoppe.report.repository.search.OrderMasterSearchRepository;
 import com.diviso.graeshoppe.report.service.dto.AuxItemDTO;
 import com.diviso.graeshoppe.report.service.dto.ComboItemDTO;
+import com.diviso.graeshoppe.report.service.dto.NotificationDTO;
 import com.diviso.graeshoppe.report.service.dto.OfferLineDTO;
 import com.diviso.graeshoppe.report.service.dto.OrderLineDTO;
 import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
@@ -56,6 +58,8 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 
 	private final OrderMasterRepository orderMasterRepository;
 
+	@Autowired
+	private NotificationService notificationService;
 	@Autowired
 	ElasticsearchOperations elasticsearchOperations;
 
@@ -296,6 +300,18 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 				auxItemService.save(auxItemDTO);
 			});
 		});
+		
+		NotificationDTO notificationToPayee = new NotificationDTO();
+		notificationToPayee.setDate(Instant.now());
+		notificationToPayee.setMessage("Congrats You've a new Order Request");
+		notificationToPayee.setTitle("Order Request");
+		notificationToPayee.setTargetId(updatedResult.getOrderNumber());
+		notificationToPayee.setType("Order-Request");
+		notificationToPayee.setStatus("unread");
+		notificationToPayee.setReceiverId(updatedResult.getStoreIdpcode());
+		NotificationDTO resultNotificationPayee=notificationService.save(notificationToPayee);
+		notificationService.publishNotificationToMessageBroker(resultNotificationPayee);
+		
 	}
 
 	private OrderLine toOrderLine(com.diviso.graeshoppe.order.avro.OrderLine orderLine) {
