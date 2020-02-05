@@ -88,7 +88,8 @@ public class OrderLineServiceImpl implements OrderLineService {
 
     private void updateToEs(OrderLineDTO orderLineDTO) {
     	OrderLine orderLine = orderLineMapper.toEntity(orderLineDTO);
-         orderLineSearchRepository.save(orderLine);
+        orderLine = orderLineRepository.save(orderLine);
+        orderLineSearchRepository.save(orderLine);
     }
     /**
      * Delete the orderLine by id.

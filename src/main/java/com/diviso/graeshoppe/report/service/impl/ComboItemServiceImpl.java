@@ -60,6 +60,7 @@ public class ComboItemServiceImpl implements ComboItemService {
 
     private void updateToEs(ComboItemDTO comboItemDTO) {
     	ComboItem comboItem = comboItemMapper.toEntity(comboItemDTO);
+    	comboItem = comboItemRepository.save(comboItem);
     	comboItemSearchRepository.save(comboItem);
     }
     /**
