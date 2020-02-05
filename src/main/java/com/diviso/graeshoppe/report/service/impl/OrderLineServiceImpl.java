@@ -87,6 +87,7 @@ public class OrderLineServiceImpl implements OrderLineService {
     }
 
     private void updateToEs(OrderLine orderLineES) {
+    	orderLineES = orderLineRepository.save(orderLineES);
          orderLineSearchRepository.save(orderLineES);
     }
     /**
