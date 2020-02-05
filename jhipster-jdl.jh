@@ -46,6 +46,18 @@ cancellationRef Long
 
 }
 
+
+entity Notification{
+	title String,
+	message String,
+	targetId String,
+	type String,
+	imageLink String,
+	date Instant,
+	receiverId String,
+	status String
+}
+
 /*OrderLine entity
 *Author Neeraja
 */

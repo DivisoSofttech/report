@@ -4,8 +4,13 @@ import com.diviso.graeshoppe.report.config.KafkaProperties;
 import com.diviso.graeshoppe.report.service.dto.OrderMasterDTO;
 import com.diviso.graeshoppe.order.avro.*;
 import com.diviso.graeshoppe.avro.*;
+import com.diviso.graeshoppe.notification.avro.Notification;
+
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.RecordMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +24,7 @@ import java.time.Instant;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -29,6 +35,8 @@ public class OrderSyncService {
 
 	@Value("${topic.orderstate.destination}")
 	private String orderStateTopic;
+	@Value("${topic.notification.destination}")
+	private String notificationTopic;
 	@Value("${topic.order.destination}")
 	private String orderTopic;
 	@Value("${topic.approvalInfo.destination}")
@@ -37,14 +45,35 @@ public class OrderSyncService {
 	private String cancellationTopic;
 	private final KafkaProperties kafkaProperties;
 	private ExecutorService sseExecutorService = Executors.newCachedThreadPool();
+	private KafkaProducer<String, Notification> notificatonProducer;
 
 	@Autowired
 	private OrderMasterService orderMasterService;
 
 	public OrderSyncService(KafkaProperties kafkaProperties) {
 		this.kafkaProperties = kafkaProperties;
+		this.notificatonProducer = new KafkaProducer<>(kafkaProperties.getProducerProps());
 	}
 
+	public PublishResult publishNotification(Notification message) throws ExecutionException, InterruptedException {
+		RecordMetadata metadata = notificatonProducer.send(new ProducerRecord<>(notificationTopic, message)).get();
+		return new PublishResult(metadata.topic(), metadata.partition(), metadata.offset(),
+				Instant.ofEpochMilli(metadata.timestamp()));
+	}
+	
+	public static class PublishResult {
+		public final String topic;
+		public final int partition;
+		public final long offset;
+		public final Instant timestamp;
+
+		private PublishResult(String topic, int partition, long offset, Instant timestamp) {
+			this.topic = topic;
+			this.partition = partition;
+			this.offset = offset;
+			this.timestamp = timestamp;
+		}
+	}
 	public void subscribeToOrderState() {
 		log.debug("REST request to consume records from Kafka topics {}", orderStateTopic);
 		Map<String, Object> consumerProps = kafkaProperties.getConsumerProps();
@@ -182,6 +211,7 @@ public class OrderSyncService {
 		});
 	}
 
+	
 	public void startConsumers() {
 		subscribeToApprovalInfo();
 		subscribeToOrder();
