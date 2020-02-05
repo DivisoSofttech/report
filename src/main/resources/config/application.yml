@@ -211,9 +211,10 @@ kafka:
     specific.avro.reader: true
     auto.offset.reset: earliest
     schema.registry.url: http://dev.servers.divisosofttech.com:8081
-#  producer:
-#    key.serializer: org.apache.kafka.common.serialization.StringSerializer
-#    value.serializer: org.apache.kafka.common.serialization.StringSerializer
+  producer:
+    key.serializer: org.apache.kafka.common.serialization.StringSerializer
+    value.serializer: com.diviso.graeshoppe.report.config.SerdeConfig
+    bootstrap.servers: dev.servers.divisosofttech.com:9092
 # ===================================================================
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class
@@ -230,5 +231,7 @@ topic:
    cancellation:
       destination: cancellationrequest
    orderstate:
-     destination: orderstatechange 
+     destination: orderstatechange
+   notification:
+     destination: notificationx 
 # application:
