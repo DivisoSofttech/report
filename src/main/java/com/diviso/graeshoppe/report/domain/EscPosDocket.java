@@ -323,7 +323,7 @@ public class EscPosDocket {
 		
 		return ""+getStoreName()+
 			   "\n"+getStorelocationName()+
-			   "\\n----------------------------";
+			   "\n----------------------------";
 	
 	}
 	
