@@ -202,7 +202,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		OrderMaster orderMaster = new OrderMaster();
 		Store store = findStoreByStoreId(order.getStoreId());
 		Customer customer = findCustomerByReference(order.getCustomerId());
-		log.info("Customer findByReference ", customer);
+		log.info("Customer findByReference " + customer);
 		orderMaster.setStoreName(store.getName());
 		orderMaster.setStorePhone(store.getContactNo());
 		orderMaster.setMethodOfOrder(order.getDeliveryInfo().getDeliveryType().toUpperCase());
