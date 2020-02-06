@@ -209,6 +209,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setDeliveryCharge(order.getDeliveryInfo().getDeliveryCharge());
 		orderMaster.setLoyaltyPoint(customer.getLoyaltyPoint());
 		orderMaster.setNextTaskId(order.getNextTaskId());
+		orderMaster.setCustomerName(customer.getName());
 		if (order.getCustomerPhone() != 0) {
 			orderMaster.setPhone(order.getCustomerPhone());
 		} else {
@@ -248,9 +249,6 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 			orderMaster.setAddressType(order.getDeliveryInfo().getDeliveryAddress().getAddressType());
 			orderMaster.setCustomerName(order.getDeliveryInfo().getDeliveryAddress().getName());
 			orderMaster.setCustomerName(order.getDeliveryInfo().getDeliveryAddress().getName());
-
-		} else {
-			orderMaster.setCustomerName(customer.getName());
 
 		}
 		orderMaster.setCustomerId(customer.getCustomerUniqueId());
