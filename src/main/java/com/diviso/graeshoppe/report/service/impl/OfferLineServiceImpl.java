@@ -2,9 +2,11 @@ package com.diviso.graeshoppe.report.service.impl;
 
 import com.diviso.graeshoppe.report.service.OfferLineService;
 import com.diviso.graeshoppe.report.domain.OfferLine;
+import com.diviso.graeshoppe.report.domain.OrderLine;
 import com.diviso.graeshoppe.report.repository.OfferLineRepository;
 import com.diviso.graeshoppe.report.repository.search.OfferLineSearchRepository;
 import com.diviso.graeshoppe.report.service.dto.OfferLineDTO;
+import com.diviso.graeshoppe.report.service.dto.OrderLineDTO;
 import com.diviso.graeshoppe.report.service.mapper.OfferLineMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,9 +55,16 @@ public class OfferLineServiceImpl implements OfferLineService {
         offerLine = offerLineRepository.save(offerLine);
         OfferLineDTO result = offerLineMapper.toDto(offerLine);
         offerLineSearchRepository.save(offerLine);
+        updateToEs(offerLineDTO);
         return result;
     }
 
+    private void updateToEs(OfferLineDTO offerLineDTO) {
+    	OfferLine offerLine = offerLineMapper.toEntity(offerLineDTO);
+    	offerLine = offerLineRepository.save(offerLine);
+    	offerLineSearchRepository.save(offerLine);
+    }
+    
     /**
      * Get all the offerLines.
      *
