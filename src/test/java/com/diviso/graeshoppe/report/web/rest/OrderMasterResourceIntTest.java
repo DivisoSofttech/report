@@ -165,6 +165,9 @@ public class OrderMasterResourceIntTest {
     private static final Long DEFAULT_CANCELLATION_REF = 1L;
     private static final Long UPDATED_CANCELLATION_REF = 2L;
 
+    private static final String DEFAULT_NEXT_TASK_ID = "AAAAAAAAAA";
+    private static final String UPDATED_NEXT_TASK_ID = "BBBBBBBBBB";
+
     @Autowired
     private OrderMasterRepository orderMasterRepository;
 
@@ -258,7 +261,8 @@ public class OrderMasterResourceIntTest {
             .zoneId(DEFAULT_ZONE_ID)
             .loyaltyPoint(DEFAULT_LOYALTY_POINT)
             .refundedAmount(DEFAULT_REFUNDED_AMOUNT)
-            .cancellationRef(DEFAULT_CANCELLATION_REF);
+            .cancellationRef(DEFAULT_CANCELLATION_REF)
+            .nextTaskId(DEFAULT_NEXT_TASK_ID);
         return orderMaster;
     }
 
@@ -321,6 +325,7 @@ public class OrderMasterResourceIntTest {
         assertThat(testOrderMaster.getLoyaltyPoint()).isEqualTo(DEFAULT_LOYALTY_POINT);
         assertThat(testOrderMaster.getRefundedAmount()).isEqualTo(DEFAULT_REFUNDED_AMOUNT);
         assertThat(testOrderMaster.getCancellationRef()).isEqualTo(DEFAULT_CANCELLATION_REF);
+        assertThat(testOrderMaster.getNextTaskId()).isEqualTo(DEFAULT_NEXT_TASK_ID);
 
         // Validate the OrderMaster in Elasticsearch
         verify(mockOrderMasterSearchRepository, times(1)).save(testOrderMaster);
@@ -397,7 +402,8 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].zoneId").value(hasItem(DEFAULT_ZONE_ID.toString())))
             .andExpect(jsonPath("$.[*].loyaltyPoint").value(hasItem(DEFAULT_LOYALTY_POINT.intValue())))
             .andExpect(jsonPath("$.[*].refundedAmount").value(hasItem(DEFAULT_REFUNDED_AMOUNT.doubleValue())))
-            .andExpect(jsonPath("$.[*].cancellationRef").value(hasItem(DEFAULT_CANCELLATION_REF.intValue())));
+            .andExpect(jsonPath("$.[*].cancellationRef").value(hasItem(DEFAULT_CANCELLATION_REF.intValue())))
+            .andExpect(jsonPath("$.[*].nextTaskId").value(hasItem(DEFAULT_NEXT_TASK_ID.toString())));
     }
     
     @Test
@@ -448,7 +454,8 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.zoneId").value(DEFAULT_ZONE_ID.toString()))
             .andExpect(jsonPath("$.loyaltyPoint").value(DEFAULT_LOYALTY_POINT.intValue()))
             .andExpect(jsonPath("$.refundedAmount").value(DEFAULT_REFUNDED_AMOUNT.doubleValue()))
-            .andExpect(jsonPath("$.cancellationRef").value(DEFAULT_CANCELLATION_REF.intValue()));
+            .andExpect(jsonPath("$.cancellationRef").value(DEFAULT_CANCELLATION_REF.intValue()))
+            .andExpect(jsonPath("$.nextTaskId").value(DEFAULT_NEXT_TASK_ID.toString()));
     }
 
     @Test
@@ -509,7 +516,8 @@ public class OrderMasterResourceIntTest {
             .zoneId(UPDATED_ZONE_ID)
             .loyaltyPoint(UPDATED_LOYALTY_POINT)
             .refundedAmount(UPDATED_REFUNDED_AMOUNT)
-            .cancellationRef(UPDATED_CANCELLATION_REF);
+            .cancellationRef(UPDATED_CANCELLATION_REF)
+            .nextTaskId(UPDATED_NEXT_TASK_ID);
         OrderMasterDTO orderMasterDTO = orderMasterMapper.toDto(updatedOrderMaster);
 
         restOrderMasterMockMvc.perform(put("/api/order-masters")
@@ -559,6 +567,7 @@ public class OrderMasterResourceIntTest {
         assertThat(testOrderMaster.getLoyaltyPoint()).isEqualTo(UPDATED_LOYALTY_POINT);
         assertThat(testOrderMaster.getRefundedAmount()).isEqualTo(UPDATED_REFUNDED_AMOUNT);
         assertThat(testOrderMaster.getCancellationRef()).isEqualTo(UPDATED_CANCELLATION_REF);
+        assertThat(testOrderMaster.getNextTaskId()).isEqualTo(UPDATED_NEXT_TASK_ID);
 
         // Validate the OrderMaster in Elasticsearch
         verify(mockOrderMasterSearchRepository, times(1)).save(testOrderMaster);
@@ -656,7 +665,8 @@ public class OrderMasterResourceIntTest {
             .andExpect(jsonPath("$.[*].zoneId").value(hasItem(DEFAULT_ZONE_ID)))
             .andExpect(jsonPath("$.[*].loyaltyPoint").value(hasItem(DEFAULT_LOYALTY_POINT.intValue())))
             .andExpect(jsonPath("$.[*].refundedAmount").value(hasItem(DEFAULT_REFUNDED_AMOUNT.doubleValue())))
-            .andExpect(jsonPath("$.[*].cancellationRef").value(hasItem(DEFAULT_CANCELLATION_REF.intValue())));
+            .andExpect(jsonPath("$.[*].cancellationRef").value(hasItem(DEFAULT_CANCELLATION_REF.intValue())))
+            .andExpect(jsonPath("$.[*].nextTaskId").value(hasItem(DEFAULT_NEXT_TASK_ID)));
     }
 
     @Test
