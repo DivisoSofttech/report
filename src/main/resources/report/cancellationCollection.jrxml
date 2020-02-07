@@ -17,7 +17,7 @@
 	<parameter name="date" class="java.lang.String"/>
 	<parameter name="store_idpcode" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select order_number, total_due, refunded_amount from order_master  where date(order_place_at)=  $P{date} && store_idpcode=  $P{store_idpcode} && payment_status="ORDER PAID" && method_of_order="COLLECTION"]]>
+		<![CDATA[select order_number, round(COALESCE( total_due,0),2)'total_due',round(COALESCE( refunded_amount,0),2)'refunded_amount'  from order_master  where date(order_place_at)=  $P{date} && store_idpcode=  $P{store_idpcode} && payment_status="ORDER PAID" && method_of_order="COLLECTION"]]>
 	</queryString>
 	<field name="order_number" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="order_number"/>
@@ -81,13 +81,13 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{order_number}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="41" y="3" width="50" height="17" uuid="635fe79b-ea10-47e5-bea0-54ace5aee8e4"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="41" y="3" width="50" height="17" isRemoveLineWhenBlank="true" uuid="635fe79b-ea10-47e5-bea0-54ace5aee8e4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{refunded_amount}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="90" y="3" width="50" height="17" uuid="0b5adb72-2332-4450-90b1-dc3ddef81df6">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="90" y="3" width="50" height="17" isRemoveLineWhenBlank="true" uuid="0b5adb72-2332-4450-90b1-dc3ddef81df6">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6042f06a-7ec5-4536-b1f2-c92dede401e2"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>

@@ -78,8 +78,7 @@
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
             .withZone(java.time.ZoneId.of($F{zone_id}))
-            .format(java.time.Instant.parse($F{order_place_at}.toString().substring(0, 10)+"T"+$F{order_place_at}.toString().substring(11,19)+".000Z")).substring(9)
-]]></textFieldExpression>
+            .format(java.time.Instant.parse($F{order_place_at}.toString().substring(0, 10)+"T"+$F{order_place_at}.toString().substring(11,19)+".000Z")).substring(9)]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
