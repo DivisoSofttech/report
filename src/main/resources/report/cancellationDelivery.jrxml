@@ -17,7 +17,7 @@
 	<parameter name="date" class="java.lang.String"/>
 	<parameter name="store_idpcode" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select order_number, round(COALESCE( total_due,0),2)'total_due',round(COALESCE( refunded_amount,0),2)'refunded_amount'  from order_master  where date(order_place_at)=  $P{date} && store_idpcode=  $P{store_idpcode} && payment_status="ORDER PAID" && method_of_order="DELIVERY"]]>
+		<![CDATA[select order_number, round(COALESCE( total_due,0),2)'total_due',round(COALESCE( refunded_amount,0),2)'refunded_amount'  from order_master  where date(order_place_at)=  $P{date} && store_idpcode=  $P{store_idpcode} &&refunded_amount !=0 && payment_status="ORDER PAID" && method_of_order="DELIVERY"]]>
 	</queryString>
 	<field name="order_number" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="order_number"/>

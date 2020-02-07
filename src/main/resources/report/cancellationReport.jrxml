@@ -191,7 +191,7 @@
 				<textFieldExpression><![CDATA["Detailed Orders"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-22" y="98" width="166" height="19" uuid="f89324e7-bcde-45b2-a974-c675c07b57f9"/>
+				<reportElement positionType="Float" x="-21" y="98" width="166" height="19" uuid="f89324e7-bcde-45b2-a974-c675c07b57f9"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
@@ -218,6 +218,13 @@
 				<reportElement positionType="Float" x="104" y="229" width="38" height="21" uuid="13905bed-8d9d-4933-97ac-1d151face3f0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{Collection_refund_v}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="28" y="117" width="110" height="20" uuid="764d8bfe-7718-44d1-afa5-e1fd411266c6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date(order_place_at)}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
