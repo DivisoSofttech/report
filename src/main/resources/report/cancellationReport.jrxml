@@ -224,7 +224,7 @@
 	<detail>
 		<band height="23" splitType="Stretch">
 			<subreport>
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="-19" y="3" width="159" height="10" uuid="f25d25b7-00a8-4ced-a693-e3c0225fd584"/>
+				<reportElement positionType="Float" x="-19" y="3" width="159" height="10" uuid="f25d25b7-00a8-4ced-a693-e3c0225fd584"/>
 				<subreportParameter name="date">
 					<subreportParameterExpression><![CDATA[$P{date}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -235,7 +235,7 @@
 				<subreportExpression><![CDATA["src/main/resources/report/cancellationDelivery.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="-18" y="13" width="158" height="10" uuid="6b519176-c8e3-491a-a7ff-77ca3c6297cc"/>
+				<reportElement positionType="Float" x="-18" y="13" width="158" height="10" uuid="6b519176-c8e3-491a-a7ff-77ca3c6297cc"/>
 				<subreportParameter name="date">
 					<subreportParameterExpression><![CDATA[$P{date}]]></subreportParameterExpression>
 				</subreportParameter>
