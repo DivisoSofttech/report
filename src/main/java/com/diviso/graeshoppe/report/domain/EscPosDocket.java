@@ -323,12 +323,20 @@ public class EscPosDocket {
 		
 		return ""+getStoreName()+
 			   "\n"+getStorelocationName()+
-			   "\n----------------------------";
+			   "\n==============================================";
 	
 	}
 	
 	public String getContent() {
 		 String content= null;
+		 
+		 String notes= null;
+		 if(getNotes()!=null) {
+			 notes=getNotes();
+		 }
+		 else {
+			 notes="";
+		 }
 		// Date d1=new Date();
 		// LocalDateTime t = LocalDateTime.ofInstant(this.getExpectedDelivery(), null);
 		/*
@@ -356,12 +364,12 @@ public class EscPosDocket {
 			 
 			content= ""+getMethodOfOrder()+
 				     "\nDue "+strExpdlvryDate+" at asap /"+strExpdlvryTime+"\nOrder Number :"+getOrderNumber()+
-				     "\n--------------------------------"+
+				     "\n=============================================="+
 				     "\nRestaurant notes: "+
-				     "\n"+getNotes()+
+				     "\n"+notes+
 				     "\nPlease ring me on:"+getPhone()+
-				     "\n--------------------------------"+
-				     "                                EUR";
+				     "\n=============================================="+
+				     "                                         EUR";
 			
 		   }
 		 else if(getPreOrderDate()!=null) {
@@ -373,15 +381,14 @@ public class EscPosDocket {
 			            .withZone(java.time.ZoneId.of(getZoneId()))
 			            .format(java.time.Instant.parse(getPreOrderDate().toString().substring(0, 10)+"T"+getPreOrderDate().toString().substring(11,19)+".000Z")).substring(9);
 			 
-			 
 			 content= ""+getMethodOfOrder()+
-					 "\n Requested for "+strPreOrderDate+" at asap  /"+strPreOrderTime+"/nOrder Number :"+getOrderNumber()+
-					 "\n--------------------------------"+
+					 "\n Requested for "+strPreOrderDate+" at asap  /"+strPreOrderTime+"\nOrder Number :"+getOrderNumber()+
+					 "\n=============================================="+
 				     "\nRestaurant notes: "+
-				     "\n"+getNotes()+
+				     "\n"+notes+
 				     "\nPlease ring me on:"+getPhone()+
-				     "\n--------------------------------"+
-				     "                                EUR";
+				     "\n=============================================="+
+				     "                                         EUR";
 		 }
 		 return content;
 	}
@@ -405,28 +412,31 @@ public class EscPosDocket {
 	}
 	
 	public String getDiscountAndTotal() {
-		return "Food Exp discount (10%)"+getOrderDiscountAmount()+"\n"+
-				"Delivery charge :"+getDeliveryCharge()+"\n"+
-				"                 ------------------"+"\n"+
-				"Total Due"+getTotalDue()+"\n";			
+		return "Food Exp discount (10%)           :"+getOrderDiscountAmount()+"\n"+
+				"Delivery charge                  :"+getDeliveryCharge()+"\n"+
+				"                                   ============"+"\n"+
+				"Total Due                        :"+getTotalDue()+"\n";			
 	}
 	
 	
 	public String getPaymentStatusForDocket() {
-		return "----------------------------\n"+
+		return "==============================================\n"+
 				""+getPaymentStatus()+"\n"+
-				"----------------------------\n";
+				"==============================================\n";
 				
 	}
 	
 	public String getCustomerOrderDetails() {
-		return "Customer Id               :"+getCustomerId()+"\n"+
+		return 
+			   "Customer Id               :"+getCustomerId()+"\n"+
 	           "Loyalty card point        :"+getLoyaltyPoint()+"\n"+
 			   "Order from this customer  :"+getOrderFromCustomer()+"\n"+
-	           "Customer's food exp order :"+getCustomerOrder()+"\n\n\n";           
+	           "Customer's food exp order :"+getCustomerOrder()+"\n\n";           
 	}
 	
 	public String getCustomerDetails() {
+		
+		
 		return "Customer details:"+"\n"+
 			   ""+getCustomerName()+"\n"+
 			   ""+getHouseNoOrBuildingName()+"\n"+
@@ -434,20 +444,31 @@ public class EscPosDocket {
 			   ""+getLandmark()+"\n"+
 			   ""+getCity()+"\n"+
 			   ""+getState()+"\n"+
-			   ""+getPincode()+"\n\n\n"+
-			   "order placed  :"+getOrderPlaceAt()+"\n"+
-			   "order accepted:"+getOrderAcceptedAt()+"\n";
+			   ""+getPincode()+"\n\n";
+			  
 			   
 	}
 	
 	public String getAttentionForFirstOrder() {
-		return "Attention : Please note this is\n the first order from this \n customer, please make sure the \n order details are correct.";
+		return "Attention : Please note this is the first order from this customer, please make sure the order details are correct.\n\n\n";
 		
+	}
+	
+	public String getOrderTimes() {
+		 String orderPlaceAt=java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
+		            .withZone(java.time.ZoneId.of(getZoneId()))
+		            .format(java.time.Instant.parse(getOrderPlaceAt().toString().substring(0, 10)+"T"+getOrderPlaceAt().toString().substring(11,19)+".000Z")).substring(0,9);   
+		 String orderAcceptedAt =java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
+		            .withZone(java.time.ZoneId.of(getZoneId()))
+		            .format(java.time.Instant.parse(getOrderAcceptedAt().toString().substring(0, 10)+"T"+getOrderAcceptedAt().toString().substring(11,19)+".000Z")).substring(9);
+		 
+		return ""+orderPlaceAt+"\n"+
+		       ""+orderAcceptedAt+"\n\n";
 	}
 	
 	public String getFooter() {
 		return "Powered by Graeshoppe\n"+
-				""+java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a").withZone(java.time.ZoneId.of(getZoneId())).format( java.time.Instant.now());
+				""+java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a").withZone(java.time.ZoneId.of(getZoneId())).format( java.time.Instant.now())+"\n\n";
 	
 	}
 	}
