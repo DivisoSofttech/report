@@ -232,7 +232,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		orderMaster.setOrderDiscountAmount(0.0);
 		orderMaster.setZoneId(order.getTimeZone());
 		if (order.getPaymentMode().equalsIgnoreCase("cod")) {
-			log.info("OrderNot paid");
+			log.info("Order Not paid");
 			orderMaster.setPaymentStatus("ORDER NOT PAID");
 		} else {
 			log.info("Order paid");
@@ -272,6 +272,7 @@ public class OrderMasterServiceImpl implements OrderMasterService {
 		OrderMaster updatedResult = orderMasterRepository.save(orderMaster);
 		orderMasterSearchRepository.save(updatedResult);
 		order.getOfferLines().forEach(offer -> {
+			log.info("OfferLine saving is ++++++"+ offer);
 			OfferLineDTO offerLine = new OfferLineDTO();
 			offerLine.setOfferRef(offer.getOfferRef());
 			offerLine.setDiscountAmount(offer.getDiscountAmount());

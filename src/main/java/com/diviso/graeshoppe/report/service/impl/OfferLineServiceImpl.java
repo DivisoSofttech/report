@@ -60,6 +60,7 @@ public class OfferLineServiceImpl implements OfferLineService {
     }
 
     private void updateToEs(OfferLineDTO offerLineDTO) {
+    	log.info("Update to es parameter "+ offerLineDTO);
     	OfferLine offerLine = offerLineMapper.toEntity(offerLineDTO);
     	offerLine = offerLineRepository.save(offerLine);
     	offerLineSearchRepository.save(offerLine);
