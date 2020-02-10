@@ -55,7 +55,7 @@ public class OfferLineServiceImpl implements OfferLineService {
         offerLine = offerLineRepository.save(offerLine);
         OfferLineDTO result = offerLineMapper.toDto(offerLine);
         offerLineSearchRepository.save(offerLine);
-        updateToEs(offerLineDTO);
+        //updateToEs(offerLineDTO);
         return result;
     }
 
