@@ -396,8 +396,21 @@ public class EscPosDocket {
 	public String getProducts() {
 		 String content= "";
 		 System.out.println(">>>>>>>>>>>>>>>>>>>>>>"+getOrderLines());
+		 
+		
 		 for(OrderLine ol:getOrderLines()) {
-			 content= content.concat(""+ol.getQuantity()+" x "+""+ol.getItem()+"   "+ol.getTotal()+"\n");
+			 String total=""+ol.getTotal();
+			 int space=(48-ol.getItem().length())-total.length();
+			 content= content.concat(""+ol.getQuantity()+" x "+""+ol.getItem());
+			 for(int i=0;i<=space;i++) { 
+				 System.out.println("inside space loop "+i);
+			 content= content.concat(content+"");
+			 }
+			/*
+			 * content= content.concat(""+ol.getQuantity()+" x "+""+ol.getItem()+ ""+
+			 * for(int i=0;i<=space;i++) { System.out.println(""); } + ol.getTotal()+"\n");
+			 */
+			 content= content.concat(""+ol.getTotal());
 			 for(AuxItem ai:ol.getAuxItems()) {
 				 System.out.println("////////////Entering auxitem for loop in escposdocket");
 				 content=content.concat(""+ai.getQuantity()+" x "+""+ai.getAuxItem()+"   "+ai.getTotal()+"\n");
