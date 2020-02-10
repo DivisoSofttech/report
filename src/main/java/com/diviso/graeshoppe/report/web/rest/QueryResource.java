@@ -266,6 +266,10 @@ public class QueryResource {
 
 	}
 	
+	@GetMapping("/findOrderMasterByOrderNumber/{orderNumber}")
+	public OrderMasterDTO findOrderMasterByOrderNumber(@PathVariable String orderNumber) {
+		return orderMasterService.findOrderMasterByOrderNumber(orderNumber);
+	}
 
 	
 	
@@ -564,6 +568,9 @@ System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf re
 		
 	}
 	
+	
+	
+	
 	@GetMapping("/allEscDocket")
 	public EscPosDocket findAll() {
 		return null;
@@ -631,6 +638,13 @@ System.out.println(">>>>>>>>>>>>>>> entering getAllOrdersByPaymentStatusAsPdf re
 	public String getCustomerDetails(@PathVariable String orderNumber) {
 	
 		return queryService.getDocketCustomerDetails(orderNumber);	
+	}
+	
+	@GetMapping("/docketOrderTime/{orderNumber}")
+
+	public String getOrderTimes(@PathVariable String orderNumber) {
+	
+		return queryService.getOrderTimes(orderNumber);	
 	}
 	
 	@GetMapping("/docketAttentionForOrder/{orderNumber}")

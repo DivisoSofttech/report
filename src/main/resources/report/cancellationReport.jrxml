@@ -17,11 +17,14 @@
 	<parameter name="date" class="java.lang.String"/>
 	<parameter name="store_idpcode" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select store_name,zone_id, round(COALESCE( sum(case when payment_status= 'ORDER PAID' then total_due end),0),2)'all_V', round(COALESCE( sum(refunded_amount),0),2)'refund_V',round(COALESCE(sum(case when method_of_order='DELIVERY' AND payment_status='ORDER PAID' then total_due end), 0),2)'delivery_v', round(COALESCE(sum(case when method_of_order='DELIVERY'AND payment_status='ORDER PAID' then refunded_amount end), 0),2)'delivery_refund_v', round(COALESCE(sum(case when method_of_order='COLLECTION' AND payment_status='ORDER PAID' then total_due end),0),2)'Collection_v',round(COALESCE(sum(case when method_of_order='COLLECTION' AND payment_status='ORDER PAID' then refunded_amount end),0),2)'Collection_refund_v',COALESCE(count(if(payment_status='ORDER PAID',1,null)),0)'all', COALESCE(count(if(method_of_order='DELIVERY'and payment_status='ORDER PAID',1,null)),0)'DELIVERY' ,  COALESCE(count(if(method_of_order='COLLECTION' and payment_status='ORDER PAID',1,null)),0)'COLLECTION'  from order_master where( date(order_place_at) =  $P{date} and store_idpcode =$P{store_idpcode} )group by store_name, zone_id;]]>
+		<![CDATA[select store_name,date(order_place_at),zone_id, round(COALESCE( sum(case when payment_status= 'ORDER PAID' then total_due end),0),2)'all_V', round(COALESCE( sum(refunded_amount),0),2)'refund_V',round(COALESCE(sum(case when method_of_order='DELIVERY' AND payment_status='ORDER PAID' then total_due end), 0),2)'delivery_v', round(COALESCE(sum(case when method_of_order='DELIVERY'AND payment_status='ORDER PAID' then refunded_amount end), 0),2)'delivery_refund_v', round(COALESCE(sum(case when method_of_order='COLLECTION' AND payment_status='ORDER PAID' then total_due end),0),2)'Collection_v',round(COALESCE(sum(case when method_of_order='COLLECTION' AND payment_status='ORDER PAID' then refunded_amount end),0),2)'Collection_refund_v',COALESCE(count(if(payment_status='ORDER PAID',1,null)),0)'all', COALESCE(count(if(method_of_order='DELIVERY'and payment_status='ORDER PAID',1,null)),0)'DELIVERY' ,  COALESCE(count(if(method_of_order='COLLECTION' and payment_status='ORDER PAID',1,null)),0)'COLLECTION'  from order_master where( date(order_place_at) = $P{date}   and store_idpcode = $P{store_idpcode}  and refunded_amount != 0 )group by store_name, date(order_place_at),zone_id;]]>
 	</queryString>
 	<field name="store_name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="store_name"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="order_master"/>
+	</field>
+	<field name="date(order_place_at)" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="date(order_place_at)"/>
 	</field>
 	<field name="zone_id" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="zone_id"/>
@@ -96,13 +99,6 @@
 					<pen lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
-			<textField isStretchWithOverflow="true" pattern="d/M/yyyy">
-				<reportElement positionType="Float" x="2" y="117" width="137" height="21" uuid="8fb1bb63-2941-433e-846e-38885f1db06d"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{date}]]></textFieldExpression>
-			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="-12" y="146" width="47" height="20" uuid="1f943e53-5b88-44c9-aed6-fd31ffd88010"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -195,7 +191,7 @@
 				<textFieldExpression><![CDATA["Detailed Orders"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="-22" y="98" width="166" height="19" uuid="f89324e7-bcde-45b2-a974-c675c07b57f9"/>
+				<reportElement positionType="Float" x="-21" y="98" width="166" height="19" uuid="f89324e7-bcde-45b2-a974-c675c07b57f9"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
@@ -222,6 +218,13 @@
 				<reportElement positionType="Float" x="104" y="229" width="38" height="21" uuid="13905bed-8d9d-4933-97ac-1d151face3f0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{Collection_refund_v}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="28" y="117" width="110" height="20" uuid="764d8bfe-7718-44d1-afa5-e1fd411266c6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date(order_place_at)}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

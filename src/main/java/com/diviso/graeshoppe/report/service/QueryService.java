@@ -103,6 +103,8 @@ public interface QueryService {
 
 	String getAttentionForOrder(String orderNumber);
 
+	String getOrderTimes(String orderNumber);
+
 	
 
 	//ReportSummary createReportSummaryBetweenTwoDates(String fromDate, String toDate);

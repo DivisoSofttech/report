@@ -17,7 +17,7 @@
 	<parameter name="date" class="java.lang.String"/>
 	<parameter name="store_idpcode" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select  zone_id,order_number, total_due, order_place_at from order_master where date(order_place_at)=  $P{date} && store_idpcode=  $P{store_idpcode} && method_of_order="COLLECTION" && payment_status="ORDER PAID"]]>
+		<![CDATA[select  zone_id,order_number, total_due, order_place_at from order_master where date(order_place_at)=  $P{date} && store_idpcode=  $P{store_idpcode} && refunded_amount != 0 && method_of_order="COLLECTION" && payment_status="ORDER PAID"]]>
 	</queryString>
 	<field name="zone_id" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="zone_id"/>
@@ -78,8 +78,7 @@
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
             .withZone(java.time.ZoneId.of($F{zone_id}))
-            .format(java.time.Instant.parse($F{order_place_at}.toString().substring(0, 10)+"T"+$F{order_place_at}.toString().substring(11,19)+".000Z")).substring(9)
-]]></textFieldExpression>
+            .format(java.time.Instant.parse($F{order_place_at}.toString().substring(0, 10)+"T"+$F{order_place_at}.toString().substring(11,19)+".000Z")).substring(9)]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

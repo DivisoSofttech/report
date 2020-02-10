@@ -171,4 +171,13 @@ Page<OrderMaster> findByorderPlaceAtBetweenAndStoreIdpcode(Instant dateBegin, In
 	List<OrderMaster> findByOrderPlaceAtBetweenAndStoreIdpcodeAndMethodOfOrderAndPaymentStatus(Instant dateBegin,
 			Instant dateEnd, String storeName, String methodOfOrder, String paymentStatus);
 
+	
+	/*
+	 * @Query(value
+	 * ="SELECT COALESCE(sum(c.totalDue),0)FROM OrderMaster c  WHERE c.orderPlaceAt BETWEEN :dateBegin AND :dateEnd AND c.storeName=:storeName AND  c.paymentStatus LIKE CONCAT('%',:paymentStatus,'%')"
+	 * ) Double
+	 * sumOftotalByPaymentStatus(@Param("dateBegin")InstantdateBegin, @Param(
+	 * "dateEnd")Instant dateEnd, @Param("storeName")String
+	 * storeName, @Param("paymentStatus") String paymentStatus);
+	 */
 }

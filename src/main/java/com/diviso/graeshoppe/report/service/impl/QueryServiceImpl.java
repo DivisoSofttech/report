@@ -1026,6 +1026,12 @@ public class QueryServiceImpl implements QueryService {
 		OrderMaster om= orderMasterRepository.findByOrderNumber(orderNumber).get();
 		return customMapper.toEntity(om).getAttentionForFirstOrder();
 	}
+
+	@Override
+	public String getOrderTimes(String orderNumber) {
+		OrderMaster om= orderMasterRepository.findByOrderNumber(orderNumber).get();
+		return customMapper.toEntity(om).getOrderTimes();
+	}
 	
 
 
