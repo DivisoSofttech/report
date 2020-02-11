@@ -407,7 +407,7 @@ public class EscPosDocket {
 			
 			for(AuxItem ai:ol.getAuxItems()) {
 				String auxTotal=""+ai.getTotal();
-				 int auxSpace=(48-ai.getAuxItem().length())-auxTotal.length()-4;
+				 int auxSpace=(44-ai.getAuxItem().length())-auxTotal.length()-4;
 				 System.out.println("////////////Entering auxitem for loop in escposdocket");
 				 content=content.concat("  "+ai.getQuantity()+" x "+""+ai.getAuxItem()+""+getSpace(auxSpace)+"  "+ai.getTotal()+"\n");
 			 }
