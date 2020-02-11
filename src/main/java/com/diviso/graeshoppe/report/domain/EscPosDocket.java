@@ -478,11 +478,11 @@ public class EscPosDocket {
 	}
 	
 	public String getSpace(int x) {
-		String s= " ";
+		String s= "";
 
 		 for(int i=0;i<=x;i++) { 
 			 System.out.println("inside getspace loop "+i);
-		    s+= "";
+		    s+= " ";
 		 }
 		 System.out.println(">>>>>>>>>>"+s);
 		 return s;
