@@ -413,7 +413,7 @@ public class EscPosDocket {
 			 }
 			 for(ComboItem ci:ol.getComboItems()) {
 				 System.out.println("////////////Entering comboitem for loop in escposdocket");
-				 content=content.concat(""+ci.getComboItem()+"   "+ci.getQuantity()+"\n"); 
+				 content=content.concat("     "+ci.getComboItem()+"       "+ci.getQuantity()+"\n"); 
 			 }
 		 }
 		 
