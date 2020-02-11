@@ -403,9 +403,13 @@ public class EscPosDocket {
 			 int space=(48-ol.getItem().length())-total.length()-3;
 			 System.out.println("?????????????????????????"+space);
 			content= content.concat(""+ol.getQuantity()+" x "+""+ol.getItem()+""+getSpace(space)+""+ol.getTotal()+"\n");
-			 for(AuxItem ai:ol.getAuxItems()) {
+			 
+			
+			for(AuxItem ai:ol.getAuxItems()) {
+				String auxTotal=""+ai.getTotal();
+				 int auxSpace=(48-ai.getAuxItem().length())-auxTotal.length()-3;
 				 System.out.println("////////////Entering auxitem for loop in escposdocket");
-				 content=content.concat(""+ai.getQuantity()+" x "+""+ai.getAuxItem()+"   "+ai.getTotal()+"\n");
+				 content=content.concat(""+ai.getQuantity()+" x "+""+ai.getAuxItem()+""+getSpace(auxSpace)+""+ai.getTotal()+"\n");
 			 }
 			 for(ComboItem ci:ol.getComboItems()) {
 				 System.out.println("////////////Entering comboitem for loop in escposdocket");
