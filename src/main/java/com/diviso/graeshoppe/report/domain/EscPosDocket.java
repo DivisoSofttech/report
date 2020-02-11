@@ -400,18 +400,25 @@ public class EscPosDocket {
 		
 		 for(OrderLine ol:getOrderLines()) {
 			 String total=""+ol.getTotal();
-			 int space=(48-ol.getItem().length())-total.length();
+			 int space=(48-ol.getItem().length())-total.length()-3;
 			 System.out.println("?????????????????????????"+space);
-			 content= content.concat(""+ol.getQuantity()+" x "+""+ol.getItem());
-			 for(int i=0;i<=space;i++) { 
-				 System.out.println("inside space loop "+i);
-			 content= content.concat(content+"x");
-			 System.out.println(""+content);
-			 }
+		
+			
+			
+			
+			/*
+			 * for(int i=0;i<=space;i++) { System.out.println("inside space loop "+i);
+			 * content= content.concat(content+""); System.out.println(""+content); }
+			 */
 			/*
 			 * content= content.concat(""+ol.getQuantity()+" x "+""+ol.getItem()+ ""+
 			 * for(int i=0;i<=space;i++) { System.out.println(""); } + ol.getTotal()+"\n");
 			 */
+			 
+			 
+			content= content.concat(""+ol.getQuantity()+" x "+""+ol.getItem()+""+getSpace(space)+""+ol.getTotal()+"\n");
+			 
+			 
 			 content= content.concat(""+ol.getTotal());
 			 for(AuxItem ai:ol.getAuxItems()) {
 				 System.out.println("////////////Entering auxitem for loop in escposdocket");
@@ -485,6 +492,17 @@ public class EscPosDocket {
 		return "Powered by Graeshoppe\n"+
 				""+java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a").withZone(java.time.ZoneId.of(getZoneId())).format( java.time.Instant.now())+"\n\n";
 	
+	}
+	
+	public String getSpace(int x) {
+		String s= " ";
+
+		 for(int i=0;i<=x;i++) { 
+			 System.out.println("inside getspace loop "+i);
+		    s+= "x";
+		 }
+		 System.out.println(">>>>>>>>>>"+s);
+		 return s;
 	}
 	}
 	
