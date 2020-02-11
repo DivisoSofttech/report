@@ -401,10 +401,12 @@ public class EscPosDocket {
 		 for(OrderLine ol:getOrderLines()) {
 			 String total=""+ol.getTotal();
 			 int space=(48-ol.getItem().length())-total.length();
+			 System.out.println("?????????????????????????"+space);
 			 content= content.concat(""+ol.getQuantity()+" x "+""+ol.getItem());
 			 for(int i=0;i<=space;i++) { 
 				 System.out.println("inside space loop "+i);
-			 content= content.concat(content+"");
+			 content= content.concat(content+"x");
+			 System.out.println(""+content);
 			 }
 			/*
 			 * content= content.concat(""+ol.getQuantity()+" x "+""+ol.getItem()+ ""+
