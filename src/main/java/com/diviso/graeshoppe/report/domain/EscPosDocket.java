@@ -407,12 +407,12 @@ public class EscPosDocket {
 				 content= content.concat("  "+ol.getQuantity()+" x "+""+splitOrderLine(ol.getItem(),total)+"\n"); 
 			 }
 			 else {
-			content= content.concat("  "+ol.getQuantity()+" x "+""+ol.getItem()+""+getSpace(space)+"  "+ol.getTotal()+"\n");
+			content= content.concat("  "+ol.getQuantity()+" x "+""+ol.getItem()+""+getSpace(space)+" "+ol.getTotal()+"\n");
 			 }
 			
 			for(AuxItem ai:ol.getAuxItems()) {
 				String auxTotal=""+ai.getTotal();
-				 int auxSpace=(44-ai.getAuxItem().length())-auxTotal.length()-7;
+				 int auxSpace=(44-ai.getAuxItem().length())-auxTotal.length()-8;
 				 System.out.println("////////////Entering auxitem for loop in escposdocket");
 				 content=content.concat("  "+ai.getQuantity()+" x "+""+ai.getAuxItem()+""+getSpace(auxSpace)+"  "+ai.getTotal()+"\n");
 			 }
@@ -426,10 +426,10 @@ public class EscPosDocket {
 	}
 	
 	public String getDiscountAndTotal() {
-		return "Food Exp discount (10%)           :"+getOrderDiscountAmount()+"\n"+
-				"Delivery charge                  :"+getDeliveryCharge()+"\n"+
+		return "Food Exp discount (10%)    :         "+getOrderDiscountAmount()+"\n"+
+				"Delivery charge           :         "+getDeliveryCharge()+"\n"+
 				"                                   ============"+"\n"+
-				"Total Due                        :"+getTotalDue()+"\n";			
+				"Total Due                 :         "+getTotalDue()+"\n";			
 	}
 	
 	
@@ -442,7 +442,7 @@ public class EscPosDocket {
 	
 	public String getCustomerOrderDetails() {
 		return 
-			   "Customer Id               :"+getCustomerId()+"\n"+
+			   "  Customer Id               :"+getCustomerId()+"\n"+
 	           "Loyalty card point        :"+getLoyaltyPoint()+"\n"+
 			   "Order from this customer  :"+getOrderFromCustomer()+"\n"+
 	           "Customer's food exp order :"+getCustomerOrder()+"\n\n";           
@@ -454,7 +454,6 @@ public class EscPosDocket {
 		return "Customer details:"+"\n"+
 			   ""+getCustomerName()+"\n"+
 			   ""+getHouseNoOrBuildingName()+"\n"+
-			   ""+getRoadNameAreaOrStreet()+"\n"+
 			   ""+getLandmark()+"\n"+
 			   ""+getCity()+"\n"+
 			   ""+getState()+"\n"+
@@ -476,8 +475,8 @@ public class EscPosDocket {
 		            .withZone(java.time.ZoneId.of(getZoneId()))
 		            .format(java.time.Instant.parse(getOrderAcceptedAt().toString().substring(0, 10)+"T"+getOrderAcceptedAt().toString().substring(11,19)+".000Z")).substring(9);
 		 
-		return ""+orderPlaceAt+"\n"+
-		       ""+orderAcceptedAt+"\n\n";
+		return "Order placed   : "+orderPlaceAt+"\n"+
+		       "Order Accepted : "+orderAcceptedAt+"\n\n";
 	}
 	
 	public String getFooter() {
