@@ -506,7 +506,7 @@ public class EscPosDocket {
 			//l/2
 			ArrayList<String>  outputList=new ArrayList<String>();
 			String result="";
-		
+			if(s.length()>36){
 				/*
 				 * String[] output = s.split("\\s+"); for(int i=0;i <output.length;i++)
 				 * System.out.println(output[i]);
@@ -530,7 +530,7 @@ public class EscPosDocket {
 				//System.out.println(result.length());
 				System.out.println(s.substring(result.length()));
 				
-			
+			}
 		
 		return result;
 		
