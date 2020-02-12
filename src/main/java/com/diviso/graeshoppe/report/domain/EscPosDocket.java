@@ -407,7 +407,7 @@ public class EscPosDocket {
 				 content= content.concat("  "+ol.getQuantity()+" x "+""+splitOrderLine(ol.getItem(),total)+"\n"); 
 			 }
 			 else {
-			content= content.concat("  "+ol.getQuantity()+" x "+""+ol.getItem()+""+getSpace(space)+""+ol.getTotal()+"\n");
+			content= content.concat("  "+ol.getQuantity()+" x "+""+ol.getItem()+""+getSpace(space)+"  "+ol.getTotal()+"\n");
 			 }
 			
 			for(AuxItem ai:ol.getAuxItems()) {
