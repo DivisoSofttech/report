@@ -406,8 +406,9 @@ public class EscPosDocket {
 			 if(ol.getItem().length()>36) {
 				 content= content.concat("  "+ol.getQuantity()+" x "+""+splitOrderLine(ol.getItem())+""+getSpace(space)+"  "+ol.getTotal()+"\n"); 
 			 }
+			 else {
 			content= content.concat("  "+ol.getQuantity()+" x "+""+ol.getItem()+""+getSpace(space)+"  "+ol.getTotal()+"\n");
-			 
+			 }
 			
 			for(AuxItem ai:ol.getAuxItems()) {
 				String auxTotal=""+ai.getTotal();
@@ -505,7 +506,7 @@ public class EscPosDocket {
 			System.out.println(l);
 			//l/2
 			ArrayList<String>  outputList=new ArrayList<String>();
-			String result="";
+			String result1="";
 			if(s.length()>36){
 				/*
 				 * String[] output = s.split("\\s+"); for(int i=0;i <output.length;i++)
@@ -523,16 +524,17 @@ public class EscPosDocket {
 				}
 				System.out.println("list*************"+outputList);
 				String delim =" ";
-				result = String.join(delim, outputList);
+				String result = String.join(delim, outputList);
 					
 				System.out.println(result);
 			 
 				//System.out.println(result.length());
 				System.out.println(s.substring(result.length()));
-				
+				String sub1=s.substring(result.length());
+				result1=result+"\n"+sub1;
 			}
 		
-		return result;
+		return result1;
 		
 	}
 	
