@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -388,7 +389,7 @@ public class EscPosDocket {
 				     "\n"+notes+
 				     "\nPlease ring me on:"+getPhone()+
 				     "\n=============================================="+
-				     "                                         EUR";
+				     "                                       EUR";
 		 }
 		 return content;
 	}
@@ -400,14 +401,17 @@ public class EscPosDocket {
 		
 		 for(OrderLine ol:getOrderLines()) {
 			 String total=""+ol.getTotal();
-			 int space=(44-ol.getItem().length())-total.length()-4;
+			 int space=(44-ol.getItem().length())-total.length()-8;
 			 System.out.println("?????????????????????????"+space);
+			 if(ol.getItem().length()>36) {
+				 content= content.concat("  "+ol.getQuantity()+" x "+""+splitOrderLine(ol.getItem())+""+getSpace(space)+"  "+ol.getTotal()+"\n"); 
+			 }
 			content= content.concat("  "+ol.getQuantity()+" x "+""+ol.getItem()+""+getSpace(space)+"  "+ol.getTotal()+"\n");
 			 
 			
 			for(AuxItem ai:ol.getAuxItems()) {
 				String auxTotal=""+ai.getTotal();
-				 int auxSpace=(44-ai.getAuxItem().length())-auxTotal.length()-4;
+				 int auxSpace=(44-ai.getAuxItem().length())-auxTotal.length()-7;
 				 System.out.println("////////////Entering auxitem for loop in escposdocket");
 				 content=content.concat("  "+ai.getQuantity()+" x "+""+ai.getAuxItem()+""+getSpace(auxSpace)+"  "+ai.getTotal()+"\n");
 			 }
@@ -491,6 +495,47 @@ public class EscPosDocket {
 		 System.out.println(">>>>>>>>>>"+s);
 		 return s;
 	}
+	
+	
+	public String splitOrderLine(String input) {
+		
+		 String s=input;
+			//System.out.println("Hello World"+s);
+			int l = s.length();
+			System.out.println(l);
+			//l/2
+			ArrayList<String>  outputList=new ArrayList<String>();
+			String result="";
+		
+				/*
+				 * String[] output = s.split("\\s+"); for(int i=0;i <output.length;i++)
+				 * System.out.println(output[i]);
+				 */
+				System.out.println(s.substring(0,36));
+				String sub = s.substring(0,36); 
+				String[] output = sub.split("\\s+"); 
+				int len=output.length;
+				System.out.println("********"+len);
+				for(int i=0;i <output.length-1;i++) {
+					 System.out.println(output[i]);
+				
+				outputList.add(output[i]);
+				}
+				System.out.println("list*************"+outputList);
+				String delim =" ";
+				result = String.join(delim, outputList);
+					
+				System.out.println(result);
+			 
+				//System.out.println(result.length());
+				System.out.println(s.substring(result.length()));
+				
+			
+		
+		return result;
+		
+	}
+	
 	}
 	
 	
