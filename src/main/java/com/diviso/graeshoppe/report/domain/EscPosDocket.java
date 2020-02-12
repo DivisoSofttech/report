@@ -404,7 +404,7 @@ public class EscPosDocket {
 			 int space=(44-ol.getItem().length())-total.length()-8;
 			 System.out.println("?????????????????????????"+space);
 			 if(ol.getItem().length()>36) {
-				 content= content.concat("  "+ol.getQuantity()+" x "+""+splitOrderLine(ol.getItem())+""+getSpace(space)+"  "+ol.getTotal()+"\n"); 
+				 content= content.concat("  "+ol.getQuantity()+" x "+""+splitOrderLine(ol.getItem(),total)+""+getSpace(space)+"  "+ol.getTotal()+"\n"); 
 			 }
 			 else {
 			content= content.concat("  "+ol.getQuantity()+" x "+""+ol.getItem()+""+getSpace(space)+"  "+ol.getTotal()+"\n");
@@ -498,7 +498,7 @@ public class EscPosDocket {
 	}
 	
 	
-	public String splitOrderLine(String input) {
+	public String splitOrderLine(String input, String total) {
 		
 		 String s=input;
 			//System.out.println("Hello World"+s);
@@ -531,7 +531,8 @@ public class EscPosDocket {
 				//System.out.println(result.length());
 				System.out.println(s.substring(result.length()));
 				String sub1=s.substring(result.length());
-				result1=result+"\n"+sub1;
+				int space=(44-result.length())-total.length()-8;
+				result1=result+""+getSpace(space)+" "+total+"\n"+sub1;
 			}
 		
 		return result1;
