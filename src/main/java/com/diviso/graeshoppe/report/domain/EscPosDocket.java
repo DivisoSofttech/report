@@ -404,7 +404,7 @@ public class EscPosDocket {
 			 int space=(44-ol.getItem().length())-total.length()-8;
 			 System.out.println("?????????????????????????"+space);
 			 if(ol.getItem().length()>36) {
-				 content= content.concat("  "+ol.getQuantity()+" x "+""+splitOrderLine(ol.getItem(),total)+""+getSpace(space)+"  "+ol.getTotal()+"\n"); 
+				 content= content.concat("  "+ol.getQuantity()+" x "+""+splitOrderLine(ol.getItem(),total)+"\n"); 
 			 }
 			 else {
 			content= content.concat("  "+ol.getQuantity()+" x "+""+ol.getItem()+""+getSpace(space)+"  "+ol.getTotal()+"\n");
@@ -532,7 +532,7 @@ public class EscPosDocket {
 				System.out.println(s.substring(result.length()));
 				String sub1=s.substring(result.length());
 				int space=(44-result.length())-total.length()-8;
-				result1=result+""+getSpace(space)+" "+total+"\n"+sub1;
+				result1=result+""+getSpace(space)+" "+total+"\n       "+sub1;
 			}
 		
 		return result1;
