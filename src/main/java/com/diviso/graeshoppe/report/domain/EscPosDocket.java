@@ -456,9 +456,9 @@ public class EscPosDocket {
 		String loyaltyPoint=""+getLoyaltyPoint();
 		String orderFromCustomer=""+getOrderFromCustomer();
 		String customerOrder=""+getCustomerOrder();
-		return "Customer Id"+getSpace((44-"Customer Id".length())-getCustomerId().length()-8)+":"+getCustomerId()+"\n"+
-				"Loyalty card point"+getSpace((44-"Loyalty card point".length())-getCustomerId().length()-8)+":"+getLoyaltyPoint()+"\n"+
-				"Order from this customer"+getSpace((44-"Order from this customer".length())-getCustomerId().length()-8)+":"+getOrderFromCustomer()+"\n"+
+		return "Customer Id"+getSpace((44-"Customer Id".length())-getCustomerId().length()-8)+" :"+getCustomerId()+"\n"+
+				"Loyalty card point"+getSpace((44-"Loyalty card point".length())-getCustomerId().length()-8)+" :"+getLoyaltyPoint()+"\n"+
+				"Order from this customer"+getSpace((44-"Order from this customer".length())-getCustomerId().length()-8)+" :"+getOrderFromCustomer()+"\n"+
 				"Customer's food exp order"+getSpace((44-"Order from this customer".length())-getCustomerId().length()-8)+":"+getCustomerOrder();
 		
 		
