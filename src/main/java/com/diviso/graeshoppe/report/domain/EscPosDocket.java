@@ -414,7 +414,7 @@ public class EscPosDocket {
 				String auxTotal=""+ai.getTotal();
 				 int auxSpace=(44-ai.getAuxItem().length())-auxTotal.length()-8;
 				 System.out.println("////////////Entering auxitem for loop in escposdocket");
-				 content=content.concat("  "+ai.getQuantity()+" x "+""+ai.getAuxItem()+""+getSpace(auxSpace)+"  "+ai.getTotal()+"\n");
+				 content=content.concat("  "+ai.getQuantity()+" x "+""+ai.getAuxItem()+""+getSpace(auxSpace)+" "+ai.getTotal()+"\n");
 			 }
 			 for(ComboItem ci:ol.getComboItems()) {
 				 System.out.println("////////////Entering comboitem for loop in escposdocket");
@@ -427,9 +427,9 @@ public class EscPosDocket {
 	
 	public String getDiscountAndTotal() {
 		return "Food Exp discount (10%)    :         "+getOrderDiscountAmount()+"\n"+
-				"Delivery charge           :         "+getDeliveryCharge()+"\n"+
+				"Delivery charge            :         "+getDeliveryCharge()+"\n"+
 				"                                   ============"+"\n"+
-				"Total Due                 :         "+getTotalDue()+"\n";			
+				"Total Due                   :         "+getTotalDue()+"\n";			
 	}
 	
 	
