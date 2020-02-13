@@ -468,14 +468,22 @@ public class EscPosDocket {
 	
 	public String getCustomerDetails() {
 		
+		return "  Customer details:"+getSpace((44-"Customer details:".length()))+"\n"+
+				   "  "+getCustomerName()+getSpace((44-getCustomerName().length()))+"\n"+
+				   "  "+getHouseNoOrBuildingName()+getSpace((44-getHouseNoOrBuildingName().length()))+"\n"+
+				   "  "+getLandmark()+getSpace((44-getLandmark().length()))+"\n"+
+				   "  "+getCity()+getSpace((44-getCity().length()))+"\n";
+				 //  "  "+getState()+getSpace((44-getState().length()))+"\n"+
+				 //  "  "+getPincode()+getSpace((44-getPincode().length()))+"\n\n";
 		
-		return "Customer details:"+"\n"+
+		
+	/*	return "Customer details:"+"\n"+
 			   ""+getCustomerName()+"\n"+
 			   ""+getHouseNoOrBuildingName()+"\n"+
 			   ""+getLandmark()+"\n"+
 			   ""+getCity()+"\n"+
 			   ""+getState()+"\n"+
-			   ""+getPincode()+"\n\n";
+			   ""+getPincode()+"\n\n";*/
 			  
 			   
 	}
