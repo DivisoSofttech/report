@@ -494,14 +494,11 @@ public class EscPosDocket {
 	}
 	
 	public String getOrderTimes() {
-		/*
-		 * String
-		 * orderPlacedAt=java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a"
-		 * ) .withZone(java.time.ZoneId.of(getZoneId()))
-		 * .format(java.time.Instant.parse(getOrderPlaceAt().toString().substring(0,
-		 * 10)+"T"+$F{order_place_at}.toString().substring(11,19)+".000Z"));
-		 * 
-		 */
+		
+		  String orderPlacedAt=java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a") .withZone(java.time.ZoneId.of(getZoneId()))
+		                .format(java.time.Instant.parse(getOrderPlaceAt().toString().substring(0,10)+"T"+getOrderPlaceAt().toString().substring(11,19)+".000Z"));
+		  
+		 
 		
 		
 		 String orderPlaceAt=java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
@@ -511,7 +508,7 @@ public class EscPosDocket {
 		            .withZone(java.time.ZoneId.of(getZoneId()))
 		            .format(java.time.Instant.parse(getOrderAcceptedAt().toString().substring(0, 10)+"T"+getOrderAcceptedAt().toString().substring(11,19)+".000Z"));
 		 
-		return "  Order placed at  : "+orderPlaceAt+"\n"+
+		return "  Order placed at   : "+orderPlacedAt+"\n"+
 		       "  Order Accepted at : "+orderAcceptedAt+"\n\n";
 	}
 	
