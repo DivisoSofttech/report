@@ -508,8 +508,8 @@ public class EscPosDocket {
 		            .withZone(java.time.ZoneId.of(getZoneId()))
 		            .format(java.time.Instant.parse(getOrderAcceptedAt().toString().substring(0, 10)+"T"+getOrderAcceptedAt().toString().substring(11,19)+".000Z"));
 		 
-		return "  Order placed at   : "+orderPlaceAt+"\n"+
-		       "  Order Accepted at : "+orderAcceptedAt+"\n\n";
+		return "  Order placed at   : "+orderPlaceAt+getSpace(44-("Order placed at   : ".length()+orderPlaceAt.length()))+"\n"+
+		       "  Order Accepted at : "+orderAcceptedAt+getSpace(44-("Order Accepted at : ".length()+orderAcceptedAt.length()))+"\n\n";
 	}
 	
 	public String getFooter() {
