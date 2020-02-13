@@ -426,11 +426,22 @@ public class EscPosDocket {
 	}
 	
 	public String getDiscountAndTotal() {
-		return "Food Exp discount (10%)    :         "+getOrderDiscountAmount()+"\n"+
-				"Delivery charge            :         "+getDeliveryCharge()+"\n"+
+		
+	String discountAndTotal="";
+				if(getMethodOfOrder()=="DELIVERY") {
+					discountAndTotal= "Food Exp discount (10%)    :           "+getOrderDiscountAmount()+"\n"+
+				"Delivery charge            :           "+getDeliveryCharge()+"\n"+
 				"                                   ============"+"\n"+
-				"Total Due                   :         "+getTotalDue()+"\n";			
-	}
+				" Total Due                    :         "+getTotalDue()+"\n";			
+	
+				}
+				else {
+					discountAndTotal= "Food Exp discount (10%)    :           "+getOrderDiscountAmount()+"\n"+
+							"                                   ============"+"\n"+
+							" Total Due                    :         "+getTotalDue()+"\n";		
+				}
+				return discountAndTotal;
+				}
 	
 	
 	public String getPaymentStatusForDocket() {
@@ -441,11 +452,21 @@ public class EscPosDocket {
 	}
 	
 	public String getCustomerOrderDetails() {
-		return 
+		
+		String loyaltyPoint=""+getLoyaltyPoint();
+		String orderFromCustomer=""+getOrderFromCustomer();
+		String customerOrder=""+getCustomerOrder();
+		return "Customer Id"+getSpace((44-"Customer Id".length())-getCustomerId().length()-8)+":"+getCustomerId()+"\n"+
+				"Loyalty card point"+getSpace((44-"Loyalty card point".length())-loyaltyPoint.length()-8)+":"+getLoyaltyPoint()+"\n"+
+				"Order from this customer"+getSpace((44-"Order from this customer".length())-orderFromCustomer.length()-8)+":"+getOrderFromCustomer()+"\n"+
+				"Customer's food exp order"+getSpace((44-"Order from this customer".length())-orderFromCustomer.length()-8)+":"+getCustomerOrder();
+		
+		
+	/*	return 
 			   "  Customer Id               :"+getCustomerId()+"\n"+
 	           "Loyalty card point        :"+getLoyaltyPoint()+"\n"+
 			   "Order from this customer  :"+getOrderFromCustomer()+"\n"+
-	           "Customer's food exp order :"+getCustomerOrder()+"\n\n";           
+	           "Customer's food exp order :"+getCustomerOrder()+"\n\n";         */  
 	}
 	
 	public String getCustomerDetails() {
@@ -531,7 +552,7 @@ public class EscPosDocket {
 				System.out.println(s.substring(result.length()));
 				String sub1=s.substring(result.length());
 				int space=(44-result.length())-total.length()-8;
-				result1=result+""+getSpace(space)+" "+total+"\n       "+sub1;
+				result1=result+""+getSpace(space)+" "+total+"\n"+sub1;
 			}
 		
 		return result1;
