@@ -499,10 +499,10 @@ public class EscPosDocket {
 		            .format(java.time.Instant.parse(getOrderPlaceAt().toString().substring(0, 10)+"T"+getOrderPlaceAt().toString().substring(11,19)+".000Z")).substring(0,9);   
 		 String orderAcceptedAt =java.time.format.DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a")
 		            .withZone(java.time.ZoneId.of(getZoneId()))
-		            .format(java.time.Instant.parse(getOrderAcceptedAt().toString().substring(0, 10)+"T"+getOrderAcceptedAt().toString().substring(11,19)+".000Z")).substring(9);
+		            .format(java.time.Instant.parse(getOrderAcceptedAt().toString().substring(0, 10)+"T"+getOrderAcceptedAt().toString().substring(11,19)+".000Z")).substring(0,9);
 		 
-		return "Order placed   : "+orderPlaceAt+"\n"+
-		       "Order Accepted : "+orderAcceptedAt+"\n\n";
+		return "  Order placed at  : "+orderPlaceAt+"\n"+
+		       "  Order Accepted at : "+orderAcceptedAt+"\n\n";
 	}
 	
 	public String getFooter() {
